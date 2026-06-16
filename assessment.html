@@ -24,14 +24,6 @@
     <!-- style css -->
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .vl-breadcrumb-area {
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            margin: 0;
-            padding: 178px 0 80px;
-            border-radius: 0 !important;
-        }
         .vl-about-area {
             padding-left: 80px;
             padding-right: 80px;
@@ -39,17 +31,7 @@
         @media (max-width: 991px) {
             .vl-about-area { padding-left: 15px; padding-right: 15px; }
         }
-        .vl-feature-btn-inner a {
-            color: #ffffff !important;
-        }
-        .vl-feature-btn-inner a:hover {
-            background: #000000 !important;
-            border-color: #000000 !important;
-            color: #ffffff !important;
-        }
-        .vl-feature-btn-inner a:hover span {
-            background: #5932EA !important;
-        }
+        .vl-footer-area { margin-top: 0 !important; padding-top: 80px; }
     </style>
 </head>
 <body>
@@ -66,18 +48,19 @@
 
     <main>
         <!-- =========== banner area start =========== -->
-        <section class="vl-breadcrumb-area fix p-relative"
-            style="background-image: linear-gradient(135deg, rgba(8,6,28,0.82) 0%, rgba(18,10,50,0.75) 100%), url(assets/img/salescrm/banner/vl-hero-bg-9.1.png);">
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+
             <div class="container">
                 <div class="row">
-                    <div class="col-12 text-center">
+                    <div class="col-xl-6 mx-auto text-center">
                         <div class="vl-breadcrumb-content">
-                            <h2 class="title mb-28" style="color:#ffffff;">Free Assessment First</h2>
+                            <h2 class="title mb-28">Free Assessment First</h2>
                             <div class="vl-breadcrumb-menu">
                                 <ul>
-                                    <li><a href="index.html" style="color:rgba(255,255,255,0.7);">Home</a></li>
-                                    <li><i class="fa-regular fa-angle-right" style="color:rgba(255,255,255,0.7);"></i></li>
-                                    <li><a href="#" style="color:#ffffff;">Free Assessment First</a></li>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Free Assessment First</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -110,10 +93,6 @@
                                     <li><span><img src="assets/img/icon/vl-feature-ch-ic-inner1.1.svg" alt=""></span>Powerful Of Analytics</li>
                                     <li><span><img src="assets/img/icon/vl-feature-ch-ic-inner1.1.svg" alt=""></span>Scalable An Flexible</li>
                                 </ul>
-                            </div>
-                            <div style="height:50px;"></div>
-                            <div class="vl-feature-btn-inner">
-                                <a href="contact.html" class="vl-primary-btn-1" style="background:linear-gradient(135deg,#5932EA 0%,#772EFE 100%);border-color:transparent;">Start Free Assessment <span><img src="assets/img/icon/vl-arrowupright.svg" alt=""></span></a>
                             </div>
                         </div>
                     </div>
