@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Templates - Plannor</title>
+
+    <link rel="shortcut icon" href="https://html.vikinglab.agency/saasi/assets/img/preloader/vl-preloader-1.9.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ── tokens ───────────────────────────────────────── */
+        :root {
+            --p:      #5932EA;
+            --p-d:    #4520d4;
+            --g:      #10b981;
+            --g-d:    #059669;
+            --b:      #3b82f6;
+            --b-d:    #2563eb;
+            --o:      #f97316;
+            --o-d:    #ea6b00;
+            --navy:   #121826;
+            --muted:  #64748b;
+            --border: #ede9fe;
+        }
+
+        /* ── page background ──────────────────────────────── */
+        .tpl-page { background: #f8f8fc; padding-bottom: 36px; }
+
+        /* ── footer fix ───────────────────────────────────── */
+        .vl-footer-area { margin-top: 0 !important; padding-top: 80px !important; }
+
+        /* ── hero header ──────────────────────────────────── */
+        .tpl-hero {
+            background: #fff;
+            border-bottom: 1px solid #f0eeff;
+            padding: 72px 0 60px;
+        }
+        .tpl-hero-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .tpl-hero-lhs { flex: 1; max-width: 520px; }
+        .tpl-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #f0eeff;
+            border: 1px solid #ddd6fe;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--p);
+            margin-bottom: 20px;
+        }
+        .tpl-hero-title {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.18;
+            color: var(--navy);
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+        .tpl-hero-title .grad {
+            background: linear-gradient(90deg, #5932EA 0%, #7c3aed 60%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tpl-hero-desc {
+            font-size: 15.5px;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 420px;
+        }
+        .tpl-hero-rhs {
+            flex-shrink: 0;
+            width: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ── cards section ────────────────────────────────── */
+        .tpl-cards-section { padding: 48px 0 0; }
+        .tpl-cards-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* ── individual card ──────────────────────────────── */
+        .tpl-card {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #f0eeff;
+            box-shadow: 0 4px 24px rgba(89,50,234,0.07);
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            position: relative;
+        }
+        .tpl-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(89,50,234,0.13);
+        }
+
+        /* number badge - hidden */
+        .tpl-num { display: none; }
+
+        /* icon circle */
+        .tpl-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 24px;
+        }
+        .tpl-icon.ico-purple { background: #ede9fe; color: #5932EA; }
+        .tpl-icon.ico-green  { background: #f0eeff; color: #5932EA; }
+        .tpl-icon.ico-blue   { background: #ede9fe; color: #7c3aed; }
+        .tpl-icon.ico-orange { background: #f5f3ff; color: #5932EA; }
+
+        /* content */
+        .tpl-content { width: 100%; }
+        .tpl-content h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0 0 7px;
+            letter-spacing: -0.01em;
+        }
+        .tpl-content p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0 0 10px;
+        }
+        .tpl-filetype {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.03em;
+        }
+        .tpl-filetype.ft-pdf  { background: #fff1f2; color: #e11d48; }
+        .tpl-filetype.ft-xlsx { background: #ecfdf5; color: #059669; }
+        .tpl-filetype.ft-docx { background: #eff6ff; color: #2563eb; }
+
+        /* download form */
+        .tpl-dl {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .tpl-dl-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: 0.01em;
+        }
+        .tpl-email-wrap {
+            position: relative;
+        }
+        .tpl-email-wrap i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            font-size: 13px;
+        }
+        .tpl-email-input {
+            width: 100%;
+            padding: 10px 12px 10px 34px;
+            border: 1.5px solid #e8e5f7;
+            border-radius: 10px;
+            font-size: 13.5px;
+            color: var(--navy);
+            outline: none;
+            background: #faf9ff;
+            transition: border-color 0.2s;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        .tpl-email-input:focus { border-color: #a78bfa; background: #fff; }
+        .tpl-email-input.error { border-color: #e11d48; }
+        .tpl-error-msg {
+            font-size: 11.5px;
+            color: #e11d48;
+            display: none;
+            margin-top: -4px;
+        }
+
+        .tpl-dl-btn {
+            width: 100%;
+            padding: 11px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: opacity 0.2s, transform 0.15s;
+            font-family: inherit;
+        }
+        .tpl-dl-btn:hover  { opacity: 0.88; transform: scale(1.02); }
+        .tpl-dl-btn:active { transform: scale(0.98); }
+        .tpl-dl-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .btn-purple { background: linear-gradient(135deg, #5932EA 0%, #7c3aed 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
+        .btn-green  { background: linear-gradient(135deg, #5932EA 0%, #4520d4 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
+        .btn-blue   { background: linear-gradient(135deg, #5932EA 0%, #772EFE 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
+        .btn-orange { background: linear-gradient(135deg, #5932EA 0%, #7c3aed 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
+
+        /* ── security bar ─────────────────────────────────── */
+        .tpl-security {
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #f0eeff;
+            box-shadow: 0 4px 24px rgba(89,50,234,0.07);
+            padding: 22px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .tpl-sec-lhs { display: flex; align-items: center; gap: 14px; }
+        .tpl-sec-ico {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: #f0eeff;
+            border: 1.5px solid #ddd6fe;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            color: #5932EA;
+            font-size: 17px;
+        }
+        .tpl-sec-text h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin: 0 0 2px; }
+        .tpl-sec-text p  { font-size: 12.5px; color: var(--muted); margin: 0; }
+        .tpl-sec-rhs {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; font-weight: 700; color: var(--navy);
+        }
+        .tpl-sec-rhs i { color: #10b981; font-size: 18px; }
+
+        /* ── toast ────────────────────────────────────────── */
+        .tpl-toast {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: #1e1b4b;
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .tpl-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .tpl-toast i { color: #a7f3d0; font-size: 16px; }
+
+        /* ── responsive ───────────────────────────────────── */
+        @media (max-width: 1199px) {
+            .tpl-cards-list { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        }
+        @media (max-width: 991px) {
+            .tpl-hero-inner { flex-direction: column; text-align: center; }
+            .tpl-hero-rhs   { width: 220px; }
+            .tpl-hero-desc  { max-width: 100%; }
+            .tpl-cards-list { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .tpl-hero-title { font-size: 28px; }
+            .tpl-hero-rhs   { display: none; }
+            .tpl-cards-list { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 576px) {
+            .tpl-hero { padding: 50px 0 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- preloader -->
+    <div class="preloader preloader-6">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="https://html.vikinglab.agency/saasi/assets/img/preloader/vl-preloader-1.9.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+        <!-- ── breadcrumb ──────────────────────────────────── -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Free Templates</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Free Templates</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── templates page ─────────────────────────────── -->
+        <div class="tpl-page">
+
+            <!-- HERO HEADER -->
+            <section class="tpl-hero">
+                <div class="container">
+                    <div class="tpl-hero-inner">
+                        <!-- Left -->
+                        <div class="tpl-hero-lhs" data-aos="fade-right">
+                            <div class="tpl-badge">
+                                <i class="fa-solid fa-file-lines"></i>
+                                5 Free Templates
+                            </div>
+                            <h1 class="tpl-hero-title">
+                                Professional templates<br>
+                                <span class="grad">built for NDIS providers</span>
+                            </h1>
+                            <p class="tpl-hero-desc">Save time, stay compliant and deliver better outcomes with our ready-to-use templates.</p>
+                        </div>
+                        <!-- Right: folder illustration -->
+                        <div class="tpl-hero-rhs" data-aos="fade-left">
+                            <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" width="320" height="260">
+                                <!-- folder body -->
+                                <rect x="40" y="90" width="200" height="140" rx="18" fill="#7c3aed" opacity="0.15"/>
+                                <rect x="52" y="80" width="196" height="148" rx="18" fill="#ede9fe"/>
+                                <rect x="52" y="80" width="196" height="148" rx="18" fill="url(#folderGrad)" opacity="0.85"/>
+                                <!-- folder tab -->
+                                <path d="M52 98C52 88.6 59.6 81 69 81H120L135 96H248C248 96 248 88 248 98" fill="#7c3aed" opacity="0.25"/>
+                                <rect x="52" y="80" width="70" height="22" rx="11" fill="#a78bfa" opacity="0.6"/>
+                                <!-- folder lines -->
+                                <rect x="80" y="130" width="140" height="8" rx="4" fill="rgba(255,255,255,0.6)"/>
+                                <rect x="80" y="148" width="110" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+                                <rect x="80" y="166" width="125" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+                                <!-- floating file 1 - xlsx green -->
+                                <g transform="translate(218, 50) rotate(12)">
+                                    <rect width="52" height="64" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+                                    <rect x="8" y="18" width="36" height="5" rx="2.5" fill="#10b981" opacity="0.5"/>
+                                    <rect x="8" y="28" width="28" height="5" rx="2.5" fill="#10b981" opacity="0.35"/>
+                                    <rect x="8" y="38" width="32" height="5" rx="2.5" fill="#10b981" opacity="0.25"/>
+                                    <rect x="6" y="6" width="22" height="8" rx="3" fill="#10b981"/>
+                                    <text x="17" y="13" text-anchor="middle" font-size="6" font-weight="700" fill="#fff" font-family="Arial">XLSX</text>
+                                </g>
+                                <!-- floating file 2 - pdf red -->
+                                <g transform="translate(30, 55) rotate(-10)">
+                                    <rect width="50" height="62" rx="10" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5"/>
+                                    <rect x="8" y="18" width="34" height="5" rx="2.5" fill="#e11d48" opacity="0.4"/>
+                                    <rect x="8" y="28" width="26" height="5" rx="2.5" fill="#e11d48" opacity="0.3"/>
+                                    <rect x="8" y="38" width="30" height="5" rx="2.5" fill="#e11d48" opacity="0.2"/>
+                                    <rect x="6" y="6" width="20" height="8" rx="3" fill="#e11d48"/>
+                                    <text x="16" y="13" text-anchor="middle" font-size="6" font-weight="700" fill="#fff" font-family="Arial">PDF</text>
+                                </g>
+                                <!-- floating file 3 - docx blue -->
+                                <g transform="translate(240, 150) rotate(8)">
+                                    <rect width="48" height="60" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+                                    <rect x="7" y="17" width="34" height="5" rx="2.5" fill="#3b82f6" opacity="0.4"/>
+                                    <rect x="7" y="27" width="26" height="5" rx="2.5" fill="#3b82f6" opacity="0.3"/>
+                                    <rect x="7" y="37" width="30" height="5" rx="2.5" fill="#3b82f6" opacity="0.2"/>
+                                    <rect x="5" y="5" width="24" height="8" rx="3" fill="#3b82f6"/>
+                                    <text x="17" y="12" text-anchor="middle" font-size="6" font-weight="700" fill="#fff" font-family="Arial">DOCX</text>
+                                </g>
+                                <!-- sparkles -->
+                                <circle cx="200" cy="45" r="5" fill="#a78bfa" opacity="0.6"/>
+                                <circle cx="30" cy="160" r="4" fill="#f97316" opacity="0.5"/>
+                                <circle cx="280" cy="100" r="3" fill="#10b981" opacity="0.6"/>
+                                <path d="M170 30 l3 7 l7 3 l-7 3 l-3 7 l-3-7 l-7-3 l7-3z" fill="#a78bfa" opacity="0.5"/>
+                                <path d="M60 200 l2 5 l5 2 l-5 2 l-2 5 l-2-5 l-5-2 l5-2z" fill="#f97316" opacity="0.4"/>
+                                <defs>
+                                    <linearGradient id="folderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#7c3aed"/>
+                                        <stop offset="100%" stop-color="#5932EA"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEMPLATE CARDS -->
+            <section class="tpl-cards-section">
+                <div class="container">
+                    <div class="tpl-cards-list">
+
+                        <!-- Card 1: NDIS Operational Checklist -->
+                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="0">
+                            <span class="tpl-num">1</span>
+                            <div class="tpl-icon ico-purple">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <div class="tpl-content">
+                                <h3>NDIS Operational Checklist</h3>
+                                <p>A comprehensive checklist to help you stay compliant and manage day-to-day operations with confidence.</p>
+                                <span class="tpl-filetype ft-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                            </div>
+                            <div class="tpl-dl">
+                                <div class="tpl-dl-label">Enter your email to download</div>
+                                <div class="tpl-email-wrap">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="1">
+                                </div>
+                                <span class="tpl-error-msg" id="err-1">Please enter a valid email address.</span>
+                                <button class="tpl-dl-btn btn-purple" onclick="downloadTemplate(1, 'NDIS_Operational_Checklist.pdf')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: CRM Spreadsheet Template -->
+                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="80">
+                            <span class="tpl-num">2</span>
+                            <div class="tpl-icon ico-green">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <div class="tpl-content">
+                                <h3>CRM Spreadsheet Template</h3>
+                                <p>Track participants, interactions and follow-ups with this easy-to-use CRM spreadsheet template.</p>
+                                <span class="tpl-filetype ft-xlsx"><i class="fa-solid fa-file-excel"></i> XLSX</span>
+                            </div>
+                            <div class="tpl-dl">
+                                <div class="tpl-dl-label">Enter your email to download</div>
+                                <div class="tpl-email-wrap">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="2">
+                                </div>
+                                <span class="tpl-error-msg" id="err-2">Please enter a valid email address.</span>
+                                <button class="tpl-dl-btn btn-green" onclick="downloadTemplate(2, 'CRM_Spreadsheet_Template.xlsx')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Workflow Template -->
+                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="120">
+                            <span class="tpl-num">3</span>
+                            <div class="tpl-icon ico-blue">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                            <div class="tpl-content">
+                                <h3>Workflow Template</h3>
+                                <p>Streamline your processes with a proven workflow template designed for NDIS providers.</p>
+                                <span class="tpl-filetype ft-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                            </div>
+                            <div class="tpl-dl">
+                                <div class="tpl-dl-label">Enter your email to download</div>
+                                <div class="tpl-email-wrap">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="3">
+                                </div>
+                                <span class="tpl-error-msg" id="err-3">Please enter a valid email address.</span>
+                                <button class="tpl-dl-btn btn-blue" onclick="downloadTemplate(3, 'Workflow_Template.pdf')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: AI Prompt Pack -->
+                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="160">
+                            <span class="tpl-num">4</span>
+                            <div class="tpl-icon ico-orange">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="tpl-content">
+                                <h3>AI Prompt Pack</h3>
+                                <p>100+ ready-to-use AI prompts to save time and improve productivity across your operations.</p>
+                                <span class="tpl-filetype ft-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>
+                            </div>
+                            <div class="tpl-dl">
+                                <div class="tpl-dl-label">Enter your email to download</div>
+                                <div class="tpl-email-wrap">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="4">
+                                </div>
+                                <span class="tpl-error-msg" id="err-4">Please enter a valid email address.</span>
+                                <button class="tpl-dl-btn btn-orange" onclick="downloadTemplate(4, 'AI_Prompt_Pack.pdf')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Participant Onboarding Template -->
+                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="200">
+                            <span class="tpl-num">5</span>
+                            <div class="tpl-icon ico-purple">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <div class="tpl-content">
+                                <h3>Participant Onboarding Template</h3>
+                                <p>A structured onboarding template to help you deliver a smooth and professional experience.</p>
+                                <span class="tpl-filetype ft-docx"><i class="fa-solid fa-file-word"></i> DOCX</span>
+                            </div>
+                            <div class="tpl-dl">
+                                <div class="tpl-dl-label">Enter your email to download</div>
+                                <div class="tpl-email-wrap">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="5">
+                                </div>
+                                <span class="tpl-error-msg" id="err-5">Please enter a valid email address.</span>
+                                <button class="tpl-dl-btn btn-purple" onclick="downloadTemplate(5, 'Participant_Onboarding_Template.docx')">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+
+                    </div><!-- /tpl-cards-list -->
+
+                    <!-- SECURITY BAR -->
+                    <div class="tpl-security" data-aos="fade-up">
+                        <div class="tpl-sec-lhs">
+                            <div class="tpl-sec-ico">
+                                <i class="fa-solid fa-shield"></i>
+                            </div>
+                            <div class="tpl-sec-text">
+                                <h4>Your privacy is important to us.</h4>
+                                <p>Your email is used only to send the template download link.</p>
+                            </div>
+                        </div>
+                        <div class="tpl-sec-rhs">
+                            <i class="fa-solid fa-shield-check"></i>
+                            100% Secure
+                        </div>
+                    </div>
+
+                </div><!-- /container -->
+            </section>
+
+        </div><!-- /tpl-page -->
+    </main>
+
+    <!-- Toast notification -->
+    <div class="tpl-toast" id="tpl-toast">
+        <i class="fa-solid fa-circle-check"></i>
+        Template download started.
+    </div>
+
+    <div id="global-footer"></div>
+
+    <!-- progress -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/includes.js"></script>
+    <!-- Fallback: force hide preloader if main.js stalled -->
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var p = document.querySelector('.preloader');
+                if (p) { p.style.opacity = '0'; p.style.display = 'none'; }
+                AOS.init({ duration: 800, once: true });
+            }, 400);
+        });
+    </script>
+
+    <script>
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function showToast() {
+            var toast = document.getElementById('tpl-toast');
+            toast.classList.add('show');
+            setTimeout(function() { toast.classList.remove('show'); }, 3500);
+        }
+
+        function downloadTemplate(cardNum, filename) {
+            var input    = document.querySelector('[data-card="' + cardNum + '"]');
+            var errEl    = document.getElementById('err-' + cardNum);
+            var btn      = input.closest('.tpl-dl').querySelector('.tpl-dl-btn');
+            var email    = input.value.trim();
+
+            // reset
+            input.classList.remove('error');
+            errEl.style.display = 'none';
+
+            if (!email || !emailRegex.test(email)) {
+                input.classList.add('error');
+                errEl.style.display = 'block';
+                input.focus();
+                return;
+            }
+
+            // loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Downloading...';
+
+            // save email locally
+            var saved = JSON.parse(localStorage.getItem('tpl_emails') || '[]');
+            saved.push({ card: cardNum, email: email, date: new Date().toISOString() });
+            localStorage.setItem('tpl_emails', JSON.stringify(saved));
+
+            // simulate download after short delay
+            setTimeout(function() {
+                var content = 'Plannor Template: ' + filename + '\nEmail: ' + email + '\n\nThank you for downloading this template.\nVisit plannor.com.au for more resources.';
+                var blob = new Blob([content], { type: 'text/plain' });
+                var url  = URL.createObjectURL(blob);
+                var a    = document.createElement('a');
+                a.href     = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+                showToast();
+
+                setTimeout(function() {
+                    btn.innerHTML = '<i class="fa-solid fa-download"></i> Download';
+                }, 4000);
+            }, 900);
+        }
+    </script>
+</body>
+</html>
