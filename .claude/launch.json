@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Plannor",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3000", "C:\\Users\\daksh\\Downloads\\Plannor\\Plannor\\html.vikinglab.agency\\saasi"],
+      "port": 3000
+    }
+  ]
+}
