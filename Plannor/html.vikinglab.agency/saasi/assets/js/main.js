@@ -213,7 +213,6 @@ setTimeout(() => {
 }, 500);
 
 
-
   /* ================================
       11. Testimonial Active (Home 1)
   ================================ */
@@ -222,32 +221,21 @@ setTimeout(() => {
       const vltestimonialactive1 = new Swiper('.vltestimonialactive1', {
           slidesPerView: 4,
           spaceBetween: 30,
-          keyboard: {
-              enabled: true,
-          },
-          loop:true,
+          loop: true,
           speed: 3000,
           keyboard: {
               enabled: true,
           },
           autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
+              delay: 2500,
+              disableOnInteraction: false,
           },
           breakpoints: {
-              0: {
-                slidesPerView: 1,
-              },
-              768: {
-                slidesPerView: 2,
-              },
-              992: {
-                slidesPerView: 3,
-              },
-              1200: {
-                slidesPerView: 4,
-              }
-            },
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              992: { slidesPerView: 3 },
+              1200: { slidesPerView: 4 },
+          },
       });
   }
 
