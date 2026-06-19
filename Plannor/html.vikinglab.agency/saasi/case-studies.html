@@ -246,7 +246,11 @@
             /* ---- section headings ---- */
             .vl-section-title h2.title { font-size: 26px !important; }
 
-            /* ---- about section top padding ---- */
+            /* ---- about section: remove overflow:hidden so stacked grid isn't clipped ---- */
+            .vl-about-area-7.fix {
+                overflow: visible !important;
+                padding-bottom: 60px !important;
+            }
             .vl-about-area-7.pt-100 { padding-top: 60px !important; }
         }
     </style>
