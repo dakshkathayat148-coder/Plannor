@@ -249,9 +249,25 @@
             /* ---- about section: remove overflow:hidden so stacked grid isn't clipped ---- */
             .vl-about-area-7.fix {
                 overflow: visible !important;
-                padding-bottom: 60px !important;
+                padding-bottom: 80px !important;
             }
             .vl-about-area-7.pt-100 { padding-top: 60px !important; }
+
+            /* ---- reset large left/right margins not covered by 576-767px range ---- */
+            .vl-featurebox-single:nth-child(1),
+            .vl-featurebox-single:nth-child(2),
+            .vl-featurebox-single:nth-child(3),
+            .vl-featurebox-right .vl-featurebox-single:nth-child(1),
+            .vl-featurebox-right .vl-featurebox-single:nth-child(2),
+            .vl-featurebox-right .vl-featurebox-single:nth-child(3) {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            /* ---- give last featurebox card bottom breathing room ---- */
+            .vl-featurebox-single:last-child {
+                margin-bottom: 20px !important;
+            }
         }
     </style>
 </head>
