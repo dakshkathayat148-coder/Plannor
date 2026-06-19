@@ -6,6 +6,9 @@ html, body { overflow-x: hidden; }
     clip-path: inset(62px 0 0 0);
     transform: translateY(-62px);
 }
+@media (max-width: 1199px) {
+    #vl-header-sticky .row { justify-content: space-between; }
+}
 </style>
 <header>
     <div id="vl-header-sticky" class="vl-header-area vl-header-1 vl-transparent-header">
@@ -101,4 +104,40 @@ html, body { overflow-x: hidden; }
 </div>
 <div class="vl-offcanvas-overlay"></div>
 <!-- offcanvas menu end -->
+
+<script>
+(function () {
+    // Open / close offcanvas via event delegation
+    // (main.js binds too early — header is loaded async via includes.js)
+    document.addEventListener('click', function (e) {
+        if (e.target.closest('.vl-offcanvas-toggle')) {
+            var oc = document.querySelector('.vl-offcanvas');
+            var ol = document.querySelector('.vl-offcanvas-overlay');
+            if (oc) oc.classList.add('vl-offcanvas-open');
+            if (ol) ol.classList.add('vl-offcanvas-overlay-open');
+        }
+        if (e.target.closest('.vl-offcanvas-close-toggle') || e.target.classList.contains('vl-offcanvas-overlay')) {
+            var oc = document.querySelector('.vl-offcanvas');
+            var ol = document.querySelector('.vl-offcanvas-overlay');
+            if (oc) oc.classList.remove('vl-offcanvas-open');
+            if (ol) ol.classList.remove('vl-offcanvas-overlay-open');
+        }
+    });
+
+    // Clone nav menu into offcanvas sidebar
+    setTimeout(function () {
+        var navUl = document.querySelector('.vl-mobile-menu-active > ul');
+        var offcanvasNav = document.querySelector('.vl-offcanvas-menu nav');
+        if (navUl && offcanvasNav && !offcanvasNav.querySelector('ul')) {
+            var cloned = navUl.cloneNode(true);
+            // Remove desktop flex styles so it stacks vertically in sidebar
+            cloned.removeAttribute('style');
+            Array.prototype.forEach.call(cloned.querySelectorAll('li'), function(li) {
+                li.removeAttribute('style');
+            });
+            offcanvasNav.appendChild(cloned);
+        }
+    }, 0);
+})();
+</script>
 <!-- =========== header area end =========== -->
