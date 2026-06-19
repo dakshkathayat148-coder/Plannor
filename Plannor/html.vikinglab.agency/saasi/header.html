@@ -68,7 +68,7 @@ html, body { overflow-x: hidden; }
     <div class="vl-offcanvas-wrapper">
         <div class="vl-offcanvas-header d-flex justify-content-between align-items-center mb-50">
             <div class="vl-offcanvas-logo">
-                <a href="index.html"><img src="assets/img/logo/plannor-logomain.png" alt=""></a>
+                <a href="index.html"><img src="assets/img/logo/plannor-logomain1.png" alt="" style="max-height:45px;width:auto;"></a>
             </div>
             <div class="vl-offcanvas-close">
                 <button class="vl-offcanvas-close-toggle"><i class="fa-regular fa-xmark"></i></button>
@@ -76,29 +76,6 @@ html, body { overflow-x: hidden; }
         </div>
         <div class="vl-offcanvas-menu d-lg-block mb-40">
             <nav></nav>
-        </div>
-        <div class="vl-offcanvas-content mb-40">
-            <h2 class="vl-offcanvas-title">Hello There</h2>
-            <p class="vl-offcanvas-para">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-        </div>
-        <div class="vl-offcanvas-gallery mb-40">
-            <a class="popup-image" href="assets/img/gallery/gallery-1.png"><img class="w-100" src="assets/img/gallery/gallery-1.png" alt=""></a>
-            <a class="popup-image" href="assets/img/gallery/gallery-2.png"><img class="w-100" src="assets/img/gallery/gallery-2.png" alt=""></a>
-            <a class="popup-image" href="assets/img/gallery/gallery-3.png"><img class="w-100" src="assets/img/gallery/gallery-3.png" alt=""></a>
-            <a class="popup-image" href="assets/img/gallery/gallery-4.png"><img class="w-100" src="assets/img/gallery/gallery-4.png" alt=""></a>
-        </div>
-        <div class="vl-offcanvas-info mb-30">
-            <h3 class="vl-offcanvas-title mb-20">Contact Us</h3>
-            <a href="#">+57-9954-6476</a>
-            <a href="#">hello@sassi.com</a>
-            <a href="#">Los Angles,California</a>
-        </div>
-        <div class="vl-offcanvas-social mb-30">
-            <h3 class="vl-offcanvas-title mb-20">Follow Us</h3>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
 </div>
@@ -130,12 +107,47 @@ html, body { overflow-x: hidden; }
         var offcanvasNav = document.querySelector('.vl-offcanvas-menu nav');
         if (navUl && offcanvasNav && !offcanvasNav.querySelector('ul')) {
             var cloned = navUl.cloneNode(true);
-            // Remove desktop flex styles so it stacks vertically in sidebar
             cloned.removeAttribute('style');
             Array.prototype.forEach.call(cloned.querySelectorAll('li'), function(li) {
                 li.removeAttribute('style');
             });
+            // Remove inline font-size/padding from cloned anchors
+            Array.prototype.forEach.call(cloned.querySelectorAll('a'), function(a) {
+                a.removeAttribute('style');
+            });
             offcanvasNav.appendChild(cloned);
+
+            // Add chevron toggle button for items with sub-menus
+            Array.prototype.forEach.call(
+                offcanvasNav.querySelectorAll('.has-dropdown'),
+                function(li) {
+                    var btn = document.createElement('button');
+                    btn.className = 'vl-menu-close';
+                    btn.type = 'button';
+                    btn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    btn.style.cssText = 'position:absolute;right:0;top:4px;background:none;border:none;cursor:pointer;font-size:12px;color:#555;padding:4px 8px;';
+                    li.style.position = 'relative';
+                    li.appendChild(btn);
+                }
+            );
+
+            // Submenu toggle click handler
+            offcanvasNav.addEventListener('click', function(e) {
+                var btn = e.target.closest('.vl-menu-close');
+                var dropLink = e.target.closest('.has-dropdown > a');
+                if (!btn && !dropLink) return;
+                e.preventDefault();
+                var li = (btn || dropLink).closest('.has-dropdown');
+                var sub = li ? li.querySelector('.sub-menu') : null;
+                if (!sub) return;
+                if (li.classList.contains('active')) {
+                    li.classList.remove('active');
+                    sub.style.display = 'none';
+                } else {
+                    li.classList.add('active');
+                    sub.style.display = 'block';
+                }
+            });
         }
     }, 0);
 })();
