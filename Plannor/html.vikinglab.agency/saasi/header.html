@@ -131,13 +131,12 @@ html, body { overflow-x: hidden; }
                 }
             );
 
-            // Submenu toggle click handler
+            // Submenu toggle — only the chevron button toggles, the link navigates normally
             offcanvasNav.addEventListener('click', function(e) {
                 var btn = e.target.closest('.vl-menu-close');
-                var dropLink = e.target.closest('.has-dropdown > a');
-                if (!btn && !dropLink) return;
+                if (!btn) return;
                 e.preventDefault();
-                var li = (btn || dropLink).closest('.has-dropdown');
+                var li = btn.closest('.has-dropdown');
                 var sub = li ? li.querySelector('.sub-menu') : null;
                 if (!sub) return;
                 if (li.classList.contains('active')) {
