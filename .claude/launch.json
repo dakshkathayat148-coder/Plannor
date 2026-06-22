@@ -4,7 +4,7 @@
     {
       "name": "Plannor",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-l", "3000", "C:\\Users\\daksh\\Downloads\\Plannor\\Plannor\\html.vikinglab.agency\\saasi"],
+      "runtimeArgs": ["serve", "-l", "3000", "C:\\xampp\\htdocs\\vishwa_projects\\Plannor"],
       "port": 3000
     }
   ]
