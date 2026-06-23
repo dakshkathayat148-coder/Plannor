@@ -91,7 +91,7 @@ html, body { overflow-x: hidden; }
 <script>
 (function () {
     // Open / close offcanvas via event delegation
-    // (main.js binds too early â€” header is loaded async via includes.js)
+    // (main.js binds too early  header is loaded async via includes.js)
     document.addEventListener('click', function (e) {
         if (e.target.closest('.vl-offcanvas-toggle')) {
             var oc = document.querySelector('.vl-offcanvas');
@@ -137,7 +137,7 @@ html, body { overflow-x: hidden; }
                 }
             );
 
-            // Submenu toggle â€” only the chevron button toggles, the link navigates normally
+            // Submenu toggle  only the chevron button toggles, the link navigates normally
             offcanvasNav.addEventListener('click', function(e) {
                 var btn = e.target.closest('.vl-menu-close');
                 if (!btn) return;
