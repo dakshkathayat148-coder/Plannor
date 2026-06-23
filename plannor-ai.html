@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor AI — AI-Powered NDIS Management</title>
+
+    <link rel="shortcut icon" href="Plannor/html.vikinglab.agency/saasi/assets/img/logo/fav-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/nice-select.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/aos.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/style.css">
+
+    <style>
+        :root { --brand:#5932EA; --brand2:#772EFE; --dark:#0f0a2e; }
+
+        /* ── PLANNOR AI SECTION ─────────────────────────── */
+        .ai-section { background:#f8f9fc; padding:80px 0; overflow:hidden; }
+        .ai-wrap { display:grid; grid-template-columns:1fr 1.3fr; gap:60px; align-items:stretch; }
+
+        /* Left column */
+        .ai-pill { display:inline-flex;align-items:center;gap:7px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:20px;padding:6px 14px;font-size:10.5px;font-weight:800;color:#6b7280;letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px; }
+        .ai-pill svg { width:14px;height:14px;color:#5932EA; }
+        .ai-h1 { font-size:44px;font-weight:900;color:#0f0a2e;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px; }
+        .ai-ndis { color:#5932EA; }
+        .ai-desc { font-size:14.5px;color:#6b7280;line-height:1.65;margin-bottom:24px; }
+        .ai-feats { margin-bottom:28px; }
+        .ai-feat { display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f3f4f6; }
+        .ai-feat:last-child { border-bottom:none;padding-bottom:0; }
+        .ai-feat-ic { width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai-feat-ic svg { width:18px;height:18px; }
+        .ai-feat-name { font-size:13px;font-weight:800;color:#111827;margin-bottom:2px; }
+        .ai-feat-desc { font-size:11.5px;color:#6b7280;line-height:1.45; }
+        .ai-cta-btn { display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(135deg,#5932EA,#772EFE);color:#fff;font-size:14px;font-weight:700;padding:15px 28px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(89,50,234,.35); }
+        .ai-cta-btn svg { width:16px;height:16px; }
+        .ai-cta-btn:hover { color:#fff; }
+
+        /* Mockup shell */
+        .ai-mock-col { border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(89,50,234,.15),0 4px 20px rgba(0,0,0,.08); }
+        .ai-mock-col img { width:100%;height:100%;object-fit:cover;object-position:20% top;display:block; }
+
+        /* Sidebar */
+        .ai-sb { width:38px;display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:14px;background:#fff;border-radius:12px;flex-shrink:0; }
+        .ai-sb-ic { width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer; }
+        .ai-sb-ic svg { width:14px;height:14px;color:#9ca3af; }
+        .ai-sb-ic--active { background:#ede9fe; }
+        .ai-sb-ic--active svg { color:#5932EA; }
+
+        /* Main panel */
+        .ai-panel { flex:1;background:#fff;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;overflow:hidden;min-width:0; }
+
+        /* Panel header */
+        .ai-panel-hd { display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0; }
+        .ai-panel-title { font-size:16px;font-weight:900;color:#111827;display:flex;align-items:center;gap:6px;margin-bottom:2px; }
+        .ai-panel-title svg { width:15px;height:15px;color:#5932EA; }
+        .ai-panel-sub { font-size:11px;color:#6b7280; }
+        .ai-robot-wrap { display:flex;align-items:flex-end;gap:8px;flex-shrink:0; }
+        .ai-bubble { background:#f3f4f6;border-radius:10px 10px 0 10px;padding:8px 11px;font-size:9.5px;color:#374151;max-width:150px;line-height:1.45; }
+        .ai-robot { width:56px;height:56px;background:linear-gradient(135deg,#3d1eb5,#5932EA);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(89,50,234,.4); }
+
+        /* Mid row: Ask Anything + AI in Action */
+        .ai-mid { display:grid;grid-template-columns:1.45fr 1fr;gap:12px;flex:1;min-height:0;overflow:hidden; }
+        .ai-ask { display:flex;flex-direction:column;gap:7px;overflow:hidden; }
+        .ai-ask-ttl, .ai-action-ttl { font-size:11.5px;font-weight:800;color:#111827;margin-bottom:2px; }
+        .ai-chips { display:flex;flex-wrap:wrap;gap:5px; }
+        .ai-chip { background:#f3f4f6;border:1px solid #e5e7eb;border-radius:20px;padding:3px 9px;font-size:9px;font-weight:600;color:#374151;cursor:pointer;white-space:nowrap; }
+        .ai-input-wrap { display:flex;align-items:flex-end;gap:6px;background:#f8f9fc;border:1px solid #e5e7eb;border-radius:9px;padding:7px 7px 7px 10px;flex:1; }
+        .ai-input-wrap textarea { flex:1;border:none;background:transparent;resize:none;font-size:9px;color:#374151;line-height:1.5;outline:none;font-family:inherit; }
+        .ai-input-wrap textarea::placeholder { color:#9ca3af; }
+        .ai-send-btn { width:26px;height:26px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:7px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;flex-shrink:0;align-self:flex-end; }
+        .ai-send-btn svg { width:11px;height:11px;color:#fff; }
+        .ai-disclaimer { font-size:8px;color:#9ca3af;line-height:1.4;flex-shrink:0; }
+
+        /* AI in Action */
+        .ai-action { display:flex;flex-direction:column;overflow:hidden; }
+        .ai-action-item { display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid #f9fafb; }
+        .ai-action-item:last-child { border-bottom:none; }
+        .ai-action-ic { width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai-action-ic svg { width:12px;height:12px; }
+        .ai-action-name { font-size:9px;font-weight:700;color:#111827;line-height:1.2; }
+        .ai-action-sub { font-size:8px;color:#6b7280; }
+        .ai-action-chk { width:16px;height:16px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto; }
+        .ai-action-chk svg { width:8px;height:8px;color:#fff; }
+
+        /* Bottom 4 cards */
+        .ai-cards { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex-shrink:0; }
+        .ai-card { background:#f8f9fc;border-radius:10px;padding:10px 10px 8px;border:1px solid #eaecf0; }
+        .ai-card-ttl { font-size:9px;font-weight:800;color:#111827;margin-bottom:6px; }
+        .ai-card-body { font-size:8px;color:#374151;line-height:1.55;margin-bottom:7px; }
+        .ai-card-btn { display:flex;align-items:center;justify-content:center;gap:4px;background:#fff;border:1px solid #e5e7eb;border-radius:7px;padding:5px 6px;font-size:8px;font-weight:700;color:#374151;cursor:pointer;width:100%; }
+        .ai-card-btn svg { width:9px;height:9px;color:#5932EA; }
+
+        /* Voice card */
+        .ai-wave { display:flex;align-items:center;justify-content:center;gap:2px;margin-bottom:5px;height:28px; }
+        .ai-wave-bar { width:3px;border-radius:2px;background:linear-gradient(to top,#a78bfa,#5932EA); }
+        .ai-wave-timer { font-size:11px;font-weight:800;color:#111827;text-align:center;margin-bottom:5px; }
+        .ai-mic-btn { width:28px;height:28px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;cursor:pointer;border:none; }
+        .ai-mic-btn svg { width:12px;height:12px;color:#fff; }
+        .ai-tap { font-size:7.5px;color:#9ca3af;text-align:center; }
+
+        /* ChatGPT card */
+        .ai-gpt-row { display:flex;align-items:flex-start;gap:5px;margin-bottom:5px; }
+        .ai-gpt-logo { width:20px;height:20px;background:#10a37f;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px; }
+        .ai-gpt-logo svg { width:11px;height:11px;color:#fff; }
+        .ai-gpt-msg { background:#f3f4f6;border-radius:6px;padding:5px 7px;font-size:7.5px;color:#374151;line-height:1.45;flex:1; }
+        .ai-gpt-reply { background:#ede9fe;border-radius:6px;padding:5px 7px;font-size:7.5px;color:#374151;line-height:1.45;flex:1; }
+
+        /* Form builder card */
+        .ai-upload-area { border:1.5px dashed #d1d5db;border-radius:8px;padding:7px;text-align:center;margin-bottom:6px;background:#fafafa; }
+        .ai-upload-ic { width:22px;height:22px;background:#ede9fe;border-radius:6px;display:flex;align-items:center;justify-content:center;margin:0 auto 3px; }
+        .ai-upload-ic svg { width:11px;height:11px;color:#5932EA; }
+        .ai-upload-txt { font-size:7px;color:#9ca3af; }
+
+        /* Security banner */
+        .ai-security { background:linear-gradient(135deg,#f5f3ff,#eff6ff);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;border:1px solid #e0e7ff;flex-shrink:0; }
+        .ai-security-ic { width:32px;height:32px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai-security-ic svg { width:16px;height:16px;color:#fff; }
+        .ai-security-title { font-size:10.5px;font-weight:800;color:#111827;margin-bottom:1px; }
+        .ai-security-desc { font-size:8.5px;color:#6b7280;line-height:1.4; }
+        .ai-security-badge { margin-left:auto;background:#dcfce7;border:1px solid #bbf7d0;border-radius:20px;padding:4px 10px;font-size:8.5px;font-weight:700;color:#16a34a;display:flex;align-items:center;gap:4px;flex-shrink:0;white-space:nowrap; }
+        .ai-security-badge svg { width:9px;height:9px; }
+
+        @media(max-width:1199px){ .ai-h1{font-size:38px;} }
+        @media(max-width:768px){ .ai-wrap{grid-template-columns:1fr;} .ai-h1{font-size:32px;} .ai-mockup{height:auto;} .ai-mid{grid-template-columns:1fr;} .ai-cards{grid-template-columns:repeat(2,1fr);} }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="Plannor/html.vikinglab.agency/saasi/assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== breadcrumb start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px!important;padding-bottom:30px!important;min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Plannor AI</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="Plannor/html.vikinglab.agency/saasi/index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li>Plannor AI</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb end =========== -->
+
+        <!-- =========== page content start =========== -->
+
+        <!-- =========== PLANNOR AI SECTION =========== -->
+        <section class="ai-section">
+            <div class="container">
+                <div class="ai-wrap">
+
+                    <!-- LEFT: text -->
+                    <div class="ai-text" data-aos="fade-right">
+                        <div class="ai-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            AI-Powered
+                        </div>
+                        <h1 class="ai-h1">AI that understands <span class="ai-ndis">NDIS</span>,<br>not just text</h1>
+                        <p class="ai-desc">Plannor AI is purpose-built for NDIS providers — trained on industry language, compliance rules, and participant care workflows so it actually understands your work.</p>
+
+                        <div class="ai-feats">
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#ede9fe;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">AI Progress Note Writing</div>
+                                    <div class="ai-feat-desc">Type a few keywords, get a full professional note.</div>
+                                </div>
+                            </div>
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#dcfce7;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">Voice Mode</div>
+                                    <div class="ai-feat-desc">Talk to your AI assistant hands-free while on shift.</div>
+                                </div>
+                            </div>
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#fff7ed;border:1px solid #fed7aa;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="#f97316"/><path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z" stroke="#f97316"/><circle cx="12" cy="12" r="2" fill="#f97316"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">ChatGPT Connector</div>
+                                    <div class="ai-feat-desc">Query participant and shift data directly from ChatGPT.</div>
+                                </div>
+                            </div>
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#fefce8;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">AI Form Builder</div>
+                                    <div class="ai-feat-desc">Generate intake forms from a text prompt or PDF upload.</div>
+                                </div>
+                            </div>
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#eff6ff;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">Smart Incident Summaries</div>
+                                    <div class="ai-feat-desc">Auto-generate incident summaries and shift report drafts.</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        
+                    </div>
+
+                    <!-- RIGHT: mockup -->
+                    <div class="ai-mock-col" data-aos="fade-left">
+                        <img src="ai-assistant-screenshot.png" alt="Plannor AI Assistant">
+                    </div>
+
+                </div><!-- /ai-wrap -->
+            </div><!-- /container -->
+        </section>
+        <!-- =========== PLANNOR AI SECTION END =========== -->
+
+        <!-- =========== page content end =========== -->
+
+    </main>
+
+    <!-- =========== footer area start =========== -->
+    <footer class="vl-footer-area fix" style="background-image: url(Plannor/html.vikinglab.agency/saasi/assets/img/footer/vl-footer-bg.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 col-12">
+                    <div class="vl-footer-widget-1 mb-80">
+                        <div class="logo mb-20">
+                            <a href="Plannor/html.vikinglab.agency/saasi/index.html"><img src="Plannor/html.vikinglab.agency/saasi/assets/img/logo/plannor-logomain1.png" style="max-height:45px;width:auto;" alt=""></a>
+                        </div>
+                        <p style="color:#6b7a99;font-size:16px;line-height:1.7;margin-bottom:16px;">Simplify compliance, rostering,<br>and billing — all in one place.</p>
+                        <div class="vl-footer-social mt-20" style="display:flex;flex-direction:row;gap:8px;">
+                            <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1877F2;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" style="width:30px;height:30px;border-radius:50%;background:#0A66C2;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1DA1F2;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="width:30px;height:30px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><i class="fab fa-instagram"></i></a>
+                            <a href="#" style="width:30px;height:30px;border-radius:50%;background:#FF0000;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-6 col-6">
+                    <div class="vl-footer-widget-2 mb-80">
+                        <h3 class="title mb-25">Company</h3>
+                        <div class="vl-footer-menu">
+                            <ul>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/index.html">Home</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/about.html">About Us</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/assessment.html">Business Assessment</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-6 col-6">
+                    <div class="vl-footer-widget-2 mb-80">
+                        <h3 class="title mb-25">Explore</h3>
+                        <div class="vl-footer-menu">
+                            <ul>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/roi-calculator.html">ROI Calculator</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/templates.html">Templates</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/pricing.html">Pricing</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/book-a-demo.html">Book a Demo</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-6 col-6">
+                    <div class="vl-footer-widget-2 mb-80">
+                        <h3 class="title mb-25">Insights</h3>
+                        <div class="vl-footer-menu">
+                            <ul>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/software-presentation.html">Software Presentation</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/industry-benchmark.html">Industry Benchmark</a></li>
+                                <li><a href="Plannor/html.vikinglab.agency/saasi/action-plan.html">Action Plan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 col-6">
+                    <div class="vl-footer-widget-2 mb-80">
+                        <h3 class="title mb-25">Download App</h3>
+                        <div class="vl-download-btn">
+                            <a href="#" class="mb-12"><img class="w-100" src="Plannor/html.vikinglab.agency/saasi/assets/img/footer/vl-apple-store.png" alt=""></a>
+                            <a href="#"><img class="w-100" src="Plannor/html.vikinglab.agency/saasi/assets/img/footer/vl-misro-store.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="copyright-top-border">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="vl-copyright mb-32">
+                                <p class="vl-copyright-text">Copyright &copy;2026 . All Right Reserved. Designed By <a href="http://nubevest.com.au/" target="_blank" rel="noopener">Nubevest</a></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <div class="vl-copyright-menu mb-32">
+                                <ul>
+                                    <li><a href="Plannor/html.vikinglab.agency/saasi/privacy.html">Privacy Policy</a></li>
+                                    <li><a href="Plannor/html.vikinglab.agency/saasi/terms.html">Terms &amp; Conditions</a></li>
+                                    <li><a href="Plannor/html.vikinglab.agency/saasi/ai-disclosure.html">AI Disclosure</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- =========== footer area end =========== -->
+
+    <!-- progress -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/swiper-bundle.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/nice-select.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/aos.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/fontawesome.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/plugin.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/gAnim.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/SmoothScroll.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/odometer.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/parallaxie.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/main.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/includes.js"></script>
+</body>
+</html>
