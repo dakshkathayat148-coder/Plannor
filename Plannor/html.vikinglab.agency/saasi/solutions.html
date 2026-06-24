@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Solutions</title>
+
+    <link rel="shortcut icon" href="assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ====== SOLUTIONS PAGE ====== */
+        :root {
+            --sol-purple: #5932EA;
+            --sol-purple-2: #772EFE;
+            --sol-dark: #1a1a2e;
+            --sol-light: #f8f5ff;
+        }
+
+        /* Audience jump nav */
+        .sol-nav {
+            background: #fff;
+            border-bottom: 1px solid #eeebff;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(89,50,234,0.07);
+        }
+        .sol-nav-inner {
+            display: flex;
+            align-items: stretch;
+            overflow-x: auto;
+            scrollbar-width: none;
+            justify-content: center;
+        }
+        .sol-nav-inner::-webkit-scrollbar { display: none; }
+        .sol-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 28px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #888;
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .sol-nav-item:hover, .sol-nav-item.active {
+            color: var(--sol-purple);
+            border-bottom-color: var(--sol-purple);
+        }
+        .sol-nav-item .sni-icon {
+            width: 30px; height: 30px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; flex-shrink: 0;
+        }
+        .sol-nav-item:hover .sni-icon, .sol-nav-item.active .sni-icon {
+            background: #f0ebff;
+        }
+
+        /* Section wrapper */
+        .sol-section {
+            padding: 90px 0;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        .sol-section-alt { background: var(--sol-light); }
+
+        /* Section number accent */
+        .sol-num {
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--sol-purple), var(--sol-purple-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.12;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-family: inherit;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Audience label badge */
+        .sol-audience-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            padding: 7px 16px;
+            margin-bottom: 14px;
+        }
+
+        /* Challenge panel */
+        .sol-challenge-panel {
+            background: var(--sol-dark);
+            border-radius: 24px;
+            padding: 36px 32px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .sol-challenge-panel::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(89,50,234,0.15);
+        }
+        .sol-challenge-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: -40px;
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            background: rgba(119,46,254,0.1);
+        }
+        .sol-challenge-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .sol-challenge-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+        .sol-challenge-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            position: relative;
+            z-index: 1;
+        }
+        .sol-challenge-item:last-child { border-bottom: none; }
+        .sci-bullet {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; flex-shrink: 0; margin-top: 1px;
+        }
+        .sol-challenge-item strong {
+            display: block;
+            font-size: 15px; font-weight: 700; color: #fff;
+            margin-bottom: 3px;
+        }
+        .sol-challenge-item span {
+            font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.5;
+        }
+
+        /* Solution items */
+        .sol-solutions-wrap {
+            padding-left: 20px;
+        }
+        .sol-solution-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0ebff;
+        }
+        .sol-section-alt .sol-solution-item { border-bottom-color: #e8e0ff; }
+        .sol-solution-item:last-of-type { border-bottom: none; }
+        .ssi-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .sol-solution-item h5 {
+            font-size: 16px; font-weight: 700; color: var(--sol-dark);
+            margin-bottom: 5px;
+        }
+        .sol-solution-item p {
+            font-size: 13.5px; color: #666; margin: 0; line-height: 1.65;
+        }
+
+        /* Section CTA row */
+        .sol-cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid #eeebff;
+        }
+        .sol-section-alt .sol-cta-row { border-top-color: #e0d4ff; }
+        .sol-cta-row p {
+            font-size: 18px; color: #888; margin: 0;
+        }
+        .sol-cta-row strong {
+            font-size: 22px;
+        }
+        .sol-cta-row strong { color: var(--sol-dark); }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .sol-section { padding: 60px 0; }
+            .sol-solutions-wrap { padding-left: 0; margin-top: 24px; }
+            .sol-num { font-size: 56px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- =========== BANNER =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Solutions</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Solutions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== AUDIENCE NAV =========== -->
+        <div class="sol-nav">
+            <div class="container-fluid px-0">
+                <nav class="sol-nav-inner">
+                    <a href="#ndis-providers" class="sol-nav-item active">
+                        <div class="sni-icon"><i class="fa-solid fa-building" style="color:#5932EA;"></i></div>
+                        NDIS Providers
+                    </a>
+                    <a href="#support-coordinators" class="sol-nav-item">
+                        <div class="sni-icon"><i class="fa-solid fa-user-tie" style="color:#e91e8c;"></i></div>
+                        Support Coordinators
+                    </a>
+                    <a href="#support-workers" class="sol-nav-item">
+                        <div class="sni-icon"><i class="fa-solid fa-hands-holding-circle" style="color:#00b874;"></i></div>
+                        Support Workers
+                    </a>
+                    <a href="#growing-orgs" class="sol-nav-item">
+                        <div class="sni-icon"><i class="fa-solid fa-chart-line-up" style="color:#f59e0b;"></i></div>
+                        Growing Organisations
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- =========== SECTION 1: NDIS PROVIDERS =========== -->
+        <section class="sol-section" id="ndis-providers">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row mb-48" data-aos="fade-up">
+                    <div class="col-12">
+                        <div style="position:relative;padding-left:12px;">
+                            <span class="sol-num">01</span>
+                            <span class="sol-audience-badge" style="background:#f0ebff;color:#5932EA;">
+                                <i class="fa-solid fa-building"></i> NDIS Providers
+                            </span>
+                            <h2 style="font-size:36px;font-weight:800;color:#1a1a2e;line-height:1.25;margin-bottom:14px;">
+                                Run a Leaner, More Compliant NDIS Business
+                            </h2>
+                            <p style="font-size:15px;color:#666;line-height:1.8;">
+                                NDIS providers juggle complex compliance requirements, growing admin burdens, and staff management challenges every day. Plannor brings it all under one roof.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 align-items-center">
+
+                    <!-- Challenges -->
+                    <div class="col-lg-4" data-aos="fade-right">
+                        <div class="sol-challenge-panel">
+                            <div class="sol-challenge-label"><i class="fa-solid fa-triangle-exclamation"></i> The Challenges</div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(239,68,68,0.2);">
+                                    <i class="fa-solid fa-file-lines" style="color:#ef4444;"></i>
+                                </div>
+                                <div>
+                                    <strong>Administration</strong>
+                                    <span>Hours lost daily to progress notes, invoicing, and manual data entry across disconnected systems</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(251,146,60,0.2);">
+                                    <i class="fa-solid fa-shield-xmark" style="color:#fb923c;"></i>
+                                </div>
+                                <div>
+                                    <strong>Compliance</strong>
+                                    <span>Keeping up with NDIS Practice Standards, incident obligations, and audit readiness is a constant pressure</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(250,204,21,0.2);">
+                                    <i class="fa-solid fa-users" style="color:#facc15;"></i>
+                                </div>
+                                <div>
+                                    <strong>Staff Management</strong>
+                                    <span>Rostering, certification tracking, and performance management spread across spreadsheets and emails</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solutions -->
+                    <div class="col-lg-8" data-aos="fade-left">
+                        <div class="sol-solutions-wrap">
+                            <div style="margin-bottom:8px;">
+                                <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#5932EA;">
+                                    <i class="fa-solid fa-sparkles"></i> &nbsp;How Plannor Helps
+                                </span>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#f0ebff;">
+                                    <i class="fa-solid fa-robot" style="color:#5932EA;"></i>
+                                </div>
+                                <div>
+                                    <h5>AI-Powered Admin Automation</h5>
+                                    <p>Plannor's built-in AI writes progress notes, incident summaries, and invoices automatically — cutting admin time by up to 40%. Voice-to-text supported for support workers in the field.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#e8fff0;">
+                                    <i class="fa-solid fa-shield-check" style="color:#00b874;"></i>
+                                </div>
+                                <div>
+                                    <h5>Live Compliance Dashboard</h5>
+                                    <p>Real-time monitoring of NDIS Practice Standards, policy expiry dates, and worker certifications. Automatic alerts before gaps become violations — always audit-ready.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#fff8e8;">
+                                    <i class="fa-solid fa-calendar-check" style="color:#f59e0b;"></i>
+                                </div>
+                                <div>
+                                    <h5>Integrated Workforce Management</h5>
+                                    <p>Roster staff, track certifications and availability, manage performance, and handle shift changes — all in one platform connected to participant support schedules.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========== SECTION 2: SUPPORT COORDINATORS =========== -->
+        <section class="sol-section sol-section-alt" id="support-coordinators">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row mb-48" data-aos="fade-up">
+                    <div class="col-12">
+                        <div style="position:relative;padding-left:12px;">
+                            <span class="sol-num">02</span>
+                            <span class="sol-audience-badge" style="background:#fff0f6;color:#e91e8c;">
+                                <i class="fa-solid fa-user-tie"></i> Support Coordinators
+                            </span>
+                            <h2 style="font-size:36px;font-weight:800;color:#1a1a2e;line-height:1.25;margin-bottom:14px;">
+                                Manage Every Participant. Miss Nothing.
+                            </h2>
+                            <p style="font-size:15px;color:#666;line-height:1.8;">
+                                Support coordinators carry complex caseloads with limited visibility and too many tools. Plannor gives you a single source of truth for every participant you serve.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 align-items-center">
+
+                    <!-- Challenges -->
+                    <div class="col-lg-4" data-aos="fade-right">
+                        <div class="sol-challenge-panel">
+                            <div class="sol-challenge-label"><i class="fa-solid fa-triangle-exclamation"></i> The Challenges</div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(239,68,68,0.2);">
+                                    <i class="fa-solid fa-layer-group" style="color:#ef4444;"></i>
+                                </div>
+                                <div>
+                                    <strong>Caseload Management</strong>
+                                    <span>Tracking goals, plan reviews, and action items across dozens of participants without missing critical deadlines</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(251,146,60,0.2);">
+                                    <i class="fa-solid fa-dollar-sign" style="color:#fb923c;"></i>
+                                </div>
+                                <div>
+                                    <strong>Funding Tracking</strong>
+                                    <span>Staying on top of NDIS budget utilisation, avoiding overspend, and identifying underclaiming across all participants</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(250,204,21,0.2);">
+                                    <i class="fa-solid fa-network-wired" style="color:#facc15;"></i>
+                                </div>
+                                <div>
+                                    <strong>Provider Coordination</strong>
+                                    <span>Managing multiple service providers per participant — referrals, communication, availability, and feedback scattered across email and phone</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solutions -->
+                    <div class="col-lg-8" data-aos="fade-left">
+                        <div class="sol-solutions-wrap">
+                            <div style="margin-bottom:8px;">
+                                <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#e91e8c;">
+                                    <i class="fa-solid fa-sparkles"></i> &nbsp;How Plannor Helps
+                                </span>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#fff0f6;">
+                                    <i class="fa-solid fa-table-columns" style="color:#e91e8c;"></i>
+                                </div>
+                                <div>
+                                    <h5>Unified Participant Dashboard</h5>
+                                    <p>Every participant's plan, goals, funding, supports, and upcoming reviews in one place. Filter by urgency, flag at-risk participants, and stay on top of every caseload item at a glance.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#e8fff0;">
+                                    <i class="fa-solid fa-bell" style="color:#00b874;"></i>
+                                </div>
+                                <div>
+                                    <h5>Real-Time Budget Alerts</h5>
+                                    <p>Automatic alerts when a participant's funding is running low or a support category is overspending. Detailed breakdowns by category help you make informed decisions before it's too late.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#f0ebff;">
+                                    <i class="fa-solid fa-handshake" style="color:#5932EA;"></i>
+                                </div>
+                                <div>
+                                    <h5>Provider Network Hub</h5>
+                                    <p>Find, communicate with, and manage providers directly in Plannor. Send referrals, track acceptance, share participant goals, and record feedback — all without leaving the platform.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#fff8e8;">
+                                    <i class="fa-solid fa-file-chart-column" style="color:#f59e0b;"></i>
+                                </div>
+                                <div>
+                                    <h5>Plan Review Preparation</h5>
+                                    <p>Auto-generate plan review reports with goal progress, budget utilisation, and outcome summaries — ready to present to participants, families, and LACs with one click.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========== SECTION 3: SUPPORT WORKERS =========== -->
+        <section class="sol-section" id="support-workers">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row mb-48" data-aos="fade-up">
+                    <div class="col-12">
+                        <div style="position:relative;padding-left:12px;">
+                            <span class="sol-num">03</span>
+                            <span class="sol-audience-badge" style="background:#e8fff0;color:#00b874;">
+                                <i class="fa-solid fa-hands-holding-circle"></i> Support Workers
+                            </span>
+                            <h2 style="font-size:36px;font-weight:800;color:#1a1a2e;line-height:1.25;margin-bottom:14px;">
+                                Less Paperwork. More Time With Participants.
+                            </h2>
+                            <p style="font-size:15px;color:#666;line-height:1.8;">
+                                Support workers are the heart of every NDIS service — but admin gets in the way. Plannor's mobile-first tools are built for workers in the field, not at a desk.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 align-items-center">
+
+                    <!-- Challenges -->
+                    <div class="col-lg-4" data-aos="fade-right">
+                        <div class="sol-challenge-panel">
+                            <div class="sol-challenge-label"><i class="fa-solid fa-triangle-exclamation"></i> The Challenges</div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(239,68,68,0.2);">
+                                    <i class="fa-solid fa-magnifying-glass" style="color:#ef4444;"></i>
+                                </div>
+                                <div>
+                                    <strong>Accessing Information</strong>
+                                    <span>Care plans, goals, medication notes, and handover information spread across binders, emails, and different apps</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(251,146,60,0.2);">
+                                    <i class="fa-solid fa-pen" style="color:#fb923c;"></i>
+                                </div>
+                                <div>
+                                    <strong>Completing Notes</strong>
+                                    <span>Writing NDIS-compliant progress notes after every shift is time-consuming, repetitive, and often done hours after the support occurred</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(250,204,21,0.2);">
+                                    <i class="fa-solid fa-clock" style="color:#facc15;"></i>
+                                </div>
+                                <div>
+                                    <strong>Managing Shifts</strong>
+                                    <span>Last-minute schedule changes, unclear handover instructions, and no live view of upcoming shifts create confusion and missed support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solutions -->
+                    <div class="col-lg-8" data-aos="fade-left">
+                        <div class="sol-solutions-wrap">
+                            <div style="margin-bottom:8px;">
+                                <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#00b874;">
+                                    <i class="fa-solid fa-sparkles"></i> &nbsp;How Plannor Helps
+                                </span>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#e8fff0;">
+                                    <i class="fa-solid fa-mobile-screen" style="color:#00b874;"></i>
+                                </div>
+                                <div>
+                                    <h5>Mobile Participant Profiles</h5>
+                                    <p>All care plans, goals, risk notes, and handover instructions accessible on your phone — even offline. Workers arrive to every shift fully prepared with exactly the information they need.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#f0ebff;">
+                                    <i class="fa-solid fa-microphone" style="color:#5932EA;"></i>
+                                </div>
+                                <div>
+                                    <h5>Voice-to-Text AI Notes</h5>
+                                    <p>Speak your progress notes and Plannor's AI structures, formats, and links them to participant goals automatically. NDIS-compliant notes in under 30 seconds — no typing required.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#fff8e8;">
+                                    <i class="fa-solid fa-calendar-days" style="color:#f59e0b;"></i>
+                                </div>
+                                <div>
+                                    <h5>Live Shift Management</h5>
+                                    <p>See your full schedule, accept or decline shifts, receive real-time updates for changes, and submit handover notes directly from the app. No more missed shifts or communication gaps.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#e8f4ff;">
+                                    <i class="fa-solid fa-bell" style="color:#2980b9;"></i>
+                                </div>
+                                <div>
+                                    <h5>Instant Incident Reporting</h5>
+                                    <p>Log incidents on the spot from your phone with guided templates. Reports are auto-formatted for NDIS Commission requirements and sent to your coordinator immediately.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========== SECTION 4: GROWING ORGANISATIONS =========== -->
+        <section class="sol-section sol-section-alt" id="growing-orgs">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row mb-48" data-aos="fade-up">
+                    <div class="col-12">
+                        <div style="position:relative;padding-left:12px;">
+                            <span class="sol-num">04</span>
+                            <span class="sol-audience-badge" style="background:#fff8e8;color:#f59e0b;">
+                                <i class="fa-solid fa-chart-line-up"></i> Growing Organisations
+                            </span>
+                            <h2 style="font-size:36px;font-weight:800;color:#1a1a2e;line-height:1.25;margin-bottom:14px;">
+                                Scale Without Losing Control.
+                            </h2>
+                            <p style="font-size:15px;color:#666;line-height:1.8;">
+                                Growth creates complexity. More staff, more participants, more locations — and more risk if your systems can't keep up. Plannor scales with you.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 align-items-center">
+
+                    <!-- Challenges -->
+                    <div class="col-lg-4" data-aos="fade-right">
+                        <div class="sol-challenge-panel">
+                            <div class="sol-challenge-label"><i class="fa-solid fa-triangle-exclamation"></i> The Challenges</div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(239,68,68,0.2);">
+                                    <i class="fa-solid fa-arrows-up-to-line" style="color:#ef4444;"></i>
+                                </div>
+                                <div>
+                                    <strong>Scaling Operations</strong>
+                                    <span>Systems and workflows that worked at 20 staff break down at 100. Manual processes become bottlenecks as participant numbers grow</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(251,146,60,0.2);">
+                                    <i class="fa-solid fa-star-half" style="color:#fb923c;"></i>
+                                </div>
+                                <div>
+                                    <strong>Maintaining Quality</strong>
+                                    <span>Ensuring consistent service quality and NDIS compliance across multiple teams, sites, and support types becomes increasingly difficult</span>
+                                </div>
+                            </div>
+                            <div class="sol-challenge-item">
+                                <div class="sci-bullet" style="background:rgba(250,204,21,0.2);">
+                                    <i class="fa-solid fa-puzzle-piece" style="color:#facc15;"></i>
+                                </div>
+                                <div>
+                                    <strong>Managing Complexity</strong>
+                                    <span>Multiple locations, diverse funding types, different rosters, and separate billing streams that no single tool was built to handle together</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solutions -->
+                    <div class="col-lg-8" data-aos="fade-left">
+                        <div class="sol-solutions-wrap">
+                            <div style="margin-bottom:8px;">
+                                <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#f59e0b;">
+                                    <i class="fa-solid fa-sparkles"></i> &nbsp;How Plannor Helps
+                                </span>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#fff8e8;">
+                                    <i class="fa-solid fa-sitemap" style="color:#f59e0b;"></i>
+                                </div>
+                                <div>
+                                    <h5>Multi-Site Central Command</h5>
+                                    <p>Centralise operations across all locations with unified dashboards, cross-site reporting, and consistent policy enforcement. Leadership gets a live view of the entire organisation from one screen.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#e8fff0;">
+                                    <i class="fa-solid fa-badge-check" style="color:#00b874;"></i>
+                                </div>
+                                <div>
+                                    <h5>Automated Quality Frameworks</h5>
+                                    <p>Built-in NDIS Practice Standards checklists, automated policy version control, and consistent documentation templates ensure quality never dips — no matter how fast you grow.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#f0ebff;">
+                                    <i class="fa-solid fa-sliders" style="color:#5932EA;"></i>
+                                </div>
+                                <div>
+                                    <h5>Configurable at Any Scale</h5>
+                                    <p>Build workflows that match your organisation's exact structure — configure roles, permissions, approval chains, and billing rules without any IT involvement. Plannor grows with you, not against you.</p>
+                                </div>
+                            </div>
+                            <div class="sol-solution-item">
+                                <div class="ssi-icon" style="background:#fff0f6;">
+                                    <i class="fa-solid fa-chart-pie" style="color:#e91e8c;"></i>
+                                </div>
+                                <div>
+                                    <h5>Executive Reporting Dashboard</h5>
+                                    <p>Real-time visibility across revenue, utilisation, compliance, and workforce KPIs — all in one board-ready dashboard so leadership always knows what's happening across the organisation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CTA row -->
+                <div class="sol-cta-row" data-aos="fade-up">
+                    <p><strong>Planning for growth?</strong><br>See how organisations like yours use Plannor to scale without the chaos.</p>
+                    <a href="assessment.html" class="vl-primary-btn-1" style="background:linear-gradient(135deg,#5932EA,#7c5cfc);border-color:transparent;color:#fff;">Explore Assessment <span><img src="assets/img/icon/vl-arrowupright.svg" alt="" style="filter:brightness(0) invert(1);"></span></a>
+                </div>
+
+            </div>
+        </section>
+
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/gAnim.js"></script>
+    <script src="assets/js/SmoothScroll.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/parallaxie.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/includes.js"></script>
+
+    <script>
+        /* Sticky nav active state on scroll */
+        (function () {
+            var sections = ['ndis-providers', 'support-coordinators', 'support-workers', 'growing-orgs'];
+            var links = document.querySelectorAll('.sol-nav-item');
+            window.addEventListener('scroll', function () {
+                var scrollY = window.scrollY + 120;
+                sections.forEach(function (id, i) {
+                    var el = document.getElementById(id);
+                    if (el && scrollY >= el.offsetTop && scrollY < el.offsetTop + el.offsetHeight) {
+                        links.forEach(function (l) { l.classList.remove('active'); });
+                        if (links[i]) links[i].classList.add('active');
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
