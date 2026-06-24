@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Rostering</title>
+
+    <link rel="shortcut icon" href="assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* =====================================================
+           ROSTERING PAGE — shared feature section styles (pf-*)
+        ===================================================== */
+        .pf-section { padding: 96px 0; background: #fff; overflow: hidden; }
+        .pf-section.pf-alt { background: #fafbff; }
+        .pf-wrap { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+        .pf-row { display: flex; align-items: center; gap: 64px; }
+        .pf-left { flex: 0 0 42%; }
+        .pf-right { flex: 1; min-width: 0; }
+
+        .pf-eyebrow {
+            display: inline-block; font-size: 11.5px; font-weight: 700;
+            letter-spacing: 2px; color: #6546F5; text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .pf-line { width: 36px; height: 3px; background: #6546F5; border-radius: 2px; margin-bottom: 22px; }
+        .pf-heading {
+            font-size: 38px; font-weight: 800; color: #0E1838;
+            line-height: 1.2; margin-bottom: 18px;
+        }
+        .pf-accent { color: #6546F5; }
+        .pf-accent-grad {
+            background: linear-gradient(90deg, #6546F5, #17BFAE);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .pf-para { font-size: 15px; color: #5a6a85; line-height: 1.72; margin-bottom: 28px; }
+
+        .pf-feat { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+        .pf-ico {
+            width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
+        }
+        .pf-ico-purple { background: #ede9fe; color: #6546F5; }
+        .pf-ico-teal   { background: #d1f4f0; color: #17BFAE; }
+        .pf-ico-orange { background: #fff2dc; color: #e89b00; }
+        .pf-feat-body h5 { font-size: 15px; font-weight: 700; color: #101B3D; margin: 0 0 5px; }
+        .pf-feat-body p  { font-size: 13.5px; color: #5a6a85; line-height: 1.65; margin: 0; }
+
+        .pf-testi-wrap { max-width: 1200px; margin: 60px auto 0; padding: 0 60px; }
+        .pf-testi {
+            background: #f7f5ff; border-radius: 20px;
+            padding: 28px 36px; display: flex; align-items: center; gap: 0;
+        }
+        .pf-testi-q {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: #ede9fe; color: #6546F5; font-size: 18px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-right: 24px;
+        }
+        .pf-testi-body { flex: 1; }
+        .pf-testi-body p { font-size: 14.5px; color: #0E1838; line-height: 1.7; margin: 0 0 10px; font-style: italic; }
+        .pf-testi-body strong { font-size: 14px; font-weight: 700; color: #0E1838; display: block; margin-bottom: 1px; }
+        .pf-testi-body span { font-size: 12px; color: #94a3b8; }
+        .pf-testi-right {
+            display: flex; align-items: center; gap: 14px;
+            border-left: 1px solid #ddd8f5; margin-left: 40px; padding-left: 40px; flex-shrink: 0;
+        }
+        .pf-testi-avatar {
+            width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg, #e0e7ff, #c4b5fd);
+            display: flex; align-items: center; justify-content: center; font-size: 22px; color: #6546F5;
+        }
+        .pf-testi-name { font-size: 14px; font-weight: 700; color: #0E1838; margin: 0 0 2px; }
+        .pf-testi-role { font-size: 12px; color: #94a3b8; margin: 0 0 6px; }
+        .pf-stars { color: #f59e0b; font-size: 13px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <div id="global-header"></div>
+
+    <main>
+        <!-- =========== breadcrumb area start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:280px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Rostering</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Rostering</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb area end =========== -->
+
+        <!-- =========== ROSTERING HERO START =========== -->
+        <section class="pf-section">
+            <div class="pf-wrap">
+                <div class="pf-row">
+                    <div class="pf-left" data-aos="fade-right">
+                        <span class="pf-eyebrow">ROSTERING</span>
+                        <div class="pf-line"></div>
+                        <h2 class="pf-heading">
+                            Smarter scheduling.<br>
+                            <span class="pf-accent-grad">Seamless shift management.</span>
+                        </h2>
+                        <p class="pf-para">Build and manage rosters with confidence. Plannor gives your team a clear, real-time view of every shift so support never falls through the gaps.</p>
+
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-purple"><i class="fa-regular fa-calendar-check"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Drag-and-drop scheduling</h5>
+                                <p>Build rosters quickly and easily — assign shifts to the right workers in seconds.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-teal"><i class="fa-regular fa-bell"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Instant shift notifications</h5>
+                                <p>Workers receive real-time alerts for new shifts, changes and cancellations.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-orange"><i class="fa-regular fa-shield-check"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Compliance-ready</h5>
+                                <p>Automatically track award rates, availability and qualifications to stay compliant.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pf-right" data-aos="fade-left">
+                        <!-- Visual placeholder — replace with rostering screenshot/mockup -->
+                        <div style="background: linear-gradient(135deg, #f4f0ff 0%, #e8f0fe 100%); border-radius: 24px; min-height: 420px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: #c4b5fd;">
+                                <i class="fa-regular fa-calendar-days" style="font-size: 80px; margin-bottom: 16px; display: block;"></i>
+                                <p style="font-size: 14px; color: #94a3b8; margin: 0;">Rostering visual — coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pf-testi-wrap" data-aos="fade-up">
+                <div class="pf-testi">
+                    <div class="pf-testi-q"><i class="fa-solid fa-quote-left"></i></div>
+                    <div class="pf-testi-body">
+                        <p>"Rostering used to take our coordinator two hours every week. With Plannor, it's done in minutes and our team always knows where they need to be."</p>
+                        <strong>Natalie Brooks</strong>
+                        <span>Service Manager, Horizon Support Group</span>
+                    </div>
+                    <div class="pf-testi-right">
+                        <div class="pf-testi-avatar"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <div class="pf-testi-name">Natalie Brooks</div>
+                            <div class="pf-testi-role">Service Manager</div>
+                            <div class="pf-stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== ROSTERING HERO END =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress scroll -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/gAnim.js"></script>
+    <script src="assets/js/SmoothScroll.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/parallaxie.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/includes.js"></script>
+</body>
+</html>

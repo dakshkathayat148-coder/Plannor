@@ -1,0 +1,2654 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Care Management</title>
+
+    <link rel="shortcut icon" href="assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ===== Care Management Hero ===== */
+        .cm-hero {
+            background: #f4f6fb;
+            padding: 80px 0 100px;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 760px;
+        }
+        .cm-hero .container > .row {
+            align-items: center;
+            min-height: 580px;
+        }
+        .cm-hero .dot-pattern {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            display: grid;
+            grid-template-columns: repeat(5, 8px);
+            gap: 7px;
+            opacity: 0.35;
+        }
+        .cm-hero .dot-pattern span {
+            width: 4px; height: 4px;
+            background: #5932EA;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Left side */
+        .cm-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #2563EB;
+            text-transform: uppercase;
+            border-bottom: 2px solid #2563EB;
+            padding-bottom: 4px;
+            margin-bottom: 20px;
+        }
+        .cm-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+        .cm-title .blue-dot { color: #2563EB; }
+        .cm-yellow-line {
+            margin-bottom: 24px;
+        }
+        .cm-yellow-line svg { width: 160px; height: 14px; }
+        .cm-desc {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.7;
+            max-width: 460px;
+            margin-bottom: 36px;
+        }
+
+        /* 3 feature icons */
+        .cm-features {
+            display: flex;
+            gap: 28px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .cm-feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 110px;
+        }
+        .cm-feature-icon {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .cm-feature-icon.teal   { background: #e6f7f4; }
+        .cm-feature-icon.yellow { background: #fef9e7; }
+        .cm-feature-icon.purple { background: #f0ebff; }
+        .cm-feature-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+
+        /* Buttons */
+        .cm-btns { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+        .cm-btn-demo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #2563EB;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .cm-btn-demo:hover { background: #1d4ed8; color: #fff; }
+        .cm-btn-demo .arr {
+            width: 32px; height: 32px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #2563EB;
+            font-size: 14px;
+        }
+        .cm-btn-trial {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: #2563EB;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: 2px solid #2563EB;
+            text-decoration: none;
+            transition: all .2s;
+        }
+        .cm-btn-trial:hover { background: #2563EB; color: #fff; }
+
+        /* ===== Right side dashboard ===== */
+        .cm-dashboard {
+            position: relative;
+            height: 590px;
+            margin-left: 10px;
+        }
+
+        /* Large background circle */
+        .cm-bg-circle {
+            position: absolute;
+            width: 460px; height: 460px;
+            background: #e4e7f8;
+            border-radius: 50%;
+            top: 10px;
+            right: -10px;
+            z-index: 0;
+        }
+
+        /* Elderly woman photo — top right */
+        .cm-woman-photo {
+            position: absolute;
+            top: 0; right: 5px;
+            width: 190px; height: 230px;
+            border-radius: 22px;
+            overflow: hidden;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+        .cm-woman-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Dashed arrow */
+        .cm-arrow {
+            position: absolute;
+            top: 120px; left: 10px;
+            z-index: 3;
+        }
+
+        /* Small circle decoration */
+        .cm-circle-deco {
+            position: absolute;
+            border: 2px solid #a5b4fc;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        /* ---- Overview Card ---- */
+        .cm-overview-card {
+            position: absolute;
+            top: 20px; left: 90px;
+            width: 360px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.11);
+            padding: 22px 24px 20px 24px;
+            z-index: 4;
+            overflow: visible;
+        }
+        .cm-ov-header {
+            display: flex; align-items: center; gap: 18px;
+            margin-bottom: 18px;
+        }
+        .cm-ov-icon {
+            width: 80px; height: 80px; flex-shrink: 0;
+            border-radius: 50%;
+            background: #5c35d4;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; color: #fff;
+            box-shadow: 0 6px 20px rgba(92,53,212,0.40);
+            margin-left: -50px;
+            position: relative; z-index: 5;
+        }
+        .cm-ov-title {
+            font-size: 18px; font-weight: 800;
+            color: #0f172a; margin: 0;
+        }
+        .cm-ov-person {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 14px; padding-bottom: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .cm-ov-avatar {
+            width: 50px; height: 50px; flex-shrink: 0;
+            border-radius: 50%; overflow: hidden;
+            border: 2px solid #e0e7ff;
+        }
+        .cm-ov-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .cm-ov-name { font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 3px; }
+        .cm-ov-id   { font-size: 12px; color: #94a3b8; margin: 0; }
+        .cm-badge-active {
+            margin-left: auto; flex-shrink: 0;
+            background: #dcfce7; color: #16a34a;
+            font-size: 11px; font-weight: 700;
+            padding: 4px 14px; border-radius: 20px;
+        }
+        .cm-ov-row {
+            display: flex; align-items: center;
+            gap: 10px; margin-bottom: 12px;
+        }
+        .cm-ov-icon-sm {
+            width: 32px; height: 32px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px;
+        }
+        .icon-blue-sq   { background: #dbeafe; color: #2563eb; border-radius: 8px; }
+        .icon-green-circle { background: #22c55e; color: #fff; border-radius: 50%; font-size: 15px; }
+        .cm-ov-info { flex: 1; }
+        .cm-ov-label { font-size: 12px; color: #64748b; margin: 0 0 1px; }
+        .cm-ov-val   { font-size: 13px; font-weight: 700; color: #0f172a; margin: 0; }
+        .cm-budget-right-val { font-size: 12px; color: #94a3b8; margin: 0; flex-shrink: 0; }
+        .cm-progress-bar {
+            height: 7px; border-radius: 10px; background: #e2e8f0; margin-top: 6px;
+        }
+        .cm-progress-fill { height: 100%; border-radius: 10px; }
+        .fill-blue   { background: #3b82f6; }
+        .fill-green  { background: #22c55e; }
+        .fill-purple { background: #8b5cf6; }
+
+        /* ---- Goals Progress Card ---- */
+        .cm-goals-card {
+            position: absolute;
+            top: 280px; left: 50px;
+            width: 285px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.11);
+            padding: 18px 20px 16px 20px;
+            z-index: 5;
+            overflow: visible;
+        }
+        .cm-goals-header {
+            display: flex; align-items: center; margin-bottom: 16px;
+        }
+        .cm-goals-icon {
+            width: 64px; height: 64px; flex-shrink: 0;
+            border-radius: 50%; background: #14b8a6;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; color: #fff; margin-right: 14px;
+            box-shadow: 0 4px 16px rgba(20,184,166,0.35);
+            margin-left: -44px;
+            position: relative; z-index: 5;
+        }
+        .cm-goals-title { font-size: 16px; font-weight: 700; color: #0f172a; margin: 0; flex: 1; }
+        .cm-see-all { font-size: 12px; color: #2563EB; text-decoration: none; font-weight: 600; }
+        .cm-goal-item { margin-bottom: 12px; }
+        .cm-goal-item:last-child { margin-bottom: 0; }
+        .cm-goal-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+        .cm-goal-name { font-size: 13px; color: #334155; display: flex; align-items: center; gap: 8px; font-weight: 500; }
+        .cm-goal-badge {
+            width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+        }
+        .badge-blue   { background: #dbeafe; color: #2563eb; }
+        .badge-green  { background: #dcfce7; color: #16a34a; }
+        .badge-purple { background: #f3e8ff; color: #7c3aed; }
+        .cm-goal-pct { font-size: 13px; font-weight: 700; color: #0f172a; }
+
+        /* ---- Recent Activity Card ---- */
+        .cm-activity-card {
+            position: absolute;
+            top: 280px; right: 5px;
+            width: 248px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.11);
+            padding: 18px 20px 16px 20px;
+            z-index: 5;
+            overflow: visible;
+        }
+        .cm-act-header {
+            display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+        }
+        .cm-act-icon {
+            width: 60px; height: 60px; flex-shrink: 0;
+            border-radius: 50%; background: #f59e0b;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: #fff;
+            box-shadow: 0 4px 16px rgba(245,158,11,0.35);
+            margin-left: -42px;
+            position: relative; z-index: 5;
+        }
+        .cm-act-title { font-size: 15px; font-weight: 700; color: #0f172a; margin: 0; }
+        .cm-activity-item {
+            display: flex; align-items: flex-start;
+            gap: 10px; margin-bottom: 12px;
+        }
+        .cm-activity-item:last-child { margin-bottom: 0; }
+        .cm-activity-dot {
+            width: 11px; height: 11px; border-radius: 50%;
+            margin-top: 4px; flex-shrink: 0;
+        }
+        .dot-green  { background: #22c55e; }
+        .dot-purple { background: #8b5cf6; }
+        .dot-yellow { background: #f59e0b; }
+        .cm-activity-text { font-size: 12px; font-weight: 600; color: #1e293b; margin: 0 0 2px; }
+        .cm-activity-time { font-size: 11px; color: #94a3b8; margin: 0; }
+
+        /* ---- Quick Actions Bar ---- */
+        .cm-quick-actions {
+            position: absolute;
+            bottom: 0; left: 20px; right: 8px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 28px rgba(0,0,0,0.10);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 6;
+        }
+        .cm-qa-item {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 6px;
+            text-decoration: none;
+        }
+        .cm-qa-icon {
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .qa-blue   { background: #eff6ff; color: #2563EB; }
+        .qa-green  { background: #f0fdf4; color: #16a34a; }
+        .qa-purple { background: #f5f3ff; color: #7c3aed; }
+        .qa-red    { background: #fff1f2; color: #e11d48; }
+        .qa-orange { background: #fff7ed; color: #ea580c; }
+        .cm-qa-label { font-size: 11px; font-weight: 600; color: #475569; }
+
+        /* Decorations */
+        .cm-leaf-svg {
+            position: absolute;
+            top: -15px; right: -5px;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1199px) {
+            .cm-dashboard { margin-top: 60px; margin-left: 0; }
+            .cm-title { font-size: 40px; }
+        }
+        @media (max-width: 767px) {
+            .cm-title { font-size: 32px; }
+            .cm-dashboard { display: none; }
+        }
+
+        /* =====================================================
+           PREMIUM CARE RECORDS SECTION  (cs-*)
+        ====================================================== */
+        .cs-section { background:#fff; padding:100px 0 0; overflow:hidden; }
+
+        .cs-eyebrow {
+            display:inline-flex; align-items:center; gap:8px;
+            font-size:11px; font-weight:700; letter-spacing:2.5px;
+            text-transform:uppercase; color:#7c3aed; margin-bottom:20px;
+        }
+        .cs-eyebrow::before {
+            content:''; display:inline-block;
+            width:22px; height:2px;
+            background:linear-gradient(90deg,#7c3aed,#4f46e5);
+            border-radius:2px;
+        }
+
+        .cs-headline {
+            font-size:46px; font-weight:800; color:#0c0a1d;
+            line-height:1.18; letter-spacing:-1px; margin-bottom:22px;
+        }
+        .cs-grad {
+            background:linear-gradient(135deg,#7c3aed 0%,#4f46e5 60%,#6366f1 100%);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+
+        .cs-sub {
+            font-size:16px; color:#64748b; line-height:1.75;
+            margin-bottom:38px; max-width:440px;
+        }
+
+        /* Feature rows */
+        .cs-feat {
+            display:flex; align-items:flex-start;
+            gap:18px; margin-bottom:26px;
+        }
+        .cs-feat-icon {
+            width:52px; height:52px; flex-shrink:0;
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .cs-fi-doc    { background:linear-gradient(135deg,#ede9fe,#ddd6fe); }
+        .cs-fi-target { background:linear-gradient(135deg,#d1fae5,#a7f3d0); }
+        .cs-fi-family { background:linear-gradient(135deg,#fef3c7,#fde68a); }
+        .cs-feat-icon svg { width:24px; height:24px; }
+        .cs-feat-body h5 {
+            font-size:15px; font-weight:700; color:#0f172a; margin:0 0 5px;
+        }
+        .cs-feat-body p {
+            font-size:14px; color:#64748b; margin:0; line-height:1.65;
+        }
+
+        /* Connected record card */
+        .cs-connected {
+            display:flex; align-items:flex-start; gap:18px; margin-top:8px;
+            background:#fff;
+            border:1.5px solid #e8e4f5;
+            border-radius:18px; padding:22px 24px;
+            box-shadow:0 2px 12px rgba(101,70,245,.06);
+        }
+        .cs-connected-icon {
+            width:54px; height:54px; flex-shrink:0; border-radius:50%;
+            background:linear-gradient(135deg,#7c3aed,#4f46e5);
+            display:flex; align-items:center; justify-content:center;
+            font-size:22px; color:#fff;
+            box-shadow:0 4px 16px rgba(124,58,237,.28);
+        }
+        .cs-connected h5 {
+            font-size:16px; font-weight:700; color:#0f172a; margin:0 0 6px;
+        }
+        .cs-connected p {
+            font-size:14px; color:#6d6890; margin:0; line-height:1.6;
+        }
+
+        /* Right visual */
+        .cs-visual { position:relative; height:670px; }
+
+        /* Large rounded rectangle background — matches Image 2 */
+        .cs-bg-rect {
+            position:absolute; top:15px; right:0;
+            width:64%; height:645px;
+            background:#F4F1FF;
+            border-radius:40px;
+            z-index:0;
+        }
+
+        /* Dot grid — centered above the visual */
+        .cs-dots {
+            position:absolute; top:-14px; left:48%;
+            transform:translateX(-50%);
+            width:100px; height:10px;
+            background-image:radial-gradient(circle,#b0a4e8 1.6px,transparent 1.6px);
+            background-size:14px 14px;
+            z-index:6; opacity:.6;
+        }
+
+        /* Top photo: woman with phone — large, upper-left */
+        .cs-pt {
+            position:absolute; top:0; left:0;
+            width:62%; height:368px;
+            border-radius:22px; overflow:hidden; z-index:3;
+            box-shadow:0 6px 24px rgba(0,0,0,.09);
+        }
+        .cs-pt img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+
+        /* Bottom photo: family with tablet — lower-left, white border */
+        .cs-pb {
+            position:absolute; bottom:0; left:20px;
+            width:57%; height:296px;
+            border-radius:22px; overflow:hidden; z-index:4;
+            border:5px solid #fff;
+            box-shadow:0 6px 24px rgba(0,0,0,.10);
+        }
+        .cs-pb img { width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+
+        /* Floating participant dashboard card */
+        .cs-card {
+            position:absolute; top:28px; right:8px;
+            width:268px;
+            background:#ffffff;
+            border-radius:20px;
+            box-shadow:0 12px 48px rgba(0,0,0,.10),0 2px 8px rgba(0,0,0,.05);
+            border:none;
+            padding:16px 18px; z-index:5;
+        }
+
+        /* Card: header */
+        .cs-ch {
+            display:flex; align-items:center; gap:11px;
+            margin-bottom:14px; padding-bottom:13px;
+            border-bottom:1px solid #f1f5f9;
+        }
+        .cs-ch-av {
+            width:44px; height:44px; flex-shrink:0;
+            border-radius:50%; overflow:hidden;
+            border:2px solid #ede9fe;
+        }
+        .cs-ch-av img { width:100%; height:100%; object-fit:cover; }
+        .cs-ch-name { font-size:14px; font-weight:700; color:#0f172a; margin:0 0 2px; }
+        .cs-ch-id   { font-size:11px; color:#94a3b8; margin:0; }
+        .cs-ch-dots { margin-left:auto; color:#cbd5e1; font-size:16px; letter-spacing:1px; }
+
+        /* Card: tabs */
+        .cs-tabs { display:flex; border-bottom:1px solid #f1f5f9; margin-bottom:13px; }
+        .cs-tab {
+            font-size:11px; font-weight:600; color:#94a3b8;
+            padding:5px 9px 6px; border-bottom:2px solid transparent;
+            margin-bottom:-1px; cursor:pointer;
+        }
+        .cs-tab.on { color:#7c3aed; border-bottom-color:#7c3aed; }
+
+        /* Card: blocks */
+        .cs-cb { margin-bottom:13px; }
+        .cs-cb:last-child { margin-bottom:0; }
+        .cs-cbr {
+            display:flex; align-items:center;
+            justify-content:space-between; margin-bottom:5px;
+        }
+        .cs-cbt { font-size:12px; font-weight:700; color:#0f172a; }
+        .cs-cbs { font-size:11px; color:#94a3b8; margin:0; }
+        .cs-badge-g {
+            background:#dcfce7; color:#16a34a;
+            font-size:10px; font-weight:700;
+            padding:3px 10px; border-radius:20px;
+        }
+        .cs-lnk { font-size:11px; font-weight:600; color:#7c3aed; text-decoration:none; }
+
+        /* Card: progress */
+        .cs-cp { margin-bottom:8px; }
+        .cs-cpr {
+            display:flex; justify-content:space-between;
+            align-items:center; margin-bottom:3px;
+        }
+        .cs-cpr span:first-child { font-size:11px; color:#475569; font-weight:500; }
+        .cs-cpp { font-size:11px; font-weight:700; color:#0f172a; }
+        .cs-bar { height:5px; border-radius:10px; background:#e2e8f0; }
+        .cs-fill { height:100%; border-radius:10px; }
+        .cs-f-ind { background:linear-gradient(90deg,#7c3aed,#4f46e5); }
+        .cs-f-blu { background:linear-gradient(90deg,#3b82f6,#6366f1); }
+
+        /* Card: family */
+        .cs-fam { display:flex; align-items:center; }
+        .cs-fav {
+            width:28px; height:28px;
+            border-radius:50%; overflow:hidden;
+            border:2px solid #fff; margin-right:-7px;
+        }
+        .cs-fav img { width:100%; height:100%; object-fit:cover; }
+        .cs-fmore {
+            width:28px; height:28px; border-radius:50%;
+            background:#f1f5f9; border:2px solid #fff;
+            display:flex; align-items:center; justify-content:center;
+            font-size:9px; font-weight:700; color:#64748b;
+            margin-left:14px;
+        }
+        .cs-fmanage {
+            margin-left:auto; font-size:11px; font-weight:600;
+            color:#7c3aed; text-decoration:none;
+        }
+
+        /* Compliance bar */
+        .cs-comp {
+            margin-top:80px;
+            background:#F4F1FF;
+            border-top:none;
+            padding:48px 0;
+        }
+        .cs-comp-inner {
+            display:flex; align-items:flex-start;
+            gap:0; flex-wrap:nowrap;
+        }
+        .cs-comp-main {
+            display:flex; align-items:flex-start; gap:18px;
+            flex:0 0 36%; padding-right:48px;
+            border-right:1px solid rgba(124,58,237,.12);
+            margin-right:48px;
+        }
+        .cs-comp-shield {
+            width:60px; height:60px; flex-shrink:0; border-radius:50%;
+            background:linear-gradient(135deg,#7c3aed,#4f46e5);
+            display:flex; align-items:center; justify-content:center;
+            font-size:26px; color:#fff;
+            box-shadow:0 6px 20px rgba(124,58,237,.28);
+        }
+        .cs-comp-main h4 { font-size:18px; font-weight:700; color:#0f172a; margin:0 0 8px; }
+        .cs-comp-main p  { font-size:14px; color:#64748b; margin:0; line-height:1.65; }
+        .cs-comp-cols { display:flex; flex:1; }
+        .cs-comp-col {
+            flex:1; padding:0 28px;
+            border-right:1px solid rgba(124,58,237,.07);
+        }
+        .cs-comp-col:last-child { border-right:none; }
+        .cs-comp-col-icon {
+            width:40px; height:40px; border-radius:50%;
+            background:#fff; border:1.5px solid rgba(124,58,237,.14);
+            display:flex; align-items:center; justify-content:center;
+            font-size:17px; color:#7c3aed; margin-bottom:12px;
+            box-shadow:0 2px 8px rgba(124,58,237,.07);
+        }
+        .cs-comp-col h6 { font-size:14px; font-weight:700; color:#0f172a; margin:0 0 5px; }
+        .cs-comp-col p  { font-size:13px; color:#64748b; margin:0; line-height:1.6; }
+
+        @media (max-width:1199px) {
+            .cs-headline { font-size:36px; }
+            .cs-visual { height:auto; min-height:520px; }
+        }
+        @media (max-width:767px) {
+            .cs-headline { font-size:28px; }
+            .cs-visual { display:none; }
+            .cs-comp-inner { flex-wrap:wrap; }
+            .cs-comp-main { flex:0 0 100%; border-right:none; margin-right:0; margin-bottom:28px; padding-right:0; }
+            .cs-comp-cols { flex-wrap:wrap; gap:20px; }
+        }
+
+
+
+
+        /* =====================================================
+           CARE MANAGEMENT PREMIUM HERO v2  (ch-*)
+        ===================================================== */
+        .ch-hero {
+            background: #f7f5ff;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0 175px;
+        }
+        .ch-hero::before {
+            content: '';
+            position: absolute; top: -180px; right: -100px;
+            width: 660px; height: 660px;
+            background: radial-gradient(circle, rgba(96,70,232,.07) 0%, transparent 65%);
+            border-radius: 50%; pointer-events: none;
+        }
+
+        .ch-inner {
+            display: flex; align-items: center;
+            max-width: 1380px; margin: 0 auto;
+            padding: 0 64px; gap: 0;
+        }
+
+        /* LEFT */
+        .ch-left { flex: 0 0 43%; padding-right: 50px; }
+
+        .ch-label-row { display: flex; align-items: center; gap: 13px; margin-bottom: 26px; }
+        .ch-label-icon {
+            width: 48px; height: 48px; border-radius: 50%; background: #6046E8;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: #fff; flex-shrink: 0;
+        }
+        .ch-label-text {
+            font-size: 11px; font-weight: 800; letter-spacing: 2.8px;
+            text-transform: uppercase; color: #6046E8;
+            border-bottom: 2px solid #6046E8; padding-bottom: 3px;
+        }
+        .ch-headline {
+            font-size: 58px; font-weight: 900; color: #0E1838;
+            line-height: 1.07; letter-spacing: -2px; margin-bottom: 22px;
+        }
+        .ch-grad-text {
+            background: linear-gradient(130deg, #6046E8 0%, #17BFAE 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .ch-para {
+            font-size: 15px; color: #5a6a85; line-height: 1.78;
+            margin-bottom: 34px; max-width: 420px;
+        }
+
+        .ch-feats { display: flex; align-items: stretch; margin-bottom: 40px; }
+        .ch-feat-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 0 16px; border-right: 1.5px solid #dcd7f8;
+        }
+        .ch-feat-item:first-child { padding-left: 0; }
+        .ch-feat-item:last-child  { border-right: none; }
+        .ch-feat-ico {
+            width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 14px;
+        }
+        .ch-fi-purple { background: #ede9fe; color: #6046E8; }
+        .ch-fi-teal   { background: #d1f4f0; color: #17BFAE; }
+        .ch-fi-orange { background: #fff2dc; color: #e89b00; }
+        .ch-feat-label { font-size: 12px; font-weight: 700; color: #0E1838; line-height: 1.45; }
+
+        .ch-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .ch-btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #6046E8; color: #fff; font-size: 15px; font-weight: 700;
+            padding: 15px 30px; border-radius: 50px; text-decoration: none;
+            box-shadow: 0 10px 28px rgba(96,70,232,.30); transition: background .2s;
+        }
+        .ch-btn-primary:hover { background: #4f37cc; color: #fff; }
+        .ch-btn-arr {
+            width: 32px; height: 32px; background: rgba(255,255,255,.2);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 13px;
+        }
+        .ch-btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fff; color: #0E1838; font-size: 15px; font-weight: 700;
+            padding: 14px 28px; border-radius: 50px; border: 1.5px solid #dcd7f8;
+            text-decoration: none; transition: border-color .2s, color .2s;
+        }
+        .ch-btn-secondary:hover { border-color: #6046E8; color: #6046E8; }
+
+        /* RIGHT */
+        .ch-right { flex: 0 0 57%; position: relative; height: 650px; }
+
+        .ch-circle {
+            position: absolute; width: 500px; height: 500px; border-radius: 50%;
+            background: linear-gradient(150deg, #5140d8 0%, #2c1d9a 100%);
+            top: 50%; left: 50%; transform: translate(-33%, -52%);
+            overflow: hidden; z-index: 1;
+        }
+        .ch-circle img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center 8%;
+        }
+        .ch-deco-c {
+            position: absolute; border: 2px dashed rgba(23,191,174,.5);
+            border-radius: 50%; z-index: 2; pointer-events: none;
+        }
+
+        /* Base floating card */
+        .ch-card {
+            position: absolute; background: #fff; border-radius: 20px;
+            box-shadow: 0 6px 28px rgba(14,24,56,.09); z-index: 5;
+        }
+
+        /* Participant Overview — upper-left */
+        .ch-card-ov { top: 10px; left: 0; width: 244px; padding: 17px 20px; }
+        .ch-ctitle { font-size: 13px; font-weight: 700; color: #0E1838; margin-bottom: 12px; }
+        .ch-cname-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .ch-cavatar {
+            width: 42px; height: 42px; border-radius: 50%; background: #ede9fe;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; color: #6046E8; flex-shrink: 0;
+        }
+        .ch-cname-row h6 { font-size: 13px; font-weight: 700; color: #0E1838; margin: 0 0 2px; }
+        .ch-cname-row p  { font-size: 10px; color: #94a3b8; margin: 0; }
+        .ch-pill-active {
+            display: inline-block; background: #dcfce7; color: #16a34a;
+            font-size: 10px; font-weight: 700; padding: 3px 11px;
+            border-radius: 20px; margin-bottom: 10px;
+        }
+        .ch-cfield {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 5px 0; border-bottom: 1px solid #f1f5f9; font-size: 11px;
+        }
+        .ch-cfield:last-child { border-bottom: none; }
+        .ch-cfield-lbl { display: flex; align-items: center; gap: 5px; color: #94a3b8; }
+        .ch-cfield-val { color: #0E1838; font-weight: 600; }
+
+        /* Goals Progress — lower-left */
+        .ch-card-gp { bottom: 22px; left: 6px; width: 230px; padding: 16px 18px; }
+        .ch-donut-row { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+        .ch-glabel {
+            display: flex; align-items: center; gap: 7px;
+            font-size: 11px; color: #475569; margin-bottom: 5px;
+        }
+        .ch-glabel:last-child { margin-bottom: 0; }
+        .ch-glabel::before { content: ''; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .ch-gl-ind::before { background: #6046E8; }
+        .ch-gl-com::before { background: #17BFAE; }
+        .ch-gl-liv::before { background: #FFB547; }
+        .ch-gl-wel::before { background: #38bdf8; }
+
+        /* Upcoming Support — upper-right */
+        .ch-card-up {
+            top: 20px; right: 4px; width: 198px; padding: 15px 16px;
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .ch-up-ico {
+            width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px;
+            background: #fff2dc; display: flex; align-items: center;
+            justify-content: center; font-size: 18px; color: #e89b00;
+        }
+        .ch-up-title { font-size: 12px; font-weight: 700; color: #0E1838; margin: 0 0 4px; }
+        .ch-up-text  { font-size: 11px; color: #64748b; margin: 0; line-height: 1.5; }
+
+        /* Recent Note — lower-right */
+        .ch-card-rn {
+            bottom: 28px; right: 2px; width: 218px; padding: 15px 16px;
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .ch-rn-ico {
+            width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px;
+            background: #dbeafe; display: flex; align-items: center;
+            justify-content: center; font-size: 18px; color: #2563eb;
+        }
+        .ch-rn-title { font-size: 12px; font-weight: 700; color: #0E1838; margin: 0 0 4px; }
+        .ch-rn-text  { font-size: 11px; color: #64748b; line-height: 1.5; margin: 0 0 4px; }
+        .ch-rn-ts    { font-size: 10px; color: #b0bec5; margin: 0 0 7px; }
+        .ch-rn-link  { font-size: 11px; font-weight: 600; color: #6046E8; text-decoration: none; }
+        .ch-rn-link:hover { text-decoration: underline; }
+
+        /* Badge — top-right */
+        .ch-card-badge {
+            top: -4px; right: 0; width: 196px; padding: 13px 16px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .ch-badge-ico {
+            width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%;
+            background: #17BFAE; display: flex; align-items: center;
+            justify-content: center; font-size: 17px; color: #fff;
+        }
+        .ch-badge-txt { font-size: 12px; font-weight: 700; color: #0E1838; margin: 0; line-height: 1.35; }
+
+        /* Bottom feature strip */
+        .ch-strip {
+            position: absolute; bottom: -58px; left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 128px); max-width: 1260px;
+            background: #fff; border-radius: 26px;
+            box-shadow: 0 14px 54px rgba(14,24,56,.10);
+            display: flex; align-items: center;
+            padding: 26px 36px 26px 58px; z-index: 10;
+        }
+        .ch-strip-arrow {
+            position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+            color: #17BFAE; font-size: 16px;
+        }
+        .ch-strip-item {
+            flex: 1; display: flex; align-items: flex-start; gap: 14px;
+            padding: 0 18px; border-right: 1.5px solid #f1f5f9;
+        }
+        .ch-strip-item:first-child { padding-left: 0; }
+        .ch-strip-item:last-child  { border-right: none; }
+        .ch-si-ico {
+            width: 46px; height: 46px; flex-shrink: 0; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .ch-si-purple { background: #ede9fe; color: #6046E8; }
+        .ch-si-teal   { background: #d1f4f0; color: #17BFAE; }
+        .ch-si-orange { background: #fff2dc; color: #e89b00; }
+        .ch-si-blue   { background: #dbeafe; color: #2563eb; }
+        .ch-si-pink   { background: #fce7f3; color: #db2777; }
+        .ch-si-txt h6 { font-size: 13px; font-weight: 700; color: #0E1838; margin: 0 0 4px; }
+        .ch-si-txt p  { font-size: 11.5px; color: #64748b; margin: 0; line-height: 1.5; }
+
+
+        /* =====================================================
+           SHARED FEATURE SECTION STYLES  (pf-*)
+        ===================================================== */
+        .pf-section { padding: 96px 0; background: #fff; overflow: hidden; }
+        .pf-section.pf-alt { background: #fafbff; }
+        .pf-wrap { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+        .pf-row { display: flex; align-items: center; gap: 64px; }
+        .pf-row.pf-reverse { flex-direction: row-reverse; }
+        .pf-left { flex: 0 0 42%; }
+        .pf-right { flex: 1; min-width: 0; }
+        .pf-eyebrow {
+            display: block; font-size: 11px; font-weight: 800;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            color: #6046E8; margin-bottom: 8px;
+        }
+        .pf-line { width: 30px; height: 3px; background: #6046E8; border-radius: 2px; margin-bottom: 24px; }
+        .pf-heading {
+            font-size: 40px; font-weight: 800; color: #0E1838;
+            line-height: 1.18; letter-spacing: -1px; margin-bottom: 18px;
+        }
+        .pf-accent { color: #6046E8; }
+        .pf-accent-grad {
+            background: linear-gradient(130deg, #6046E8 0%, #17BFAE 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .pf-para { font-size: 15px; color: #5a6a85; line-height: 1.75; margin-bottom: 30px; }
+        .pf-feat { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+        .pf-ico {
+            width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .pf-ico-purple { background: #ede9fe; color: #6046E8; }
+        .pf-ico-teal   { background: #d1f4f0; color: #17BFAE; }
+        .pf-ico-orange { background: #fff2dc; color: #e89b00; }
+        .pf-feat-body { padding-top: 4px; }
+        .pf-feat-body h5 { font-size: 15px; font-weight: 700; color: #0E1838; margin: 0 0 6px; }
+        .pf-feat-body p { font-size: 13.5px; color: #5a6a85; line-height: 1.65; margin: 0; }
+        .pf-learn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 14px; font-weight: 700; color: #6046E8;
+            text-decoration: none; border-bottom: 1.5px solid #6046E8;
+            padding-bottom: 2px; margin-top: 12px;
+        }
+        .pf-learn:hover { opacity: .8; }
+
+        /* Shared testimonial strip */
+        .pf-testi-wrap { max-width: 1200px; margin: 60px auto 0; padding: 0 60px; }
+        .pf-testi {
+            background: #f7f5ff; border-radius: 20px;
+            padding: 28px 36px; display: flex; align-items: center; gap: 0;
+        }
+        .pf-testi-q {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: #ede9fe; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 19px; color: #6046E8; margin-right: 20px;
+        }
+        .pf-testi-body { flex: 1; }
+        .pf-testi-body p { font-size: 14.5px; color: #0E1838; line-height: 1.7; margin: 0 0 10px; font-style: italic; }
+        .pf-testi-body strong { font-size: 14px; font-weight: 700; color: #0E1838; display: block; margin-bottom: 1px; }
+        .pf-testi-body span { font-size: 12px; color: #94a3b8; }
+        .pf-testi-right {
+            display: flex; align-items: center; gap: 14px;
+            border-left: 1px solid #ddd8f5; margin-left: 36px; padding-left: 36px; flex-shrink: 0;
+        }
+        .pf-testi-avatar {
+            width: 54px; height: 54px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg, #e0e7ff, #c4b5fd);
+            display: flex; align-items: center; justify-content: center; font-size: 22px; color: #6046E8;
+        }
+        .pf-testi-name { font-size: 14px; font-weight: 700; color: #0E1838; margin: 0 0 2px; }
+        .pf-testi-role { font-size: 12px; color: #94a3b8; margin: 0 0 6px; }
+        .pf-stars { color: #FFB547; font-size: 16px; letter-spacing: 1px; }
+
+        /* =====================================================
+           QUOTES SECTION  (cq-*)
+        ===================================================== */
+        .cq-visual {
+            position: relative; min-height: 480px;
+        }
+        .cq-bg {
+            position: absolute;
+            top: -12px; left: 0; right: -24px; bottom: -12px;
+            background: #f4f2ff; border-radius: 28px; z-index: 0;
+        }
+        .cq-dots {
+            position: absolute; top: 18px; right: 22px;
+            width: 110px; height: 80px;
+            background-image: radial-gradient(circle, #c4b5fd 1.5px, transparent 1.5px);
+            background-size: 13px 13px; opacity: .55; z-index: 1;
+        }
+        .cq-arc {
+            position: absolute; left: 4px; top: 100px;
+            width: 72px; height: 250px;
+            border: 2.5px dashed rgba(96,70,232,.3);
+            border-right: none; border-radius: 60px 0 0 60px;
+            z-index: 1; pointer-events: none;
+        }
+        .cq-steps {
+            position: relative; z-index: 2;
+            padding: 44px 40px 50px 40px;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .cq-step {
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(14,24,56,.07);
+            padding: 13px 18px; display: flex; align-items: center; gap: 14px;
+            align-self: flex-start;
+        }
+        .cq-step:nth-child(2) { margin-left: 56px; }
+        .cq-step.cq-expanded {
+            align-self: stretch; flex-direction: column; align-items: flex-start;
+            padding: 18px 22px; gap: 0;
+        }
+        .cq-step-hdr { display: flex; align-items: center; gap: 14px; width: 100%; }
+        .cq-step-ico {
+            width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .cq-ico-orange { background: #fff2dc; color: #e89b00; }
+        .cq-ico-purple { background: #ede9fe; color: #6046E8; }
+        .cq-ico-green  { background: #16a34a; border-radius: 50%; color: #fff; width: 48px; height: 48px; font-size: 22px; }
+        .cq-ico-blue   { background: #dbeafe; color: #2563eb; }
+        .cq-step-lbl { font-size: 14px; font-weight: 700; color: #0E1838; }
+        .cq-step-sub { font-size: 12px; color: #94a3b8; margin-top: 1px; }
+        .cq-step-detail {
+            display: flex; gap: 36px; margin-top: 14px; padding-top: 14px;
+            border-top: 1px solid #f1f5f9; width: 100%;
+        }
+        .cq-detail-col h6 { font-size: 11px; color: #94a3b8; font-weight: 600; margin: 0 0 4px; letter-spacing: .5px; }
+        .cq-detail-col p { font-size: 12.5px; color: #0E1838; margin: 0; line-height: 1.65; }
+        .cq-3d {
+            position: absolute; bottom: 8px; right: 20px; z-index: 3;
+            display: flex; align-items: flex-end; gap: 6px;
+        }
+        .cq-doc {
+            width: 72px; height: 90px; background: #ede9fe;
+            border-radius: 10px; position: relative;
+            box-shadow: 3px 3px 0 #c4b5fd;
+        }
+        .cq-doc-line { height: 6px; background: #c4b5fd; border-radius: 3px; margin: 7px 10px 0; }
+        .cq-doc-line:first-child { width: 55%; margin-top: 16px; }
+        .cq-doc-line:nth-child(2) { width: 70%; }
+        .cq-doc-line:nth-child(3) { width: 45%; }
+        .cq-pen-wrap {
+            align-self: stretch; display: flex; align-items: flex-end; padding-bottom: 4px;
+        }
+        .cq-pen {
+            width: 10px; height: 58px;
+            background: linear-gradient(#6046E8, #4f37cc);
+            border-radius: 5px 5px 2px 2px;
+            transform: rotate(-25deg); transform-origin: bottom center;
+        }
+        .cq-check {
+            width: 28px; height: 28px; border-radius: 50%; background: #17BFAE;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; color: #fff; position: absolute; bottom: -6px; right: -6px;
+        }
+
+        /* =====================================================
+           MANAGE FUNDS SECTION  (mf-*)
+        ===================================================== */
+        .mf-visual { position: relative; min-height: 500px; }
+        .mf-teal-blob {
+            position: absolute; bottom: 80px; left: 38%;
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(23,191,174,.12); z-index: 0;
+        }
+        .mf-photo {
+            position: absolute; right: 0; top: 0;
+            width: 55%; height: 370px;
+            border-radius: 20px; overflow: hidden;
+            z-index: 1;
+        }
+        .mf-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+        .mf-budget-card {
+            position: absolute; top: 22px; left: 0;
+            width: 318px; background: #fff; border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(14,24,56,.12);
+            padding: 20px 22px; z-index: 3;
+        }
+        .mf-bc-title { font-size: 14px; font-weight: 700; color: #0E1838; margin-bottom: 14px; }
+        .mf-bc-row { display: flex; justify-content: space-between; align-items: flex-start; }
+        .mf-bc-lbl { font-size: 12px; color: #94a3b8; margin-bottom: 2px; }
+        .mf-bc-big { font-size: 26px; font-weight: 800; color: #0E1838; margin: 0; }
+        .mf-on-track {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: #dcfce7; color: #16a34a;
+            font-size: 10.5px; font-weight: 600; padding: 3px 9px; border-radius: 20px;
+        }
+        .mf-divider { height: 1px; background: #f1f5f9; margin: 12px 0; }
+        .mf-remaining-lbl { font-size: 12px; color: #94a3b8; margin-bottom: 4px; }
+        .mf-remaining-val { font-size: 22px; font-weight: 800; color: #6046E8; margin-bottom: 12px; }
+        .mf-chart-labels {
+            display: flex; justify-content: space-between;
+            font-size: 9px; color: #94a3b8; padding: 0 2px; margin-top: 4px;
+        }
+        .mf-mini-cards {
+            position: absolute; bottom: 0; left: 0;
+            display: flex; gap: 12px; width: 88%; z-index: 2;
+        }
+        .mf-mini {
+            flex: 1; background: #fff; border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(14,24,56,.08);
+            padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px;
+        }
+        .mf-mini-ico {
+            width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 16px;
+        }
+        .mf-ico-teal   { background: #d1f4f0; color: #17BFAE; }
+        .mf-ico-orange { background: #fff2dc; color: #e89b00; }
+        .mf-mini-lbl { font-size: 11px; color: #94a3b8; margin: 0 0 2px; }
+        .mf-mini-val { font-size: 18px; font-weight: 800; color: #6046E8; margin: 0 0 3px; }
+        .mf-mini-val.warn { color: #e89b00; }
+        .mf-mini-desc { font-size: 11px; color: #64748b; margin: 0; }
+
+        /* =====================================================
+           INCIDENT MANAGEMENT SECTION  (im-*)
+        ===================================================== */
+        .im-visual { position: relative; min-height: 520px; }
+        .im-dots {
+            position: absolute; top: 0; right: 0;
+            width: 100px; height: 70px;
+            background-image: radial-gradient(circle, #c4b5fd 1.5px, transparent 1.5px);
+            background-size: 13px 13px; opacity: .45; z-index: 0;
+        }
+        .im-photo-top {
+            position: absolute; top: 0; right: 0;
+            width: 54%; height: 210px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+        }
+        .im-photo-top img { width: 100%; height: 100%; object-fit: cover; }
+        .im-photo-sm {
+            position: absolute; top: 0; right: 55%;
+            width: 32%; height: 160px; margin-right: 10px;
+            border-radius: 14px; overflow: hidden; z-index: 2;
+        }
+        .im-photo-sm img { width: 100%; height: 100%; object-fit: cover; }
+        .im-photo-placeholder {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            font-size: 42px; color: rgba(255,255,255,.8);
+        }
+        .im-photo-main {
+            position: absolute; bottom: 0; right: 0;
+            width: 56%; height: 340px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+        }
+        .im-photo-main img { width: 100%; height: 100%; object-fit: cover; }
+        .im-arc {
+            position: absolute; top: 50px; right: 46%;
+            width: 50px; height: 80px;
+            border: 2px dashed rgba(96,70,232,.35);
+            border-left: none; border-radius: 0 36px 36px 0;
+            z-index: 2; pointer-events: none;
+        }
+        .im-form-card {
+            position: absolute; top: 50px; left: 0;
+            width: 290px; background: #fff; border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(14,24,56,.11);
+            padding: 18px 20px; z-index: 4;
+        }
+        .im-form-title {
+            display: flex; align-items: center; gap: 9px;
+            font-size: 13.5px; font-weight: 700; color: #0E1838; margin-bottom: 12px;
+        }
+        .im-form-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 7px 0; border-bottom: 1px solid #f1f5f9; font-size: 11.5px;
+        }
+        .im-form-row:last-child { border-bottom: none; }
+        .im-form-lbl { display: flex; align-items: center; gap: 6px; color: #94a3b8; }
+        .im-form-val {
+            background: #f8fafc; border-radius: 7px;
+            padding: 3px 9px; font-size: 11.5px; color: #0E1838; font-weight: 500;
+        }
+        .im-secure {
+            position: absolute; bottom: 55px; left: 14px;
+            background: #fff; border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(14,24,56,.09);
+            padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+            z-index: 5; min-width: 208px;
+        }
+        .im-secure-ico {
+            width: 30px; height: 30px; border-radius: 50%; background: #dcfce7;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; color: #16a34a; flex-shrink: 0;
+        }
+        .im-secure-title { font-size: 12px; font-weight: 700; color: #0E1838; margin: 0 0 1px; }
+        .im-secure-sub { font-size: 10.5px; color: #64748b; margin: 0; }
+
+        /* =====================================================
+           MESSAGING SECTION  (ms-*)
+        ===================================================== */
+        .ms-left { flex: 0 0 48%; position: relative; min-height: 500px; }
+        .ms-right { flex: 1; padding-left: 20px; }
+        .ms-photo-top {
+            position: absolute; top: 0; left: 0;
+            width: 62%; height: 220px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+        }
+        .ms-photo-top img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+        .ms-chat-float {
+            position: absolute; top: 28px; right: 0;
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 6px 22px rgba(14,24,56,.10);
+            padding: 12px 14px; z-index: 3; width: 218px;
+        }
+        .ms-cf-avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: #ede9fe; float: left; margin-right: 8px; margin-top: 2px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; color: #6046E8; flex-shrink: 0;
+        }
+        .ms-cf-name { font-size: 11px; font-weight: 700; color: #0E1838; margin: 0 0 2px; }
+        .ms-cf-text { font-size: 11px; color: #475569; line-height: 1.5; margin: 0; clear: both; }
+        .ms-cf-time { font-size: 9.5px; color: #94a3b8; margin-top: 5px; text-align: right; }
+        .ms-cf-time i { color: #17BFAE; }
+        .ms-phone {
+            position: absolute; bottom: 10px; left: 5px;
+            width: 188px; height: 334px;
+            background: #1e293b; border-radius: 28px;
+            padding: 8px; z-index: 2;
+            box-shadow: 0 16px 48px rgba(14,24,56,.22);
+        }
+        .ms-phone-notch {
+            width: 58px; height: 5px; background: #334155;
+            border-radius: 3px; margin: 0 auto 6px;
+        }
+        .ms-phone-screen {
+            background: #f8fafc; border-radius: 22px;
+            height: calc(100% - 14px); overflow: hidden;
+            position: relative;
+        }
+        .ms-phone-hdr {
+            background: #6046E8; padding: 10px 12px 10px;
+        }
+        .ms-phone-hdr-top { display: flex; align-items: center; gap: 6px; }
+        .ms-phone-back { color: rgba(255,255,255,.7); font-size: 12px; }
+        .ms-phone-ttl { color: #fff; font-size: 11px; font-weight: 700; }
+        .ms-phone-sub2 { color: rgba(255,255,255,.6); font-size: 9px; padding-left: 18px; margin-top: 2px; }
+        .ms-phone-bd { padding: 8px; }
+        .ms-phone-date { text-align: center; font-size: 8.5px; color: #94a3b8; margin: 4px 0 8px; }
+        .ms-phone-bubble {
+            background: #ede9fe; border-radius: 10px 10px 10px 2px;
+            padding: 8px 10px; margin-bottom: 4px; max-width: 88%;
+        }
+        .ms-phone-bubble p { font-size: 9.5px; color: #0E1838; line-height: 1.5; margin: 0; }
+        .ms-phone-ts {
+            font-size: 8px; color: #94a3b8; text-align: right;
+            margin-top: 3px; display: flex; justify-content: flex-end; align-items: center; gap: 2px;
+        }
+        .ms-phone-ts i { color: #17BFAE; }
+        .ms-phone-input {
+            position: absolute; bottom: 8px; left: 8px; right: 8px;
+            background: #fff; border-radius: 18px; padding: 6px 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        }
+        .ms-phone-input span { font-size: 9px; color: #94a3b8; }
+        .ms-phone-send {
+            width: 22px; height: 22px; border-radius: 50%; background: #6046E8;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; color: #fff;
+        }
+        .ms-photo-man {
+            position: absolute; bottom: 0; right: 0;
+            width: 52%; height: 256px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+        }
+        .ms-photo-man img { width: 100%; height: 100%; object-fit: cover; }
+        .ms-photo-man-placeholder {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            font-size: 52px;
+        }
+        .ms-chat-ico {
+            position: absolute; bottom: 102px; left: -18px;
+            width: 42px; height: 42px; border-radius: 50%;
+            background: #fff; box-shadow: 0 4px 16px rgba(14,24,56,.12);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; color: #6046E8; z-index: 4;
+        }
+        .ms-dots {
+            position: absolute; bottom: 12px; right: 12px;
+            width: 80px; height: 60px;
+            background-image: radial-gradient(circle, #c4b5fd 1.5px, transparent 1.5px);
+            background-size: 10px 10px; opacity: .4; z-index: 0;
+        }
+
+        /* =====================================================
+           MESSAGING v2 SECTION  (msgv2-*)  — matches Image 2
+        ===================================================== */
+        .msgv2-section { padding: 90px 0 0; background: #fff; overflow: visible; }
+        .msgv2-wrap { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+        .msgv2-row { display: flex; align-items: flex-start; gap: 60px; }
+
+        /* Left visual collage */
+        .msgv2-left { flex: 0 0 48%; position: relative; height: 580px; }
+
+        /* Woman photo — top-left large */
+        .msgv2-photo-woman {
+            position: absolute; top: 0; left: 0;
+            width: 57%; height: 57%;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+            box-shadow: 0 8px 28px rgba(14,24,56,.10);
+        }
+        .msgv2-photo-woman img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+        /* "Great work today!" white chat card — top-right */
+        .msgv2-bubble-top {
+            position: absolute; top: 18px; right: 0;
+            width: 44%; background: #fff; border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(14,24,56,.10);
+            padding: 14px 16px; z-index: 4;
+        }
+        .msgv2-bt-inner { display: flex; align-items: flex-start; gap: 10px; }
+        .msgv2-bt-avatar {
+            width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg,#c4b5fd,#6046E8);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; color: #fff; overflow: hidden;
+        }
+        .msgv2-bt-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .msgv2-bt-name { font-size: 13px; font-weight: 700; color: #101B3D; margin: 0 0 3px; }
+        .msgv2-bt-text { font-size: 12px; color: #475569; line-height: 1.5; margin: 0; }
+        .msgv2-bt-time {
+            font-size: 10px; color: #94a3b8; margin-top: 7px;
+            text-align: right; display: flex; align-items: center; justify-content: flex-end; gap: 4px;
+        }
+        .msgv2-bt-time i { color: #17BFAE; }
+
+        /* Dot grid decoration — centre-right of collage */
+        .msgv2-dots {
+            position: absolute; right: 40%; top: 38%;
+            width: 90px; height: 90px;
+            background-image: radial-gradient(circle, #c4b5fd 1.5px, transparent 1.5px);
+            background-size: 12px 12px; opacity: .4; z-index: 0;
+        }
+
+        /* Man photo — bottom-right */
+        .msgv2-photo-man {
+            position: absolute; bottom: 0; right: 0;
+            width: 54%; height: 48%;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+            box-shadow: 0 8px 28px rgba(14,24,56,.10);
+        }
+        .msgv2-photo-man img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        .msgv2-photo-man-ph {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg,#e0e7ff 0%,#dbeafe 100%);
+        }
+
+        /* Phone mockup — bottom centre, z above photos */
+        .msgv2-phone {
+            position: absolute; bottom: 0; left: 20%;
+            width: 196px; height: 408px;
+            background: #1a2540; border-radius: 30px;
+            padding: 9px; z-index: 3;
+            box-shadow: 0 20px 60px rgba(14,24,56,.28);
+        }
+        .msgv2-phone-notch {
+            width: 60px; height: 5px; background: #273452;
+            border-radius: 3px; margin: 0 auto 7px;
+        }
+        .msgv2-phone-screen {
+            background: #f8fafc; border-radius: 24px;
+            height: calc(100% - 14px); overflow: hidden; position: relative;
+        }
+        .msgv2-phone-hdr {
+            background: #6546F5; padding: 11px 12px 9px;
+        }
+        .msgv2-phone-hdr-top { display: flex; align-items: center; gap: 6px; }
+        .msgv2-phone-back { color: rgba(255,255,255,.75); font-size: 12px; }
+        .msgv2-phone-ttl { color: #fff; font-size: 12px; font-weight: 700; }
+        .msgv2-phone-sub { color: rgba(255,255,255,.6); font-size: 9px; padding-left: 18px; margin-top: 2px; }
+        .msgv2-phone-body { padding: 8px 8px 50px; }
+        .msgv2-phone-date {
+            text-align: center; font-size: 8.5px; color: #94a3b8; margin: 4px 0 8px;
+        }
+        .msgv2-phone-msg {
+            background: #fce7f3; border-radius: 10px 10px 10px 2px;
+            padding: 8px 10px; max-width: 90%; margin-bottom: 4px;
+        }
+        .msgv2-phone-msg p { font-size: 9.5px; color: #101B3D; line-height: 1.55; margin: 0; }
+        .msgv2-phone-ts {
+            font-size: 8px; color: #94a3b8;
+            text-align: right; margin-top: 3px;
+            display: flex; justify-content: flex-end; align-items: center; gap: 2px;
+        }
+        .msgv2-phone-ts i { color: #17BFAE; }
+        .msgv2-phone-input {
+            position: absolute; bottom: 8px; left: 8px; right: 8px;
+            background: #fff; border-radius: 20px; padding: 7px 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        }
+        .msgv2-phone-input span { font-size: 9px; color: #94a3b8; }
+        .msgv2-phone-send {
+            width: 24px; height: 24px; border-radius: 50%; background: #6546F5;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; color: #fff;
+        }
+
+        /* Floating pink message card — left of phone, overlapping */
+        .msgv2-pink-card {
+            position: absolute; bottom: 32%; left: 0;
+            width: 57%; background: #fce7f3; border-radius: 18px;
+            padding: 14px 16px; z-index: 5;
+            box-shadow: 0 6px 20px rgba(219,39,119,.10);
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .msgv2-pk-avatar {
+            width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg,#fbcfe8,#f9a8d4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; color: #db2777; overflow: hidden;
+        }
+        .msgv2-pk-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .msgv2-pk-text { font-size: 12.5px; color: #101B3D; line-height: 1.55; margin: 0 0 5px; }
+        .msgv2-pk-time {
+            font-size: 10px; color: #94a3b8;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .msgv2-pk-time i { color: #17BFAE; }
+
+        /* Chat icon — left floating */
+        .msgv2-chat-ico {
+            position: absolute; left: -18px; bottom: 46%;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: #fff; box-shadow: 0 4px 16px rgba(14,24,56,.12);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: #6546F5; z-index: 6;
+        }
+
+        /* Right text column */
+        .msgv2-right { flex: 1; padding-top: 10px; }
+
+        /* Testimonial strip */
+        .msgv2-testi-wrap {
+            max-width: 1200px; margin: 56px auto 0; padding: 0 60px 90px;
+        }
+        .msgv2-testi {
+            background: #f7f5ff; border-radius: 20px;
+            padding: 32px 40px; display: flex; align-items: center;
+        }
+        .msgv2-testi-qq {
+            font-size: 56px; font-weight: 900; line-height: 1;
+            color: #6546F5; margin-right: 28px; flex-shrink: 0;
+            font-family: Georgia, serif; margin-top: -12px;
+        }
+        .msgv2-testi-body { flex: 1; }
+        .msgv2-testi-body p {
+            font-size: 15px; color: #101B3D; line-height: 1.7; margin: 0 0 12px;
+        }
+        .msgv2-testi-body strong { font-size: 14px; font-weight: 700; color: #101B3D; display: block; margin-bottom: 2px; }
+        .msgv2-testi-body span { font-size: 12.5px; color: #94a3b8; }
+        .msgv2-testi-person {
+            display: flex; align-items: center; gap: 14px;
+            border-left: 1px solid #ddd8f5; margin-left: 40px; padding-left: 40px; flex-shrink: 0;
+        }
+        .msgv2-testi-avatar {
+            width: 60px; height: 60px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg,#e0e7ff,#c4b5fd);
+            display: flex; align-items: center; justify-content: center; font-size: 24px; color: #6546F5;
+        }
+        .msgv2-testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .msgv2-testi-name { font-size: 14px; font-weight: 700; color: #101B3D; margin: 0 0 2px; }
+        .msgv2-testi-role { font-size: 12px; color: #94a3b8; margin: 0 0 7px; }
+
+        /* =====================================================
+           INCIDENT MANAGEMENT v2  (im2-*)
+        ===================================================== */
+        .im2-section { padding: 96px 0 0; background: #fff; overflow: hidden; }
+
+        /* Feature rows with dividers */
+        .im2-feats { margin-top: 8px; margin-bottom: 4px; }
+        .im2-feat {
+            display: flex; align-items: flex-start; gap: 16px;
+            padding: 20px 0; border-bottom: 1px solid #eee9ff;
+        }
+        .im2-feat:first-child { padding-top: 4px; }
+        .im2-feat:last-child { border-bottom: none; }
+        .im2-feat-ico {
+            width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 19px;
+            margin-top: 2px;
+        }
+        .im2-ico-purple { background: #ede9fe; color: #6546F5; }
+        .im2-ico-teal   { background: #d1f4f0; color: #17BFAE; }
+        .im2-ico-orange { background: #fff2dc; color: #e89b00; }
+        .im2-feat-body h5 { font-size: 15px; font-weight: 700; color: #101B3D; margin: 0 0 5px; }
+        .im2-feat-body p  { font-size: 13.5px; color: #5a6a85; line-height: 1.65; margin: 0; }
+
+        /* Right visual collage */
+        .im2-visual { position: relative; min-height: 560px; }
+
+        /* Lavender rounded background shape */
+        .im2-lavender {
+            position: absolute; top: 16px; right: -24px; bottom: -24px; left: 20%;
+            background: #F6F3FF; border-radius: 28px; z-index: 0;
+        }
+
+        /* Dot grid */
+        .im2-dots {
+            position: absolute; right: 42%; top: 30%;
+            width: 90px; height: 90px;
+            background-image: radial-gradient(circle, #c4b5fd 1.5px, transparent 1.5px);
+            background-size: 12px 12px; opacity: .45; z-index: 2; pointer-events: none;
+        }
+
+        /* Coordinator photo — top-left */
+        .im2-photo-coord {
+            position: absolute; top: 0; left: 0;
+            width: 44%; height: 215px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+            box-shadow: 0 6px 22px rgba(14,24,56,.10);
+        }
+        .im2-photo-coord img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+        /* Phone/hands — top-right */
+        .im2-photo-phone {
+            position: absolute; top: 0; right: 0;
+            width: 44%; height: 190px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+            box-shadow: 0 6px 22px rgba(14,24,56,.10);
+        }
+        .im2-photo-phone img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+
+        /* Dashed curved arc between top photos */
+        .im2-arc {
+            position: absolute; top: 55px; right: 45%;
+            width: 54px; height: 86px;
+            border: 2px dashed rgba(100,70,245,.35);
+            border-left: none; border-radius: 0 40px 40px 0;
+            z-index: 2; pointer-events: none;
+        }
+
+        /* Main participant photo — bottom-right */
+        .im2-photo-main {
+            position: absolute; bottom: 0; right: 0;
+            width: 66%; height: 368px;
+            border-radius: 18px; overflow: hidden; z-index: 1;
+            box-shadow: 0 8px 28px rgba(14,24,56,.12);
+        }
+        .im2-photo-main img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+        /* Floating form card */
+        .im2-form-card {
+            position: absolute; top: 115px; left: 0;
+            width: 292px; background: #fff; border-radius: 18px;
+            box-shadow: 0 10px 32px rgba(14,24,56,.12);
+            padding: 18px 20px; z-index: 4;
+        }
+        .im2-form-title {
+            display: flex; align-items: center; gap: 9px;
+            font-size: 13.5px; font-weight: 700; color: #101B3D; margin-bottom: 14px;
+        }
+        .im2-form-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 7px 0; border-bottom: 1px solid #f1f5f9; font-size: 11.5px;
+        }
+        .im2-form-row:last-child { border-bottom: none; }
+        .im2-form-lbl { display: flex; align-items: center; gap: 6px; color: #94a3b8; }
+        .im2-form-val {
+            background: #f8fafc; border-radius: 7px;
+            padding: 3px 9px; font-size: 11.5px; color: #101B3D; font-weight: 500;
+        }
+
+        /* Recorded securely badge */
+        .im2-secure {
+            position: absolute; bottom: 52px; left: 12px;
+            background: #fff; border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(14,24,56,.09);
+            padding: 12px 16px; display: flex; align-items: flex-start; gap: 10px;
+            z-index: 5; min-width: 224px; max-width: 260px;
+        }
+        .im2-secure-ico {
+            width: 32px; height: 32px; border-radius: 50%; background: #dcfce7; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; color: #16a34a;
+        }
+        .im2-secure-title { font-size: 12px; font-weight: 700; color: #101B3D; margin: 0 0 2px; }
+        .im2-secure-sub { font-size: 10.5px; color: #64748b; margin: 0; line-height: 1.5; }
+
+        /* Testimonial */
+        .im2-testi-wrap { padding: 56px 60px 90px; max-width: 1200px; margin: 0 auto; }
+        .im2-testi {
+            background: #F6F3FF; border-radius: 22px;
+            padding: 34px 42px; display: flex; align-items: center;
+        }
+        .im2-testi-qq {
+            font-size: 80px; font-weight: 900; line-height: .75;
+            color: #6546F5; margin-right: 28px; flex-shrink: 0;
+            font-family: Georgia, serif; align-self: flex-start; margin-top: -6px;
+        }
+        .im2-testi-body { flex: 1; }
+        .im2-testi-body p { font-size: 15px; color: #101B3D; line-height: 1.72; margin: 0 0 12px; font-style: italic; }
+        .im2-testi-body strong { font-size: 14px; font-weight: 700; color: #101B3D; display: block; margin-bottom: 2px; font-style: normal; }
+        .im2-testi-body span { font-size: 12.5px; color: #94a3b8; font-style: normal; }
+        .im2-testi-person {
+            display: flex; align-items: center; gap: 14px;
+            border-left: 1.5px solid #d4caff; margin-left: 44px; padding-left: 44px; flex-shrink: 0;
+        }
+        .im2-testi-avatar {
+            width: 62px; height: 62px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg, #e0e7ff, #c4b5fd);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; color: #6546F5;
+        }
+        .im2-testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .im2-testi-name { font-size: 14px; font-weight: 700; color: #101B3D; margin: 0 0 2px; }
+        .im2-testi-role { font-size: 12px; color: #94a3b8; margin: 0 0 7px; }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- preloader -->
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+        <!-- =========== breadcrumb area start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:280px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Care Management</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Care Management</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb area end =========== -->
+
+        <!-- =========== Care Management Hero Start =========== -->
+        <section class="cm-hero">
+            <!-- dot pattern top-left -->
+            <div class="dot-pattern">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- LEFT COLUMN -->
+                    <div class="col-lg-5" data-aos="fade-right">
+                        <span class="cm-label">CARE MANAGEMENT</span>
+                        <h1 class="cm-title">Smarter care<br>for better outcomes<span class="blue-dot">.</span></h1>
+                        <div class="cm-yellow-line">
+                            <svg viewBox="0 0 220 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 14 C40 4, 80 18, 120 8 S180 2, 218 10" stroke="#FFB547" stroke-width="4" stroke-linecap="round" fill="none"/>
+                            </svg>
+                        </div>
+                        <p class="cm-desc">Everything you need to understand, plan and track participant care — all in one simple platform.</p>
+                        <div class="cm-features">
+                            <div class="cm-feature-item">
+                                <div class="cm-feature-icon teal"><i class="fa-regular fa-user-check"></i></div>
+                                <span class="cm-feature-label">Person-centred support</span>
+                            </div>
+                            <div class="cm-feature-item">
+                                <div class="cm-feature-icon yellow"><i class="fa-solid fa-chart-bar"></i></div>
+                                <span class="cm-feature-label">Track progress with clarity</span>
+                            </div>
+                            <div class="cm-feature-item">
+                                <div class="cm-feature-icon purple"><i class="fa-solid fa-shield-check"></i></div>
+                                <span class="cm-feature-label">Stay compliant &amp; audit ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- RIGHT COLUMN: dashboard -->
+                    <div class="col-lg-7">
+                        <div class="cm-dashboard">
+                            <div class="cm-bg-circle"></div>
+                            <div class="cm-woman-photo">
+                                <img src="assets/img/hrmanagement/service/participant-lady.jpg" alt="Participant">
+                            </div>
+                            <!-- Participant Overview Card -->
+                            <div class="cm-overview-card">
+                                <div class="cm-ov-header">
+                                    <div class="cm-ov-icon"><i class="fa-solid fa-user"></i></div>
+                                    <h3 class="cm-ov-title">Participant Overview</h3>
+                                </div>
+                                <div class="cm-ov-person">
+                                    <div class="cm-ov-avatar"><img src="assets/img/hrmanagement/service/participant-lady.jpg" alt="Margaret Wilson"></div>
+                                    <div>
+                                        <p class="cm-ov-name">Margaret Wilson</p>
+                                        <p class="cm-ov-id">Client ID: C-10245</p>
+                                    </div>
+                                    <span class="cm-badge-active">Active</span>
+                                </div>
+                                <div class="cm-ov-row">
+                                    <div class="cm-ov-icon-sm icon-blue-sq"><i class="fa-regular fa-calendar"></i></div>
+                                    <div class="cm-ov-info">
+                                        <p class="cm-ov-label">Plan Review</p>
+                                        <p class="cm-ov-val">15 May 2026</p>
+                                    </div>
+                                </div>
+                                <div class="cm-ov-row">
+                                    <div class="cm-ov-icon-sm icon-green-circle"><i class="fa-solid fa-dollar-sign"></i></div>
+                                    <div class="cm-ov-info">
+                                        <p class="cm-ov-label">Budget Used</p>
+                                        <p class="cm-ov-val">68% of $18,500</p>
+                                    </div>
+                                </div>
+                                <div class="cm-progress-bar"><div class="cm-progress-fill fill-green" style="width:68%"></div></div>
+                            </div>
+                            <!-- Goals Progress Card -->
+                            <div class="cm-goals-card">
+                                <div class="cm-goals-header">
+                                    <div class="cm-goals-icon"><i class="fa-solid fa-bullseye"></i></div>
+                                    <h4 class="cm-goals-title">Goals Progress</h4>
+                                    <a href="#" class="cm-see-all">See all</a>
+                                </div>
+                                <div class="cm-goal-item">
+                                    <div class="cm-goal-row">
+                                        <span class="cm-goal-name"><span class="cm-goal-badge badge-blue"><i class="fa-solid fa-person-walking"></i></span> Increase independence</span>
+                                        <span class="cm-goal-pct">85%</span>
+                                    </div>
+                                    <div class="cm-progress-bar"><div class="cm-progress-fill fill-blue" style="width:85%"></div></div>
+                                </div>
+                                <div class="cm-goal-item">
+                                    <div class="cm-goal-row">
+                                        <span class="cm-goal-name"><span class="cm-goal-badge badge-green"><i class="fa-solid fa-users"></i></span> Build community skills</span>
+                                        <span class="cm-goal-pct">60%</span>
+                                    </div>
+                                    <div class="cm-progress-bar"><div class="cm-progress-fill fill-green" style="width:60%"></div></div>
+                                </div>
+                                <div class="cm-goal-item">
+                                    <div class="cm-goal-row">
+                                        <span class="cm-goal-name"><span class="cm-goal-badge badge-purple"><i class="fa-solid fa-chart-line"></i></span> Improve wellbeing</span>
+                                        <span class="cm-goal-pct">75%</span>
+                                    </div>
+                                    <div class="cm-progress-bar"><div class="cm-progress-fill fill-purple" style="width:75%"></div></div>
+                                </div>
+                            </div>
+                            <!-- Recent Activity Card -->
+                            <div class="cm-activity-card">
+                                <div class="cm-act-header">
+                                    <div class="cm-act-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                                    <h4 class="cm-act-title">Recent Activity</h4>
+                                </div>
+                                <div class="cm-activity-item">
+                                    <div class="cm-activity-dot dot-green"></div>
+                                    <div>
+                                        <p class="cm-activity-text">Support session completed</p>
+                                        <p class="cm-activity-time">Today, 10:30 AM</p>
+                                    </div>
+                                </div>
+                                <div class="cm-activity-item">
+                                    <div class="cm-activity-dot dot-purple"></div>
+                                    <div>
+                                        <p class="cm-activity-text">Community outing</p>
+                                        <p class="cm-activity-time">Yesterday, 2:00 PM</p>
+                                    </div>
+                                </div>
+                                <div class="cm-activity-item">
+                                    <div class="cm-activity-dot dot-yellow"></div>
+                                    <div>
+                                        <p class="cm-activity-text">Plan updated</p>
+                                        <p class="cm-activity-time">22 May 2026</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quick Actions -->
+                            <div class="cm-quick-actions">
+                                <a href="#" class="cm-qa-item">
+                                    <div class="cm-qa-icon qa-blue"><i class="fa-regular fa-file-lines"></i></div>
+                                    <span class="cm-qa-label">Care Plans</span>
+                                </a>
+                                <a href="#" class="cm-qa-item">
+                                    <div class="cm-qa-icon qa-green"><i class="fa-regular fa-note-sticky"></i></div>
+                                    <span class="cm-qa-label">Notes</span>
+                                </a>
+                                <a href="#" class="cm-qa-item">
+                                    <div class="cm-qa-icon qa-purple"><i class="fa-regular fa-folder"></i></div>
+                                    <span class="cm-qa-label">Documents</span>
+                                </a>
+                                <a href="#" class="cm-qa-item">
+                                    <div class="cm-qa-icon qa-red"><i class="fa-regular fa-pills"></i></div>
+                                    <span class="cm-qa-label">Medication</span>
+                                </a>
+                                <a href="#" class="cm-qa-item">
+                                    <div class="cm-qa-icon qa-orange"><i class="fa-regular fa-user-group"></i></div>
+                                    <span class="cm-qa-label">Contacts</span>
+                                </a>
+                            </div>
+                        </div><!-- /cm-dashboard -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== Care Management Hero End =========== -->
+
+        <!-- =========== CARE RECORDS PREMIUM SECTION =========== -->
+        <section class="cs-section">
+            <div class="container">
+                <div class="row align-items-center" style="gap:0;">
+
+                    <!-- LEFT COLUMN 45% -->
+                    <div class="col-lg-5 pe-lg-5" data-aos="fade-right" data-aos-duration="800">
+                        <span class="cs-eyebrow">CLIENT RECORDS MANAGEMENT</span>
+                        <h2 class="cs-headline">Giving every participant a <span class="cs-grad">great start</span> to their journey</h2>
+                        <p class="cs-sub">Create complete participant records, understand their needs, set meaningful goals, and bring families into the care journey from day one.</p>
+
+                        <!-- Feature 1: Add care information -->
+                        <div class="cs-feat" data-aos="fade-up" data-aos-delay="100">
+                            <div class="cs-feat-icon cs-fi-doc">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="cs-feat-body">
+                                <h5>Add care information</h5>
+                                <p>Upload plans, assessments and important documents in one secure place.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2: Set goals together -->
+                        <div class="cs-feat" data-aos="fade-up" data-aos-delay="200">
+                            <div class="cs-feat-icon cs-fi-target">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+                                </svg>
+                            </div>
+                            <div class="cs-feat-body">
+                                <h5>Set goals together</h5>
+                                <p>Define what matters to the participant and track progress over time.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: Involve circle of support -->
+                        <div class="cs-feat" data-aos="fade-up" data-aos-delay="300">
+                            <div class="cs-feat-icon cs-fi-family">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="cs-feat-body">
+                                <h5>Involve their circle of support</h5>
+                                <p>Give family or guardians visibility so everyone stays connected and informed.</p>
+                            </div>
+                        </div>
+
+                        <!-- Connected record highlight card -->
+                        <div class="cs-connected" data-aos="fade-up" data-aos-delay="400">
+                            <div class="cs-connected-icon">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <h5>Everything in one connected record</h5>
+                                <p>All participant information, notes, documents and communication in one easy-to-find place.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN 55% -->
+                    <div class="col-lg-7 ps-lg-4" data-aos="fade-left" data-aos-duration="900" data-aos-delay="100">
+                        <div class="cs-visual">
+                            <!-- Rounded rectangle background -->
+                            <div class="cs-bg-rect"></div>
+                            <!-- Dot grid accent -->
+                            <div class="cs-dots"></div>
+
+                            <!-- Top photo: woman with phone -->
+                            <div class="cs-pt">
+                                <img src="assets/img/hrmanagement/service/woman-phone.jpg" alt="Support coordinator with phone">
+                            </div>
+
+                            <!-- Bottom photo: family with tablet -->
+                            <div class="cs-pb">
+                                <img src="assets/img/hrmanagement/service/family-tablet.jpg" alt="Family with tablet" style="object-position:center 40%;">
+                            </div>
+
+                            <!-- Floating participant dashboard card -->
+                            <div class="cs-card">
+                                <!-- Header -->
+                                <div class="cs-ch">
+                                    <div class="cs-ch-av">
+                                        <img src="assets/img/hrmanagement/service/woman-phone.jpg" alt="Olivia Morgan">
+                                    </div>
+                                    <div>
+                                        <p class="cs-ch-name">Olivia Morgan</p>
+                                        <p class="cs-ch-id">Participant ID: P-12458</p>
+                                    </div>
+                                    <span class="cs-ch-dots">···</span>
+                                </div>
+
+                                <!-- Tabs: Overview / Goals / Notes / Documents -->
+                                <div class="cs-tabs">
+                                    <span class="cs-tab on">Overview</span>
+                                    <span class="cs-tab">Goals</span>
+                                    <span class="cs-tab">Notes</span>
+                                    <span class="cs-tab">Documents</span>
+                                </div>
+
+                                <!-- Care Plan block -->
+                                <div class="cs-cb">
+                                    <div class="cs-cbr">
+                                        <span class="cs-cbt">Care Plan</span>
+                                        <span class="cs-badge-g">Active</span>
+                                    </div>
+                                    <p class="cs-cbs">Plan review due on 15 May 2026</p>
+                                </div>
+
+                                <!-- Goals Progress -->
+                                <div class="cs-cb">
+                                    <div class="cs-cbr" style="margin-bottom:10px;">
+                                        <span class="cs-cbt">Goals Progress</span>
+                                        <a href="#" class="cs-lnk">See all</a>
+                                    </div>
+                                    <div class="cs-cp">
+                                        <div class="cs-cpr">
+                                            <span>Increase independence</span>
+                                            <span class="cs-cpp">80%</span>
+                                        </div>
+                                        <div class="cs-bar"><div class="cs-fill cs-f-ind" style="width:80%"></div></div>
+                                    </div>
+                                    <div class="cs-cp">
+                                        <div class="cs-cpr">
+                                            <span>Build community connections</span>
+                                            <span class="cs-cpp">60%</span>
+                                        </div>
+                                        <div class="cs-bar"><div class="cs-fill cs-f-ind" style="width:60%"></div></div>
+                                    </div>
+                                    <div class="cs-cp">
+                                        <div class="cs-cpr">
+                                            <span>Improve wellbeing</span>
+                                            <span class="cs-cpp">70%</span>
+                                        </div>
+                                        <div class="cs-bar"><div class="cs-fill cs-f-ind" style="width:70%"></div></div>
+                                    </div>
+                                </div>
+
+                                <!-- Family Access -->
+                                <div class="cs-cb" style="margin-bottom:0;">
+                                    <div class="cs-cbr" style="margin-bottom:8px;">
+                                        <span class="cs-cbt">Family Access</span>
+                                    </div>
+                                    <div class="cs-fam">
+                                        <div class="cs-fav"><img src="assets/img/hrmanagement/service/woman-phone.jpg" alt=""></div>
+                                        <div class="cs-fav"><img src="assets/img/hrmanagement/service/participant-lady.jpg" alt=""></div>
+                                        <div class="cs-fav"><img src="assets/img/hrmanagement/service/family-tablet.jpg" alt=""></div>
+                                        <div class="cs-fmore">+2</div>
+                                        <a href="#" class="cs-fmanage">Manage</a>
+                                    </div>
+                                </div>
+
+                            </div><!-- /cs-card -->
+                        </div><!-- /cs-visual -->
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- =========== CARE RECORDS PREMIUM SECTION END =========== -->
+
+        <!-- =========== Care Management Premium Hero Start =========== -->
+        <section class="ch-hero">
+            <div class="ch-inner">
+
+                <!-- LEFT COLUMN -->
+                <div class="ch-left" data-aos="fade-right" data-aos-duration="800">
+                    <div class="ch-label-row">
+                        <div class="ch-label-icon"><i class="fa-solid fa-users"></i></div>
+                        <span class="ch-label-text">CARE NOTES</span>
+                    </div>
+                    <h1 class="ch-headline">
+                        Better care.<br>
+                        Stronger outcomes.<br>
+                        <span class="ch-grad-text">Every day.</span>
+                    </h1>
+                    <p class="ch-para">All participant information, goals, notes and plans in one place — so your team can focus on what truly matters.</p>
+                    <div class="ch-feats">
+                        <div class="ch-feat-item">
+                            <div class="ch-feat-ico ch-fi-purple"><i class="fa-solid fa-shield-halved"></i></div>
+                            <span class="ch-feat-label">Person-centred<br>support</span>
+                        </div>
+                        <div class="ch-feat-item">
+                            <div class="ch-feat-ico ch-fi-teal"><i class="fa-solid fa-chart-line"></i></div>
+                            <span class="ch-feat-label">Track progress<br>with clarity</span>
+                        </div>
+                        <div class="ch-feat-item">
+                            <div class="ch-feat-ico ch-fi-orange"><i class="fa-solid fa-lock"></i></div>
+                            <span class="ch-feat-label">Secure. Compliant.<br>Always audit-ready</span>
+                        </div>
+                    </div>
+                    <div class="ch-ctas">
+                        <a href="#" class="ch-btn-primary">
+                            Explore Care Management
+                            <span class="ch-btn-arr"><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                        <a href="#" class="ch-btn-secondary">
+                            <i class="fa-regular fa-calendar"></i>
+                            Book a Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="ch-right" data-aos="fade-left" data-aos-duration="900">
+
+                    <!-- Deep purple circle with participant photo -->
+                    <div class="ch-circle">
+                        <img src="assets/img/hrmanagement/service/participant-senior.png" alt="Care participant">
+                    </div>
+
+                    <!-- Teal dashed decorative circle -->
+                    <div class="ch-deco-c" style="width:76px;height:76px;top:196px;left:282px;"></div>
+
+                    <!-- Card 1: Participant Overview — upper-left -->
+                    <div class="ch-card ch-card-ov" data-aos="fade-right" data-aos-delay="150">
+                        <div class="ch-ctitle">Participant Overview</div>
+                        <div class="ch-cname-row">
+                            <div class="ch-cavatar"><i class="fa-solid fa-user"></i></div>
+                            <div>
+                                <h6>James Anderson</h6>
+                                <p>ID: P-10045</p>
+                            </div>
+                        </div>
+                        <span class="ch-pill-active">Active</span>
+                        <div class="ch-cfield">
+                            <span class="ch-cfield-lbl"><i class="fa-regular fa-user"></i> Age</span>
+                            <span class="ch-cfield-val">72 Years</span>
+                        </div>
+                        <div class="ch-cfield">
+                            <span class="ch-cfield-lbl"><i class="fa-regular fa-calendar"></i> Plan Start</span>
+                            <span class="ch-cfield-val">01 Jan 2024</span>
+                        </div>
+                        <div class="ch-cfield">
+                            <span class="ch-cfield-lbl"><i class="fa-regular fa-hand-holding-heart"></i> Primary Support</span>
+                            <span class="ch-cfield-val">Daily Living</span>
+                        </div>
+                        <div class="ch-cfield">
+                            <span class="ch-cfield-lbl"><i class="fa-regular fa-user-tie"></i> Coordinator</span>
+                            <span class="ch-cfield-val">Sarah Wilson</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Goals Progress — lower-left -->
+                    <div class="ch-card ch-card-gp" data-aos="fade-right" data-aos-delay="250">
+                        <div class="ch-ctitle">Goals Progress</div>
+                        <div class="ch-donut-row">
+                            <svg viewBox="0 0 80 80" style="width:82px;height:82px;flex-shrink:0;">
+                                <circle cx="40" cy="40" r="32" fill="none" stroke="#f1f5f9" stroke-width="10"/>
+                                <circle cx="40" cy="40" r="32" fill="none" stroke="#6046E8" stroke-width="9"
+                                    stroke-dasharray="80 121" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                                <circle cx="40" cy="40" r="32" fill="none" stroke="#17BFAE" stroke-width="9"
+                                    stroke-dasharray="50 151" stroke-linecap="round" transform="rotate(60 40 40)"/>
+                                <circle cx="40" cy="40" r="32" fill="none" stroke="#FFB547" stroke-width="9"
+                                    stroke-dasharray="40 161" stroke-linecap="round" transform="rotate(157 40 40)"/>
+                                <circle cx="40" cy="40" r="32" fill="none" stroke="#38bdf8" stroke-width="9"
+                                    stroke-dasharray="31 170" stroke-linecap="round" transform="rotate(228 40 40)"/>
+                                <text x="40" y="36" text-anchor="middle" font-size="13" font-weight="800" fill="#0E1838" font-family="sans-serif">78%</text>
+                                <text x="40" y="49" text-anchor="middle" font-size="6.5" fill="#94a3b8" font-family="sans-serif">Overall Progress</text>
+                            </svg>
+                            <div>
+                                <div class="ch-glabel ch-gl-ind">Independence</div>
+                                <div class="ch-glabel ch-gl-com">Community</div>
+                                <div class="ch-glabel ch-gl-liv">Daily Living</div>
+                                <div class="ch-glabel ch-gl-wel">Wellbeing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Upcoming Support — upper-right -->
+                    <div class="ch-card ch-card-up" data-aos="fade-left" data-aos-delay="150">
+                        <div class="ch-up-ico"><i class="fa-regular fa-calendar-check"></i></div>
+                        <div>
+                            <p class="ch-up-title">Upcoming Support</p>
+                            <p class="ch-up-text">Community Access<br><strong>Tomorrow, 10:00 AM</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Recent Note — lower-right -->
+                    <div class="ch-card ch-card-rn" data-aos="fade-left" data-aos-delay="250">
+                        <div class="ch-rn-ico"><i class="fa-regular fa-file-lines"></i></div>
+                        <div>
+                            <p class="ch-rn-title">Recent Note</p>
+                            <p class="ch-rn-text">James had a great session today and achieved his goals.</p>
+                            <p class="ch-rn-ts">Today, 9:30 AM</p>
+                            <a href="#" class="ch-rn-link">View all notes →</a>
+                        </div>
+                    </div>
+
+                    <!-- Badge — top-right -->
+                    <div class="ch-card ch-card-badge" data-aos="fade-left" data-aos-delay="80">
+                        <div class="ch-badge-ico"><i class="fa-solid fa-user-group"></i></div>
+                        <p class="ch-badge-txt">Care that makes a difference</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- =========== Care Management Premium Hero End =========== -->
+
+        <!-- =========== MESSAGING SECTION START =========== -->
+        <section class="msgv2-section">
+            <div class="msgv2-wrap">
+                <div class="msgv2-row">
+
+                    <!-- Left: photo collage -->
+                    <div class="msgv2-left" data-aos="fade-right">
+
+                        <!-- Woman photo — top-left -->
+                        <div class="msgv2-photo-woman">
+                            <img src="assets/img/hrmanagement/service/woman-laptop.png" alt="Support coordinator">
+                        </div>
+
+                        <!-- Chat card — top-right -->
+                        <div class="msgv2-bubble-top">
+                            <div class="msgv2-bt-inner">
+                                <div class="msgv2-bt-avatar"><i class="fa-regular fa-user"></i></div>
+                                <div>
+                                    <div class="msgv2-bt-name">Sarah K.</div>
+                                    <p class="msgv2-bt-text">Great work today! See you at the team catch-up tomorrow.</p>
+                                </div>
+                            </div>
+                            <div class="msgv2-bt-time"><i class="fa-solid fa-check-double"></i> 10:32 AM</div>
+                        </div>
+
+                        <!-- Dot grid -->
+                        <div class="msgv2-dots"></div>
+
+                        <!-- Man photo — bottom-right -->
+                        <div class="msgv2-photo-man">
+                            <img src="assets/img/hrmanagement/service/man-phone.png" alt="Support worker">
+                        </div>
+
+                        <!-- Phone mockup -->
+                        <div class="msgv2-phone">
+                            <div class="msgv2-phone-notch"></div>
+                            <div class="msgv2-phone-screen">
+                                <div class="msgv2-phone-hdr">
+                                    <div class="msgv2-phone-hdr-top">
+                                        <span class="msgv2-phone-back"><i class="fa-regular fa-chevron-left"></i></span>
+                                        <span class="msgv2-phone-ttl">Team Chat</span>
+                                    </div>
+                                    <div class="msgv2-phone-sub">3 members online</div>
+                                </div>
+                                <div class="msgv2-phone-body">
+                                    <div class="msgv2-phone-date">Today</div>
+                                    <div class="msgv2-phone-msg">
+                                        <p>We had a quick chat about 10:30am — Catch you tomorrow!</p>
+                                    </div>
+                                    <div class="msgv2-phone-ts"><i class="fa-solid fa-check-double"></i> 10:30 AM</div>
+                                </div>
+                                <div class="msgv2-phone-input">
+                                    <span>Type a message…</span>
+                                    <div class="msgv2-phone-send"><i class="fa-solid fa-paper-plane-top"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating pink message card -->
+                        <div class="msgv2-pink-card">
+                            <div class="msgv2-pk-avatar"><i class="fa-regular fa-user"></i></div>
+                            <div>
+                                <p class="msgv2-pk-text">Hi! Just checking in — did you see Jim this morning?</p>
+                                <div class="msgv2-pk-time"><i class="fa-solid fa-check-double"></i> 9:15 AM</div>
+                            </div>
+                        </div>
+
+                        <!-- Chat icon -->
+                        <div class="msgv2-chat-ico"><i class="fa-regular fa-message-lines"></i></div>
+
+                    </div>
+
+                    <!-- Right: text -->
+                    <div class="msgv2-right" data-aos="fade-left">
+                        <span class="pf-eyebrow">MESSAGING</span>
+                        <div class="pf-line"></div>
+                        <h2 class="pf-heading">
+                            Stay connected<br>
+                            with <span class="pf-accent">your teams.</span>
+                        </h2>
+                        <p class="pf-para">Keep your team in sync with instant, private, and group messaging across desktop and mobile, so everyone stays informed and ready to deliver great care.</p>
+
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-purple"><i class="fa-regular fa-comments"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Real-time updates</h5>
+                                <p>Send and receive messages instantly to keep everyone in the loop.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-teal"><i class="fa-regular fa-lock"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Compliance &amp; security</h5>
+                                <p>All messages are securely stored, ensuring compliance and data access.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-orange"><i class="fa-regular fa-mobile"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Seamless accessibility</h5>
+                                <p>Communicate from anywhere with full mobile and desktop support.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="msgv2-testi-wrap" data-aos="fade-up">
+                <div class="msgv2-testi">
+                    <div class="msgv2-testi-qq">"</div>
+                    <div class="msgv2-testi-body">
+                        <p>Plannor's messaging feature is a game changer. It keeps our team connected and saves us hours every week.</p>
+                        <strong>Robert Goodwin</strong>
+                        <span>Operations Manager, BrightCare Support Services</span>
+                    </div>
+                    <div class="msgv2-testi-person">
+                        <div class="msgv2-testi-avatar"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <div class="msgv2-testi-name">Robert Goodwin</div>
+                            <div class="msgv2-testi-role">Operations Manager</div>
+                            <div class="pf-stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== MESSAGING SECTION END =========== -->
+
+<!-- =========== INCIDENT MANAGEMENT SECTION START =========== -->
+        <section class="im2-section">
+            <div class="pf-wrap">
+                <div class="pf-row" style="align-items:flex-start;">
+
+                    <!-- LEFT: text column -->
+                    <div class="pf-left" style="flex:0 0 43%;" data-aos="fade-right">
+                        <span class="pf-eyebrow">INCIDENT MANAGEMENT</span>
+                        <div class="pf-line"></div>
+                        <h2 class="pf-heading" style="font-size:42px;margin-bottom:18px;">
+                            Simplify incident<br>
+                            reporting. Strengthen<br>
+                            <span class="pf-accent-grad">safety and compliance.</span>
+                        </h2>
+                        <p class="pf-para">Give your team a faster, clearer way to record, review and manage incidents — helping you maintain a safe, compliant and participant-centred service.</p>
+
+                        <!-- Feature rows with dividers -->
+                        <div class="im2-feats">
+                            <div class="im2-feat">
+                                <div class="im2-feat-ico im2-ico-purple"><i class="fa-regular fa-file-plus"></i></div>
+                                <div class="im2-feat-body">
+                                    <h5>Flexible incident forms</h5>
+                                    <p>Create tailored forms that capture the right details for every situation.</p>
+                                </div>
+                            </div>
+                            <div class="im2-feat">
+                                <div class="im2-feat-ico im2-ico-teal"><i class="fa-regular fa-bolt"></i></div>
+                                <div class="im2-feat-body">
+                                    <h5>Report in the moment</h5>
+                                    <p>Log incidents instantly from any device while information is accurate and fresh.</p>
+                                </div>
+                            </div>
+                            <div class="im2-feat">
+                                <div class="im2-feat-ico im2-ico-orange"><i class="fa-regular fa-shield-check"></i></div>
+                                <div class="im2-feat-body">
+                                    <h5>Secure and audit-ready</h5>
+                                    <p>Keep every report protected, traceable and ready for follow-up or review.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT: layered photo collage -->
+                    <div class="pf-right" data-aos="fade-left">
+                        <div class="im2-visual">
+
+                            <!-- Lavender background shape -->
+                            <div class="im2-lavender"></div>
+                            <!-- Dot grid decoration -->
+                            <div class="im2-dots"></div>
+
+                            <!-- Coordinator at laptop — top-left -->
+                            <div class="im2-photo-coord">
+                                <img src="assets/img/hrmanagement/service/woman-laptop.png" alt="Support coordinator at laptop">
+                            </div>
+
+                            <!-- Hands with smartphone — top-right -->
+                            <div class="im2-photo-phone">
+                                <img src="assets/img/hrmanagement/service/hands-phone.png" alt="Support worker using smartphone">
+                            </div>
+
+                            <!-- Dashed arc between top photos -->
+                            <div class="im2-arc"></div>
+
+                            <!-- Main participant photo — bottom-right -->
+                            <div class="im2-photo-main">
+                                <img src="assets/img/hrmanagement/service/participant-notes.png" alt="Participant writing notes">
+                            </div>
+
+                            <!-- Floating: New Incident Report form card -->
+                            <div class="im2-form-card">
+                                <div class="im2-form-title">
+                                    <div style="width:30px;height:30px;border-radius:8px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:13px;color:#6546F5;">
+                                        <i class="fa-regular fa-clipboard-list"></i>
+                                    </div>
+                                    New Incident Report
+                                </div>
+                                <div class="im2-form-row">
+                                    <div class="im2-form-lbl"><i class="fa-regular fa-user" style="font-size:10px;"></i> Who was involved?</div>
+                                    <div class="im2-form-val">Jordan Lee</div>
+                                </div>
+                                <div class="im2-form-row">
+                                    <div class="im2-form-lbl"><i class="fa-regular fa-location-dot" style="font-size:10px;"></i> Where did it happen?</div>
+                                    <div class="im2-form-val">Community outing</div>
+                                </div>
+                                <div class="im2-form-row">
+                                    <div class="im2-form-lbl"><i class="fa-regular fa-tag" style="font-size:10px;"></i> What type of incident?</div>
+                                    <div class="im2-form-val">Near miss</div>
+                                </div>
+                                <div class="im2-form-row">
+                                    <div class="im2-form-lbl"><i class="fa-regular fa-clock" style="font-size:10px;"></i> When did it occur?</div>
+                                    <div class="im2-form-val">Today, 2:15 PM</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating: Recorded securely confirmation -->
+                            <div class="im2-secure">
+                                <div class="im2-secure-ico"><i class="fa-solid fa-shield-check"></i></div>
+                                <div>
+                                    <div class="im2-secure-title">Recorded securely</div>
+                                    <div class="im2-secure-sub">Your report is saved, protected and ready for review.</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full-width testimonial -->
+            <div class="im2-testi-wrap" data-aos="fade-up">
+                <div class="im2-testi">
+                    <div class="im2-testi-qq">"</div>
+                    <div class="im2-testi-body">
+                        <p>Incident reporting is now quick and clear. Our team can act sooner and keep complete, reliable records.</p>
+                        <strong>Priya Shah</strong>
+                        <span>Quality &amp; Safeguarding Lead</span>
+                    </div>
+                    <div class="im2-testi-person">
+                        <div class="im2-testi-avatar"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <div class="im2-testi-name">Priya Shah</div>
+                            <div class="im2-testi-role">Quality &amp; Safeguarding Lead</div>
+                            <div class="pf-stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== INCIDENT MANAGEMENT SECTION END =========== -->
+
+        <!-- =========== MANAGE FUNDS SECTION START =========== -->
+        <section class="pf-section pf-alt">
+            <div class="pf-wrap">
+                <div class="pf-row">
+                    <!-- Left: text -->
+                    <div class="pf-left" data-aos="fade-right">
+                        <span class="pf-eyebrow">MANAGE FUNDS</span>
+                        <div class="pf-line"></div>
+                        <h2 class="pf-heading">
+                            Make every dollar<br>
+                            work <span class="pf-accent">smarter</span>
+                        </h2>
+                        <p class="pf-para">Track, manage and plan support with confidence. Plannor gives you clear visibility of available funds so you can focus on better outcomes.</p>
+
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-purple"><i class="fa-regular fa-chart-pie-simple"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Plan with purpose</h5>
+                                <p>Create budgets that align with client goals and track spending in real time.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-teal"><i class="fa-regular fa-bell"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Stay ahead with alerts</h5>
+                                <p>Get notified when funds are running low so you can plan ahead and avoid gaps.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-orange"><i class="fa-regular fa-layer-group"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Manage all funding sources</h5>
+                                <p>Track multiple funding streams in one place and avoid billing surprises.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: visual -->
+                    <div class="pf-right" data-aos="fade-left">
+                        <div class="mf-visual">
+                            <div class="mf-teal-blob"></div>
+
+                            <!-- Photo -->
+                            <div class="mf-photo">
+                                <img src="assets/img/hrmanagement/service/support-art-session.png" alt="Support worker with participant">
+                            </div>
+
+                            <!-- Budget at a glance card -->
+                            <div class="mf-budget-card">
+                                <div class="mf-bc-title"><i class="fa-regular fa-wallet" style="color:#6046E8;margin-right:7px;"></i>Budget at a glance</div>
+                                <div class="mf-bc-row">
+                                    <div>
+                                        <div class="mf-bc-lbl">Total budget</div>
+                                        <div class="mf-bc-big">$8,000</div>
+                                    </div>
+                                    <div><span class="mf-on-track"><i class="fa-solid fa-circle-check"></i> On track</span></div>
+                                </div>
+                                <div class="mf-divider"></div>
+                                <div class="mf-remaining-lbl">Funds remaining</div>
+                                <div class="mf-remaining-val">$1,850</div>
+                                <!-- SVG Line Chart -->
+                                <svg viewBox="0 0 268 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:80px;display:block;">
+                                    <line x1="0" y1="18" x2="268" y2="18" stroke="#f1f5f9" stroke-width="1"/>
+                                    <line x1="0" y1="38" x2="268" y2="38" stroke="#f1f5f9" stroke-width="1"/>
+                                    <line x1="0" y1="58" x2="268" y2="58" stroke="#f1f5f9" stroke-width="1"/>
+                                    <path d="M0,12 C40,12 60,22 100,32 C140,42 160,52 210,62" fill="rgba(96,70,232,.07)" stroke="none"/>
+                                    <path d="M0,12 C40,12 60,22 100,32 C140,42 160,52 210,62 L210,78 L0,78 Z" fill="rgba(96,70,232,.06)"/>
+                                    <path d="M0,12 C40,12 60,22 100,32 C140,42 160,52 210,62" stroke="#6046E8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                                    <path d="M210,62 L252,72" stroke="#6046E8" stroke-width="2" stroke-dasharray="5,4" stroke-linecap="round"/>
+                                    <circle cx="210" cy="62" r="4" fill="#6046E8"/>
+                                    <circle cx="210" cy="62" r="7" fill="rgba(96,70,232,.18)"/>
+                                </svg>
+                                <div class="mf-chart-labels">
+                                    <span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span>
+                                </div>
+                            </div>
+
+                            <!-- Two mini cards -->
+                            <div class="mf-mini-cards">
+                                <div class="mf-mini">
+                                    <div class="mf-mini-ico mf-ico-teal"><i class="fa-regular fa-circle-dollar-to-slot"></i></div>
+                                    <div>
+                                        <div class="mf-mini-lbl">Available now</div>
+                                        <div class="mf-mini-val">$1,850</div>
+                                        <div class="mf-mini-desc">Ready to use for upcoming supports</div>
+                                    </div>
+                                </div>
+                                <div class="mf-mini">
+                                    <div class="mf-mini-ico mf-ico-orange"><i class="fa-regular fa-triangle-exclamation"></i></div>
+                                    <div>
+                                        <div class="mf-mini-lbl">Low balance alert</div>
+                                        <div class="mf-mini-val warn">$500 or less</div>
+                                        <div class="mf-mini-desc">We'll notify you when funds are low</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="pf-testi-wrap" data-aos="fade-up">
+                <div class="pf-testi">
+                    <div class="pf-testi-q"><i class="fa-solid fa-quote-left"></i></div>
+                    <div class="pf-testi-body">
+                        <p>"Fund tracking used to take us hours every week. With Plannor, we have real-time visibility of every client's budget and our team spends more time on care, not spreadsheets."</p>
+                        <strong>Sarah Jennings</strong>
+                        <span>Finance Coordinator, Bright Path Support Services</span>
+                    </div>
+                    <div class="pf-testi-right">
+                        <div class="pf-testi-avatar"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <div class="pf-testi-name">Sarah Jennings</div>
+                            <div class="pf-testi-role">Finance Coordinator</div>
+                            <div class="pf-stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== MANAGE FUNDS SECTION END =========== -->
+
+
+        <!-- =========== QUOTES SECTION START =========== -->
+        <section class="pf-section" style="padding-bottom:20px;">
+            <div class="pf-wrap">
+                <div class="pf-row" style="align-items:flex-end;">
+                    <!-- Left: text -->
+                    <div class="pf-left" data-aos="fade-right">
+                        <span class="pf-eyebrow">QUOTES</span>
+                        <div class="pf-line"></div>
+                        <h2 class="pf-heading">
+                            Create and send professional<br>
+                            <span class="pf-accent">quotes</span> in moments
+                        </h2>
+                        <p class="pf-para">Build accurate, branded quotes, care plans and agreements in minutes — so you can win more work and deliver exceptional care.</p>
+
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-purple"><i class="fa-regular fa-calculator"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Accurate pricing, every time</h5>
+                                <p>Built-in price books automatically calculate rates for weekdays, weekends and holidays.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-teal"><i class="fa-regular fa-envelope-open-text"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Instant approval</h5>
+                                <p>Share via SMS or email, collect e-signatures and get approvals — all without printing.</p>
+                            </div>
+                        </div>
+                        <div class="pf-feat">
+                            <div class="pf-ico pf-ico-orange"><i class="fa-regular fa-people-group"></i></div>
+                            <div class="pf-feat-body">
+                                <h5>Ongoing services made easy</h5>
+                                <p>Add recurring services and ongoing care options in just a few clicks.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: visual -->
+                    <div class="pf-right" data-aos="fade-left">
+                        <div class="cq-visual" style="min-height:0;">
+                            <div class="cq-bg"></div>
+                            <div class="cq-dots"></div>
+                            <div class="cq-arc"></div>
+
+                            <div class="cq-steps">
+                                <!-- Step 1 -->
+                                <div class="cq-step">
+                                    <div class="cq-step-ico cq-ico-orange"><i class="fa-regular fa-eye"></i></div>
+                                    <div>
+                                        <div class="cq-step-lbl">1. Review Quote</div>
+                                        <div class="cq-step-sub">Check all details before sending</div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="cq-step">
+                                    <div class="cq-step-ico cq-ico-purple"><i class="fa-regular fa-paperclip"></i></div>
+                                    <div>
+                                        <div class="cq-step-lbl">2. Attach Documents</div>
+                                        <div class="cq-step-sub">Service agreement, terms &amp; conditions</div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3 – expanded -->
+                                <div class="cq-step cq-expanded">
+                                    <div class="cq-step-hdr">
+                                        <div class="cq-step-ico cq-ico-green"><i class="fa-solid fa-check"></i></div>
+                                        <div>
+                                            <div class="cq-step-lbl">3. Attach Care Plan</div>
+                                            <div class="cq-step-sub">Disability Support Services</div>
+                                        </div>
+                                    </div>
+                                    <div class="cq-step-detail">
+                                        <div class="cq-detail-col">
+                                            <h6>Documents included</h6>
+                                            <p>Care Plan<br>Service Agreement<br>Terms &amp; Conditions</p>
+                                        </div>
+                                        <div class="cq-detail-col">
+                                            <h6>Service types</h6>
+                                            <p>Personal Care<br>Community Access<br>Transport</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div class="cq-step">
+                                    <div class="cq-step-ico cq-ico-blue"><i class="fa-regular fa-paper-plane"></i></div>
+                                    <div>
+                                        <div class="cq-step-lbl">4. Send Quote</div>
+                                        <div class="cq-step-sub">Via email or SMS instantly</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3D doc illustration -->
+                            <div class="cq-3d">
+                                <div class="cq-doc" style="position:relative;">
+                                    <div class="cq-doc-line"></div>
+                                    <div class="cq-doc-line"></div>
+                                    <div class="cq-doc-line"></div>
+                                    <div class="cq-check"><i class="fa-solid fa-check"></i></div>
+                                </div>
+                                <div class="cq-pen-wrap">
+                                    <div class="cq-pen"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="pf-testi-wrap" style="margin-top:24px;" data-aos="fade-up">
+                <div class="pf-testi">
+                    <div class="pf-testi-q"><i class="fa-solid fa-quote-left"></i></div>
+                    <div class="pf-testi-body">
+                        <p>"Quoting used to take our team an hour per client. With Plannor, we send professional quotes in minutes — complete with care plans and signatures."</p>
+                        <strong>Michelle Carter</strong>
+                        <span>Operations Manager, Sunrise Support Services</span>
+                    </div>
+                    <div class="pf-testi-right">
+                        <div class="pf-testi-avatar"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <div class="pf-testi-name">Michelle Carter</div>
+                            <div class="pf-testi-role">Operations Manager</div>
+                            <div class="pf-stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== QUOTES SECTION END =========== -->
+
+</main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress scroll -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/gAnim.js"></script>
+    <script src="assets/js/SmoothScroll.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/parallaxie.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/includes.js"></script>
+</body>
+</html>
