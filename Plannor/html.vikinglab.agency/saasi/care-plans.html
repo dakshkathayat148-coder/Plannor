@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Care Plans</title>
+
+    <link rel="shortcut icon" href="assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* Override AOS so elements are visible regardless of scroll position */
+        [data-aos] { opacity: 1 !important; transform: translate(0) !important; }
+
+        :root {
+            --cp-purple: #5932EA;
+            --cp-purple2: #772EFE;
+            --cp-dark: #1a1a2e;
+            --cp-light: #f8f5ff;
+            --cp-green: #00b874;
+            --cp-amber: #f59e0b;
+        }
+
+        /* ── SECTION 1: INTRO REDESIGN ── */
+        .cp-intro {
+            background: #fff;
+            padding: 90px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cp-intro::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(89,50,234,0.07) 0%, transparent 65%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cp-intro::after {
+            content: '';
+            position: absolute;
+            bottom: -150px; left: -150px;
+            width: 450px; height: 450px;
+            background: radial-gradient(circle, rgba(119,46,254,0.05) 0%, transparent 65%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        /* Left content */
+        .cp-intro-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--cp-light);
+            border: 1px solid #d4c5ff;
+            color: var(--cp-purple);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            width: fit-content;
+        }
+        .cp-intro-title {
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--cp-dark);
+            line-height: 1.1;
+            margin-bottom: 22px;
+            letter-spacing: -1px;
+        }
+        .cp-intro-title span {
+            background: linear-gradient(135deg, var(--cp-purple), var(--cp-purple2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cp-intro-desc {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 480px;
+        }
+        .cp-intro-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+        .cp-hl-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .cp-hl-icon {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .cp-hl-text strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--cp-dark);
+            line-height: 1.3;
+        }
+        .cp-hl-text span {
+            font-size: 13px;
+            color: #888;
+        }
+        .cp-intro-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .cp-btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 26px;
+            border: 2px solid #e0d4ff;
+            border-radius: 50px;
+            color: var(--cp-purple);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .cp-btn-ghost:hover {
+            background: var(--cp-light);
+            border-color: var(--cp-purple);
+            color: var(--cp-purple);
+        }
+        /* Right: stacked card visual */
+        .cp-intro-visual {
+            position: relative;
+            padding: 40px 20px 40px 40px;
+        }
+        .cp-glow-bg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 420px; height: 420px;
+            background: radial-gradient(circle, rgba(89,50,234,0.12) 0%, transparent 65%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Main card */
+        .cp-card-main {
+            position: relative;
+            z-index: 2;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(89,50,234,0.15);
+            overflow: hidden;
+            border: 1px solid #eeebff;
+        }
+        .cp-card-main-header {
+            background: linear-gradient(135deg, var(--cp-purple), var(--cp-purple2));
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cp-cmh-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cp-cmh-avatar {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .cp-cmh-info p { margin: 0; color: #fff; }
+        .cp-cmh-name { font-size: 13px; font-weight: 700; }
+        .cp-cmh-role { font-size: 10px; opacity: 0.75; }
+        .cp-cmh-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0,184,116,0.25);
+            border: 1px solid rgba(0,184,116,0.4);
+            color: #7fffcc;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .cp-cmh-dot {
+            width: 6px; height: 6px;
+            background: #00b874;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .cp-card-main-body { padding: 18px 20px; }
+        .cp-goal-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: #f8f5ff;
+        }
+        .cp-goal-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .cp-goal-label { font-size: 12px; font-weight: 600; color: var(--cp-dark); flex: 1; }
+        .cp-goal-pct { font-size: 11px; font-weight: 700; color: var(--cp-purple); }
+        .cp-mini-bar { height: 4px; background: #f0eeff; border-radius: 4px; margin-top: 5px; overflow: hidden; }
+        .cp-mini-fill { height: 100%; border-radius: 4px; }
+        .cp-card-divider { border: none; border-top: 1px solid #f0eeff; margin: 14px 0; }
+        .cp-card-footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cp-cf-label { font-size: 11px; color: #aaa; }
+        .cp-cf-date { font-size: 12px; font-weight: 700; color: var(--cp-dark); }
+        .cp-cf-btn {
+            background: linear-gradient(135deg, var(--cp-purple), var(--cp-purple2));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        /* Overlay card: goal achieved */
+        .cp-card-notif {
+            position: absolute;
+            z-index: 4;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.13);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #f0fff8;
+            min-width: 200px;
+        }
+        .cp-notif-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .cp-notif-title { font-size: 12px; font-weight: 700; color: var(--cp-dark); margin: 0; line-height: 1.3; }
+        .cp-notif-sub { font-size: 11px; color: #aaa; margin: 0; }
+        .cp-notif-1 { top: 20px; right: -10px; }
+        .cp-notif-2 { bottom: 30px; left: -10px; }
+        /* Team avatars row */
+        .cp-team-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .cp-team-av {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            margin-left: -6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .cp-team-av:first-child { margin-left: 0; }
+        .cp-team-more {
+            font-size: 10px;
+            color: #aaa;
+            margin-left: 4px;
+        }
+
+        /* ── SECTION 2: FEATURES ── */
+        .cp-features {
+            padding: 100px 0;
+            background: var(--cp-light);
+        }
+        .cp-section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #e0d4ff;
+            color: var(--cp-purple);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .cp-section-title {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--cp-dark);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .cp-section-desc {
+            font-size: 16px;
+            color: #666;
+            max-width: 540px;
+            line-height: 1.7;
+        }
+        /* Left sticky panel */
+        .cp-feat-left {
+            position: sticky;
+            top: 100px;
+        }
+        .cp-feat-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 36px;
+        }
+        .cp-feat-stat {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #eeebff;
+            border-radius: 14px;
+            padding: 14px 18px;
+        }
+        .cp-feat-stat-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .cp-feat-stat strong {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--cp-dark);
+            line-height: 1;
+        }
+        .cp-feat-stat span {
+            font-size: 12px;
+            color: #888;
+        }
+        /* Right feature list */
+        .cp-feat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1.5px solid #e8e2ff;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .cp-feat-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px 28px;
+            border-bottom: 1px solid #f0eeff;
+            transition: all 0.25s ease;
+            cursor: default;
+            position: relative;
+        }
+        .cp-feat-row:last-child { border-bottom: none; }
+        .cp-feat-row::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--cp-purple), var(--cp-purple2));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.25s ease;
+        }
+        .cp-feat-row:hover { background: #faf8ff; }
+        .cp-feat-row:hover::before { transform: scaleY(1); }
+        .cp-feat-row-icon {
+            width: 46px; height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .cp-feat-row-body { flex: 1; }
+        .cp-feat-row-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--cp-dark);
+            margin: 0 0 5px;
+        }
+        .cp-feat-row-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .cp-feat-row-num {
+            font-size: 12px;
+            font-weight: 800;
+            color: #d4c5ff;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* ── SECTION 3: HOW IT WORKS (ZIGZAG TIMELINE) ── */
+        .cp-how {
+            background: #fff;
+            padding: 100px 0;
+            position: relative;
+        }
+        .cp-how .cp-section-tag { background: var(--cp-light); border-color: #e0d4ff; color: var(--cp-purple); }
+        .cp-how .cp-section-title { color: var(--cp-dark); }
+        .cp-how .cp-section-desc { color: #666; }
+        /* Timeline wrapper */
+        .cp-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .cp-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #e0d4ff 0%, var(--cp-purple) 50%, #e0d4ff 100%);
+            transform: translateX(-50%);
+        }
+        .cp-tl-row {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .cp-tl-row:last-child { margin-bottom: 0; }
+        /* Center node on timeline */
+        .cp-tl-node {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #fff;
+            box-shadow: 0 0 0 6px #fff, 0 0 0 8px rgba(89,50,234,0.2);
+            flex-shrink: 0;
+        }
+        /* Content card */
+        .cp-tl-card {
+            width: calc(50% - 60px);
+            background: #fff;
+            border: 1.5px solid #eeebff;
+            border-radius: 20px;
+            padding: 32px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .cp-tl-card:hover {
+            border-color: #c4b5fd;
+            box-shadow: 0 16px 48px rgba(89,50,234,0.10);
+            transform: translateY(-4px);
+        }
+        /* Arrow pointer on card */
+        .cp-tl-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0; height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            transform: translateY(-50%);
+        }
+        /* Left-side card: arrow points right */
+        .cp-tl-card-left {
+            margin-right: auto;
+        }
+        .cp-tl-card-left::after {
+            right: -10px;
+            border-left: 10px solid #eeebff;
+        }
+        .cp-tl-card-left:hover::after { border-left-color: #c4b5fd; }
+        /* Right-side card: arrow points left */
+        .cp-tl-card-right {
+            margin-left: auto;
+        }
+        .cp-tl-card-right::after {
+            left: -10px;
+            border-right: 10px solid #eeebff;
+        }
+        .cp-tl-card-right:hover::after { border-right-color: #c4b5fd; }
+        /* Step number tag */
+        .cp-tl-step-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--cp-purple);
+            margin-bottom: 12px;
+        }
+        .cp-tl-step-tag span {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: var(--cp-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+        }
+        .cp-tl-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--cp-dark);
+            margin-bottom: 10px;
+        }
+        .cp-tl-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .cp-tl-list {
+            list-style: none;
+            padding: 0; margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .cp-tl-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #555;
+        }
+        .cp-tl-list li i { color: var(--cp-green); font-size: 11px; }
+        /* Big decorative number behind card */
+        .cp-tl-bg-num {
+            position: absolute;
+            bottom: -10px; right: 16px;
+            font-size: 80px;
+            font-weight: 900;
+            color: #f4f0ff;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .cp-tl-card > *:not(.cp-tl-bg-num) { position: relative; z-index: 1; }
+        /* Responsive timeline */
+        @media (max-width: 991px) {
+            .cp-timeline::before { left: 32px; }
+            .cp-tl-row { flex-direction: column; align-items: flex-start; padding-left: 80px; }
+            .cp-tl-node { left: 32px; top: 0; position: absolute; }
+            .cp-tl-card, .cp-tl-card-left, .cp-tl-card-right { width: 100%; margin: 0; }
+            .cp-tl-card::after { display: none; }
+        }
+
+        /* ── SECTION 4: BEFORE VS WITH PLANNOR ── */
+        .cp-compare {
+            background: var(--cp-light);
+            padding: 100px 0;
+            position: relative;
+        }
+        .cp-compare-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        /* Two panels */
+        .cp-panel {
+            border-radius: 24px;
+            padding: 40px 36px;
+            height: 100%;
+        }
+        .cp-panel-before {
+            background: #1a1a2e;
+            border: 1.5px solid rgba(255,255,255,0.08);
+        }
+        .cp-panel-after {
+            background: linear-gradient(145deg, #5932EA, #772EFE);
+            box-shadow: 0 24px 64px rgba(89,50,234,0.35);
+        }
+        .cp-panel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .cp-panel-before .cp-panel-badge {
+            background: rgba(255,255,255,0.07);
+            color: #8080a0;
+        }
+        .cp-panel-after .cp-panel-badge {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        .cp-panel-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 28px;
+        }
+        .cp-panel-before .cp-panel-title { color: #fff; }
+        .cp-panel-after .cp-panel-title { color: #fff; }
+        .cp-compare-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .cp-compare-item:last-child { border-bottom: none; }
+        .cp-ci-icon {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .cp-panel-before .cp-ci-icon {
+            background: rgba(239,68,68,0.15);
+            color: #f87171;
+        }
+        .cp-panel-after .cp-ci-icon {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        .cp-ci-text {
+            font-size: 14px;
+            line-height: 1.55;
+            font-weight: 500;
+        }
+        .cp-panel-before .cp-ci-text { color: #9090b0; }
+        .cp-panel-after .cp-ci-text { color: rgba(255,255,255,0.9); }
+        /* VS divider */
+        .cp-vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cp-vs-circle {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #e0d4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--cp-purple);
+            box-shadow: 0 4px 20px rgba(89,50,234,0.15);
+            position: relative;
+            z-index: 2;
+        }
+        /* Bottom stat strip */
+        .cp-compare-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+        .cp-strip-item {
+            background: #fff;
+            border: 1.5px solid #eeebff;
+            border-radius: 16px;
+            padding: 20px 18px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .cp-strip-item:hover {
+            border-color: #c4b5fd;
+            box-shadow: 0 8px 24px rgba(89,50,234,0.1);
+            transform: translateY(-3px);
+        }
+        .cp-strip-num {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--cp-purple);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .cp-strip-label {
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+        }
+        @media (max-width: 991px) {
+            .cp-vs-divider { padding: 20px 0; }
+        }
+        @media (max-width: 767px) {
+            .cp-panel { padding: 28px 22px; }
+            .cp-compare-strip { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1199px) {
+            .cp-intro-title { font-size: 40px; }
+            .cp-intro-visual { padding: 30px 10px; }
+        }
+        @media (max-width: 991px) {
+            .cp-notif-1, .cp-notif-2 { display: none; }
+        }
+        @media (max-width: 767px) {
+            .cp-intro { padding: 60px 0 70px; }
+            .cp-intro-title { font-size: 30px; }
+            .cp-section-title { font-size: 28px; }
+            .cp-features { padding: 70px 0; }
+            .cp-how { padding: 70px 0; }
+            .cp-step-num { font-size: 52px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== BANNER =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Care Plans</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Care Plans</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 1: INTRO =========== -->
+        <section class="cp-intro">
+            <div class="container">
+                <div class="row align-items-center g-5 justify-content-center">
+                    <div class="col-xl-10 col-lg-12 px-0">
+                    <div class="row align-items-center g-5">
+
+                    <!-- Left: content -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cp-intro-eyebrow">
+                            <i class="fa-solid fa-file-medical"></i> NDIS Care Planning
+                        </div>
+                        <h2 class="cp-intro-title">
+                            Care Plans That<br><span>Work For Your Team</span>
+                        </h2>
+                        <p class="cp-intro-desc">
+                            Create, share, and update participant care plans in minutes. Keep every support worker, coordinator, and family member on the same page — always.
+                        </p>
+
+                        <div class="cp-intro-highlights">
+                            <div class="cp-hl-item">
+                                <div class="cp-hl-icon" style="background:#f0eeff;">
+                                    <i class="fa-solid fa-pen-to-square" style="color:#5932EA;"></i>
+                                </div>
+                                <div class="cp-hl-text">
+                                    <strong>Built on NDIS Templates</strong>
+                                    <span>Start fast with pre-built templates tailored for NDIS goals and supports</span>
+                                </div>
+                            </div>
+                            <div class="cp-hl-item">
+                                <div class="cp-hl-icon" style="background:#e8faf2;">
+                                    <i class="fa-solid fa-rotate" style="color:#00b874;"></i>
+                                </div>
+                                <div class="cp-hl-text">
+                                    <strong>Live Sync Across Your Team</strong>
+                                    <span>Every update reflects instantly — no outdated plans, no version confusion</span>
+                                </div>
+                            </div>
+                            <div class="cp-hl-item">
+                                <div class="cp-hl-icon" style="background:#fef3c7;">
+                                    <i class="fa-solid fa-shield-check" style="color:#f59e0b;"></i>
+                                </div>
+                                <div class="cp-hl-text">
+                                    <strong>Audit-Ready Every Time</strong>
+                                    <span>Time-stamped records and full change history built for NDIS compliance</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: stacked card visual -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cp-intro-visual">
+                            <div class="cp-glow-bg"></div>
+
+                            <!-- Notification card: Goal Achieved (top right) -->
+                            <div class="cp-card-notif cp-notif-1">
+                                <div class="cp-notif-icon" style="background:#e8faf2;">
+                                    <i class="fa-solid fa-trophy" style="color:#00b874;"></i>
+                                </div>
+                                <div>
+                                    <p class="cp-notif-title">Goal Achieved!</p>
+                                    <p class="cp-notif-sub">Mobility target met this week</p>
+                                </div>
+                            </div>
+
+                            <!-- Main care plan card -->
+                            <div class="cp-card-main">
+                                <div class="cp-card-main-header">
+                                    <div class="cp-cmh-left">
+                                        <div class="cp-cmh-avatar">JM</div>
+                                        <div class="cp-cmh-info">
+                                            <p class="cp-cmh-name">James Mitchell</p>
+                                            <p class="cp-cmh-role">NDIS Participant · Plan Manager</p>
+                                        </div>
+                                    </div>
+                                    <div class="cp-cmh-status">
+                                        <span class="cp-cmh-dot"></span> Active
+                                    </div>
+                                </div>
+                                <div class="cp-card-main-body">
+                                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#aaa;margin-bottom:10px;">Goal Progress</div>
+
+                                    <div class="cp-goal-row">
+                                        <div class="cp-goal-dot" style="background:#5932EA;"></div>
+                                        <div style="flex:1;">
+                                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                <span class="cp-goal-label">Daily Mobility</span>
+                                                <span class="cp-goal-pct">74%</span>
+                                            </div>
+                                            <div class="cp-mini-bar"><div class="cp-mini-fill" style="width:74%;background:linear-gradient(90deg,#5932EA,#772EFE);"></div></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cp-goal-row">
+                                        <div class="cp-goal-dot" style="background:#00b874;"></div>
+                                        <div style="flex:1;">
+                                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                <span class="cp-goal-label">Social Communication</span>
+                                                <span class="cp-goal-pct" style="color:#00b874;">58%</span>
+                                            </div>
+                                            <div class="cp-mini-bar"><div class="cp-mini-fill" style="width:58%;background:linear-gradient(90deg,#00b874,#00d68f);"></div></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cp-goal-row">
+                                        <div class="cp-goal-dot" style="background:#f59e0b;"></div>
+                                        <div style="flex:1;">
+                                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                <span class="cp-goal-label">Budget Utilisation</span>
+                                                <span class="cp-goal-pct" style="color:#f59e0b;">45%</span>
+                                            </div>
+                                            <div class="cp-mini-bar"><div class="cp-mini-fill" style="width:45%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></div></div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="cp-card-divider">
+                                    <div class="cp-card-footer-row">
+                                        <div>
+                                            <div class="cp-cf-label">Next Review</div>
+                                            <div class="cp-cf-date">30 Jun 2026</div>
+                                        </div>
+                                        <button class="cp-cf-btn"><i class="fa-solid fa-pen me-1"></i>Edit Plan</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notification card: Team (bottom left) -->
+                            <div class="cp-card-notif cp-notif-2">
+                                <div class="cp-notif-icon" style="background:#ede9fe;">
+                                    <i class="fa-solid fa-users" style="color:#7c3aed;"></i>
+                                </div>
+                                <div>
+                                    <p class="cp-notif-title">3 Workers Assigned</p>
+                                    <div class="cp-team-row">
+                                        <div class="cp-team-av" style="background:#5932EA;">S</div>
+                                        <div class="cp-team-av" style="background:#00b874;">K</div>
+                                        <div class="cp-team-av" style="background:#f59e0b;">R</div>
+                                        <span class="cp-team-more">+2 more</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                    </div><!-- end col-xl-10 -->
+                </div><!-- end outer row -->
+            </div>
+        </section>
+
+        <!-- =========== SECTION 2: FEATURES =========== -->
+        <section class="cp-features">
+            <div class="container">
+                <div class="row g-5 align-items-start">
+
+                    <!-- Left: sticky heading + stats -->
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="cp-feat-left">
+                            <div class="cp-section-tag"><i class="fa-solid fa-layer-group"></i> What's Included</div>
+                            <h2 class="cp-section-title">Everything<br>In One Place</h2>
+                            <p class="cp-section-desc">From setup to reviews, every tool your team needs to deliver person-centred care — no paperwork chaos.</p>
+
+                            <div class="cp-feat-stats">
+                                <div class="cp-feat-stat">
+                                    <div class="cp-feat-stat-icon" style="background:#f0eeff;"><i class="fa-solid fa-users" style="color:#5932EA;"></i></div>
+                                    <div>
+                                        <strong>500+</strong>
+                                        <span>NDIS Providers</span>
+                                    </div>
+                                </div>
+                                <div class="cp-feat-stat">
+                                    <div class="cp-feat-stat-icon" style="background:#e8faf2;"><i class="fa-solid fa-clock-rotate-left" style="color:#00b874;"></i></div>
+                                    <div>
+                                        <strong>80%</strong>
+                                        <span>Less Admin Time</span>
+                                    </div>
+                                </div>
+                                <div class="cp-feat-stat">
+                                    <div class="cp-feat-stat-icon" style="background:#fef3c7;"><i class="fa-solid fa-shield-check" style="color:#f59e0b;"></i></div>
+                                    <div>
+                                        <strong>100%</strong>
+                                        <span>Audit Ready</span>
+                                    </div>
+                                </div>
+                                <div class="cp-feat-stat">
+                                    <div class="cp-feat-stat-icon" style="background:#e0f2fe;"><i class="fa-solid fa-wifi-slash" style="color:#0ea5e9;"></i></div>
+                                    <div>
+                                        <strong>Offline</strong>
+                                        <span>Access Anywhere</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: feature list rows -->
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="cp-feat-list">
+
+                            <div class="cp-feat-row">
+                                <div class="cp-feat-row-icon" style="background:#f0eeff;"><i class="fa-solid fa-user-pen" style="color:#5932EA;"></i></div>
+                                <div class="cp-feat-row-body">
+                                    <h4 class="cp-feat-row-title">Personalised Care Plans</h4>
+                                    <p class="cp-feat-row-desc">Build tailored plans for each participant using NDIS-specific templates. Add goals, supports, risk assessments, and scheduled reviews — all in one place.</p>
+                                </div>
+                                <span class="cp-feat-row-num">01</span>
+                            </div>
+
+                            <div class="cp-feat-row">
+                                <div class="cp-feat-row-icon" style="background:#e8faf2;"><i class="fa-solid fa-rotate" style="color:#00b874;"></i></div>
+                                <div class="cp-feat-row-body">
+                                    <h4 class="cp-feat-row-title">Real-Time Updates</h4>
+                                    <p class="cp-feat-row-desc">Changes sync instantly across your whole team. No outdated printed plans, no version confusion — everyone works from the same live document.</p>
+                                </div>
+                                <span class="cp-feat-row-num">02</span>
+                            </div>
+
+                            <div class="cp-feat-row">
+                                <div class="cp-feat-row-icon" style="background:#fef3c7;"><i class="fa-solid fa-chart-line" style="color:#f59e0b;"></i></div>
+                                <div class="cp-feat-row-body">
+                                    <h4 class="cp-feat-row-title">Goal Tracking</h4>
+                                    <p class="cp-feat-row-desc">Link care plan goals to measurable outcomes. Track progress over time and generate reports that show real value to participants and families.</p>
+                                </div>
+                                <span class="cp-feat-row-num">03</span>
+                            </div>
+
+                            <div class="cp-feat-row">
+                                <div class="cp-feat-row-icon" style="background:#fce7f3;"><i class="fa-solid fa-share-nodes" style="color:#ec4899;"></i></div>
+                                <div class="cp-feat-row-body">
+                                    <h4 class="cp-feat-row-title">Secure Sharing</h4>
+                                    <p class="cp-feat-row-desc">Share plans with participants, families, and allied health professionals. Control permission levels so everyone sees exactly what they need.</p>
+                                </div>
+                                <span class="cp-feat-row-num">04</span>
+                            </div>
+
+                            <div class="cp-feat-row">
+                                <div class="cp-feat-row-icon" style="background:#ede9fe;"><i class="fa-solid fa-shield-check" style="color:#7c3aed;"></i></div>
+                                <div class="cp-feat-row-body">
+                                    <h4 class="cp-feat-row-title">Compliance Built-In</h4>
+                                    <p class="cp-feat-row-desc">Every change is time-stamped and attributed. A complete audit trail that satisfies NDIS Quality and Safeguards Commission requirements effortlessly.</p>
+                                </div>
+                                <span class="cp-feat-row-num">05</span>
+                            </div>
+
+                            <div class="cp-feat-row">
+                                <div class="cp-feat-row-icon" style="background:#e0f2fe;"><i class="fa-solid fa-wifi-slash" style="color:#0ea5e9;"></i></div>
+                                <div class="cp-feat-row-body">
+                                    <h4 class="cp-feat-row-title">Offline Access</h4>
+                                    <p class="cp-feat-row-desc">Support workers access care plans from the field — even without internet. Changes sync automatically when they reconnect.</p>
+                                </div>
+                                <span class="cp-feat-row-num">06</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 3: HOW IT WORKS =========== -->
+        <section class="cp-how">
+            <div class="container">
+                <!-- Heading -->
+                <div class="row justify-content-center text-center mb-70">
+                    <div class="col-xl-6">
+                        <div class="cp-section-tag" style="margin:0 auto 16px;"><i class="fa-solid fa-arrow-progress"></i> How It Works</div>
+                        <h2 class="cp-section-title">From Setup to Compliance<br>in Three Steps</h2>
+                        <p class="cp-section-desc" style="margin:0 auto;">A clear, repeatable process any team can follow — no training required.</p>
+                    </div>
+                </div>
+
+                <!-- Zigzag Timeline -->
+                <div class="cp-timeline">
+
+                    <!-- Step 1: card LEFT, node center -->
+                    <div class="cp-tl-row">
+                        <div class="cp-tl-card cp-tl-card-left">
+                            <div class="cp-tl-step-tag"><span>01</span> Step One</div>
+                            <h3 class="cp-tl-title">Create</h3>
+                            <p class="cp-tl-desc">Build a care plan from a template or from scratch in minutes. Add NDIS goals, supports, risk notes, and scheduled review dates with ease.</p>
+                            <ul class="cp-tl-list">
+                                <li><i class="fa-solid fa-circle-check"></i> NDIS-ready templates</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Risk &amp; needs assessment</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Automated review reminders</li>
+                            </ul>
+                            <span class="cp-tl-bg-num">01</span>
+                        </div>
+                        <div class="cp-tl-node" style="background:linear-gradient(135deg,#5932EA,#772EFE);">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: node center, card RIGHT -->
+                    <div class="cp-tl-row">
+                        <div class="cp-tl-node" style="background:linear-gradient(135deg,#00b874,#00d68f);">
+                            <i class="fa-solid fa-share-from-square"></i>
+                        </div>
+                        <div class="cp-tl-card cp-tl-card-right">
+                            <div class="cp-tl-step-tag" style="color:#00b874;"><span style="background:#e8faf2;">02</span> Step Two</div>
+                            <h3 class="cp-tl-title">Share</h3>
+                            <p class="cp-tl-desc">Instantly distribute plans across your team. Support workers see exactly what they need — shifts, goals, and notes — right from their mobile app.</p>
+                            <ul class="cp-tl-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Role-based access control</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Family &amp; guardian portal</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Allied health sharing</li>
+                            </ul>
+                            <span class="cp-tl-bg-num">02</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: card LEFT, node center -->
+                    <div class="cp-tl-row">
+                        <div class="cp-tl-card cp-tl-card-left">
+                            <div class="cp-tl-step-tag" style="color:#f59e0b;"><span style="background:#fef3c7;">03</span> Step Three</div>
+                            <h3 class="cp-tl-title">Track</h3>
+                            <p class="cp-tl-desc">Monitor goal progress, capture shift notes, and generate compliance-ready reports — all automatically linked back to each care plan.</p>
+                            <ul class="cp-tl-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Progress against NDIS goals</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Automated audit trail</li>
+                                <li><i class="fa-solid fa-circle-check"></i> One-click NDIS reports</li>
+                            </ul>
+                            <span class="cp-tl-bg-num">03</span>
+                        </div>
+                        <div class="cp-tl-node" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">
+                            <i class="fa-solid fa-chart-mixed"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 4: BEFORE VS WITH PLANNOR =========== -->
+        <section class="cp-compare">
+            <div class="container">
+
+                <!-- Heading -->
+                <div class="cp-compare-heading">
+                    <div class="cp-section-tag" style="margin:0 auto 16px;"><i class="fa-solid fa-arrow-right-arrow-left"></i> The Difference</div>
+                    <h2 class="cp-section-title">Why NDIS Providers Switch to Plannor</h2>
+                    <p class="cp-section-desc" style="margin:0 auto;">See what changes when your team moves from manual care planning to Plannor.</p>
+                </div>
+
+                <!-- Two panels -->
+                <div class="row g-4 align-items-stretch">
+                    <!-- Before panel -->
+                    <div class="col-xl-5 col-lg-5">
+                        <div class="cp-panel cp-panel-before">
+                            <div class="cp-panel-badge"><i class="fa-solid fa-xmark"></i> Without Plannor</div>
+                            <h3 class="cp-panel-title">The Old Way</h3>
+                            <div class="cp-compare-item">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
+                                <span class="cp-ci-text">Care plans scattered across Word docs, spreadsheets, and printed forms — impossible to keep updated</span>
+                            </div>
+                            <div class="cp-compare-item">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
+                                <span class="cp-ci-text">Support workers arrive on shift with outdated or missing care plan information</span>
+                            </div>
+                            <div class="cp-compare-item">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
+                                <span class="cp-ci-text">Coordinators spend hours manually updating and distributing plans to the team</span>
+                            </div>
+                            <div class="cp-compare-item">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
+                                <span class="cp-ci-text">No clear audit trail — NDIS audits become stressful, time-consuming events</span>
+                            </div>
+                            <div class="cp-compare-item">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
+                                <span class="cp-ci-text">Goal progress tracked manually with no visibility across the organisation</span>
+                            </div>
+                            <div class="cp-compare-item">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
+                                <span class="cp-ci-text">Participant families have no real-time visibility into care plan progress or updates</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VS divider -->
+                    <div class="col-xl-2 col-lg-2 cp-vs-divider">
+                        <div class="cp-vs-circle">VS</div>
+                    </div>
+
+                    <!-- After panel -->
+                    <div class="col-xl-5 col-lg-5">
+                        <div class="cp-panel cp-panel-after">
+                            <div class="cp-panel-badge"><i class="fa-solid fa-check"></i> With Plannor</div>
+                            <h3 class="cp-panel-title">The Plannor Way</h3>
+                            <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
+                                <span class="cp-ci-text">One centralised platform — all care plans live in one place, always up to date and accessible</span>
+                            </div>
+                            <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
+                                <span class="cp-ci-text">Support workers get real-time care plan access on their phone — even offline in the field</span>
+                            </div>
+                            <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
+                                <span class="cp-ci-text">Updates sync instantly — coordinators make one change and everyone sees it immediately</span>
+                            </div>
+                            <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
+                                <span class="cp-ci-text">Automatic audit trail with time-stamps — NDIS audits become a one-click export</span>
+                            </div>
+                            <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
+                                <span class="cp-ci-text">Live goal tracking with progress reports generated automatically for every participant</span>
+                            </div>
+                            <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
+                                <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
+                                <span class="cp-ci-text">Families and guardians get a secure portal view — full transparency, zero extra admin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom stat strip -->
+                <div class="cp-compare-strip">
+                    <div class="cp-strip-item">
+                        <div class="cp-strip-num">500+</div>
+                        <div class="cp-strip-label">NDIS Providers</div>
+                    </div>
+                    <div class="cp-strip-item">
+                        <div class="cp-strip-num">80%</div>
+                        <div class="cp-strip-label">Less Admin Time</div>
+                    </div>
+                    <div class="cp-strip-item">
+                        <div class="cp-strip-num">2hrs</div>
+                        <div class="cp-strip-label">Saved Per Worker / Week</div>
+                    </div>
+                    <div class="cp-strip-item">
+                        <div class="cp-strip-num">100%</div>
+                        <div class="cp-strip-label">NDIS Audit Ready</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/gAnim.js"></script>
+    <script src="assets/js/SmoothScroll.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/parallaxie.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/includes.js"></script>
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){ $('.preloader').fadeOut(300); }, 300);
+            setTimeout(function(){ if(typeof AOS !== 'undefined'){ AOS.init({ duration:1000, once:true, offset:0 }); AOS.refresh(); } }, 500);
+        });
+    </script>
+</body>
+
+</html>
