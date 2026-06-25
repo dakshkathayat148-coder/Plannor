@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,84 +14,228 @@
     <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
     <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <style>
-        /* =====================================================
-           ROSTERING PAGE — shared feature section styles (pf-*)
-        ===================================================== */
-        .pf-section { padding: 96px 0; background: #fff; overflow: hidden; }
-        .pf-section.pf-alt { background: #fafbff; }
-        .pf-wrap { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-        .pf-row { display: flex; align-items: center; gap: 64px; }
-        .pf-left { flex: 0 0 42%; }
-        .pf-right { flex: 1; min-width: 0; }
+      /* ===== SECTION LAYOUT ===== */
+      .rs-section { padding: 80px 0; background: #fff; }
+      .rs-section.alt { background: #f8f7ff; }
+      .rs-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 72px; }
+      .rs-inner.reverse { flex-direction: row-reverse; }
+      .rs-left { flex: 0 0 460px; width: 460px; }
+      .rs-right { flex: 1; min-width: 0; }
+      @media (max-width: 1100px) { .rs-inner { flex-direction: column !important; padding: 0 30px; gap: 50px; } .rs-left { width: 100%; flex: none; } }
+      @media (max-width: 640px) { .rs-inner { padding: 0 20px; } .rs-section { padding: 60px 0; } }
 
-        .pf-eyebrow {
-            display: inline-block; font-size: 11.5px; font-weight: 700;
-            letter-spacing: 2px; color: #6546F5; text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .pf-line { width: 36px; height: 3px; background: #6546F5; border-radius: 2px; margin-bottom: 22px; }
-        .pf-heading {
-            font-size: 38px; font-weight: 800; color: #0E1838;
-            line-height: 1.2; margin-bottom: 18px;
-        }
-        .pf-accent { color: #6546F5; }
-        .pf-accent-grad {
-            background: linear-gradient(90deg, #6546F5, #17BFAE);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .pf-para { font-size: 15px; color: #5a6a85; line-height: 1.72; margin-bottom: 28px; }
+      /* ===== SHARED TEXT ===== */
+      .rs-eyebrow { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #5932EA; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+      .rs-eyebrow span.dot { width: 6px; height: 6px; border-radius: 50%; background: #5932EA; display: inline-block; }
+      .rs-heading { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 900; line-height: 1.12; color: #0D1238; margin-bottom: 20px; letter-spacing: -0.02em; }
+      @media (max-width: 1100px) { .rs-heading { font-size: 38px; } }
+      @media (max-width: 640px) { .rs-heading { font-size: 30px; } }
+      .rs-heading .blue { color: #2563EB; }
+      .rs-heading .purple { color: #5932EA; }
+      .rs-body { font-family: 'Inter', sans-serif; font-size: 16px; color: #475569; line-height: 1.7; margin-bottom: 28px; }
+      .rs-feature { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+      .rs-feature-icon { width: 22px; height: 22px; border-radius: 50%; background: #EEF2FF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+      .rs-feature-icon svg { width: 12px; height: 12px; }
+      .rs-feature-text strong { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #0D1238; display: block; }
+      .rs-feature-text span { font-family: 'Inter', sans-serif; font-size: 13px; color: #475569; }
+      .rs-explore { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #5932EA; text-decoration: none; margin-top: 8px; padding: 10px 20px; border-radius: 999px; background: #EEF2FF; border: none; cursor: pointer; }
+      .rs-explore:hover { background: #5932EA; color: #fff; text-decoration: none; }
+      .rs-testimonial { margin-top: 32px; padding: 16px 20px; background: #f8f7ff; border-radius: 12px; border-left: 3px solid #5932EA; }
+      .rs-testimonial p { font-family: 'Inter', sans-serif; font-size: 13px; color: #475569; font-style: italic; margin: 0 0 8px; }
+      .rs-testimonial .name { font-size: 12px; font-weight: 700; color: #0D1238; font-style: normal; }
+      .stars { color: #FBBF24; font-size: 12px; margin-bottom: 4px; }
 
-        .pf-feat { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
-        .pf-ico {
-            width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center; font-size: 18px;
-        }
-        .pf-ico-purple { background: #ede9fe; color: #6546F5; }
-        .pf-ico-teal   { background: #d1f4f0; color: #17BFAE; }
-        .pf-ico-orange { background: #fff2dc; color: #e89b00; }
-        .pf-feat-body h5 { font-size: 15px; font-weight: 700; color: #101B3D; margin: 0 0 5px; }
-        .pf-feat-body p  { font-size: 13.5px; color: #5a6a85; line-height: 1.65; margin: 0; }
+      /* ===== ROSTER & SHIFTS DASHBOARD ===== */
+      .rs-dash { background:#fff; border-radius:16px; box-shadow:0 4px 40px rgba(89,50,234,.13); overflow:hidden; font-family:'Inter',sans-serif; }
+      .rs-dash-topbar { padding:14px 18px 10px; border-bottom:1px solid #F1F5F9; }
+      .rs-dash-title { font-size:15px; font-weight:800; color:#0D1238; margin:0 0 2px; }
+      .rs-dash-sub { font-size:11px; color:#94A3B8; margin:0 0 12px; }
+      .rs-dash-actions { display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap; }
+      .rs-btn-open { display:inline-flex; align-items:center; gap:6px; background:#FFF8E1; color:#B45309; font-size:11px; font-weight:700; padding:7px 14px; border-radius:8px; border:1.5px solid #FCD34D; cursor:pointer; position:relative; }
+      .rs-btn-open .badge { position:absolute; top:-7px; right:-7px; background:#EF4444; color:#fff; font-size:9px; font-weight:700; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+      .rs-btn-add { display:inline-flex; align-items:center; gap:5px; background:#2563EB; color:#fff; font-size:11px; font-weight:700; padding:7px 14px; border-radius:8px; border:none; cursor:pointer; }
+      .rs-dash-filterbar { display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid #F1F5F9; flex-wrap:wrap; background:#FAFBFF; }
+      .rs-search { display:flex; align-items:center; gap:6px; background:#fff; border:1.5px solid #E2E8F0; border-radius:8px; padding:5px 10px; font-size:11px; color:#94A3B8; flex:0 0 140px; }
+      .rs-dropdown { background:#fff; border:1.5px solid #E2E8F0; border-radius:8px; padding:5px 10px; font-size:11px; color:#0D1238; font-weight:500; appearance:none; cursor:pointer; }
+      .rs-date-nav { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:#0D1238; }
+      .rs-date-nav button { width:22px; height:22px; border-radius:6px; border:1.5px solid #E2E8F0; background:#fff; cursor:pointer; font-size:11px; color:#475569; display:flex; align-items:center; justify-content:center; }
+      .rs-today-btn { background:#fff; border:1.5px solid #E2E8F0; border-radius:8px; padding:5px 12px; font-size:11px; font-weight:600; color:#0D1238; cursor:pointer; }
+      .rs-view-tabs { display:flex; gap:2px; margin-left:auto; background:#F1F5F9; border-radius:8px; padding:3px; }
+      .rs-view-tab { padding:4px 10px; font-size:10px; font-weight:600; color:#64748B; border-radius:6px; cursor:pointer; border:none; background:transparent; }
+      .rs-view-tab.active { background:#2563EB; color:#fff; }
+      /* grid */
+      .rs-grid { width:100%; border-collapse:collapse; font-size:11px; }
+      .rs-grid th { padding:8px 0 8px 10px; text-align:center; font-size:10px; font-weight:700; color:#64748B; border-bottom:1px solid #F1F5F9; background:#FAFBFF; }
+      .rs-grid th.today-col { color:#2563EB; }
+      .rs-grid th .day-num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; font-size:13px; font-weight:800; }
+      .rs-grid th.today-col .day-num { background:#2563EB; color:#fff; }
+      .rs-grid td { border-bottom:1px solid #F8FAFC; border-right:1px solid #F8FAFC; padding:4px 6px; vertical-align:middle; }
+      .rs-grid td.staff-col { padding:8px 10px; white-space:nowrap; background:#fff; }
+      .rs-staff-av { width:30px; height:30px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:#fff; flex-shrink:0; }
+      .rs-staff-info { display:inline-block; margin-left:8px; vertical-align:middle; }
+      .rs-staff-name { font-size:11px; font-weight:700; color:#0D1238; display:block; }
+      .rs-staff-role { font-size:9px; color:#94A3B8; display:block; }
+      .rs-add-cell { display:flex; align-items:center; justify-content:center; height:36px; border:1.5px dashed #CBD5E1; border-radius:8px; color:#94A3B8; font-size:10px; font-weight:600; cursor:pointer; transition:all .15s; }
+      .rs-add-cell:hover { border-color:#5932EA; color:#5932EA; background:#F3F0FF; }
+      .float-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,.1); padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 12px; }
+      .no-conflict { display: flex; align-items: center; gap: 8px; }
+      .no-conflict .icon { width: 28px; height: 28px; border-radius: 50%; background: #DCFCE7; display: flex; align-items: center; justify-content: center; }
 
-        .pf-testi-wrap { max-width: 1200px; margin: 60px auto 0; padding: 0 60px; }
-        .pf-testi {
-            background: #f7f5ff; border-radius: 20px;
-            padding: 28px 36px; display: flex; align-items: center; gap: 0;
-        }
-        .pf-testi-q {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: #ede9fe; color: #6546F5; font-size: 18px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; margin-right: 24px;
-        }
-        .pf-testi-body { flex: 1; }
-        .pf-testi-body p { font-size: 14.5px; color: #0E1838; line-height: 1.7; margin: 0 0 10px; font-style: italic; }
-        .pf-testi-body strong { font-size: 14px; font-weight: 700; color: #0E1838; display: block; margin-bottom: 1px; }
-        .pf-testi-body span { font-size: 12px; color: #94a3b8; }
-        .pf-testi-right {
-            display: flex; align-items: center; gap: 14px;
-            border-left: 1px solid #ddd8f5; margin-left: 40px; padding-left: 40px; flex-shrink: 0;
-        }
-        .pf-testi-avatar {
-            width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
-            background: linear-gradient(135deg, #e0e7ff, #c4b5fd);
-            display: flex; align-items: center; justify-content: center; font-size: 22px; color: #6546F5;
-        }
-        .pf-testi-name { font-size: 14px; font-weight: 700; color: #0E1838; margin: 0 0 2px; }
-        .pf-testi-role { font-size: 12px; color: #94a3b8; margin: 0 0 6px; }
-        .pf-stars { color: #f59e0b; font-size: 13px; letter-spacing: 2px; }
+      /* ===== SCHEDULER V2 ===== */
+      .sc2-wrap { background: #F9F9FF; }
+      .sc2-inner { max-width: 1360px; margin: 0 auto; padding: 80px 80px; display: flex; align-items: flex-start; gap: 80px; }
+      .sc2-left { flex: 0 0 640px; width: 640px; position: relative; }
+      .sc2-right { flex: 1; min-width: 0; padding-top: 12px; }
+      /* decorative */
+      .sc2-deco-circle { position:absolute; width:480px; height:480px; border-radius:50%; background:rgba(89,50,234,.055); top:-30px; left:-70px; z-index:0; pointer-events:none; }
+      .sc2-deco-dots { position:absolute; top:-16px; left:-40px; z-index:0; pointer-events:none; opacity:.65; }
+      /* add shift btn */
+      .sc2-add-row { display:flex; justify-content:flex-end; margin-bottom:14px; position:relative; z-index:2; }
+      .sc2-add-btn { background:#5932EA; color:#fff; font-family:'Inter',sans-serif; font-size:14px; font-weight:700; padding:12px 22px; border-radius:12px; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 16px rgba(89,50,234,.32); }
+      /* dashboard card */
+      .sc2-card { background:#fff; border-radius:20px; box-shadow:0 8px 48px rgba(0,0,0,.09); overflow:hidden; position:relative; z-index:2; font-family:'Inter',sans-serif; }
+      .sc2-date-row { padding:22px 24px 0; font-size:18px; font-weight:700; color:#0D1238; }
+      .sc2-time-axis { display:flex; justify-content:space-between; padding:12px 58px 12px 196px; border-bottom:1px solid #F1F5F9; background:#FAFBFF; }
+      .sc2-tick { font-size:12px; color:#94A3B8; font-weight:500; position:relative; }
+      .sc2-row { display:flex; align-items:center; border-bottom:1px solid #F8FAFC; min-height:92px; padding:0 20px 0 16px; position:relative; }
+      .sc2-row:last-child { border-bottom:none; }
+      .sc2-staff { width:180px; flex-shrink:0; display:flex; align-items:center; gap:12px; }
+      .sc2-avatar-wrap { position:relative; flex-shrink:0; }
+      .sc2-status-dot { position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22C55E; border:2.5px solid #fff; z-index:3; }
+      .sc2-staff-name { font-size:13px; font-weight:700; color:#0D1238; line-height:1.3; }
+      .sc2-staff-role { font-size:11px; color:#94A3B8; margin-top:2px; }
+      .sc2-timeline { flex:1; position:relative; height:72px; }
+      .sc2-shift { position:absolute; border-radius:12px; padding:9px 13px; top:8px; bottom:8px; display:flex; flex-direction:column; justify-content:center; overflow:hidden; }
+      .sc2-shift-time { font-size:11px; font-weight:700; }
+      .sc2-shift-label { font-size:12px; font-weight:700; margin-top:2px; }
+      .sc2-shift-clients { font-size:11px; margin-top:3px; display:flex; align-items:center; gap:4px; }
+      .sc2-now-line { position:absolute; top:0; bottom:0; width:2px; background:#3B82F6; z-index:5; pointer-events:none; }
+      .sc2-refresh-btn { margin-left:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+      /* testimonial */
+      .sc2-testimonial { background:#fff; border-radius:20px; padding:30px 34px 28px; margin-top:20px; box-shadow:0 4px 28px rgba(0,0,0,.07); position:relative; z-index:2; }
+      .sc2-quote-icon { margin-bottom:12px; }
+      .sc2-quote-text { font-size:14px; color:#475569; line-height:1.85; margin:0 0 18px; font-family:'Inter',sans-serif; }
+      .sc2-quote-author { font-size:14px; font-weight:800; color:#0D1238; font-family:'Inter',sans-serif; }
+      .sc2-quote-role { font-size:13px; color:#5932EA; margin-top:3px; font-family:'Inter',sans-serif; }
+      .sc2-quote-stars { color:#FBBF24; font-size:22px; margin-top:12px; letter-spacing:4px; }
+      /* right col */
+      .sc2-eyebrow { font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:.16em; color:#5932EA; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+      .sc2-heading { font-family:'DM Serif Display',serif; font-size:62px; font-weight:400; line-height:1.1; color:#0D1238; margin-bottom:24px; letter-spacing:-0.01em; }
+      .sc2-body { font-family:'Inter',sans-serif; font-size:17px; color:#475569; line-height:1.78; margin-bottom:40px; }
+      .sc2-feat { display:flex; align-items:flex-start; gap:20px; margin-bottom:32px; }
+      .sc2-feat-icon { width:60px; height:60px; border-radius:18px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+      .sc2-feat-title { font-family:'Inter',sans-serif; font-size:17px; font-weight:800; color:#0D1238; margin-bottom:5px; }
+      .sc2-feat-desc { font-family:'Inter',sans-serif; font-size:14px; color:#475569; line-height:1.65; }
+      .sc2-cta { font-family:'Inter',sans-serif; font-size:16px; font-weight:700; color:#5932EA; text-decoration:underline; text-underline-offset:4px; display:inline-flex; align-items:center; gap:8px; margin-top:10px; }
+      @media (max-width:1200px) { .sc2-inner { gap:56px; padding:72px 48px; } .sc2-left { flex:0 0 540px; width:540px; } }
+      @media (max-width:1060px) { .sc2-inner { flex-direction:column; padding:64px 32px; gap:52px; } .sc2-left { width:100%; flex:none; } .sc2-heading { font-size:48px; } }
+      @media (max-width:640px) { .sc2-inner { padding:56px 20px; } .sc2-heading { font-size:38px; } }
+
+      /* ===== SCHADS V2 ===== */
+      .sc3-wrap { background: #F8F7FF; position: relative; overflow: hidden; }
+      .sc3-deco-circle { position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(89,50,234,.07); top:-80px; right:-80px; pointer-events:none; z-index:0; }
+      .sc3-inner { max-width: 1200px; margin: 0 auto; padding: 68px 60px; display: flex; align-items: flex-start; gap: 56px; position: relative; z-index: 1; }
+      .sc3-left { flex: 0 0 430px; width: 430px; }
+      .sc3-right { flex: 1; min-width: 0; }
+      @media (max-width: 1100px) { .sc3-inner { flex-direction: column; padding: 56px 32px; gap: 44px; } .sc3-left { width: 100%; flex: none; } }
+      @media (max-width: 640px) { .sc3-inner { padding: 48px 20px; } }
+      .sc3-feat { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+      .sc3-feat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .sc3-feat-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: #0D1238; margin: 0 0 4px; line-height: 1.3; }
+      .sc3-feat-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: #475569; line-height: 1.55; margin: 0; }
+      .sc3-explore { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #5932EA; text-decoration: none; margin-top: 24px; border-bottom: 1.5px solid #5932EA; padding-bottom: 2px; }
+      .sc3-diag-card { background: #fff; border-radius: 20px; box-shadow: 0 4px 40px rgba(0,0,0,.08); padding: 28px 24px; }
+      .sc3-diag-grid { display: grid; grid-template-columns: 1fr 110px 1fr; }
+      .sc3-diag-lc { padding: 14px 14px 14px 0; border-right: 1.5px dashed #CBD5E1; }
+      .sc3-diag-rc { padding: 14px 0 14px 14px; border-left: 1.5px dashed #CBD5E1; }
+      .sc3-diag-ct { border-left: 1.5px dashed #CBD5E1; border-right: 1.5px dashed #CBD5E1; min-height: 40px; }
+      .sc3-diag-cs { border-left: 1.5px dashed #CBD5E1; border-right: 1.5px dashed #CBD5E1; display: flex; align-items: center; justify-content: center; padding: 6px 0; }
+      .sc3-pill-lbl { font-family: 'Inter', sans-serif; font-size: 11px; color: #94A3B8; margin-bottom: 5px; }
+      .sc3-dp { display: inline-block; padding: 7px 14px; border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; border: 1.5px solid; white-space: nowrap; }
+      .sc3-dp.purple { background: #EDE9FE; color: #5932EA; border-color: #C4B5FD; }
+      .sc3-dp.green { background: #D1FAE5; color: #059669; border-color: #6EE7B7; }
+      .sc3-dp.orange { background: #FFF7ED; color: #D97706; border-color: #FCD34D; }
+      .sc3-dp.pink { background: #FFF1F2; color: #E11D48; border-color: #FECDD3; }
+      .sc3-dp.blue-l { background: #EFF6FF; color: #2563EB; border-color: #BFDBFE; }
+      .sc3-dp.green-l { background: #F0FDF4; color: #16A34A; border-color: #BBF7D0; }
+      .sc3-alert-bar { display: flex; align-items: center; gap: 14px; background: #F8F7FF; border-radius: 12px; padding: 14px 18px; margin-top: 16px; }
+      .sc3-alert-icon { width: 34px; height: 34px; border-radius: 50%; background: #EDE9FE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .sc3-testimonial { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,.06); padding: 28px 32px 28px; margin-top: 20px; position: relative; overflow: hidden; }
+
+      /* ===== JOB BOARD V2 ===== */
+      .jb2-wrap { background: #fff; position: relative; overflow: hidden; }
+      .jb2-deco-circle { position:absolute; width:240px; height:240px; border-radius:50%; background:rgba(89,50,234,.06); top:-50px; right:-50px; pointer-events:none; z-index:0; }
+      .jb2-inner { max-width: 1200px; margin: 0 auto; padding: 72px 60px; display: flex; align-items: flex-start; gap: 60px; position: relative; z-index: 1; }
+      .jb2-left { flex: 0 0 430px; width: 430px; }
+      .jb2-right { flex: 1; min-width: 0; }
+      @media (max-width: 1100px) { .jb2-inner { flex-direction: column; padding: 56px 32px; gap: 44px; } .jb2-left { width: 100%; flex: none; } }
+      @media (max-width: 640px) { .jb2-inner { padding: 48px 20px; } }
+      .jb2-eyebrow { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #5932EA; margin-bottom: 8px; }
+      .jb2-eyebrow-bar { width: 28px; height: 3px; background: #5932EA; border-radius: 2px; margin-bottom: 20px; }
+      .jb2-testi { background: #fff; border: 1.5px solid #E2E8F0; border-radius: 16px; padding: 18px 20px 18px; margin-top: 26px; position: relative; }
+      .jb2-testi-q { font-family: Georgia, serif; font-size: 38px; color: #EDE9FE; line-height: 1; position: absolute; top: 8px; left: 16px; opacity: 0.9; }
+      .jb2-testi-text { font-family: 'Inter', sans-serif; font-size: 13px; color: #0D1238; line-height: 1.65; margin: 0 0 12px; padding-left: 28px; }
+      .jb2-testi-footer { display: flex; align-items: center; justify-content: space-between; padding-left: 28px; }
+      .jb2-testi-av { width: 34px; height: 34px; border-radius: 50%; background: #334155; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; margin-right: 10px; }
+      .jb2-testi-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: #0D1238; }
+      .jb2-testi-role { font-family: 'Inter', sans-serif; font-size: 12px; color: #5932EA; }
+      .jb2-testi-stars { color: #FBBF24; font-size: 15px; letter-spacing: 1px; }
+      .jb2-scene { position: relative; min-height: 460px; }
+      .jb2-phone-outer { width: 228px; background: #0D1238; border-radius: 38px; padding: 9px; box-shadow: 0 24px 64px rgba(13,18,56,.28); position: absolute; left: 50%; transform: translateX(-50%); top: 0; z-index: 2; }
+      .jb2-phone-screen { background: #fff; border-radius: 30px; overflow: hidden; }
+      .jb2-phone-statusbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 2px; }
+      .jb2-phone-topbar { display: flex; align-items: center; justify-content: space-between; padding: 4px 14px 10px; }
+      .jb2-phone-content { padding: 0 12px 14px; }
+      .jb2-phone-avail-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+      .jb2-phone-avail-lbl { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #0D1238; }
+      .jb2-phone-live { background: #DCFCE7; color: #16A34A; font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+      .jb2-phone-row { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 9px; }
+      .jb2-phone-row-txt { font-family: 'Inter', sans-serif; font-size: 10px; color: #475569; line-height: 1.35; }
+      .jb2-phone-about { background: #F8FAFC; border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
+      .jb2-phone-about-lbl { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; color: #0D1238; margin-bottom: 3px; }
+      .jb2-phone-about-txt { font-family: 'Inter', sans-serif; font-size: 9px; color: #475569; line-height: 1.4; margin-bottom: 5px; }
+      .jb2-phone-tag { display: inline-block; background: #EEF2FF; color: #5932EA; font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 600; padding: 2px 7px; border-radius: 999px; }
+      .jb2-apply-btn { display: block; text-align: center; background: #5932EA; color: #fff; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 800; padding: 10px; border-radius: 9px; letter-spacing: .1em; }
+      .jb2-float-card { background: #fff; border-radius: 14px; box-shadow: 0 6px 24px rgba(0,0,0,.13); padding: 10px 14px; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 10px; position: absolute; z-index: 4; min-width: 164px; }
+      .jb2-float-card.created { left: 8px; top: 210px; }
+      .jb2-float-card.confirmed { right: 8px; bottom: 60px; }
+      .jb2-float-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .jb2-float-title { font-size: 12px; font-weight: 700; color: #0D1238; margin-bottom: 2px; }
+      .jb2-float-sub { font-size: 11px; color: #64748B; }
+      .jb2-stats { display: flex; margin-top: 24px; }
+      .jb2-stat { display: flex; align-items: center; gap: 12px; flex: 1; padding-right: 20px; }
+      .jb2-stat + .jb2-stat { padding-left: 20px; border-left: 1px solid #E2E8F0; }
+      .jb2-stat:last-child { padding-right: 0; }
+      .jb2-stat-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .jb2-stat-num { font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 800; color: #0D1238; line-height: 1.1; }
+      .jb2-stat-lbl { font-family: 'Inter', sans-serif; font-size: 11px; color: #64748B; }
+
+      /* ===== COLLABORATION ===== */
+      .collab-notif { background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,.08); padding: 12px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; font-family: 'Inter', sans-serif; }
+      .collab-notif-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+      .collab-notif-title { font-size: 13px; font-weight: 700; color: #0D1238; }
+      .collab-notif-sub { font-size: 11px; color: #475569; }
+      .collab-phone { width: 180px; background: #1C1C1E; border-radius: 28px; padding: 8px; box-shadow: 0 12px 48px rgba(0,0,0,.3); font-family: 'Inter', sans-serif; }
+      .collab-phone-screen { background: linear-gradient(160deg, #1a1a2e 0%, #16213E 100%); border-radius: 22px; padding: 20px 14px; color: #fff; min-height: 280px; }
+      .cp-time { font-size: 36px; font-weight: 700; text-align: center; letter-spacing: -1px; }
+      .cp-date { font-size: 12px; text-align: center; color: rgba(255,255,255,.7); margin-bottom: 20px; }
+      .cp-notif-box { background: rgba(255,255,255,.15); border-radius: 12px; padding: 10px 12px; backdrop-filter: blur(8px); }
+      .cp-notif-app { font-size: 10px; font-weight: 600; color: rgba(255,255,255,.6); margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+      .cp-notif-msg { font-size: 11px; color: #fff; line-height: 1.4; }
     </style>
+
 </head>
 <body>
 
     <div id="global-header"></div>
 
     <main>
-        <!-- =========== breadcrumb area start =========== -->
+        <!-- breadcrumb -->
         <section class="vl-breadcrumb-area p-relative"
-            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:280px;">
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 mx-auto text-center">
@@ -109,76 +253,9 @@
                 </div>
             </div>
         </section>
-        <!-- =========== breadcrumb area end =========== -->
 
-        <!-- =========== ROSTERING HERO START =========== -->
-        <section class="pf-section">
-            <div class="pf-wrap">
-                <div class="pf-row">
-                    <div class="pf-left" data-aos="fade-right">
-                        <span class="pf-eyebrow">ROSTERING</span>
-                        <div class="pf-line"></div>
-                        <h2 class="pf-heading">
-                            Smarter scheduling.<br>
-                            <span class="pf-accent-grad">Seamless shift management.</span>
-                        </h2>
-                        <p class="pf-para">Build and manage rosters with confidence. Plannor gives your team a clear, real-time view of every shift so support never falls through the gaps.</p>
-
-                        <div class="pf-feat">
-                            <div class="pf-ico pf-ico-purple"><i class="fa-regular fa-calendar-check"></i></div>
-                            <div class="pf-feat-body">
-                                <h5>Drag-and-drop scheduling</h5>
-                                <p>Build rosters quickly and easily — assign shifts to the right workers in seconds.</p>
-                            </div>
-                        </div>
-                        <div class="pf-feat">
-                            <div class="pf-ico pf-ico-teal"><i class="fa-regular fa-bell"></i></div>
-                            <div class="pf-feat-body">
-                                <h5>Instant shift notifications</h5>
-                                <p>Workers receive real-time alerts for new shifts, changes and cancellations.</p>
-                            </div>
-                        </div>
-                        <div class="pf-feat">
-                            <div class="pf-ico pf-ico-orange"><i class="fa-regular fa-shield-check"></i></div>
-                            <div class="pf-feat-body">
-                                <h5>Compliance-ready</h5>
-                                <p>Automatically track award rates, availability and qualifications to stay compliant.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pf-right" data-aos="fade-left">
-                        <!-- Visual placeholder — replace with rostering screenshot/mockup -->
-                        <div style="background: linear-gradient(135deg, #f4f0ff 0%, #e8f0fe 100%); border-radius: 24px; min-height: 420px; display: flex; align-items: center; justify-content: center;">
-                            <div style="text-align: center; color: #c4b5fd;">
-                                <i class="fa-regular fa-calendar-days" style="font-size: 80px; margin-bottom: 16px; display: block;"></i>
-                                <p style="font-size: 14px; color: #94a3b8; margin: 0;">Rostering visual — coming soon</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pf-testi-wrap" data-aos="fade-up">
-                <div class="pf-testi">
-                    <div class="pf-testi-q"><i class="fa-solid fa-quote-left"></i></div>
-                    <div class="pf-testi-body">
-                        <p>"Rostering used to take our coordinator two hours every week. With Plannor, it's done in minutes and our team always knows where they need to be."</p>
-                        <strong>Natalie Brooks</strong>
-                        <span>Service Manager, Horizon Support Group</span>
-                    </div>
-                    <div class="pf-testi-right">
-                        <div class="pf-testi-avatar"><i class="fa-regular fa-user"></i></div>
-                        <div>
-                            <div class="pf-testi-name">Natalie Brooks</div>
-                            <div class="pf-testi-role">Service Manager</div>
-                            <div class="pf-stars">★★★★★</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- =========== ROSTERING HERO END =========== -->
+        <!-- React sections mount here -->
+        <div id="rostering-root"></div>
 
     </main>
 
@@ -207,5 +284,946 @@
     <script src="assets/js/parallaxie.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/includes.js"></script>
+
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.12/babel.min.js"></script>
+    <script>
+      Babel.registerPreset('react-classic', {
+        presets: [[Babel.availablePresets['react'], { runtime: 'classic' }]]
+      });
+    </script>
+
+    <script type="text/babel" data-presets="react-classic">
+    /* ============================================================
+       CONSTANTS
+    ============================================================ */
+    const PURPLE = '#5932EA';
+    const BLUE   = '#2563EB';
+    const NAVY   = '#0D1238';
+    const BODY   = '#475569';
+
+    /* ============================================================
+       SHARED HELPERS
+    ============================================================ */
+    function Stars() {
+      return <div className="stars">★★★★★</div>;
+    }
+
+    function Eyebrow({ children, icon }) {
+      return (
+        <div className="rs-eyebrow">
+          <span className="dot" />
+          {icon && <span style={{fontSize:14}}>{icon}</span>}
+          {children}
+        </div>
+      );
+    }
+
+    function FeatureItem({ title, desc, color }) {
+      return (
+        <div className="rs-feature">
+          <div className="rs-feature-icon" style={{background: color || '#EEF2FF'}}>
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke={PURPLE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="rs-feature-text">
+            <strong>{title}</strong>
+            <span>{desc}</span>
+          </div>
+        </div>
+      );
+    }
+
+    function Testimonial({ quote, name, role }) {
+      return (
+        <div className="rs-testimonial">
+          <Stars />
+          <p>"{quote}"</p>
+          <span className="name">{name}{role ? ` — ${role}` : ''}</span>
+        </div>
+      );
+    }
+
+    function ExploreLink({ children }) {
+      return (
+        <a href="#" className="rs-explore">
+          {children}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </a>
+      );
+    }
+
+    /* ============================================================
+       1 — SMART ROSTERING SECTION
+    ============================================================ */
+    const RS_STAFF = [
+      { initials:'CC', name:'Clement Chan',   role:'Support Worker',      bg:'#3B6EF8' },
+      { initials:'DC', name:'David Chen',     role:'Senior Support Wor...', bg:'#7C1D1D' },
+      { initials:'EW', name:'Emma Wilson',    role:'Support Worker',      bg:'#F97316', photo:true },
+      { initials:'JN', name:'Jeremy Nguyen',  role:'Support Worker',      bg:'#7C3AED' },
+      { initials:'PM', name:'Pierre Malmort', role:'Support Worker',      bg:'#1E293B' },
+    ];
+
+    const RS_DAYS = [
+      { short:'MON', num:'22', today:false },
+      { short:'TUE', num:'23', today:false },
+      { short:'WED', num:'24', today:false },
+      { short:'THU', num:'25', today:true  },
+      { short:'FRI', num:'26', today:false },
+      { short:'SAT', num:'27', today:false },
+    ];
+
+    function RosterShiftsDashboard() {
+      return (
+        <div className="rs-dash">
+          {/* top bar */}
+          <div className="rs-dash-topbar">
+            <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',flexWrap:'wrap',gap:8}}>
+              <div>
+                <p className="rs-dash-title">Roster &amp; Shift Management</p>
+                <p className="rs-dash-sub">Schedule staff, track shifts, manage your workforce.</p>
+              </div>
+              <div className="rs-dash-actions">
+                <button className="rs-btn-open">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <circle cx="6" cy="6" r="2" fill="#B45309"/>
+                    <path d="M6 1v1M6 10v1M1 6h1M10 6h1M2.5 2.5l.7.7M8.8 8.8l.7.7M9.5 2.5l-.7.7M3.2 8.8l-.7.7" stroke="#B45309" strokeWidth="1.2" strokeLinecap="round"/>
+                  </svg>
+                  Open Shifts
+                  <span className="badge">2</span>
+                </button>
+                <button className="rs-btn-add">
+                  <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                    <path d="M5.5 1v9M1 5.5h9" stroke="#fff" strokeWidth="1.8" strokeLinecap="round"/>
+                  </svg>
+                  Add Shift
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* filter bar */}
+          <div className="rs-dash-filterbar">
+            <div className="rs-search">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <circle cx="4.5" cy="4.5" r="3.5" stroke="#94A3B8" strokeWidth="1.2"/>
+                <path d="M7.5 7.5l2 2" stroke="#94A3B8" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+              Search staff...
+            </div>
+            <select className="rs-dropdown">
+              <option>All Participants</option>
+            </select>
+            <div className="rs-date-nav">
+              <button>‹</button>
+              <span>22 Jun – 28 Jun 2026</span>
+              <button>›</button>
+            </div>
+            <button className="rs-today-btn">Today</button>
+            <div className="rs-view-tabs">
+              <button className="rs-view-tab active">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{marginRight:3,verticalAlign:'middle'}}>
+                  <rect x="1" y="1" width="3" height="8" rx="1" fill="currentColor"/>
+                  <rect x="6" y="1" width="3" height="8" rx="1" fill="currentColor"/>
+                </svg>
+                Timeline
+              </button>
+              <button className="rs-view-tab">Month</button>
+              <button className="rs-view-tab">List</button>
+              <button className="rs-view-tab">Calendar</button>
+            </div>
+          </div>
+
+          {/* roster grid */}
+          <div style={{overflowX:'auto'}}>
+            <table className="rs-grid" style={{width:'100%',minWidth:520}}>
+              <thead>
+                <tr>
+                  <th style={{width:140,textAlign:'left',paddingLeft:14}}>STAFF</th>
+                  {RS_DAYS.map(d => (
+                    <th key={d.num} className={d.today ? 'today-col' : ''}>
+                      <div style={{fontSize:9,marginBottom:2}}>{d.short}</div>
+                      <div className="day-num">{d.num}</div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {RS_STAFF.map(s => (
+                  <tr key={s.initials}>
+                    <td className="staff-col">
+                      <div style={{display:'flex',alignItems:'center'}}>
+                        {s.photo ? (
+                          <div className="rs-staff-av" style={{background:'linear-gradient(135deg,#F97316,#FB923C)',fontSize:10}}>{s.initials}</div>
+                        ) : (
+                          <div className="rs-staff-av" style={{background:s.bg}}>{s.initials}</div>
+                        )}
+                        <div className="rs-staff-info">
+                          <span className="rs-staff-name">{s.name}</span>
+                          <span className="rs-staff-role">{s.role}</span>
+                        </div>
+                      </div>
+                    </td>
+                    {RS_DAYS.map(d => (
+                      <td key={d.num} style={{background: d.today ? '#F0F7FF' : 'transparent'}}>
+                        <div className="rs-add-cell">+ Add</div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    function SmartRosteringSection() {
+      return (
+        <section className="rs-section">
+          <div className="rs-inner">
+            {/* LEFT */}
+            <div className="rs-left">
+              <Eyebrow>SMART ROSTERING</Eyebrow>
+              <h2 className="rs-heading">
+                The right support worker,<br/>
+                in the right shift —{' '}
+                <span className="blue">every time.</span>
+              </h2>
+              <p className="rs-body">
+                Plannor matches qualified workers to open shifts in seconds — considering availability, skills, location, and compliance rules automatically.
+              </p>
+              <FeatureItem title="Instant conflict detection" desc="Spot double-bookings and gaps before they happen." />
+              <FeatureItem title="Skills & qualification matching" desc="Only eligible workers are suggested for each shift." />
+              <FeatureItem title="One-click publish" desc="Send rosters to workers with a single action." />
+              <ExploreLink>Explore Smart Rostering</ExploreLink>
+            </div>
+            {/* RIGHT */}
+            <div className="rs-right">
+              <RosterShiftsDashboard />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       2 — SCHEDULER SECTION
+    ============================================================ */
+    const SC2_START = 9;
+    const SC2_END   = 18;
+    const SC2_NOW   = 15;
+    function sc2Pct(h) { return ((h - SC2_START) / (SC2_END - SC2_START)) * 100; }
+
+    const SC2_STAFF = [
+      { id:'DO', name:'Daniel Okafor', role:'Support Worker',
+        bg:'#C49270', skin:'#9B6845', hair:'#180A04', shirt:'#1E3A5F', long:false,
+        shift:{ start:9, end:13, time:'9am –1pm', label:'Community Access', clients:'2 Clients', bg:'#EDE9FE', color:'#5932EA' }},
+      { id:'EC', name:'Emily Chen', role:'Support Worker',
+        bg:'#E8C498', skin:'#D4A070', hair:'#2A1008', shirt:'#E8F5EA', long:true,
+        shift:{ start:12, end:16, time:'12pm –4pm', label:'Daily Living', clients:'1 Client', bg:'#D1FAE5', color:'#059669' }},
+      { id:'LP', name:'Liam Patel', role:'Support Worker',
+        bg:'#C09060', skin:'#A07040', hair:'#1C0C04', shirt:'#374151', long:false,
+        shift:{ start:15, end:18, time:'3pm –6pm', label:'Personal Care', clients:'1 Client', bg:'#FEF9C3', color:'#CA8A04' }},
+      { id:'OS', name:'Olivia Smith', role:'Support Worker',
+        bg:'#EED4B8', skin:'#D8AC88', hair:'#8B5E20', shirt:'#EEF2FF', long:true,
+        shift:null },
+    ];
+
+    function StaffAvatar({ p }) {
+      var cid = 'pav-' + p.id;
+      return (
+        <svg width="48" height="48" viewBox="0 0 48 48" style={{display:'block',flexShrink:0}}>
+          <defs><clipPath id={cid}><circle cx="24" cy="24" r="24"/></clipPath></defs>
+          <g clipPath={'url(#' + cid + ')'}>
+            <rect width="48" height="48" fill={p.bg}/>
+            <ellipse cx="24" cy="52" rx="22" ry="13" fill={p.shirt}/>
+            <rect x="20" y="31" width="8" height="10" rx="3" fill={p.skin}/>
+            <ellipse cx="24" cy="24" rx="11" ry="12" fill={p.skin}/>
+            <ellipse cx="24" cy="13" rx="13.5" ry="12" fill={p.hair}/>
+            {p.long && (
+              <React.Fragment>
+                <ellipse cx="12" cy="25" rx="5" ry="11" fill={p.hair} opacity="0.82"/>
+                <ellipse cx="36" cy="25" rx="5" ry="11" fill={p.hair} opacity="0.82"/>
+              </React.Fragment>
+            )}
+          </g>
+        </svg>
+      );
+    }
+
+    function RefreshIcon() {
+      return (
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M4 11a7 7 0 1 0 2-4.9" stroke="#CBD5E1" strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M4 6v5h5" stroke="#CBD5E1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      );
+    }
+
+    function PeopleIcon({ color }) {
+      return (
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <circle cx="4.5" cy="4" r="2.5" fill={color}/>
+          <path d="M1 11c0-2.2 1.6-3.5 3.5-3.5S8 8.8 8 11" stroke={color} strokeWidth="1.3" strokeLinecap="round"/>
+          <circle cx="9.5" cy="4.5" r="2" fill={color} opacity="0.65"/>
+          <path d="M8 11c0-1.6.7-2.5 2-2.8" stroke={color} strokeWidth="1.3" strokeLinecap="round" opacity="0.65"/>
+        </svg>
+      );
+    }
+
+    function DotGrid() {
+      var pts = [];
+      for (var r = 0; r < 8; r++) {
+        for (var c = 0; c < 9; c++) {
+          pts.push(<circle key={r+'-'+c} cx={c*22+11} cy={r*22+11} r="2.2" fill="#5932EA" opacity="0.18"/>);
+        }
+      }
+      return <svg width="198" height="176" viewBox="0 0 198 176" fill="none">{pts}</svg>;
+    }
+
+    function SchedulerSection() {
+      var nowL = sc2Pct(SC2_NOW).toFixed(1) + '%';
+      var feats = [
+        { bg:'#EDE9FE', col:'#5932EA', title:'Recurring shifts', desc:'Automate repeating shifts, spot gaps early and stay ahead of changes.',
+          icon:<svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="4" width="20" height="19" rx="3.5" stroke="#5932EA" strokeWidth="1.7"/><path d="M8 2v5M18 2v5M3 10h20" stroke="#5932EA" strokeWidth="1.7" strokeLinecap="round"/><path d="M17 13a4 4 0 1 1-2.8-1.4" stroke="#5932EA" strokeWidth="1.5" strokeLinecap="round"/><path d="M17 10v3h-3" stroke="#5932EA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+        { bg:'#D1FAE5', col:'#059669', title:'Group rosters', desc:'Coordinate team members and clients in one view with custom shift rules.',
+          icon:<svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="9.5" cy="8.5" r="3.8" stroke="#059669" strokeWidth="1.7"/><circle cx="17.5" cy="8.5" r="3" stroke="#059669" strokeWidth="1.5"/><path d="M3 22c0-4 2.9-6.5 6.5-6.5S16 18 16 22" stroke="#059669" strokeWidth="1.7" strokeLinecap="round"/><path d="M17.5 15.5c3 .6 5.5 2.5 5.5 6.5" stroke="#059669" strokeWidth="1.5" strokeLinecap="round"/></svg> },
+        { bg:'#FEF9C3', col:'#CA8A04', title:'Draft & publish with ease', desc:'Plan, adjust and publish schedules confidently with real-time updates.',
+          icon:<svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="4" width="20" height="19" rx="3.5" stroke="#CA8A04" strokeWidth="1.7"/><path d="M8 2v5M18 2v5M3 10h20" stroke="#CA8A04" strokeWidth="1.7" strokeLinecap="round"/><path d="M8 16h10M8 19.5h6" stroke="#CA8A04" strokeWidth="1.7" strokeLinecap="round"/><circle cx="19" cy="19" r="4" fill="#FEF9C3" stroke="#CA8A04" strokeWidth="1.5"/><path d="M17.5 19l1 1.2 2-2.4" stroke="#CA8A04" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+      ];
+      return (
+        <section className="sc2-wrap">
+          <div className="sc2-inner">
+            {/* LEFT */}
+            <div className="sc2-left">
+              <div className="sc2-deco-circle"/>
+              <div className="sc2-deco-dots"><DotGrid/></div>
+              <div className="sc2-add-row">
+                <button className="sc2-add-btn">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1v12M1 7h12" stroke="#fff" strokeWidth="2.2" strokeLinecap="round"/>
+                  </svg>
+                  Add shift
+                </button>
+              </div>
+              <div className="sc2-card">
+                <div className="sc2-date-row">Tue, 20 May</div>
+                <div className="sc2-time-axis">
+                  {['9 AM','12 PM','3 PM','6 PM'].map(function(t,i){
+                    return (
+                      <div key={t} className="sc2-tick" style={{position:'relative'}}>
+                        {t}
+                        {i===2 && <div style={{position:'absolute',bottom:-11,left:'50%',transform:'translateX(-50%)',width:11,height:11,borderRadius:'50%',background:'#3B82F6',zIndex:10}}/>}
+                      </div>
+                    );
+                  })}
+                </div>
+                {SC2_STAFF.map(function(s){
+                  return (
+                    <div key={s.id} className="sc2-row">
+                      <div className="sc2-staff">
+                        <div className="sc2-avatar-wrap">
+                          <StaffAvatar p={s}/>
+                          <div className="sc2-status-dot"/>
+                        </div>
+                        <div>
+                          <div className="sc2-staff-name">{s.name}</div>
+                          <div className="sc2-staff-role">{s.role}</div>
+                        </div>
+                      </div>
+                      <div className="sc2-timeline">
+                        <div className="sc2-now-line" style={{left:nowL}}/>
+                        {s.shift && (
+                          <div className="sc2-shift" style={{
+                            left:sc2Pct(s.shift.start).toFixed(1)+'%',
+                            width:(sc2Pct(s.shift.end)-sc2Pct(s.shift.start)).toFixed(1)+'%',
+                            background:s.shift.bg, color:s.shift.color,
+                          }}>
+                            <div className="sc2-shift-time">{s.shift.time}</div>
+                            <div className="sc2-shift-label">{s.shift.label}</div>
+                            <div className="sc2-shift-clients">
+                              <PeopleIcon color={s.shift.color}/>
+                              {s.shift.clients}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="sc2-refresh-btn"><RefreshIcon/></div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="sc2-testimonial">
+                <div className="sc2-quote-icon">
+                  <svg width="34" height="26" viewBox="0 0 34 26" fill="none">
+                    <path d="M0 26V15.4C0 6.86 4.76 1.92 14.28 0l1.58 3.12C10.56 4.42 7.92 7.12 7.42 11.18H13.2V26H0zm17 0V15.4C17 6.86 21.76 1.92 31.28 0l1.58 3.12C27.56 4.42 24.92 7.12 24.42 11.18H30.2V26H17z" fill="#5932EA"/>
+                  </svg>
+                </div>
+                <p className="sc2-quote-text">
+                  I've worked in the care industry for over 12 years and Plannor is hands down the best software I've used (and now own). It has everything I needed and more. Plannor proved it could do what others couldn't!
+                </p>
+                <div className="sc2-quote-author">Kerrin Spataro</div>
+                <div className="sc2-quote-role">Team Leader, MyPlace</div>
+                <div className="sc2-quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              </div>
+            </div>
+            {/* RIGHT */}
+            <div className="sc2-right">
+              <div className="sc2-eyebrow"><span className="dot" style={{width:6,height:6,borderRadius:'50%',background:'#5932EA',display:'inline-block'}}/>SCHEDULER</div>
+              <h2 className="sc2-heading">Scheduling that<br/>just works<span style={{color:'#5932EA'}}>.</span></h2>
+              <p className="sc2-body">
+                Create, manage and publish shifts in just a few clicks. See your team's availability at a glance and match the right people to the right clients&#8212;every time.
+              </p>
+              {feats.map(function(f,i){
+                return (
+                  <div key={i} className="sc2-feat">
+                    <div className="sc2-feat-icon" style={{background:f.bg}}>{f.icon}</div>
+                    <div>
+                      <div className="sc2-feat-title">{f.title}</div>
+                      <div className="sc2-feat-desc">{f.desc}</div>
+                    </div>
+                  </div>
+                );
+              })}
+              <a href="#" className="sc2-cta">
+                Explore Scheduler features
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M3.5 9h11M10 4.5l4.5 4.5-4.5 4.5" stroke="#5932EA" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       3 — SCHADS AWARD INTERPRETATION
+    ============================================================ */
+    function SchadsShieldIcon() {
+      return (
+        <svg width="68" height="78" viewBox="0 0 68 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M34 4L6 17v23c0 16 12 29 28 34 16-5 28-18 28-34V17L34 4z" fill="#EEF2FF" stroke="#5932EA" strokeWidth="2"/>
+          <path d="M21 39l9 9 18-18" stroke="#5932EA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      );
+    }
+
+    function SchadsFeatureItem({ iconBg, icon, title, desc }) {
+      return (
+        <div className="sc3-feat">
+          <div className="sc3-feat-icon" style={{background: iconBg}}>
+            {icon}
+          </div>
+          <div>
+            <div className="sc3-feat-title">{title}</div>
+            <p className="sc3-feat-desc">{desc}</p>
+          </div>
+        </div>
+      );
+    }
+
+    function ComplianceDiagram() {
+      return (
+        <div className="sc3-diag-card">
+          <div className="sc3-diag-grid">
+            <div className="sc3-diag-lc">
+              <div className="sc3-pill-lbl">Industry Award</div>
+              <span className="sc3-dp purple">SCHADS</span>
+            </div>
+            <div className="sc3-diag-ct" />
+            <div className="sc3-diag-rc">
+              <div className="sc3-pill-lbl">Pay Group</div>
+              <span className="sc3-dp green">Registered Nurse</span>
+            </div>
+            <div className="sc3-diag-lc">
+              <div className="sc3-pill-lbl">Payroll Settings</div>
+              <span className="sc3-dp orange">Configured</span>
+            </div>
+            <div className="sc3-diag-cs">
+              <SchadsShieldIcon />
+            </div>
+            <div className="sc3-diag-rc">
+              <div className="sc3-pill-lbl">Award Level</div>
+              <span className="sc3-dp pink">Social &amp; Community</span>
+            </div>
+            <div className="sc3-diag-lc">
+              <div className="sc3-pill-lbl">Employee Profile</div>
+              <span className="sc3-dp blue-l">Day Worker</span>
+            </div>
+            <div className="sc3-diag-ct" />
+            <div className="sc3-diag-rc">
+              <div className="sc3-pill-lbl">Compliant</div>
+              <span className="sc3-dp green-l">All good &#10003;</span>
+            </div>
+          </div>
+          <div className="sc3-alert-bar">
+            <div className="sc3-alert-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="7.5" stroke="#5932EA" strokeWidth="1.5"/>
+                <path d="M5.5 9l2.5 2.5 4.5-5" stroke="#5932EA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div style={{fontFamily:"'Inter',sans-serif",fontWeight:700,fontSize:14,color:NAVY}}>Smart checks. Early alerts.</div>
+              <div style={{fontFamily:"'Inter',sans-serif",fontSize:12,color:BODY,marginTop:2}}>We flag potential issues before they become a problem.</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SchadsTestimonial() {
+      return (
+        <div className="sc3-testimonial">
+          <div style={{position:'absolute',top:12,left:20,fontFamily:'Georgia,serif',fontSize:54,lineHeight:1,color:'#E11D48',opacity:.85}}>{'“'}</div>
+          <div style={{paddingLeft:38,paddingRight:24}}>
+            <p style={{fontFamily:"'Inter',sans-serif",fontSize:15,color:NAVY,lineHeight:1.65,margin:'0 0 16px'}}>
+              In audit and compliance, we&apos;ve got everything now. If we have any query about what we&apos;re doing, it&apos;s just at the tip of a finger.
+            </p>
+            <div style={{fontFamily:"'Inter',sans-serif",fontWeight:700,fontSize:14,color:NAVY}}>Clover Laurier</div>
+            <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,color:PURPLE,marginTop:2}}>Owner Manager, Next Wave Supports</div>
+            <div style={{color:'#FBBF24',fontSize:17,marginTop:8}}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+          <div style={{position:'absolute',bottom:12,right:20,fontFamily:'Georgia,serif',fontSize:42,lineHeight:1,color:'#FECDD3'}}>{'”'}</div>
+        </div>
+      );
+    }
+
+    function SchadsSection() {
+      return (
+        <section className="sc3-wrap">
+          <div className="sc3-deco-circle" />
+          <div className="sc3-inner">
+            {/* LEFT */}
+            <div className="sc3-left">
+              <Eyebrow>SCHADS AWARD INTERPRETATION</Eyebrow>
+              <h2 className="rs-heading">
+                Always compliant.<br/>
+                Always <span style={{background:'linear-gradient(90deg,#5932EA 0%,#2563EB 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>covered.</span>
+              </h2>
+              <p className="rs-body">
+                Plannor interprets SCHADS Award rules automatically so you never accidentally underpay, misclassify, or over-roster a worker.
+              </p>
+              <SchadsFeatureItem
+                iconBg="#EDE9FE"
+                icon={<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="#5932EA" strokeWidth="1.8"/><path d="M11 6.5v4.5l2.5 2" stroke="#5932EA" strokeWidth="1.8" strokeLinecap="round"/></svg>}
+                title="Real-time validation"
+                desc="Instantly detect non-compliant hours, missing allowances and other issues as you build or update shifts."
+              />
+              <SchadsFeatureItem
+                iconBg="#DCFCE7"
+                icon={<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><line x1="4" y1="7" x2="18" y2="7" stroke="#16A34A" strokeWidth="1.8" strokeLinecap="round"/><line x1="4" y1="11" x2="18" y2="11" stroke="#16A34A" strokeWidth="1.8" strokeLinecap="round"/><line x1="4" y1="15" x2="18" y2="15" stroke="#16A34A" strokeWidth="1.8" strokeLinecap="round"/><circle cx="8" cy="7" r="2" fill="#fff" stroke="#16A34A" strokeWidth="1.5"/><circle cx="14" cy="11" r="2" fill="#fff" stroke="#16A34A" strokeWidth="1.5"/><circle cx="9" cy="15" r="2" fill="#fff" stroke="#16A34A" strokeWidth="1.5"/></svg>}
+                title="Custom award settings"
+                desc="Tailor award rules to different employment types, industry levels and staff profiles with ease."
+              />
+              <SchadsFeatureItem
+                iconBg="#FFF7ED"
+                icon={<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3a5.5 5.5 0 00-5.5 5.5V14h11V8.5A5.5 5.5 0 0011 3z" stroke="#D97706" strokeWidth="1.8"/><path d="M4.5 14h13" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round"/><path d="M9.5 14s0 2.5 1.5 2.5 1.5-2.5 1.5-2.5" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round"/></svg>}
+                title="Clear alerts, quick fixes"
+                desc="Get clear warnings when something's not right — with guidance on how to fix it fast."
+              />
+              <a href="#" className="sc3-explore">
+                Explore SCHADS features
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
+            </div>
+            {/* RIGHT */}
+            <div className="sc3-right">
+              <ComplianceDiagram />
+              <SchadsTestimonial />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       4 — JOB BOARD SECTION
+    ============================================================ */
+    function JBPhone() {
+      return (
+        <div className="jb2-phone-outer">
+          <div className="jb2-phone-screen">
+            <div className="jb2-phone-statusbar">
+              <span style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:700,color:'#0D1238'}}>9:41</span>
+              <div style={{display:'flex',alignItems:'center',gap:3}}>
+                <svg width="13" height="9" viewBox="0 0 13 9" fill="none">
+                  <rect x="0" y="5" width="2.5" height="4" rx="0.5" fill="#0D1238"/>
+                  <rect x="3.5" y="3" width="2.5" height="6" rx="0.5" fill="#0D1238"/>
+                  <rect x="7" y="1" width="2.5" height="8" rx="0.5" fill="#0D1238"/>
+                  <rect x="10.5" y="0" width="2.5" height="9" rx="0.5" fill="#0D1238"/>
+                </svg>
+                <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                  <path d="M5.5 5.5a1 1 0 110 2 1 1 0 010-2z" fill="#0D1238"/>
+                  <path d="M2.5 3.5C3.5 2.5 4.4 2 5.5 2s2 .5 3 1.5" stroke="#0D1238" strokeWidth="1.1" strokeLinecap="round"/>
+                  <path d="M.5 1.5C2 .5 3.7 0 5.5 0s3.5.5 5 1.5" stroke="#0D1238" strokeWidth="1.1" strokeLinecap="round"/>
+                </svg>
+                <div style={{width:20,height:10,border:'1.5px solid #0D1238',borderRadius:2.5,position:'relative',display:'inline-flex',alignItems:'center'}}>
+                  <div style={{position:'absolute',left:1.5,top:1.5,right:4,bottom:1.5,background:'#0D1238',borderRadius:1}}/>
+                  <div style={{position:'absolute',right:-3.5,width:2.5,height:5,background:'rgba(13,18,56,.45)',borderRadius:0.5}}/>
+                </div>
+              </div>
+            </div>
+            <div className="jb2-phone-topbar">
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="none">
+                <rect y="0" width="16" height="2" rx="1" fill="#0D1238"/>
+                <rect y="4.5" width="12" height="2" rx="1" fill="#0D1238"/>
+                <rect y="9" width="16" height="2" rx="1" fill="#0D1238"/>
+              </svg>
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <path d="M7.5 1.5A4 4 0 003.5 5.5V10h8V5.5A4 4 0 007.5 1.5z" stroke="#0D1238" strokeWidth="1.2"/>
+                <path d="M3.5 10h8M6 10s0 2 1.5 2 1.5-2 1.5-2" stroke="#0D1238" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <div className="jb2-phone-content">
+              <div className="jb2-phone-avail-row">
+                <span className="jb2-phone-avail-lbl">Available Shift</span>
+                <span className="jb2-phone-live">Live</span>
+              </div>
+              <div className="jb2-phone-row">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{flexShrink:0,marginTop:1}}>
+                  <rect x="1" y="2" width="10" height="9" rx="1.5" stroke="#475569" strokeWidth="1.1"/>
+                  <path d="M4 1v2M8 1v2M1 5h10" stroke="#475569" strokeWidth="1.1" strokeLinecap="round"/>
+                </svg>
+                <span className="jb2-phone-row-txt">Sun, 16 Apr 2023</span>
+              </div>
+              <div className="jb2-phone-row">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{flexShrink:0,marginTop:1}}>
+                  <circle cx="6" cy="6" r="4.5" stroke="#475569" strokeWidth="1.1"/>
+                  <path d="M6 3.5v2.5l1.5 1" stroke="#475569" strokeWidth="1.1" strokeLinecap="round"/>
+                </svg>
+                <span className="jb2-phone-row-txt">9:00 AM &#8211; 5:00 PM</span>
+              </div>
+              <div className="jb2-phone-row">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{flexShrink:0,marginTop:1}}>
+                  <path d="M6 1C4.3 1 3 2.3 3 4c0 2.5 3 7 3 7s3-4.5 3-7C9 2.3 7.7 1 6 1z" stroke="#475569" strokeWidth="1.1"/>
+                  <circle cx="6" cy="4" r="1" fill="#475569"/>
+                </svg>
+                <span className="jb2-phone-row-txt">75 Millers Ave,<br/>Hamilton NSW</span>
+              </div>
+              <div className="jb2-phone-row">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{flexShrink:0,marginTop:1}}>
+                  <circle cx="6" cy="4" r="2" stroke="#475569" strokeWidth="1.1"/>
+                  <path d="M2 11c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#475569" strokeWidth="1.1" strokeLinecap="round"/>
+                </svg>
+                <span className="jb2-phone-row-txt">Support Worker</span>
+              </div>
+              <div className="jb2-phone-about">
+                <div className="jb2-phone-about-lbl">About the shift</div>
+                <div className="jb2-phone-about-txt">Assist with creative project and activity planning.</div>
+                <span className="jb2-phone-tag">Community Access</span>
+              </div>
+              <a href="#" className="jb2-apply-btn">APPLY FOR SHIFT</a>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function JBPortrait({ isLeft }) {
+      var bg = isLeft
+        ? 'linear-gradient(150deg,#EDE5D8 0%,#C8A882 100%)'
+        : 'linear-gradient(150deg,#E6E6E6 0%,#BDBAB6 100%)';
+      var pos = isLeft ? {left:22} : {right:22};
+      var style = Object.assign({
+        width:112, height:152, background:bg,
+        borderRadius:16, overflow:'hidden',
+        boxShadow:'0 8px 28px rgba(0,0,0,.13)',
+        position:'absolute', top:44, zIndex:1
+      }, pos);
+      return (
+        <div style={style}>
+          <svg width="112" height="152" viewBox="0 0 112 152">
+            {isLeft ? (
+              <g>
+                <ellipse cx="56" cy="42" rx="24" ry="27" fill="#3D2510" opacity="0.85"/>
+                <ellipse cx="56" cy="56" rx="18" ry="20" fill="#C89060"/>
+                <rect x="49" y="73" width="14" height="10" rx="5" fill="#C89060"/>
+                <path d="M16 152 Q28 94 56 87 Q84 94 96 152z" fill="#7C5CBF" opacity="0.8"/>
+                <ellipse cx="34" cy="112" rx="9" ry="22" fill="#C89060" opacity="0.7" transform="rotate(-14 34 112)"/>
+                <rect x="22" y="118" width="44" height="6" rx="2" fill="#94A3B8" opacity="0.45"/>
+              </g>
+            ) : (
+              <g>
+                <ellipse cx="56" cy="36" rx="27" ry="31" fill="#150A06" opacity="0.9"/>
+                <ellipse cx="56" cy="52" rx="18" ry="20" fill="#C09070"/>
+                <ellipse cx="37" cy="46" rx="12" ry="18" fill="#150A06" opacity="0.8"/>
+                <ellipse cx="75" cy="46" rx="12" ry="18" fill="#150A06" opacity="0.8"/>
+                <rect x="49" y="69" width="14" height="10" rx="5" fill="#C09070"/>
+                <path d="M16 152 Q28 92 56 85 Q84 92 96 152z" fill="#D8D4D0" opacity="0.8"/>
+                <ellipse cx="76" cy="108" rx="9" ry="24" fill="#C09070" opacity="0.7" transform="rotate(10 76 108)"/>
+                <rect x="76" y="102" width="14" height="24" rx="3" fill="#334155" opacity="0.85"/>
+                <rect x="78" y="104" width="10" height="20" rx="2" fill="#60A5FA" opacity="0.75"/>
+              </g>
+            )}
+          </svg>
+        </div>
+      );
+    }
+
+    function JobBoardSection() {
+      return (
+        <section className="jb2-wrap">
+          <div className="jb2-deco-circle" />
+          <div className="jb2-inner">
+            {/* LEFT */}
+            <div className="jb2-left">
+              <div className="jb2-eyebrow">JOB BOARD</div>
+              <div className="jb2-eyebrow-bar" />
+              <h2 className="rs-heading">
+                Open shifts.<br/>
+                Real people.{' '}
+                <span style={{position:'relative',display:'inline-block',color:PURPLE}}>
+                  Real time.
+                  <svg style={{position:'absolute',bottom:-6,left:0,width:'100%',height:9}} viewBox="0 0 160 9" preserveAspectRatio="none">
+                    <path d="M2 7 Q80 1 158 7" stroke="#5932EA" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                  </svg>
+                </span>
+              </h2>
+              <p className="rs-body">
+                Give your team visibility of live job openings and let them apply in seconds. The right person, at the right time.
+              </p>
+              <SchadsFeatureItem
+                iconBg="#EDE9FE"
+                icon={<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="4.5" stroke="#5932EA" strokeWidth="1.8"/><path d="M2 19c0-3.3 2.7-6 6-6" stroke="#5932EA" strokeWidth="1.8" strokeLinecap="round"/><circle cx="16" cy="14" r="4" stroke="#5932EA" strokeWidth="1.8"/><path d="M12 20c0-2.2 1.8-4 4-4" stroke="#5932EA" strokeWidth="1.8" strokeLinecap="round"/></svg>}
+                title="First come, first served"
+                desc="Automatically assign open shifts to the first team member who applies."
+              />
+              <SchadsFeatureItem
+                iconBg="#DCFCE7"
+                icon={<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><line x1="4" y1="7" x2="18" y2="7" stroke="#16A34A" strokeWidth="1.8" strokeLinecap="round"/><line x1="4" y1="11" x2="18" y2="11" stroke="#16A34A" strokeWidth="1.8" strokeLinecap="round"/><line x1="4" y1="15" x2="18" y2="15" stroke="#16A34A" strokeWidth="1.8" strokeLinecap="round"/><circle cx="8" cy="7" r="2" fill="#fff" stroke="#16A34A" strokeWidth="1.5"/><circle cx="14" cy="11" r="2" fill="#fff" stroke="#16A34A" strokeWidth="1.5"/><circle cx="9" cy="15" r="2" fill="#fff" stroke="#16A34A" strokeWidth="1.5"/></svg>}
+                title="Customisable criteria"
+                desc="Choose who can see and apply for shifts based on skills, location, role and availability."
+              />
+              <SchadsFeatureItem
+                iconBg="#FFF7ED"
+                icon={<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3a5.5 5.5 0 00-5.5 5.5V14h11V8.5A5.5 5.5 0 0011 3z" stroke="#D97706" strokeWidth="1.8"/><path d="M4.5 14h13" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round"/><path d="M9.5 14s0 2.5 1.5 2.5 1.5-2.5 1.5-2.5" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round"/></svg>}
+                title="Live availability"
+                desc="Real-time updates and instant notifications keep everyone in the loop."
+              />
+              {/* Testimonial card */}
+              <div className="jb2-testi">
+                <div className="jb2-testi-q">{'"'}</div>
+                <p className="jb2-testi-text">
+                  The Job Board has completely changed the way we work. It&apos;s reliable, easy to use, and a huge time saver for our team.
+                </p>
+                <div className="jb2-testi-footer">
+                  <div style={{display:'flex',alignItems:'center',gap:10}}>
+                    <div className="jb2-testi-av">
+                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <circle cx="11" cy="8" r="4.5" fill="#94A3B8"/>
+                        <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#94A3B8"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="jb2-testi-name">Toby H</div>
+                      <div className="jb2-testi-role">Director</div>
+                    </div>
+                  </div>
+                  <div className="jb2-testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <a href="#" className="sc3-explore" style={{marginTop:20}}>
+                Learn more about Job Board
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
+            </div>
+            {/* RIGHT — phone scene */}
+            <div className="jb2-right">
+              <div className="jb2-scene">
+                {/* Portraits behind phone */}
+                <JBPortrait isLeft={true} />
+                <JBPortrait isLeft={false} />
+                {/* Phone (centered via CSS absolute + translateX(-50%)) */}
+                <JBPhone />
+                {/* Decorative arcs */}
+                <svg style={{position:'absolute',inset:0,width:'100%',height:'100%',pointerEvents:'none',overflow:'visible'}} fill="none">
+                  <path d="M 158 240 Q 180 310 220 330" stroke="#5932EA" strokeWidth="1.5" strokeDasharray="4,4" opacity="0.7"/>
+                  <circle cx="154" cy="238" r="5" fill="#5932EA" opacity="0.8"/>
+                  <path d="M 390 350 Q 410 390 430 405" stroke="#16A34A" strokeWidth="1.5" strokeDasharray="4,4" opacity="0.7"/>
+                  <circle cx="432" cy="408" r="5" fill="#16A34A" opacity="0.8"/>
+                </svg>
+                {/* Float: Shift created */}
+                <div className="jb2-float-card created">
+                  <div className="jb2-float-icon" style={{background:'#EDE9FE'}}>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <rect x="2" y="3" width="14" height="13" rx="2" stroke="#5932EA" strokeWidth="1.5"/>
+                      <path d="M6 2v2M12 2v2M2 7h14" stroke="#5932EA" strokeWidth="1.5" strokeLinecap="round"/>
+                      <circle cx="9" cy="12" r="2" fill="#5932EA"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="jb2-float-title">Shift created</div>
+                    <div className="jb2-float-sub">New opening is live</div>
+                  </div>
+                </div>
+                {/* Float: Shift confirmed */}
+                <div className="jb2-float-card confirmed">
+                  <div className="jb2-float-icon" style={{background:'#DCFCE7'}}>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <circle cx="9" cy="9" r="7" fill="#16A34A"/>
+                      <path d="M5.5 9l2.5 2.5 5-5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="jb2-float-title">Shift confirmed</div>
+                    <div className="jb2-float-sub">Great match found</div>
+                  </div>
+                </div>
+              </div>
+              {/* Stats */}
+              <div className="jb2-stats">
+                <div className="jb2-stat">
+                  <div className="jb2-stat-icon" style={{background:'#EDE9FE'}}>
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <circle cx="8" cy="8" r="4" stroke="#5932EA" strokeWidth="1.7"/>
+                      <path d="M1.5 19.5c0-3.6 2.9-6.5 6.5-6.5" stroke="#5932EA" strokeWidth="1.7" strokeLinecap="round"/>
+                      <circle cx="16" cy="13" r="3.5" stroke="#5932EA" strokeWidth="1.7"/>
+                      <path d="M10.5 19.5c0-3 2.4-5.5 5.5-5.5" stroke="#5932EA" strokeWidth="1.7" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="jb2-stat-num">120+</div>
+                    <div className="jb2-stat-lbl">Active team members</div>
+                  </div>
+                </div>
+                <div className="jb2-stat">
+                  <div className="jb2-stat-icon" style={{background:'#DCFCE7'}}>
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <rect x="3" y="8" width="16" height="11" rx="2" stroke="#16A34A" strokeWidth="1.7"/>
+                      <path d="M7 8V6a4 4 0 018 0v2" stroke="#16A34A" strokeWidth="1.7"/>
+                      <line x1="11" y1="12" x2="11" y2="15" stroke="#16A34A" strokeWidth="1.7" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="jb2-stat-num">45</div>
+                    <div className="jb2-stat-lbl">Open shifts today</div>
+                  </div>
+                </div>
+                <div className="jb2-stat">
+                  <div className="jb2-stat-icon" style={{background:'#FFF7ED'}}>
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <circle cx="11" cy="11" r="8.5" stroke="#D97706" strokeWidth="1.7"/>
+                      <path d="M11 6v5l3 2" stroke="#D97706" strokeWidth="1.7" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="jb2-stat-num">98%</div>
+                    <div className="jb2-stat-lbl">Filled faster</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       5 — COLLABORATION SECTION
+    ============================================================ */
+    const NOTIFS = [
+      { icon:'📋', iconBg:'#EEF2FF', title:'Shift assigned', sub:'You have been assigned a shift on Friday 9AM–5PM', time:'2m ago' },
+      { icon:'⏰', iconBg:'#FEF3C7', title:'Shift starting soon', sub:'Your shift at Grace Valley starts in 30 minutes', time:'28m ago' },
+      { icon:'✅', iconBg:'#ECFDF5', title:'Clock out reminder', sub:'Don\'t forget to clock out — shift ends at 5:00 PM', time:'1h ago' },
+    ];
+
+    function CollabPhone() {
+      return (
+        <div className="collab-phone">
+          <div className="collab-phone-screen">
+            <div className="cp-time">9:41</div>
+            <div className="cp-date">Tuesday, 16 April</div>
+            <div className="cp-notif-box">
+              <div className="cp-notif-app">
+                <span style={{fontSize:12}}>📋</span> Plannor
+              </div>
+              <div className="cp-notif-msg">
+                You have a shift today<br/>
+                <strong>1:00 PM – 7:00 PM</strong><br/>
+                Grace Valley, East Region
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function CollaborationSection() {
+      return (
+        <section className="rs-section">
+          <div className="rs-inner">
+            {/* LEFT */}
+            <div className="rs-left">
+              <Eyebrow icon="👥">COLLABORATION</Eyebrow>
+              <h2 className="rs-heading">
+                Connected teams.<br/>
+                <span className="purple">Care that delivers.</span>
+              </h2>
+              <p className="rs-body">
+                Keep your whole team aligned with real-time notifications, in-app messaging, and instant shift updates — all in one place.
+              </p>
+              <FeatureItem title="Smarter team coordination" desc="Assign tasks, share notes, and keep everyone on the same page." />
+              <FeatureItem title="Real-time notifications" desc="Instant alerts for shift changes, assignments, and reminders." />
+              <FeatureItem title="In-app messaging" desc="Direct and group messaging — no need to switch between apps." />
+              <ExploreLink>Discover how Collaboration helps</ExploreLink>
+              <Testimonial
+                quote="Our team finally feels connected. No more missed shifts or lost messages."
+                name="Katie D."
+                role="All Ways Care"
+              />
+            </div>
+            {/* RIGHT */}
+            <div className="rs-right">
+              <div style={{display:'flex',gap:24,alignItems:'flex-start'}}>
+                {/* Notification cards */}
+                <div style={{flex:1}}>
+                  {NOTIFS.map((n,i) => (
+                    <div key={i} className="collab-notif">
+                      <div className="collab-notif-icon" style={{background:n.iconBg}}>
+                        {n.icon}
+                      </div>
+                      <div style={{flex:1}}>
+                        <div className="collab-notif-title">{n.title}</div>
+                        <div className="collab-notif-sub">{n.sub}</div>
+                      </div>
+                      <div style={{fontSize:10,color:'#94A3B8',fontFamily:'Inter,sans-serif',flexShrink:0}}>{n.time}</div>
+                    </div>
+                  ))}
+                </div>
+                {/* Lock screen phone */}
+                <CollabPhone />
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ============================================================
+       APP
+    ============================================================ */
+    function App() {
+      return (
+        <React.Fragment>
+          <SmartRosteringSection />
+          <SchedulerSection />
+          <SchadsSection />
+          <JobBoardSection />
+          <CollaborationSection />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('rostering-root')).render(<App />);
+    </script>
+
 </body>
 </html>
