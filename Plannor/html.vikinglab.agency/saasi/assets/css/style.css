@@ -10289,15 +10289,11 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 340px;
+  padding-top: 80px;
 }
 
 .vl-cta-area-wrap {
   margin-top: -100px;
-}
-
-.vl-footer-area {
-  margin-top: -265px;
 }
 
 .vl-footer-widget-1 {
