@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Staff &amp; Compliance</title>
+
+    <link rel="shortcut icon" href="assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        .sc-section {
+            background: #FBF9FF;
+            font-family: 'Inter', system-ui, sans-serif;
+            overflow: hidden;
+            position: relative;
+            padding: 100px 0 140px;
+        }
+
+        /* Decorative elements */
+        .sc-glow {
+            position: absolute;
+            top: -120px;
+            left: -120px;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(165,180,252,0.22) 0%, transparent 68%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sc-circle {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(99,102,241,0.12);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sc-curve-line {
+            position: absolute;
+            top: 120px;
+            left: 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sc-dot-grid {
+            position: absolute;
+            top: 50px;
+            right: 80px;
+            width: 120px;
+            height: 120px;
+            background-image: radial-gradient(circle, #A5B4FC 1.5px, transparent 1.5px);
+            background-size: 14px 14px;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .sc-doodle {
+            position: absolute;
+            top: 70px;
+            right: 220px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sc-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Top content ── */
+        .sc-top {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .sc-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2.8px;
+            color: #2563EB;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .sc-eyebrow-underline {
+            display: inline-block;
+            width: 40px;
+            height: 4px;
+            background: #2563EB;
+            border-radius: 2px;
+            margin: 0 auto 24px;
+        }
+        .sc-heading {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 62px;
+            font-weight: 400;
+            line-height: 1.02;
+            color: #0B1435;
+            margin: 0 auto 18px;
+            max-width: 800px;
+            letter-spacing: -0.5px;
+        }
+        .sc-heading .gradient {
+            background: linear-gradient(90deg, #2563EB, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .sc-desc {
+            font-size: 18px;
+            color: #5B677D;
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* ── Stat cards ── */
+        .sc-stats {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 48px;
+            justify-content: center;
+        }
+        .sc-stat-card {
+            flex: 1;
+            max-width: 410px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #F0EEFF;
+            box-shadow: 0 4px 20px rgba(79,93,255,0.07);
+            padding: 22px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: box-shadow .25s;
+        }
+        .sc-stat-card:hover {
+            box-shadow: 0 8px 32px rgba(79,93,255,0.13);
+        }
+        .sc-stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sc-stat-icon.mint  { background: #D1FAE5; }
+        .sc-stat-icon.peach { background: #FFF3E0; }
+        .sc-stat-icon.lav   { background: #EDE9FE; }
+        .sc-stat-body { flex: 1; min-width: 0; }
+        .sc-stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 2px;
+        }
+        .sc-stat-number {
+            font-size: 30px;
+            font-weight: 800;
+            color: #0B1435;
+            line-height: 1.1;
+        }
+        .sc-stat-text {
+            font-size: 13px;
+            color: #64748B;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        .sc-stat-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sc-stat-arrow.mint  { background: #D1FAE5; }
+        .sc-stat-arrow.peach { background: #FFF3E0; }
+        .sc-stat-arrow.lav   { background: #EDE9FE; }
+
+        /* ── Dashboard ── */
+        .sc-dashboard {
+            background: linear-gradient(135deg, #101B48 0%, #0B1435 100%);
+            border-radius: 22px;
+            padding: 32px 32px 0;
+            position: relative;
+            min-height: 385px;
+            margin-bottom: 30px;
+        }
+        .sc-dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+        .sc-dash-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .sc-dash-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 8px;
+            color: rgba(255,255,255,0.75);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .sc-dash-btn:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+        }
+
+        .sc-dash-panels {
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        /* Panel 1 — Compliance Score */
+        .sc-panel-score {
+            flex: 0 0 260px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 20px 22px;
+            text-align: center;
+        }
+        .sc-panel-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.55);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+        .sc-ring-wrap {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 14px;
+        }
+        .sc-ring-svg {
+            transform: rotate(-90deg);
+        }
+        .sc-ring-bg {
+            fill: none;
+            stroke: rgba(255,255,255,0.08);
+            stroke-width: 7;
+        }
+        .sc-ring-fg {
+            fill: none;
+            stroke: #22C55E;
+            stroke-width: 7;
+            stroke-linecap: round;
+            stroke-dasharray: 339.3;
+            stroke-dashoffset: 27.1;
+        }
+        .sc-ring-label {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .sc-score-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .sc-score-status span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #22C55E;
+        }
+        .sc-score-bottom {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+        }
+
+        /* Panel 2 — Activity */
+        .sc-panel-activity {
+            flex: 1;
+            background: rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 20px 10px;
+            min-width: 0;
+        }
+        .sc-activity-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .sc-activity-header .sc-panel-title { margin-bottom: 0; }
+        .sc-dropdown {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.08);
+            border: none;
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .sc-activity-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .sc-activity-row:last-child { border-bottom: none; }
+        .sc-activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sc-activity-icon.green     { background: rgba(34,197,94,0.18); }
+        .sc-activity-icon.orange    { background: rgba(249,115,22,0.18); }
+        .sc-activity-icon.purple    { background: rgba(124,58,237,0.18); }
+        .sc-activity-icon.coral     { background: rgba(239,68,68,0.18); }
+        .sc-activity-body { flex: 1; min-width: 0; }
+        .sc-activity-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .sc-activity-name small {
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+        }
+        .sc-activity-desc {
+            font-size: 11.5px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.3;
+        }
+        .sc-activity-time {
+            font-size: 10.5px;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Panel 3 — Attention */
+        .sc-panel-attention {
+            flex: 0 0 260px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 20px 16px;
+        }
+        .sc-attention-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .sc-attention-head .sc-panel-title { margin-bottom: 0; }
+        .sc-badge {
+            background: rgba(239,68,68,0.2);
+            color: #F87171;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .sc-attention-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+        }
+        .sc-attention-row:last-child { border-bottom: none; }
+        .sc-attn-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .sc-attn-avatar.coral  { background: #EF4444; }
+        .sc-attn-avatar.orange { background: #F97316; }
+        .sc-attn-avatar.teal   { background: #14B8A6; }
+        .sc-attn-body { flex: 1; min-width: 0; }
+        .sc-attn-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .sc-attn-issue {
+            font-size: 10.5px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        .sc-attn-issue.coral  { color: #F87171; }
+        .sc-attn-issue.orange { color: #FB923C; }
+        .sc-attn-chevron {
+            color: rgba(255,255,255,0.25);
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+        .sc-attn-link {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #60A5FA;
+            margin-top: 14px;
+            text-decoration: none;
+        }
+        .sc-attn-link:hover { color: #93C5FD; }
+
+        /* ── Document cards ── */
+        .sc-docs {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: -48px;
+            position: relative;
+            z-index: 2;
+        }
+        .sc-doc-card {
+            flex: 1;
+            max-width: 360px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #F0EEFF;
+            box-shadow: 0 8px 28px rgba(79,93,255,0.10);
+            padding: 22px 20px 20px;
+            position: relative;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .sc-doc-card:hover {
+            box-shadow: 0 12px 40px rgba(79,93,255,0.16);
+            transform: translateY(-3px);
+        }
+        .sc-doc-menu {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            color: #CBD5E1;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+        .sc-doc-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        .sc-doc-icon.mint  { background: #D1FAE5; }
+        .sc-doc-icon.peach { background: #FFF3E0; }
+        .sc-doc-icon.lav   { background: #EDE9FE; }
+        .sc-doc-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0B1435;
+            margin-bottom: 2px;
+        }
+        .sc-doc-person {
+            font-size: 12.5px;
+            color: #64748B;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .sc-doc-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sc-doc-pill {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+        }
+        .sc-doc-pill.green  { background: #D1FAE5; color: #16A34A; }
+        .sc-doc-pill.orange { background: #FFF3E0; color: #F97316; }
+        .sc-doc-pill.purple { background: #EDE9FE; color: #7C3AED; }
+        .sc-doc-expiry {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1200px) {
+            .sc-stats { flex-wrap: wrap; }
+            .sc-stat-card { max-width: none; flex: 1 1 280px; }
+            .sc-dash-panels { flex-wrap: wrap; }
+            .sc-panel-score { flex: 1 1 100%; }
+            .sc-panel-attention { flex: 1 1 100%; }
+            .sc-docs { flex-wrap: wrap; }
+            .sc-doc-card { max-width: none; flex: 1 1 280px; }
+            .sc-heading { font-size: 44px; }
+        }
+        @media (max-width: 640px) {
+            .sc-container { padding: 0 20px; }
+            .sc-heading { font-size: 34px; }
+            .sc-eyebrow { font-size: 13px; letter-spacing: 1.8px; }
+            .sc-desc { font-size: 15px; }
+            .sc-stat-card { flex: 1 1 100%; }
+            .sc-dashboard { padding: 24px 16px 0; }
+            .sc-dash-panels { flex-direction: column; }
+            .sc-panel-score,
+            .sc-panel-attention { flex: none; width: 100%; }
+            .sc-docs { flex-direction: column; align-items: center; }
+            .sc-doc-card { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="global-header"></div>
+
+    <main>
+        <!-- =========== breadcrumb area start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Staff &amp; Compliance</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Staff &amp; Compliance</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb area end =========== -->
+
+        <!-- =========== Staff & Compliance section start =========== -->
+        <section class="sc-section">
+
+            <!-- Decorative elements -->
+            <div class="sc-glow"></div>
+            <div class="sc-circle"></div>
+            <div class="sc-curve-line">
+                <svg width="140" height="80" viewBox="0 0 140 80" fill="none">
+                    <path d="M2 60 Q40 10 80 40 Q110 60 138 30" stroke="#A5B4FC" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5"/>
+                </svg>
+            </div>
+            <div class="sc-dot-grid"></div>
+            <div class="sc-doodle">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <path d="M2 30 C15 10 30 50 45 20 C52 6 56 40 58 48" stroke="#A5B4FC" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.45"/>
+                </svg>
+            </div>
+
+            <div class="sc-container">
+
+                <!-- Top content -->
+                <div class="sc-top">
+                    <div class="sc-eyebrow">
+                        STAFF &amp; COMPLIANCE
+                    </div>
+                    <div class="sc-eyebrow-underline"></div>
+
+                    <h2 class="sc-heading">
+                        Keep your team compliant.<br/>
+                        Keep care <span class="gradient">moving forward.</span>
+                    </h2>
+
+                    <p class="sc-desc">
+                        Plannor brings all your staff, documents and training together in one place so you can stay audit-ready and focus on what matters most.
+                    </p>
+                </div>
+
+                <!-- Stat cards -->
+                <div class="sc-stats">
+                    <div class="sc-stat-card">
+                        <div class="sc-stat-icon mint">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+                                <polyline points="23 6 17 12 14 9"/>
+                            </svg>
+                        </div>
+                        <div class="sc-stat-body">
+                            <div class="sc-stat-label">Staff ready</div>
+                            <div class="sc-stat-number">24</div>
+                            <div class="sc-stat-text">of 26 staff compliant</div>
+                        </div>
+                        <div class="sc-stat-arrow mint">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="sc-stat-card">
+                        <div class="sc-stat-icon peach">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
+                            </svg>
+                        </div>
+                        <div class="sc-stat-body">
+                            <div class="sc-stat-label">Documents expiring</div>
+                            <div class="sc-stat-number">5</div>
+                            <div class="sc-stat-text">in the next 30 days</div>
+                        </div>
+                        <div class="sc-stat-arrow peach">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="sc-stat-card">
+                        <div class="sc-stat-icon lav">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </div>
+                        <div class="sc-stat-body">
+                            <div class="sc-stat-label">Training completion</div>
+                            <div class="sc-stat-number">88%</div>
+                            <div class="sc-stat-text">average completion</div>
+                        </div>
+                        <div class="sc-stat-arrow lav">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard -->
+                <div class="sc-dashboard">
+                    <div class="sc-dash-header">
+                        <div class="sc-dash-title">Compliance Command Centre</div>
+                        <button class="sc-dash-btn">View all staff &rsaquo;</button>
+                    </div>
+
+                    <div class="sc-dash-panels">
+                        <!-- Panel 1 — Compliance Score -->
+                        <div class="sc-panel-score">
+                            <div class="sc-panel-title">Overall Compliance</div>
+                            <div class="sc-ring-wrap">
+                                <svg class="sc-ring-svg" width="120" height="120" viewBox="0 0 120 120">
+                                    <circle class="sc-ring-bg" cx="60" cy="60" r="54"/>
+                                    <circle class="sc-ring-fg" cx="60" cy="60" r="54"/>
+                                </svg>
+                                <div class="sc-ring-label">92%</div>
+                            </div>
+                            <div class="sc-score-status">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#22C55E" stroke="#22C55E" strokeWidth="1.2"/>
+                                    <path d="M9 12l2 2 4-4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                                <span>Excellent</span>
+                            </div>
+                            <div class="sc-score-bottom">24 of 26 staff compliant</div>
+                        </div>
+
+                        <!-- Panel 2 — Activity -->
+                        <div class="sc-panel-activity">
+                            <div class="sc-activity-header">
+                                <div class="sc-panel-title">Compliance Activity</div>
+                                <select class="sc-dropdown">
+                                    <option>This month</option>
+                                </select>
+                            </div>
+
+                            <div class="sc-activity-row">
+                                <div class="sc-activity-icon green">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 12l3.5 3.5L17 8" stroke="inherit"/></svg>
+                                </div>
+                                <div class="sc-activity-body">
+                                    <div class="sc-activity-name">Emma Wilson <small>&middot; First Aid Certificate</small></div>
+                                    <div class="sc-activity-desc">Verified and approved</div>
+                                </div>
+                                <div class="sc-activity-time">Today, 9:41 am</div>
+                            </div>
+
+                            <div class="sc-activity-row">
+                                <div class="sc-activity-icon orange">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                </div>
+                                <div class="sc-activity-body">
+                                    <div class="sc-activity-name">Daniel Chen <small>&middot; First Aid Certificate</small></div>
+                                    <div class="sc-activity-desc">Expires in 14 days</div>
+                                </div>
+                                <div class="sc-activity-time">Today, 8:15 am</div>
+                            </div>
+
+                            <div class="sc-activity-row">
+                                <div class="sc-activity-icon purple">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                                </div>
+                                <div class="sc-activity-body">
+                                    <div class="sc-activity-name">Sarah Mitchell <small>&middot; Medication Training</small></div>
+                                    <div class="sc-activity-desc">Training completed</div>
+                                </div>
+                                <div class="sc-activity-time">Yesterday, 4:22 pm</div>
+                            </div>
+
+                            <div class="sc-activity-row">
+                                <div class="sc-activity-icon coral">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                                </div>
+                                <div class="sc-activity-body">
+                                    <div class="sc-activity-name">James Roberts <small>&middot; Police Check</small></div>
+                                    <div class="sc-activity-desc">Document missing</div>
+                                </div>
+                                <div class="sc-activity-time">Yesterday, 2:10 pm</div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3 — Attention -->
+                        <div class="sc-panel-attention">
+                            <div class="sc-attention-head">
+                                <div class="sc-panel-title">Needs attention</div>
+                                <span class="sc-badge">3</span>
+                            </div>
+
+                            <div class="sc-attention-row">
+                                <div class="sc-attn-avatar coral">JR</div>
+                                <div class="sc-attn-body">
+                                    <div class="sc-attn-name">James Roberts</div>
+                                    <div class="sc-attn-issue coral">Police check missing</div>
+                                </div>
+                                <div class="sc-attn-chevron">&rsaquo;</div>
+                            </div>
+
+                            <div class="sc-attention-row">
+                                <div class="sc-attn-avatar orange">DC</div>
+                                <div class="sc-attn-body">
+                                    <div class="sc-attn-name">Daniel Chen</div>
+                                    <div class="sc-attn-issue orange">First Aid expires in 14 days</div>
+                                </div>
+                                <div class="sc-attn-chevron">&rsaquo;</div>
+                            </div>
+
+                            <div class="sc-attention-row">
+                                <div class="sc-attn-avatar teal">OS</div>
+                                <div class="sc-attn-body">
+                                    <div class="sc-attn-name">Olivia Smith</div>
+                                    <div class="sc-attn-issue orange">NDIS Screening expires in 21 days</div>
+                                </div>
+                                <div class="sc-attn-chevron">&rsaquo;</div>
+                            </div>
+
+                            <a href="#" class="sc-attn-link">View all actions &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document cards (overlapping) -->
+                <div class="sc-docs">
+                    <div class="sc-doc-card">
+                        <div class="sc-doc-menu">&vellip;</div>
+                        <div class="sc-doc-icon mint">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/>
+                                <path d="M7 21v-2a2 2 0 012-2h6a2 2 0 012 2v2"/>
+                            </svg>
+                        </div>
+                        <div class="sc-doc-title">NDIS Worker Screening</div>
+                        <div class="sc-doc-person">Emma Wilson</div>
+                        <div class="sc-doc-bottom">
+                            <span class="sc-doc-pill green">Current</span>
+                            <span class="sc-doc-expiry">Expiry: 12 Mar 2025</span>
+                        </div>
+                    </div>
+
+                    <div class="sc-doc-card">
+                        <div class="sc-doc-menu">&vellip;</div>
+                        <div class="sc-doc-icon peach">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="sc-doc-title">Police Check</div>
+                        <div class="sc-doc-person">Daniel Chen</div>
+                        <div class="sc-doc-bottom">
+                            <span class="sc-doc-pill orange">Expires soon</span>
+                            <span class="sc-doc-expiry">Expiry: 24 May 2025</span>
+                        </div>
+                    </div>
+
+                    <div class="sc-doc-card">
+                        <div class="sc-doc-menu">&vellip;</div>
+                        <div class="sc-doc-icon lav">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </div>
+                        <div class="sc-doc-title">Medication Training</div>
+                        <div class="sc-doc-person">Sarah Mitchell</div>
+                        <div class="sc-doc-bottom">
+                            <span class="sc-doc-pill purple">Completed</span>
+                            <span class="sc-doc-expiry">Completed: 10 May 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- =========== Staff & Compliance section end =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress scroll -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/plugin.js"></script>
+    <script src="assets/js/gAnim.js"></script>
+    <script src="assets/js/SmoothScroll.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/parallaxie.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/includes.js"></script>
+</body>
+</html>

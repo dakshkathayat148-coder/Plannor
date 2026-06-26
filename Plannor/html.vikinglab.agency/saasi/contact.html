@@ -117,50 +117,59 @@
                     </div>
                 </div>
 
+                <!-- form feedback -->
+                <div id="form-alert" class="row mb-20" style="display:none;">
+                    <div class="col-xl-12">
+                        <div id="form-alert-inner" style="padding:16px 24px;border-radius:10px;font-size:16px;font-weight:500;"></div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="vl-contact-inner-bg">
+                            <form action="contact.php" method="POST" id="contact-form">
                             <div class="row">
                                 <div class="col-xl-6 col-md-6 mb-24">
                                     <div class="vl-contact-singlebox">
-                                        <label>Frist Name*</label>
-                                        <input type="text" placeholder="Enter First Name">
+                                        <label>First Name*</label>
+                                        <input type="text" name="first_name" placeholder="Enter First Name" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6 mb-24">
                                     <div class="vl-contact-singlebox">
                                         <label>Last Name*</label>
-                                        <input type="text" placeholder="Enter Last Name">
+                                        <input type="text" name="last_name" placeholder="Enter Last Name" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6 mb-24">
                                     <div class="vl-contact-singlebox">
                                         <label>Email Address*</label>
-                                        <input type="text" placeholder="Enter Email Address">
+                                        <input type="email" name="email" placeholder="Enter Email Address" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6 mb-24">
                                     <div class="vl-contact-singlebox">
                                         <label>Phone Number*</label>
-                                        <input type="text" placeholder="Enter Phone Number">
+                                        <input type="text" name="phone" placeholder="Enter Phone Number" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-24">
                                     <div class="vl-contact-singlebox">
                                         <label>Subject*</label>
-                                        <input type="text" placeholder="Subject Name">
+                                        <input type="text" name="subject" placeholder="Subject Name" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 mb-24">
                                     <div class="vl-contact-singlebox">
                                         <label>Write Your Message*</label>
-                                        <textarea name="message" id="message" placeholder="Write Your Message"></textarea>
+                                        <textarea name="message" id="message" placeholder="Write Your Message" required></textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 text-xl-end">
                                     <button type="submit" class="vl-primary-btn-1" style="color:#fff;">Claim Your Free Trial <span><img src="assets/img/icon/vl-arrowupright.svg" alt=""></span></button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -237,6 +246,29 @@
     <!-- main js -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/includes.js"></script>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var status = params.get('status');
+            if (status) {
+                var alert = document.getElementById('form-alert');
+                var inner = document.getElementById('form-alert-inner');
+                if (status === 'success') {
+                    inner.style.background = '#e6f9f0';
+                    inner.style.color = '#1a7a4a';
+                    inner.style.border = '1px solid #a3e6c8';
+                    inner.innerHTML = '&#10003; Thank you! Your message has been received. We\'ll be in touch soon.';
+                } else {
+                    inner.style.background = '#fdecea';
+                    inner.style.color = '#c0392b';
+                    inner.style.border = '1px solid #f5c6cb';
+                    inner.innerHTML = '&#10007; Something went wrong. Please try again.';
+                }
+                alert.style.display = 'block';
+                window.scrollTo({ top: alert.offsetTop - 100, behavior: 'smooth' });
+            }
+        })();
+    </script>
 </body>
 
 <!-- Mirrored from html.vikinglab.agency/saasi/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Jun 2026 03:47:16 GMT -->
