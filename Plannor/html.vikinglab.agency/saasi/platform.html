@@ -1052,94 +1052,132 @@
             </div>
         </section>
 
-        <!-- =========== SECTION 6: AI ASSISTANT =========== -->
-        <!-- Layout: content LEFT (col-xl-5) | AI chat mock RIGHT (col-xl-7) — dark bg -->
-        <section class="plt-section plt-section-charcoal" id="ai" style="padding-bottom:200px;">
+        <!-- =========== SECTION 6: AI ASSISTANT — redesigned =========== -->
+        <style>
+        .plt-ai2{ background:#fff; padding:100px 0; }
+        .plt-ai2-eyebrow{ display:inline-flex; align-items:center; gap:8px; background:#f0eeff; border:1.5px solid #ede9fe; border-radius:30px; padding:7px 16px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#5932EA; margin-bottom:20px; }
+        .plt-ai2-h{ font-family:'Figtree',sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:800; color:#0f0e1a; line-height:1.15; margin-bottom:14px; }
+        .plt-ai2-desc{ font-size:15px; color:#666; line-height:1.8; margin-bottom:36px; max-width:420px; }
+
+        /* Feature 2x2 grid */
+        .plt-ai2-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:32px; }
+        .plt-ai2-feat{ background:#f8f5ff; border:1.5px solid #ede9fe; border-radius:16px; padding:18px 16px; }
+        .plt-ai2-feat-ico{ width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:12px; }
+        .plt-ai2-feat-ico.purple{ background:#f0eeff; color:#5932EA; }
+        .plt-ai2-feat-ico.amber{ background:#fffbeb; color:#d97706; }
+        .plt-ai2-feat-ico.green{ background:#f0fdf4; color:#00a066; }
+        .plt-ai2-feat-ico.blue{ background:#f0f9ff; color:#0ea5e9; }
+        .plt-ai2-feat h5{ font-size:13px; font-weight:800; color:#0f0e1a; margin:0 0 4px; font-family:'Figtree',sans-serif; }
+        .plt-ai2-feat p{ font-size:12px; color:#888; margin:0; line-height:1.5; }
+
+        /* Stats row */
+        .plt-ai2-stats{ display:flex; gap:24px; flex-wrap:wrap; }
+        .plt-ai2-stat-num{ font-size:32px; font-weight:900; color:#5932EA; font-family:'Figtree',sans-serif; line-height:1; }
+        .plt-ai2-stat-lbl{ font-size:12px; color:#888; font-weight:500; margin-top:3px; }
+
+        /* Right: note document card */
+        .plt-ai2-doc{ background:#fff; border-radius:24px; border:1.5px solid #ede9fe; box-shadow:0 24px 80px rgba(89,50,234,.11); overflow:hidden; }
+        .plt-ai2-doc-stripe{ height:4px; background:linear-gradient(90deg,#5932EA,#772EFE,#00c87a); }
+        .plt-ai2-doc-status{ display:flex; align-items:center; gap:14px; padding:18px 24px; border-bottom:1px solid #f8f5ff; }
+        .plt-ai2-doc-brain{ width:42px; height:42px; border-radius:13px; background:linear-gradient(135deg,#5932EA,#772EFE); display:flex; align-items:center; justify-content:center; color:#fff; font-size:17px; flex-shrink:0; }
+        .plt-ai2-doc-status-title{ font-size:14px; font-weight:800; color:#0f0e1a; font-family:'Figtree',sans-serif; }
+        .plt-ai2-doc-status-sub{ font-size:11px; color:#bbb; margin-top:2px; }
+        .plt-ai2-doc-done{ margin-left:auto; display:flex; align-items:center; gap:6px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:20px; padding:5px 12px; font-size:11px; font-weight:700; color:#00a066; white-space:nowrap; }
+
+        .plt-ai2-doc-body{ padding:22px 24px; }
+        .plt-ai2-doc-client{ font-size:18px; font-weight:800; color:#0f0e1a; margin-bottom:4px; font-family:'Figtree',sans-serif; }
+        .plt-ai2-doc-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+        .plt-ai2-doc-chip{ font-size:11px; font-weight:600; padding:4px 11px; border-radius:20px; background:#f8f5ff; color:#5932EA; border:1px solid #ede9fe; }
+        .plt-ai2-doc-text{ font-size:13px; color:#555; line-height:1.7; margin-bottom:16px; }
+        .plt-ai2-doc-fields{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+        .plt-ai2-doc-field{ background:#f8f5ff; border-radius:12px; padding:12px 14px; }
+        .plt-ai2-doc-field-lbl{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#bbb; margin-bottom:4px; }
+        .plt-ai2-doc-field-val{ font-size:12px; font-weight:600; color:#444; line-height:1.4; }
+        .plt-ai2-doc-ft{ border-top:1px solid #f8f5ff; padding:14px 24px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+        .plt-ai2-doc-approve{ background:#5932EA; color:#fff; border:none; border-radius:10px; padding:9px 20px; font-size:12px; font-weight:700; cursor:default; display:flex; align-items:center; gap:6px; }
+        .plt-ai2-doc-edit{ background:#f8f5ff; color:#555; border:none; border-radius:10px; padding:9px 16px; font-size:12px; font-weight:600; cursor:default; }
+        .plt-ai2-doc-ndis{ margin-left:auto; background:#f59e0b; color:#fff; font-size:10px; font-weight:800; padding:5px 12px; border-radius:8px; }
+        </style>
+
+        <section class="plt-ai2" id="ai">
             <div class="container">
                 <div class="row align-items-center g-5">
 
-                    <!-- CONTENT (left) -->
+                    <!-- LEFT: copy + features -->
                     <div class="col-xl-5 col-lg-6" data-aos="fade-right">
-                        <span class="plt-subtitle" style="background:rgba(89,50,234,0.25);border-color:rgba(89,50,234,0.45);color:#a78bfa;">
-                            <i class="fa-solid fa-robot"></i> AI Assistant
-                        </span>
-                        <h2 style="font-size:36px;font-weight:800;color:#fff;line-height:1.25;margin:16px 0 14px;">
-                            Your Built-in NDIS AI Assistant
-                        </h2>
-                        <p style="font-size:15px;color:rgba(255,255,255,0.58);line-height:1.8;margin-bottom:32px;">
-                            Plannor's AI writes progress notes, generates incident summaries, flags billing risks, and automates admin so your team can focus entirely on care.
-                        </p>
+                        <div class="plt-ai2-eyebrow"><i class="fa-solid fa-brain"></i> AI Assistant</div>
+                        <h2 class="plt-ai2-h">Admin that writes<br>itself. Every time.</h2>
+                        <p class="plt-ai2-desc">Plannor AI handles progress notes, billing checks, and incident summaries — so your team spends time on care, not paperwork.</p>
 
-                        <div class="plt-ai-row">
-                            <div class="par-icon" style="background:rgba(89,50,234,0.35);"><i class="fa-solid fa-pen-to-square" style="color:#a78bfa;"></i></div>
-                            <div><strong>AI Progress Notes</strong><span>NDIS-compliant notes written in seconds from voice or text input</span></div>
-                        </div>
-                        <div class="plt-ai-row">
-                            <div class="par-icon" style="background:rgba(251,191,36,0.18);"><i class="fa-solid fa-microphone" style="color:#fbbf24;"></i></div>
-                            <div><strong>Voice Mode</strong><span>Speak your notes — AI formats, structures and submits them instantly</span></div>
-                        </div>
-                        <div class="plt-ai-row">
-                            <div class="par-icon" style="background:rgba(0,184,116,0.2);"><i class="fa-solid fa-lightbulb" style="color:#34d399;"></i></div>
-                            <div><strong>Smart Billing Recommendations</strong><span>Flags underclaiming and suggests optimal NDIS catalogue items</span></div>
-                        </div>
-                        <div class="plt-ai-row">
-                            <div class="par-icon" style="background:rgba(56,189,248,0.2);"><i class="fa-solid fa-brain-circuit" style="color:#38bdf8;"></i></div>
-                            <div><strong>AI Insights &amp; Automation</strong><span>Predictive alerts on participant risks, workforce gaps, and revenue trends</span></div>
+                        <div class="plt-ai2-grid">
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico purple"><i class="fa-solid fa-file-pen"></i></div>
+                                <h5>AI Progress Notes</h5>
+                                <p>NDIS-compliant notes in seconds from voice or text</p>
+                            </div>
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico amber"><i class="fa-solid fa-microphone"></i></div>
+                                <h5>Voice Mode</h5>
+                                <p>Speak — AI formats and submits the note instantly</p>
+                            </div>
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico green"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+                                <h5>Smart Billing</h5>
+                                <p>Flags underclaiming and suggests correct NDIS items</p>
+                            </div>
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico blue"><i class="fa-solid fa-chart-line"></i></div>
+                                <h5>AI Insights</h5>
+                                <p>Alerts on participant risks and workforce gaps</p>
+                            </div>
                         </div>
 
-                        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;">
-                            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(89,50,234,0.22);border:1px solid rgba(89,50,234,0.4);border-radius:30px;padding:8px 16px;font-size:12px;font-weight:700;color:#a78bfa;">
-                                <i class="fa-solid fa-circle-check"></i> 40% less admin time
-                            </span>
-                            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(0,184,116,0.15);border:1px solid rgba(0,184,116,0.3);border-radius:30px;padding:8px 16px;font-size:12px;font-weight:700;color:#34d399;">
-                                <i class="fa-solid fa-circle-check"></i> Faster reporting
-                            </span>
-                            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.3);border-radius:30px;padding:8px 16px;font-size:12px;font-weight:700;color:#38bdf8;">
-                                <i class="fa-solid fa-circle-check"></i> Zero missed claims
-                            </span>
-                        </div>
                     </div>
 
-                    <!-- AI CHAT MOCK (right) -->
+                    <!-- RIGHT: AI-generated note document -->
                     <div class="col-xl-7 col-lg-6" data-aos="fade-left">
-                        <div class="plt-ai-mock">
-                            <!-- Window titlebar -->
-                            <div class="pam-bar">
-                                <div class="pam-dots"><span style="background:#ff5f56;"></span><span style="background:#ffbd2e;"></span><span style="background:#27c93f;"></span></div>
-                                <div class="pam-title"><i class="fa-solid fa-robot"></i> Plannor AI &nbsp;&mdash;&nbsp; Progress Note Assistant</div>
-                            </div>
-                            <!-- Chat body -->
-                            <div class="pam-body">
-                                <!-- User prompt -->
-                                <div class="pam-msg pam-user">
-                                    <div class="pam-bubble">Write a progress note for James — 2hr community access, visited library and completed weekly shopping. Positive mood throughout.</div>
-                                    <div class="pam-avatar user-av"><i class="fa-solid fa-user"></i></div>
+                        <div class="plt-ai2-doc">
+                            <div class="plt-ai2-doc-stripe"></div>
+
+                            <!-- Status bar -->
+                            <div class="plt-ai2-doc-status">
+                                <div class="plt-ai2-doc-brain"><i class="fa-solid fa-brain"></i></div>
+                                <div>
+                                    <div class="plt-ai2-doc-status-title">Plannor AI — Note Generated</div>
+                                    <div class="plt-ai2-doc-status-sub">Community Access &nbsp;·&nbsp; 24 Jun 2026 &nbsp;·&nbsp; Generated in 0.8s</div>
                                 </div>
-                                <!-- AI response -->
-                                <div class="pam-msg pam-ai">
-                                    <div class="pam-avatar ai-av"><i class="fa-solid fa-robot"></i></div>
-                                    <div class="pam-bubble ai-bubble">
-                                        <div class="pam-typing-label"><i class="fa-solid fa-sparkles"></i> Plannor AI &nbsp;<span class="pam-generating">Generating...</span></div>
-                                        <div class="pam-note-content">
-                                            <strong>Progress Note — James T. &nbsp;|&nbsp; 24 Jun 2026</strong><br>
-                                            <strong>Support Type:</strong> Community Access (2 hours)<br><br>
-                                            James participated in a 2-hour community access session today. Activities included a visit to the local library and completing his weekly grocery shopping. James demonstrated independence in navigating public spaces and made his own selections during shopping with minimal prompting.<br><br>
-                                            <strong>Participant Mood:</strong> Positive throughout the session. James engaged confidently with library staff and expressed satisfaction upon completing his shopping list.<br><br>
-                                            <strong>Goal Alignment:</strong> <span style="color:#a78bfa;">Community participation (NDIS Plan Goal #2)</span>
-                                        </div>
-                                        <div class="pam-actions">
-                                            <button class="pam-btn"><i class="fa-solid fa-check"></i> Approve &amp; Save</button>
-                                            <button class="pam-btn pam-btn-ghost"><i class="fa-solid fa-pen"></i> Edit</button>
-                                            <button class="pam-btn pam-btn-ghost"><i class="fa-solid fa-rotate"></i> Regenerate</button>
-                                        </div>
+                                <div class="plt-ai2-doc-done"><i class="fa-solid fa-circle-check"></i> Ready</div>
+                            </div>
+
+                            <!-- Note body -->
+                            <div class="plt-ai2-doc-body">
+                                <div class="plt-ai2-doc-client">James T.</div>
+                                <div class="plt-ai2-doc-meta">
+                                    <span class="plt-ai2-doc-chip">Community Access</span>
+                                    <span class="plt-ai2-doc-chip">2 Hours</span>
+                                    <span class="plt-ai2-doc-chip">NDIS</span>
+                                </div>
+                                <div class="plt-ai2-doc-text">
+                                    James participated in a 2-hour community access session today. Activities included a visit to the local library and completing his weekly grocery shopping. James demonstrated independence navigating public spaces and made his own selections during shopping with minimal prompting.
+                                </div>
+                                <div class="plt-ai2-doc-fields">
+                                    <div class="plt-ai2-doc-field">
+                                        <div class="plt-ai2-doc-field-lbl">Participant Mood</div>
+                                        <div class="plt-ai2-doc-field-val">Positive throughout. Engaged confidently with staff.</div>
+                                    </div>
+                                    <div class="plt-ai2-doc-field">
+                                        <div class="plt-ai2-doc-field-lbl">Goal Alignment</div>
+                                        <div class="plt-ai2-doc-field-val">Community participation — NDIS Plan Goal #2</div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Input bar -->
-                            <div class="pam-input-bar">
-                                <div class="pam-input-field"><span style="color:rgba(255,255,255,0.3);">Ask Plannor AI anything about your participants...</span></div>
-                                <button class="pam-send"><i class="fa-solid fa-microphone"></i></button>
-                                <button class="pam-send" style="background:linear-gradient(135deg,#5932EA,#772EFE);"><i class="fa-solid fa-paper-plane-top"></i></button>
+
+                            <!-- Footer actions -->
+                            <div class="plt-ai2-doc-ft">
+                                <button class="plt-ai2-doc-approve"><i class="fa-solid fa-check"></i> Approve &amp; Save</button>
+                                <button class="plt-ai2-doc-edit"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="plt-ai2-doc-edit"><i class="fa-solid fa-rotate"></i> Regenerate</button>
+                                <div class="plt-ai2-doc-ndis">NDIS</div>
                             </div>
                         </div>
                     </div>
@@ -1149,7 +1187,7 @@
         </section>
 
         <!-- =========== cta area start =========== -->
-        <section class="vl-cta-area-wrap fix">
+        <section class="vl-cta-area-wrap fix" style="padding:80px 0;">
             <div class="container">
                 <div class="vl-cta-bg p-relative parallaxie"
                     style="background-image: url(assets/img/hrmanagement/cta/vl-cta-thumb-1.1.png);">
