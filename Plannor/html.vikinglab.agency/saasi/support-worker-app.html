@@ -356,6 +356,130 @@
         .vl-tracking-area8 .vl-featurebox-single-8{ background:rgba(89,50,234,.06); border:1.5px solid #ede9fe; }
         .vl-tracking-area8 .vl-featurebox-single-8:hover{ background:rgba(89,50,234,.1); }
         .vl-tracking-area8 .vl-featurebox-grid-8{ border-bottom:none; }
+
+        /* ══════════════════════════════════════════
+           MOBILE RESPONSIVE
+        ══════════════════════════════════════════ */
+
+        /* ── Tablet (≤ 991px) ── */
+        @media (max-width: 991px) {
+            /* Hero pill grid → stack pills above/below phone */
+            .swa-feat-grid8 { grid-template-columns: 1fr; gap: 24px; }
+            .swa-feat-col { flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: center; }
+            .swa-feat-col.right { justify-content: center; }
+            .swa-feat-pill { padding: 10px 16px; }
+            .swa-feat-pill-txt { white-space: normal; font-size: 13px; }
+
+            /* GPS steps → single column */
+            .swa-gps2-steps { grid-template-columns: 1fr; gap: 16px; }
+            .swa-gps2-steps::before { display: none; }
+            .swa-gps2-step { margin: 0; }
+
+            /* GPS bottom → stack */
+            .swa-gps2-bottom { grid-template-columns: 1fr; }
+            .swa-gps2-stat-block { border-right: none; border-bottom: 1px solid #f0eeff; }
+            .swa-gps2-bullets { grid-template-columns: 1fr 1fr; }
+
+            /* Progress notes grid → stack */
+            .swa-pn2-grid { grid-template-columns: 1fr; }
+
+            /* Progress notes 4-col bullets → 2 col */
+            .swa-pn2-bullets { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+            /* Hero heading */
+            .swa-hero-h { font-size: 38px; letter-spacing: -1px; }
+            .swa-sect-h { font-size: 32px; }
+        }
+
+        /* ── Mobile (≤ 767px) ── */
+        @media (max-width: 767px) {
+            /* Banner */
+            .vl-breadcrumb-content .title { font-size: 34px; }
+
+            /* Hero */
+            .swa-hero { padding: 60px 0 70px; }
+            .swa-hero-h { font-size: 30px; letter-spacing: -0.5px; }
+            .swa-hero-desc { font-size: 14px; }
+            .swa-hero-btns { flex-direction: column; align-items: center; }
+            .swa-hero-btn-p, .swa-hero-btn-s { width: 100%; max-width: 280px; justify-content: center; }
+
+            /* Hero badges (absolute on phone mockup) — hide */
+            .swa-hero-badge, .swa-hero-badge2 { display: none; }
+
+            /* Phone mockup smaller */
+            .swa-phone-svg { width: 220px; }
+
+            /* Stats */
+            .swa-stat-num { font-size: 30px; }
+
+            /* Features section */
+            .swa-feat { padding: 64px 0; }
+            .swa-sect-h { font-size: 28px; }
+
+            /* Deep features */
+            .swa-df { padding: 64px 0; }
+
+            /* GPS section */
+            .swa-gps2-h { font-size: 28px; }
+            .swa-gps2-desc { font-size: 14px; }
+            .swa-gps2-stat-num { font-size: 36px; }
+            .swa-gps2-bullets { grid-template-columns: 1fr; gap: 10px; padding: 20px 22px; }
+            .swa-gps2-stat-block { padding: 22px 22px; }
+
+            /* Progress notes */
+            .swa-pn2-h { font-size: 28px; }
+            .swa-pn2-desc { font-size: 14px; }
+            .swa-pn2-bullets { grid-template-columns: 1fr; }
+            .swa-pn2-doc-ft { flex-wrap: wrap; gap: 8px; }
+            .swa-pn2-cats { flex-wrap: wrap; }
+
+            /* Timesheet slip */
+            .swa-slip-cols { display: none; }
+            .swa-slip-row { flex-wrap: wrap; gap: 2px; padding: 10px 18px; }
+            .swa-slip-day { flex: 0 0 40px; }
+            .swa-slip-client { flex: 1; }
+            .swa-slip-hrs { flex: 0 0 auto; }
+            .swa-slip-totals { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .swa-slip-gross { text-align: left; }
+            .swa-slip-gross-val { font-size: 24px; }
+
+            /* How it works */
+            .swa-how { padding: 64px 0; }
+
+            /* App badges */
+            .swa-badges { flex-direction: column; align-items: center; }
+            .swa-badge-btn { width: 200px; justify-content: center; }
+        }
+
+        /* ── Small phones (≤ 480px) ── */
+        @media (max-width: 480px) {
+            .swa-hero-h { font-size: 26px; }
+            .swa-hero-tag { font-size: 11px; padding: 6px 12px; }
+            .swa-sect-h { font-size: 24px; }
+            .swa-df-h { font-size: 26px; }
+            .swa-gps2-h { font-size: 24px; }
+            .swa-pn2-h { font-size: 24px; }
+
+            .swa-feat { padding: 50px 0; }
+            .swa-df { padding: 50px 0; }
+            .swa-how { padding: 50px 0; }
+
+            .swa-feat-card { padding: 22px 20px; }
+            .swa-gps2-step { padding: 20px 18px 18px; }
+
+            /* Pill grid — smaller pills */
+            .swa-feat-pill { padding: 8px 12px; gap: 10px; }
+            .swa-feat-pill-ico { width: 30px; height: 30px; }
+            .swa-feat-pill-ico i { font-size: 12px; }
+            .swa-feat-pill-txt { font-size: 12px; }
+
+            /* Stats 2-col stays, just reduce font */
+            .swa-stat-num { font-size: 26px; }
+            .swa-stat-lbl { font-size: 12px; }
+
+            /* Slip footer wrap */
+            .swa-slip-ft { flex-wrap: wrap; gap: 8px; }
+        }
     </style>
 </head>
 <body>
