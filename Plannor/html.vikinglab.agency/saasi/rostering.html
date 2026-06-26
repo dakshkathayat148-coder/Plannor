@@ -2192,6 +2192,144 @@
             .collab-notifs { max-width: 200px; }
         }
 
+
+        /* ============================================================
+           MOBILE RESPONSIVE — comprehensive
+        ============================================================ */
+
+        /* ---- Tablet (≤ 900px) ---- */
+        @media (max-width: 900px) {
+            .sr-inner, .sc-inner, .shd-inner, .collab-inner { padding: 0 24px; gap: 48px; }
+            .sr-heading, .sc-heading, .shd-heading, .collab-heading { font-size: 36px; }
+        }
+
+        /* ---- Mobile (≤ 640px) already has some rules above; these extend them ---- */
+        @media (max-width: 640px) {
+            /* Inner containers */
+            .sr-inner, .sc-inner, .shd-inner, .collab-inner { padding: 0 16px; gap: 40px; flex-direction: column; }
+            .sr-left, .sc-left, .shd-left, .collab-left { width: 100%; flex: none; }
+
+            /* Section padding */
+            .sr-hero, .sc-section, .shd-section { padding: 40px 0 48px; }
+            .collab-section { padding: 60px 0 70px; }
+
+            /* Headings */
+            .sr-heading, .sc-heading, .shd-heading, .collab-heading { font-size: 28px; }
+
+            /* Body text */
+            .sr-body, .sc-body, .shd-body, .collab-body { font-size: 15px; max-width: 100%; }
+
+            /* Breadcrumb */
+            .vl-breadcrumb-area { min-height: 260px !important; padding-top: 60px !important; padding-bottom: 20px !important; }
+
+            /* ---- ROSTERING HERO ---- */
+            /* Hide floating cards & dots on small screens */
+            .sr-float-top, .sr-float-bottom, .sr-dots { display: none !important; }
+            .sr-dashboard { margin-top: 0 !important; }
+
+            /* Roster header */
+            .sr-roster-head { flex-wrap: wrap; padding: 10px 14px; gap: 8px; }
+            .sr-roster-btns { flex-wrap: wrap; gap: 6px; width: 100%; }
+            .sr-open-btn { flex: 1; justify-content: center; }
+            .sr-add-shift-btn { flex: 1; }
+
+            /* Roster toolbar */
+            .sr-roster-toolbar { flex-wrap: wrap; row-gap: 6px; padding: 8px 12px; }
+            .sr-search-box { flex: 1 1 calc(50% - 4px); min-width: 0; }
+            .sr-pp-dd { flex: 1 1 calc(50% - 4px); min-width: 0; }
+            .sr-date-nav-wrap { width: 100%; justify-content: flex-start; margin-left: 0; }
+            .sr-date-str { font-size: 10px; }
+            .sr-view-tabs { margin-left: auto !important; }
+            .sr-view-tab:nth-child(3), .sr-view-tab:nth-child(4) { display: none; }
+
+            /* Roster table — keep staff col + 4 day cols */
+            .sr-roster-tbl { font-size: 10px; }
+            .sr-roster-tbl th.sr-staff-hd { width: 120px; padding-left: 10px; }
+            .sr-staff-row-inner { gap: 6px; }
+            .sr-roster-av { width: 24px; height: 24px; font-size: 8px; border-radius: 5px; }
+            .sr-staff-nm { font-size: 10px; }
+            .sr-staff-rl { font-size: 8px; }
+            .sr-add-cell-btn { font-size: 9px; padding: 3px 0; }
+
+            /* ---- SCHEDULER ---- */
+            .sc-heading { font-size: 28px; }
+            .sc-add-btn { font-size: 12px; padding: 10px 16px; }
+            .sc-staff-col { flex: 0 0 110px; width: 110px; }
+            .sc-staff-name { font-size: 11px; }
+            .sc-staff-role { font-size: 9px; }
+            .sc-avatar { width: 32px; height: 32px; font-size: 10px; }
+            .sc-staff-row { padding: 10px 10px; gap: 7px; height: 68px; }
+            .sc-grid-row { height: 68px; }
+            .sc-shift-time { font-size: 10px; }
+            .sc-shift-service { font-size: 10px; }
+            .sc-shift-clients { font-size: 9px; }
+            .sc-refresh-col { flex: 0 0 32px; width: 32px; }
+            .sc-refresh-cell { height: 68px; }
+            .sc-testimonial { padding: 16px 18px; }
+            .sc-testimonial-text { font-size: 13px; }
+            .sc-feature-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .sc-feature-title { font-size: 15px; }
+            .sc-feature-desc { font-size: 13px; }
+
+            /* ---- SCHADS ---- */
+            .shd-heading { font-size: 28px; }
+            .shd-diagram { grid-template-columns: 1fr 72px 1fr; }
+            .shd-pill { font-size: 11px; padding: 6px 12px; }
+            .shd-pill-label { font-size: 9px; }
+            .shd-pills-col { gap: 24px; }
+            .shd-feature-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .shd-feature-title { font-size: 15px; }
+            .shd-feature-desc { font-size: 13px; }
+            .shd-banner { padding: 12px 16px; gap: 12px; margin: 0 -16px; }
+            .shd-testimonial { padding: 16px 18px; }
+
+            /* ---- COLLABORATION ---- */
+            .collab-heading { font-size: 28px; }
+            .collab-phone-area { flex-direction: column-reverse; align-items: center; gap: 20px; }
+            .collab-notifs { padding-top: 0; max-width: 100%; width: 100%; flex-direction: row; flex-wrap: wrap; }
+            .collab-notif { flex: 1 1 calc(50% - 6px); min-width: 180px; }
+            .collab-testimonial { flex-direction: column; gap: 6px; }
+            .collab-testimonial-quote { font-size: 40px; margin-top: 0; }
+            .collab-feature-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .collab-feature-title { font-size: 15px; }
+            .collab-feature-desc { font-size: 13px; }
+            .collab-dashes { display: none; }
+        }
+
+        /* ---- Small phones (≤ 480px) ---- */
+        @media (max-width: 480px) {
+            .sr-inner, .sc-inner, .shd-inner, .collab-inner { padding: 0 14px; gap: 32px; }
+            .sr-heading, .sc-heading, .shd-heading, .collab-heading { font-size: 24px; }
+
+            /* Hero bullets */
+            .sr-bullets li { font-size: 14px; gap: 10px; }
+            .sr-check { width: 22px; height: 22px; }
+
+            /* Roster — hide sat col on tiny screens */
+            .sr-roster-tbl th:last-child,
+            .sr-roster-tbl td:last-child { display: none; }
+            .sr-open-btn { display: none; }
+            .sr-add-shift-btn { width: 100%; }
+
+            /* Scheduler — hide refresh column */
+            .sc-refresh-col { display: none; }
+            .sc-staff-col { flex: 0 0 95px; width: 95px; }
+
+            /* SCHADS diagram — simplify */
+            .shd-diagram { grid-template-columns: 1fr 56px 1fr; }
+            .shd-pill { font-size: 10px; padding: 5px 9px; }
+            .shd-pills-col { gap: 16px; }
+            .shd-connectors { display: none; }
+
+            /* Collab phone + notifs */
+            .collab-phone { width: 180px; }
+            .collab-phone-frame { width: 180px; }
+            .collab-phone-screen { height: 360px; }
+            .collab-phone-time { font-size: 36px; }
+            .collab-notif { flex: 1 1 100%; }
+            .collab-dot-grid { display: none; }
+        }
+
     </style>
 
 </head>
