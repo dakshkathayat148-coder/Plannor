@@ -1599,6 +1599,174 @@
         .im2-testi-name { font-size: 14px; font-weight: 700; color: #101B3D; margin: 0 0 2px; }
         .im2-testi-role { font-size: 12px; color: #94a3b8; margin: 0 0 7px; }
 
+        /* =====================================================
+           MOBILE RESPONSIVE — comprehensive
+        ===================================================== */
+
+        /* ---- Tablet (≤ 991px) ---- */
+        @media (max-width: 991px) {
+            /* ch-hero */
+            .ch-inner { flex-direction: column; padding: 0 32px; gap: 48px; }
+            .ch-left { flex: none; width: 100%; padding-right: 0; }
+            .ch-right { flex: none; width: 100%; height: 500px; }
+            .ch-headline { font-size: 44px; }
+            .ch-strip { position: static; transform: none; width: 100%; border-radius: 20px;
+                        margin: 40px 0 0; padding: 22px 24px; flex-wrap: wrap; gap: 20px; }
+            .ch-strip-item { flex: 1 1 calc(50% - 20px); border-right: none; padding: 0; }
+
+            /* pf-section */
+            .pf-wrap { padding: 0 32px; }
+            .pf-row { flex-direction: column; gap: 40px; }
+            .pf-row.pf-reverse { flex-direction: column; }
+            .pf-left { flex: none; width: 100%; }
+            .pf-heading { font-size: 32px; }
+            .pf-testi-wrap { padding: 0 32px; }
+            .pf-testi { flex-direction: column; gap: 20px; }
+            .pf-testi-right { border-left: none; margin-left: 0; padding-left: 0;
+                              border-top: 1px solid #ddd8f5; padding-top: 20px; }
+
+            /* msgv2 */
+            .msgv2-wrap { padding: 0 32px; }
+            .msgv2-row { flex-direction: column; gap: 40px; }
+            .msgv2-left { flex: none; width: 100%; height: 460px; }
+            .msgv2-testi-wrap { padding: 0 32px 60px; }
+            .msgv2-testi { flex-direction: column; gap: 20px; }
+            .msgv2-testi-person { border-left: none; margin-left: 0; padding-left: 0;
+                                  border-top: 1px solid #ddd8f5; padding-top: 20px; }
+
+            /* im2 */
+            .im2-visual { min-height: 440px; }
+            .im2-testi-wrap { padding: 40px 32px 60px; }
+            .im2-testi { flex-direction: column; gap: 20px; }
+            .im2-testi-person { border-left: none; margin-left: 0; padding-left: 0;
+                                border-top: 1.5px solid #d4caff; padding-top: 20px; }
+
+            /* cs */
+            .cs-headline { font-size: 32px; }
+        }
+
+        /* ---- Mobile (≤ 767px) ---- */
+        @media (max-width: 767px) {
+            /* cm-hero (Bootstrap grid already stacks, just adjust sizes) */
+            .cm-title { font-size: 30px; }
+            .cm-desc { font-size: 15px; max-width: 100%; }
+            .cm-features { gap: 20px; }
+            .cm-feature-icon { width: 52px; height: 52px; font-size: 20px; }
+
+            /* ch-hero */
+            .ch-inner { padding: 0 20px; gap: 36px; }
+            .ch-headline { font-size: 34px; letter-spacing: -1px; }
+            .ch-para { font-size: 14px; max-width: 100%; }
+            .ch-feats { flex-wrap: wrap; gap: 12px; }
+            .ch-feat-item { border-right: none; padding: 0 12px 0 0; flex: 1 1 calc(33% - 12px); }
+            .ch-right { height: 380px; }
+            .ch-circle { width: 340px; height: 340px; }
+            /* floating cards — hide complex ones, keep simple */
+            .ch-card-ov { width: 200px; left: 0; padding: 12px 14px; }
+            .ch-card-gp { width: 190px; left: 2px; padding: 12px 14px; }
+            .ch-card-up { width: 165px; right: 2px; padding: 11px 12px; }
+            .ch-card-rn { display: none; }
+            .ch-card-badge { display: none; }
+            .ch-strip { flex-wrap: wrap; gap: 16px; padding: 18px 20px; }
+            .ch-strip-item { flex: 1 1 calc(50% - 16px); }
+            .ch-ctas { flex-wrap: wrap; gap: 12px; }
+
+            /* pf-section */
+            .pf-section { padding: 64px 0; }
+            .pf-wrap { padding: 0 20px; }
+            .pf-heading { font-size: 28px; }
+            .pf-para { font-size: 14px; }
+            .pf-feat-body h5 { font-size: 14px; }
+            .pf-testi-wrap { padding: 0 20px; }
+            .pf-testi { padding: 20px 22px; }
+
+            /* cq-visual — hide on mobile */
+            .cq-visual { display: none; }
+            .cq-step:nth-child(2) { margin-left: 0; }
+
+            /* mf-visual — hide floating elements, show photos stacked */
+            .mf-visual { min-height: 300px; }
+            .mf-photo { position: static; width: 100%; height: 240px; border-radius: 16px; }
+            .mf-budget-card { position: static; width: 100%; margin-top: 16px; border-radius: 16px; }
+            .mf-mini-cards { position: static; width: 100%; margin-top: 12px; }
+            .mf-teal-blob { display: none; }
+
+            /* im-visual — hide on mobile */
+            .im-visual { display: none; }
+
+            /* ms-left visual — simplify */
+            .ms-left { min-height: 280px; }
+            .ms-photo-top { position: static; width: 100%; height: 200px; border-radius: 16px; }
+            .ms-chat-float { display: none; }
+            .ms-phone { display: none; }
+            .ms-photo-man { display: none; }
+            .ms-chat-ico { display: none; }
+            .ms-dots { display: none; }
+
+            /* msgv2 */
+            .msgv2-section { padding: 60px 0 0; }
+            .msgv2-wrap { padding: 0 20px; }
+            .msgv2-left { height: 320px; }
+            .msgv2-phone { width: 150px; height: 320px; left: 15%; }
+            .msgv2-bubble-top { display: none; }
+            .msgv2-pink-card { display: none; }
+            .msgv2-chat-ico { display: none; }
+            .msgv2-testi-wrap { padding: 0 20px 50px; }
+            .msgv2-testi { padding: 22px 24px; }
+            .msgv2-testi-qq { font-size: 40px; margin-right: 16px; }
+
+            /* im2 */
+            .im2-section { padding: 64px 0 0; }
+            .im2-visual { min-height: 360px; }
+            .im2-form-card { width: 240px; padding: 14px 16px; }
+            .im2-secure { min-width: 180px; padding: 10px 12px; }
+            .im2-testi-wrap { padding: 32px 20px 50px; }
+            .im2-testi { padding: 22px 26px; }
+            .im2-testi-qq { font-size: 56px; margin-right: 16px; }
+
+            /* cs compliance bar already wraps at 767px — just add padding */
+            .cs-comp { padding: 36px 0; }
+            .cs-comp-inner { padding: 0 20px; }
+            .cs-comp-cols { padding: 0; }
+        }
+
+        /* ---- Small phones (≤ 480px) ---- */
+        @media (max-width: 480px) {
+            /* cm-hero */
+            .cm-title { font-size: 26px; }
+            .cm-features { gap: 14px; }
+            .cm-feature-item { max-width: 90px; }
+            .cm-feature-label { font-size: 11px; }
+
+            /* ch-hero */
+            .ch-headline { font-size: 28px; }
+            .ch-right { height: 320px; }
+            .ch-circle { width: 270px; height: 270px; }
+            .ch-card-ov { width: 170px; font-size: 10px; }
+            .ch-card-gp { display: none; }
+            .ch-card-up { width: 140px; }
+            .ch-strip-item { flex: 1 1 100%; }
+            .ch-feat-item { flex: 1 1 100%; padding: 0; }
+            .ch-feats { gap: 8px; }
+
+            /* pf */
+            .pf-heading { font-size: 24px; }
+            .pf-section { padding: 50px 0; }
+            .pf-ico { width: 42px; height: 42px; font-size: 17px; }
+
+            /* msgv2 */
+            .msgv2-left { height: 260px; }
+            .msgv2-phone { width: 130px; height: 275px; }
+
+            /* im2 */
+            .im2-form-card { display: none; }
+            .im2-photo-coord { width: 48%; height: 180px; }
+            .im2-photo-phone { width: 48%; height: 160px; }
+
+            /* testimonials — remove side panel */
+            .pf-testi-right, .msgv2-testi-person, .im2-testi-person { display: none; }
+        }
+
     </style>
 </head>
 
