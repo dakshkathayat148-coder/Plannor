@@ -551,6 +551,10 @@
 
         /* ── GLOBAL MOBILE FIXES ─────────────────────── */
         html, body { overflow-x: hidden; max-width: 100%; }
+        /* Disable AOS slide transforms on mobile — they shift elements off-screen */
+        @media(max-width:767px) {
+            [data-aos] { opacity: 1 !important; transform: none !important; }
+        }
 
         @media(max-width:767px) {
             /* Breadcrumb */
@@ -600,6 +604,13 @@
 
             /* Benefits */
             .ai-benefits { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+
+            /* ── HOW IT WORKS: stack vertically on mobile ── */
+            .mcp-how, .auto-how { flex-direction: column; gap: 10px; padding: 14px 16px; }
+            .mcp-how-label, .auto-how-label { white-space: normal; font-size: 11px; }
+            .mcp-how-steps, .auto-how-steps { flex-wrap: wrap; gap: 6px; }
+            .mcp-how-step, .auto-how-step { flex: 0 0 auto; min-width: 0; }
+            .mcp-how-arrow, .auto-how-arrow { display: none; }
         }
 
         @media(max-width:480px) {

@@ -672,11 +672,16 @@
             .co-pill-grid { max-width: 100%; }
         }
         @media (max-width: 767px) {
+            html, body { overflow-x: hidden; max-width: 100%; }
+            /* Fix Bootstrap g-5 negative margins overflowing viewport */
+            .co-hero .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+            .co-how .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
             .co-hero-title { font-size: 30px; }
             .co-feat-grid { grid-template-columns: 1fr; }
             .co-cta-title { font-size: 30px; }
             .co-metric-num { font-size: 36px; }
             .co-mini-row { grid-template-columns: 1fr 1fr; }
+            .co-section-title br { display: none; }
         }
         /* Force Figtree on all custom bold headings (Cal Sans only has weight 400) */
         .co-hero-title, .co-section-title, .co-tab-title, .co-privacy-title,

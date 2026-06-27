@@ -293,6 +293,10 @@
             .sp-cta-inner { flex-direction: column; text-align: center; }
             .sp-cta-left  { flex-direction: column; text-align: center; }
         }
+        html, body { overflow-x: hidden; max-width: 100%; }
+        @media (max-width: 767px) {
+            .sp-hero .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+        }
     </style>
 </head>
 <body>

@@ -541,8 +541,11 @@
             .plt-img-badge { display: none; }
         }
         @media (max-width: 767px) {
+            html, body { overflow-x: hidden; max-width: 100%; }
             .plt-section { padding: 50px 0; }
             .vl-cta-area-wrap .vl-cta-bg { border-radius: 24px; }
+            .plt-section .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+            .plt-ai2 .row.g-5    { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
         }
     </style>
 </head>

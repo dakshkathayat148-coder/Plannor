@@ -339,6 +339,12 @@
         /* ═════ animate trigger ═════ */
         .ib-go .ib-bar-fill,
         .ib-go .ib-cat-bar-fill { width: var(--w) !important; }
+
+        html, body { overflow-x: hidden; max-width: 100%; }
+        @media (max-width: 767px) {
+            .ib-hero .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+            .ib-cta .row.g-5  { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+        }
     </style>
 </head>
 <body>
