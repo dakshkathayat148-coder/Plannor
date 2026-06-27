@@ -411,13 +411,41 @@
         }
 
         /* ---- Responsive ---- */
-        @media (max-width: 768px) {
-            .cp-title-wrap h2 { font-size: 32px; }
-            .cp-table tbody tr td,
-            .cp-table thead tr th { padding: 12px 14px; }
+        html, body { overflow-x: hidden; max-width: 100%; }
+
+        @media (max-width: 767px) {
+            [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+            /* Section */
+            .cp-section { padding: 44px 0 56px; }
+            .cp-title-wrap { margin-bottom: 32px; }
+            .cp-title-wrap h2 { font-size: 26px; letter-spacing: -0.5px; }
+            .cp-title-wrap .cp-sub { font-size: 15px; }
+            .cp-title-wrap .cp-desc { font-size: 14px; }
+
+            /* Table: compact + horizontal scroll */
+            .cp-table { min-width: 520px; }
+            .cp-table thead tr th { padding: 12px 10px; font-size: 10px; }
+            .cp-table thead tr th:first-child { font-size: 11px; }
+            .th-plannor-name { font-size: 16px; }
+            .cp-table tbody tr td { padding: 11px 10px; font-size: 13px; }
             .cp-feature-icon { display: none; }
-            .cp-cta-strip { padding: 36px 24px; }
-            .cp-cta-strip h3 { font-size: 22px; }
+            .cp-feature-name { font-size: 12.5px; }
+            .cp-check, .cp-minus { width: 26px; height: 26px; font-size: 11px; }
+            .td-plannor .cp-check { width: 28px; height: 28px; }
+            .cp-partial { font-size: 11px; padding: 3px 9px; }
+
+            /* CTA strip */
+            .cp-cta-strip { padding: 32px 20px; margin-top: 36px; }
+            .cp-cta-strip h3 { font-size: 20px; }
+            .cp-cta-strip p { font-size: 14px; margin-bottom: 20px; }
+            .cp-cta-btn-primary,
+            .cp-cta-btn-ghost { width: 100%; justify-content: center; box-sizing: border-box; }
+        }
+
+        @media (max-width: 480px) {
+            .cp-title-wrap h2 { font-size: 22px; }
+            .cp-table { min-width: 460px; }
         }
     </style>
 </head>
