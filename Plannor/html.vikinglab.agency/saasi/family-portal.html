@@ -19,6 +19,7 @@
     <style>
         [data-aos]{opacity:1!important;transform:translate(0)!important;}
         *{box-sizing:border-box;}
+        html,body{overflow-x:hidden;max-width:100%;}
 
         /* ── TOKENS ── */
         :root{
@@ -625,6 +626,109 @@
         /* Force Figtree on all custom bold headings (Cal Sans only has weight 400) */
         .fp2-h-title, .fp2-bva-title, .fp2-ss-title, .fp2-feat-title, .fp2-d-title,
         .fp2-testi-quote, .fp2-cta-title { font-family: 'Figtree', sans-serif; }
+
+        /* ── MOBILE RESPONSIVE ADDITIONS ── */
+
+        /* Before/After Swiper slider */
+        .fp2-bva-swiper{ padding-bottom:48px; }
+        .fp2-bva-swiper .swiper-slide{ height:auto; }
+        .fp2-bva-swiper .fp2-bva-card{ height:100%; }
+        .fp2-bva-pagination.swiper-pagination-bullets{ bottom:8px !important; }
+        .fp2-bva-pagination .swiper-pagination-bullet{
+            width:8px; height:8px; background:#c4b5fd; opacity:1;
+        }
+        .fp2-bva-pagination .swiper-pagination-bullet-active{
+            background:var(--p); width:24px; border-radius:4px;
+        }
+        @media(max-width:991px){
+            .fp2-bva-title{ font-size:30px; }
+        }
+        @media(max-width:767px){
+            .fp2-bva-title{ font-size:26px; }
+        }
+
+        /* Hero floating cards: rearrange on mobile */
+        @media(max-width:767px){
+            .fp2-h-cards{ height:340px; }
+            .fp2-hc-shift{ width:calc(100% - 16px); left:8px; transform:none; top:10px; }
+            .fp2-hc-msg{ display:none; }
+            .fp2-hc-doc{ width:48%; left:0; bottom:0; }
+            .fp2-hc-stat{ width:46%; right:0; bottom:0; }
+            .fp2-h-title{ font-size:32px; letter-spacing:-1px; }
+        }
+
+        /* Buttons stack on small screens */
+        @media(max-width:480px){
+            .fp2-h-btns{ flex-direction:column; }
+            .fp2-btn-primary, .fp2-btn-plain{ width:100%; justify-content:center; text-align:center; }
+            .fp2-h-title{ font-size:28px; }
+            .fp2-h-cards{ height:370px; }
+            .fp2-hc-shift{ font-size:10px; }
+            .fp2-hc-doc{ font-size:10px; width:48%; }
+            .fp2-hc-stat{ width:46%; }
+        }
+
+        /* Schedule chips: single column on small screens */
+        @media(max-width:480px){
+            .fp2-ss-chips{ grid-template-columns:1fr; }
+            .fp2-ss-title{ font-size:26px; }
+        }
+
+        /* Document feed rows: tighter on small screens */
+        @media(max-width:575px){
+            .fp2-d-row{ gap:12px; padding:16px; }
+            .fp2-d-strip{ display:none; }
+            .fp2-d-name{ font-size:14px; }
+            .fp2-d-title{ font-size:26px; letter-spacing:-0.5px; }
+            .fp2-d-stats{ gap:12px; }
+            .fp2-d-stat-num{ font-size:26px; }
+        }
+
+        /* Messaging tabs: wrap on small screens */
+        @media(max-width:575px){
+            .fp2-ms-tabs{ flex-direction:column; gap:8px; }
+            .fp2-ms-tab{ justify-content:flex-start; width:100%; border-radius:12px; }
+            .fp2-ms-h{ font-size:26px; letter-spacing:-0.5px; }
+        }
+
+        /* Provider control: smaller heading, hide pills on small screens */
+        @media(max-width:575px){
+            .fp2-pc-h{ font-size:26px; letter-spacing:-0.5px; }
+            .fp2-pc-mpills{ display:none; }
+            .fp2-pc-pfooter{ flex-direction:column; gap:8px; align-items:flex-start; }
+        }
+
+        /* CTA section: stack buttons */
+        @media(max-width:575px){
+            .fp2-cta-title{ font-size:28px; letter-spacing:-0.5px; }
+            .fp2-cta-desc{ font-size:15px; }
+            .fp2-cta-btns{ flex-direction:column; align-items:center; }
+            .fp2-cta-white, .fp2-cta-outline{ width:100%; max-width:320px; justify-content:center; }
+        }
+
+        /* Testimonials: padding on small screens */
+        @media(max-width:575px){
+            .fp2-testimonials{ padding:60px 0; }
+            .fp2-test-title{ font-size:26px; }
+            .fp2-test-card{ padding:22px; }
+        }
+
+        /* General section padding reduction on mobile */
+        @media(max-width:767px){
+            .fp2-feat-row{ padding:60px 0; }
+            .fp2-docs-section{ padding:60px 0; }
+            .fp2-ms{ padding:60px 0; }
+            .fp2-pc{ padding:60px 0; }
+            .fp2-bva{ padding:60px 0; }
+            .fp2-sched-section{ padding:60px 0; }
+            .fp2-cta{ padding:60px 0; }
+            .fp2-testimonials{ padding:60px 0; }
+        }
+
+        /* Breadcrumb banner text on mobile */
+        @media(max-width:575px){
+            .vl-breadcrumb-content .title{ font-size:30px; }
+        }
     </style>
 </head>
 <body>
@@ -768,9 +872,11 @@
             <h2 class="fp2-bva-title">What life looks like<br>before and after the portal</h2>
         </div>
 
-        <div class="fp2-bva-grid">
+        <div class="fp2-bva-swiper swiper">
+          <div class="swiper-wrapper">
 
             <!-- Card 1: Schedule -->
+            <div class="swiper-slide">
             <div class="fp2-bva-card">
                 <div class="fp2-bva-before">
                     <div class="fp2-bva-blabel"><i class="fa-solid fa-xmark"></i> Before</div>
@@ -813,8 +919,10 @@
                     <div class="fp2-bva-card-sub">Families see every shift the moment it's rostered — no calls, no waiting.</div>
                 </div>
             </div>
+            </div>
 
             <!-- Card 2: Documents -->
+            <div class="swiper-slide">
             <div class="fp2-bva-card">
                 <div class="fp2-bva-before">
                     <div class="fp2-bva-blabel"><i class="fa-solid fa-xmark"></i> Before</div>
@@ -857,8 +965,10 @@
                     <div class="fp2-bva-card-sub">Every document available 24/7 — families download without asking.</div>
                 </div>
             </div>
+            </div>
 
             <!-- Card 3: Updates -->
+            <div class="swiper-slide">
             <div class="fp2-bva-card">
                 <div class="fp2-bva-before">
                     <div class="fp2-bva-blabel"><i class="fa-solid fa-xmark"></i> Before</div>
@@ -901,8 +1011,12 @@
                     <div class="fp2-bva-card-sub">Families get visit updates and carer profiles without waiting on a call.</div>
                 </div>
             </div>
+            </div>
 
-        </div>
+          </div><!-- /.swiper-wrapper -->
+          <div class="swiper-pagination fp2-bva-pagination"></div>
+        </div><!-- /.fp2-bva-swiper -->
+
     </div>
 </section>
 
@@ -1441,6 +1555,26 @@
     $(document).ready(function(){
         setTimeout(function(){ $('.preloader').fadeOut(300); }, 300);
         setTimeout(function(){ if(typeof AOS !== 'undefined'){ AOS.init({duration:1000,once:true,offset:0}); AOS.refresh(); } }, 500);
+    });
+
+    // Before/After slider — runs after main.js has had a chance to init its swipers
+    $(document).ready(function(){
+        setTimeout(function(){
+            var el = document.querySelector('.fp2-bva-swiper');
+            if(!el || typeof Swiper === 'undefined') return;
+            if(el.swiper) el.swiper.destroy(true, true);
+            new Swiper(el, {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: false,
+                grabCursor: true,
+                pagination: { el: el.querySelector('.fp2-bva-pagination'), clickable: true },
+                breakpoints: {
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    992: { slidesPerView: 3, spaceBetween: 20 }
+                }
+            });
+        }, 300);
     });
 </script>
 </body>
