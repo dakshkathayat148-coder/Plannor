@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - The Platform</title>
+
+    <!-- fav logo -->
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!-- magnific-popup css -->
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <!-- swiper-bundle -->
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <!-- nice-select -->
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <!-- aos -->
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <!-- odometer -->
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* ===== PLATFORM PAGE STYLES ===== */
+        .plt-section { padding: 100px 0; }
+        .plt-section-alt { background: #f8f5ff; }
+        .plt-section-dark {
+            background: linear-gradient(135deg, #1a0d5e 0%, #3d1eb5 50%, #5932EA 100%);
+        }
+        .plt-section-charcoal { background: #080714; }
+
+        /* Subtitle badge */
+        .plt-subtitle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #5932EA;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: #f0ebff;
+            border: 1px solid #ddd0ff;
+            border-radius: 30px;
+            padding: 8px 18px;
+            margin-bottom: 18px;
+        }
+        .plt-subtitle i { font-size: 10px; }
+
+        /* Gradient divider line */
+        .plt-divider {
+            height: 4px;
+            width: 56px;
+            background: linear-gradient(90deg, #5932EA, #772EFE);
+            border-radius: 2px;
+            margin: 0 0 24px;
+        }
+        .plt-divider.mx-auto { margin: 0 auto 24px; }
+
+        /* Feature item (2-col grid) */
+        .plt-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .plt-feature-item .fi-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5932EA, #772EFE);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .plt-feature-item .fi-icon i { color: #fff; font-size: 11px; }
+        .plt-feature-item .fi-text strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 2px;
+        }
+        .plt-feature-item .fi-text span { font-size: 13px; color: #777; }
+
+        /* Benefit tags */
+        .plt-benefit-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f0ebff;
+            border: 1px solid #e0d4ff;
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #5932EA;
+            margin: 5px 4px;
+        }
+        .plt-benefit-tag i { font-size: 10px; }
+
+        /* Image wrapper with shadow */
+        .plt-img-wrap {
+            position: relative;
+            border-radius: 20px;
+        }
+        .plt-img-wrap img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 24px 64px rgba(89, 50, 234, 0.18);
+            display: block;
+        }
+
+        /* Floating badges on images */
+        .plt-img-badge {
+            position: absolute;
+            background: #fff;
+            border-radius: 14px;
+            padding: 12px 18px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+        }
+        .plt-img-badge .bi-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+        .plt-img-badge .bi-text strong {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a2e;
+            line-height: 1;
+        }
+        .plt-img-badge .bi-text span {
+            font-size: 11px;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /* Numbered feature list (Section 2) */
+        .plt-num-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+        .plt-num-item .ni-num {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #5932EA, #772EFE);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .plt-num-item .ni-content strong {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .plt-num-item .ni-content p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Card grid (Section 3 compliance) */
+        .plt-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 32px 28px;
+            border: 1px solid #eeebff;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .plt-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #5932EA, #772EFE);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .plt-card:hover { box-shadow: 0 16px 48px rgba(89, 50, 234, 0.12); transform: translateY(-4px); }
+        .plt-card:hover::before { opacity: 1; }
+        .plt-card .card-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .plt-card h4 { font-size: 19px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+        .plt-card p { font-size: 14px; color: #666; margin-bottom: 18px; line-height: 1.7; }
+        .plt-card-features { list-style: none; padding: 0; margin: 0; }
+        .plt-card-features li {
+            font-size: 13px;
+            color: #555;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 1px solid #f5f5f5;
+        }
+        .plt-card-features li:first-child { border-top: none; }
+        .plt-card-features li i { color: #5932EA; font-size: 10px; }
+
+        /* Dark section - stat cards (Section 4) */
+        .plt-stat-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 22px 24px;
+            backdrop-filter: blur(10px);
+        }
+        .plt-stat-num {
+            font-size: 44px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .plt-stat-num sub { font-size: 22px; font-weight: 700; vertical-align: baseline; }
+        .plt-stat-label { font-size: 13px; color: rgba(255,255,255,0.65); }
+
+        /* Step items (Section 5) */
+        .plt-step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 22px 0;
+            border-bottom: 1px solid #ede8ff;
+        }
+        .plt-step-item:last-child { border-bottom: none; }
+        .plt-step-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+        .plt-step-item h5 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 5px; }
+        .plt-step-item p { font-size: 13px; color: #666; margin: 0; line-height: 1.6; }
+
+        /* AI glass cards (Section 6) */
+        .plt-ai-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 18px;
+            padding: 30px 26px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .plt-ai-card:hover {
+            background: rgba(89,50,234,0.12);
+            border-color: rgba(89,50,234,0.4);
+            box-shadow: 0 0 40px rgba(89,50,234,0.25);
+            transform: translateY(-4px);
+        }
+        .plt-ai-card .ai-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+        .plt-ai-card h4 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .plt-ai-card p { font-size: 13px; color: rgba(255,255,255,0.55); margin: 0; line-height: 1.7; }
+
+        /* Overview strip (after banner) */
+        .plt-overview-strip {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 28px 0;
+        }
+        .plt-ov-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .plt-ov-item:hover { background: #f8f5ff; }
+        .plt-ov-item .ov-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .plt-ov-item .ov-text strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .plt-ov-item .ov-text span { font-size: 12px; color: #888; }
+
+        /* CTA section */
+        .plt-cta-section {
+            background: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .plt-cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        .plt-cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -120px; left: -80px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* Section 5 Goals — compact feature cards (right-side) */
+        .plt-goal-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #eeebff;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            transition: box-shadow 0.2s;
+        }
+        .plt-goal-card:hover { box-shadow: 0 6px 24px rgba(89,50,234,0.1); }
+        .plt-goal-card .gc-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; flex-shrink: 0;
+        }
+        .plt-goal-card strong { display: block; font-size: 14px; font-weight: 700; color: #1a1a2e; }
+        .plt-goal-card span { font-size: 12px; color: #888; line-height: 1.4; }
+
+        /* Section 4 Financial — override green theme colors with site purple */
+        #financial .vl-service-boxthree-icon span {
+            background: #ede9ff;
+            border-color: #c4b5fd;
+        }
+        #financial .vl-service-boxthree-icon span i {
+            color: #5932EA !important;
+        }
+        #financial .vl-service-boxthree::after {
+            background: linear-gradient(135deg, #3d1eb5, #5932EA);
+        }
+        #financial .vl-service-boxthree:hover .vl-service-boxthree-icon span {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+        }
+        #financial .vl-service-boxthree:hover .vl-service-boxthree-icon span i {
+            color: #fff !important;
+        }
+
+        /* Section 6 AI — feature rows (left col) */
+        .plt-ai-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .plt-ai-row:last-of-type { border-bottom: none; }
+        .plt-ai-row .par-icon {
+            width: 42px; height: 42px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; flex-shrink: 0; margin-top: 2px;
+        }
+        .plt-ai-row strong { display: block; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+        .plt-ai-row span { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+        /* Section 6 AI — chat mock window */
+        .plt-ai-mock {
+            background: #0f0c24;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(89,50,234,0.3);
+        }
+        .pam-bar {
+            background: #1a1530;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .pam-dots { display: flex; gap: 6px; }
+        .pam-dots span { width: 12px; height: 12px; border-radius: 50%; display: block; }
+        .pam-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); }
+        .pam-title i { color: #a78bfa; margin-right: 4px; }
+        .pam-body { padding: 24px 20px 16px; display: flex; flex-direction: column; gap: 18px; }
+        .pam-msg { display: flex; align-items: flex-start; gap: 12px; }
+        .pam-user { flex-direction: row-reverse; }
+        .pam-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; flex-shrink: 0;
+        }
+        .user-av { background: linear-gradient(135deg, #5932EA, #772EFE); color: #fff; }
+        .ai-av { background: rgba(167,139,250,0.2); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); }
+        .pam-bubble {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+            max-width: 85%;
+        }
+        .pam-user .pam-bubble {
+            background: linear-gradient(135deg, rgba(89,50,234,0.4), rgba(119,46,254,0.4));
+            border-color: rgba(89,50,234,0.5);
+        }
+        .ai-bubble { max-width: 100%; }
+        .pam-typing-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .pam-generating {
+            background: rgba(89,50,234,0.25);
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-size: 10px;
+            color: #a78bfa;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .pam-note-content {
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.75;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 10px;
+        }
+        .pam-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .pam-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: linear-gradient(135deg, #5932EA, #772EFE);
+            border: none; border-radius: 8px;
+            padding: 7px 14px; font-size: 12px; font-weight: 600; color: #fff;
+            cursor: pointer;
+        }
+        .pam-btn-ghost {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.6);
+        }
+        .pam-input-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            background: #1a1530;
+        }
+        .pam-input-field {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+        }
+        .pam-send {
+            width: 38px; height: 38px; border-radius: 10px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.5);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; cursor: pointer; flex-shrink: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .plt-section { padding: 60px 0; }
+            .plt-img-badge { display: none; }
+        }
+        @media (max-width: 767px) {
+            html, body { overflow-x: hidden; max-width: 100%; }
+            .plt-section { padding: 50px 0; }
+            .vl-cta-area-wrap .vl-cta-bg { border-radius: 24px; }
+            .plt-section .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+            .plt-ai2 .row.g-5    { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <!-- preloader -->
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- =========== banner area start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">The Platform</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Platform</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== banner area end =========== -->
+
+        <!-- =========== OVERVIEW STRIP =========== -->
+        <div class="plt-overview-strip">
+            <div class="container">
+                <div class="row g-2 justify-content-center">
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <a href="#participant" class="plt-ov-item">
+                            <div class="ov-icon" style="background:#f0ebff;">
+                                <i class="fa-solid fa-users" style="color:#5932EA;"></i>
+                            </div>
+                            <div class="ov-text">
+                                <strong>Participants</strong>
+                                <span>Profiles &amp; Plans</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <a href="#workforce" class="plt-ov-item">
+                            <div class="ov-icon" style="background:#fff0f6;">
+                                <i class="fa-solid fa-calendar-days" style="color:#e91e8c;"></i>
+                            </div>
+                            <div class="ov-text">
+                                <strong>Workforce</strong>
+                                <span>Rostering &amp; Shifts</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <a href="#compliance" class="plt-ov-item">
+                            <div class="ov-icon" style="background:#fff8e1;">
+                                <i class="fa-solid fa-shield-halved" style="color:#f39c12;"></i>
+                            </div>
+                            <div class="ov-text">
+                                <strong>Compliance</strong>
+                                <span>Risk &amp; Audits</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <a href="#financial" class="plt-ov-item">
+                            <div class="ov-icon" style="background:#e8fff0;">
+                                <i class="fa-solid fa-circle-dollar-to-slot" style="color:#00b874;"></i>
+                            </div>
+                            <div class="ov-text">
+                                <strong>Financial</strong>
+                                <span>Billing &amp; Claims</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <a href="#goals" class="plt-ov-item">
+                            <div class="ov-icon" style="background:#e8f4ff;">
+                                <i class="fa-solid fa-bullseye" style="color:#2980b9;"></i>
+                            </div>
+                            <div class="ov-text">
+                                <strong>Goals</strong>
+                                <span>Outcomes &amp; Reports</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6">
+                        <a href="#ai" class="plt-ov-item">
+                            <div class="ov-icon" style="background:#f3e8ff;">
+                                <i class="fa-solid fa-robot" style="color:#9b59b6;"></i>
+                            </div>
+                            <div class="ov-text">
+                                <strong>AI Assistant</strong>
+                                <span>Automate Admin</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========== SECTION 1: PARTICIPANT MANAGEMENT =========== -->
+        <!-- Layout: Wide image LEFT with gradient frame | Stacked feature cards RIGHT -->
+        <section class="plt-section" id="participant" style="overflow:hidden;">
+            <div class="container">
+                <div class="row align-items-center g-5">
+
+                    <!-- IMAGE COLUMN (left, wider) -->
+                    <div class="col-xl-7 col-lg-6" data-aos="fade-right" data-aos-duration="800">
+                        <div style="position:relative;padding:20px 20px 20px 0;">
+                            <!-- Decorative gradient blob behind image -->
+                            <div style="position:absolute;top:-30px;left:-60px;width:340px;height:340px;border-radius:50%;background:linear-gradient(135deg,rgba(89,50,234,0.12),rgba(119,46,254,0.08));z-index:0;pointer-events:none;"></div>
+                            <div style="position:absolute;bottom:-20px;right:10px;width:180px;height:180px;border-radius:50%;background:rgba(233,30,140,0.07);z-index:0;pointer-events:none;"></div>
+                            <!-- Image with styled border -->
+                            <div style="position:relative;z-index:1;border-radius:20px;border:2px solid rgba(89,50,234,0.12);overflow:hidden;box-shadow:0 24px 64px rgba(89,50,234,0.15);">
+                                <img src="../assets/img/hrmanagement/tab/vl-tab-dashbord.png" alt="Participant Management Dashboard" style="width:100%;display:block;">
+                            </div>
+                            <!-- Floating badge — top left -->
+                            <div class="plt-img-badge" style="top:0px;left:-10px;z-index:2;">
+                                <div class="bi-icon" style="background:#f0ebff;">
+                                    <i class="fa-solid fa-users" style="color:#5932EA;"></i>
+                                </div>
+                                <div class="bi-text">
+                                    <strong>2,500+</strong>
+                                    <span>Participants Managed</span>
+                                </div>
+                            </div>
+                            <!-- Floating badge — bottom right -->
+                            <div class="plt-img-badge" style="bottom:0px;right:0px;z-index:2;">
+                                <div class="bi-icon" style="background:#fff0f6;">
+                                    <i class="fa-solid fa-chart-line" style="color:#e91e8c;"></i>
+                                </div>
+                                <div class="bi-text">
+                                    <strong>99%</strong>
+                                    <span>Plan Utilisation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTENT COLUMN (right) -->
+                    <div class="col-xl-5 col-lg-6" data-aos="fade-left" data-aos-duration="800">
+                        <span class="plt-subtitle">
+                            <i class="fa-solid fa-users"></i> Participant Management
+                        </span>
+                        <h2 style="font-size:32px;font-weight:800;color:#1a1a2e;line-height:1.2;margin-bottom:12px;margin-top:16px;">
+                            All Participant Data, One Place
+                        </h2>
+                        <p style="font-size:14px;color:#666;margin-bottom:22px;line-height:1.7;">
+                            One unified profile per participant — records, plans, notes, and documents always up to date.
+                        </p>
+                        <!-- Compact feature rows -->
+                        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
+                            <div style="display:flex;align-items:center;gap:14px;background:#f8f5ff;border:1px solid #ede8ff;border-radius:12px;padding:13px 16px;">
+                                <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-id-card" style="color:#fff;font-size:14px;"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;line-height:1.3;">Participant Profiles &amp; Care Plans</strong>
+                                    <span style="font-size:12px;color:#888;">NDIS records, care pathways, goals &amp; support history</span>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:14px;background:#fff5fb;border:1px solid #ffe4f3;border-radius:12px;padding:13px 16px;">
+                                <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#e91e8c,#f472b6);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-wallet" style="color:#fff;font-size:14px;"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;line-height:1.3;">Live NDIS Budget Tracking</strong>
+                                    <span style="font-size:12px;color:#888;">Real-time spend visibility across all support categories</span>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:14px;background:#f0fff8;border:1px solid #d4f5e5;border-radius:12px;padding:13px 16px;">
+                                <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#00b874,#34d399);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-file-lines" style="color:#fff;font-size:14px;"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;line-height:1.3;">Progress Notes &amp; Documents</strong>
+                                    <span style="font-size:12px;color:#888;">Digital notes, service agreements &amp; encrypted storage</span>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:14px;background:#fff8e1;border:1px solid #ffeab0;border-radius:12px;padding:13px 16px;">
+                                <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#f39c12,#fbbf24);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-handshake" style="color:#fff;font-size:14px;"></i>
+                                </div>
+                                <div>
+                                    <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;line-height:1.3;">Service Agreements</strong>
+                                    <span style="font-size:12px;color:#888;">Digital sign-off, storage &amp; version tracking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 2: WORKFORCE MANAGEMENT =========== -->
+        <!-- Layout: Image LEFT (full-bleed edge) | Content RIGHT with 2x2 icon grid + stats row -->
+        <section class="plt-section plt-section-alt" id="workforce" style="overflow:hidden;">
+            <div class="container">
+                <div class="row align-items-center g-5">
+
+                    <!-- CONTENT COLUMN (left) -->
+                    <div class="col-xl-6 col-lg-6" data-aos="fade-right" data-aos-duration="800">
+                        <div class="ps-xl-3">
+                            <span class="plt-subtitle">
+                                <i class="fa-solid fa-calendar-days"></i> Workforce Management
+                            </span>
+                            <h2 style="font-size:32px;font-weight:800;color:#1a1a2e;line-height:1.2;margin-bottom:12px;margin-top:16px;">
+                                Rostering That Works While You Sleep
+                            </h2>
+                            <p style="font-size:14px;color:#666;margin-bottom:24px;line-height:1.7;">
+                                Drag-and-drop scheduling with GPS check-in, SCHADS compliance, and auto-generated timesheets — all in one place.
+                            </p>
+
+                            <!-- 3 quick stat pills -->
+                            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
+                                <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e0d4ff;border-radius:30px;padding:8px 16px;">
+                                    <i class="fa-solid fa-clock" style="color:#5932EA;font-size:12px;"></i>
+                                    <span style="font-size:13px;font-weight:600;color:#1a1a2e;">40% Less Admin</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e0d4ff;border-radius:30px;padding:8px 16px;">
+                                    <i class="fa-solid fa-ban" style="color:#e91e8c;font-size:12px;"></i>
+                                    <span style="font-size:13px;font-weight:600;color:#1a1a2e;">Zero Double-Bookings</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e0d4ff;border-radius:30px;padding:8px 16px;">
+                                    <i class="fa-solid fa-location-dot" style="color:#00b874;font-size:12px;"></i>
+                                    <span style="font-size:13px;font-weight:600;color:#1a1a2e;">GPS Verified Shifts</span>
+                                </div>
+                            </div>
+
+                            <!-- 2x2 icon feature grid -->
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div style="background:#fff;border:1px solid #eeebff;border-radius:14px;padding:18px 16px;height:100%;">
+                                        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                            <i class="fa-solid fa-table-columns" style="color:#fff;font-size:15px;"></i>
+                                        </div>
+                                        <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">Smart Rostering</strong>
+                                        <span style="font-size:12px;color:#888;line-height:1.5;">Drag-and-drop with conflict detection</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div style="background:#fff;border:1px solid #eeebff;border-radius:14px;padding:18px 16px;height:100%;">
+                                        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#e91e8c,#f472b6);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                            <i class="fa-solid fa-mobile-screen" style="color:#fff;font-size:15px;"></i>
+                                        </div>
+                                        <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">Mobile Check-In</strong>
+                                        <span style="font-size:12px;color:#888;line-height:1.5;">GPS attendance from any device</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div style="background:#fff;border:1px solid #eeebff;border-radius:14px;padding:18px 16px;height:100%;">
+                                        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#00b874,#34d399);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                            <i class="fa-solid fa-file-invoice" style="color:#fff;font-size:15px;"></i>
+                                        </div>
+                                        <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">Auto Timesheets</strong>
+                                        <span style="font-size:12px;color:#888;line-height:1.5;">Generated from verified shift data</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div style="background:#fff;border:1px solid #eeebff;border-radius:14px;padding:18px 16px;height:100%;">
+                                        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#f39c12,#fbbf24);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
+                                            <i class="fa-solid fa-route" style="color:#fff;font-size:15px;"></i>
+                                        </div>
+                                        <strong style="display:block;font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">Travel Tracking</strong>
+                                        <span style="font-size:12px;color:#888;line-height:1.5;">Auto mileage &amp; reimbursement logs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IMAGE COLUMN (right) -->
+                    <div class="col-xl-6 col-lg-6" data-aos="fade-left" data-aos-duration="800">
+                        <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(89,50,234,0.15);">
+                            <img src="../assets/img/hrmanagement/tab/vl-tab-thumb-iner-2.1.png" alt="Workforce Rostering" style="width:100%;display:block;border-radius:20px;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 3: COMPLIANCE & RISK =========== -->
+        <!-- Layout: index-10 flowbox style — centered title + dashed connector + 4 tilted cards -->
+        <section class="vl-work-area-10 fix pt-100 pb-70" id="compliance">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 mx-auto text-center">
+                        <div class="vl-section-title10 mb-60" data-aos="fade-up">
+                            <div class="vl-subtitle-gbg10 mb-18">
+                                <div class="vl-subtitle-gbg10-white">
+                                    <p class="subtitle">Compliance &amp; Risk Management</p>
+                                </div>
+                            </div>
+                            <h2 class="title10 text-anime-style-1">Stay Audit-Ready Without the Stress</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-relative">
+                    <div class="vl-flowbox-shape d-none d-xl-block">
+                        <img class="w-100" src="../assets/img/shape/vl-work-shape10.1.png" alt="">
+                    </div>
+                </div>
+
+                <div class="vl-flowbox-grid">
+                    <!-- card 1 -->
+                    <div class="vl-single-flow-card rotate-1 mb-30">
+                        <div class="vl-single-flow-card-icon mb-20">
+                            <span><img src="../assets/img/icon/vl-search-10.1.svg" alt=""></span>
+                        </div>
+                        <h3 class="vl-single-flow-card-title pb-16">Incident Reporting</h3>
+                        <p class="vl-single-flow-card-desc">Log and manage incidents using NDIS-compliant templates with built-in escalation workflows</p>
+                    </div>
+                    <!-- card 2 -->
+                    <div class="vl-single-flow-card rotate-2 mb-30">
+                        <div class="vl-single-flow-card-icon mb-20">
+                            <span><img src="../assets/img/icon/vl-search-10.1.svg" alt=""></span>
+                        </div>
+                        <h3 class="vl-single-flow-card-title pb-16">Compliance Tracking</h3>
+                        <p class="vl-single-flow-card-desc">Monitor NDIS Practice Standards with automated checklists and a live compliance dashboard</p>
+                    </div>
+                    <!-- card 3 -->
+                    <div class="vl-single-flow-card rotate-3 mb-30">
+                        <div class="vl-single-flow-card-icon mb-20">
+                            <span><img src="../assets/img/icon/vl-search-10.1.svg" alt=""></span>
+                        </div>
+                        <h3 class="vl-single-flow-card-title pb-16">Document Monitoring</h3>
+                        <p class="vl-single-flow-card-desc">Automatic alerts before certifications and participant documents lapse — never miss a renewal</p>
+                    </div>
+                    <!-- card 4 -->
+                    <div class="vl-single-flow-card rotate-4 mb-30">
+                        <div class="vl-single-flow-card-icon mb-20">
+                            <span><img src="../assets/img/icon/vl-search-10.1.svg" alt=""></span>
+                        </div>
+                        <h3 class="vl-single-flow-card-title pb-16">Audit Readiness</h3>
+                        <p class="vl-single-flow-card-desc">Full timestamped audit trail with on-demand reports ready for any NDIS Commission review</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 4: FINANCIAL INTELLIGENCE =========== -->
+        <!-- Layout: index-3 vl-service-boxthree 3-col card grid — light purple bg -->
+        <section class="vl-service-area fix pt-100 pb-70 plt-section-alt" id="financial">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-section-title vl-section-title-4 mb-60" data-aos="fade-up">
+                            <div class="vl-subtitle-gbg">
+                                <div class="vl-subtitle-gbg-white">
+                                    <p class="subtitle">Financial Intelligence</p>
+                                </div>
+                            </div>
+                            <h2 class="title text-anime-style-2 mt-18">Get Paid Faster. See Every Dollar Clearly.</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="vl-service-boxthree mb-30" data-aos="fade-up">
+                            <div class="vl-service-boxthree-icon">
+                                <span><i class="fa-solid fa-wallet" style="font-size:28px;"></i></span>
+                            </div>
+                            <div class="vl-service-boxthree-content">
+                                <h3 class="vl-service-boxthree-title mt-24">Budget Tracking</h3>
+                                <p class="vl-service-boxthree-desc mt-16">Real-time NDIS plan budget visibility across all support categories with automatic overspend alerts.</p>
+                                <span class="vl-service-boxthree-num mt-24">01</span>
+                            </div>
+                            <a href="#"><span class="vl-service-boxthree-arrowright"><i class="fa-regular fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="vl-service-boxthree mb-30" data-aos="fade-up" data-aos-delay="100">
+                            <div class="vl-service-boxthree-icon">
+                                <span><i class="fa-solid fa-file-invoice-dollar" style="font-size:28px;"></i></span>
+                            </div>
+                            <div class="vl-service-boxthree-content">
+                                <h3 class="vl-service-boxthree-title mt-24">Plan Manager Invoicing</h3>
+                                <p class="vl-service-boxthree-desc mt-16">Auto-generate invoices from completed shifts and send directly to plan managers without manual work.</p>
+                                <span class="vl-service-boxthree-num mt-24">02</span>
+                            </div>
+                            <a href="#"><span class="vl-service-boxthree-arrowright"><i class="fa-regular fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="vl-service-boxthree mb-30" data-aos="fade-up" data-aos-delay="200">
+                            <div class="vl-service-boxthree-icon">
+                                <span><i class="fa-solid fa-money-check-dollar" style="font-size:28px;"></i></span>
+                            </div>
+                            <div class="vl-service-boxthree-content">
+                                <h3 class="vl-service-boxthree-title mt-24">Bulk NDIS Claims</h3>
+                                <p class="vl-service-boxthree-desc mt-16">Submit multiple NDIS claims in one click. Reduce claim processing from days to 20 minutes.</p>
+                                <span class="vl-service-boxthree-num mt-24">03</span>
+                            </div>
+                            <a href="#"><span class="vl-service-boxthree-arrowright"><i class="fa-regular fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="vl-service-boxthree mb-30" data-aos="fade-up">
+                            <div class="vl-service-boxthree-icon">
+                                <span><i class="fa-solid fa-chart-line" style="font-size:28px;"></i></span>
+                            </div>
+                            <div class="vl-service-boxthree-content">
+                                <h3 class="vl-service-boxthree-title mt-24">Revenue Monitoring</h3>
+                                <p class="vl-service-boxthree-desc mt-16">Live revenue dashboards showing income by participant, service type, and support category in real time.</p>
+                                <span class="vl-service-boxthree-num mt-24">04</span>
+                            </div>
+                            <a href="#"><span class="vl-service-boxthree-arrowright"><i class="fa-regular fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="vl-service-boxthree mb-30" data-aos="fade-up" data-aos-delay="100">
+                            <div class="vl-service-boxthree-icon">
+                                <span><i class="fa-solid fa-rotate" style="font-size:28px;"></i></span>
+                            </div>
+                            <div class="vl-service-boxthree-content">
+                                <h3 class="vl-service-boxthree-title mt-24">Xero &amp; MYOB Sync</h3>
+                                <p class="vl-service-boxthree-desc mt-16">Two-way sync with Xero and MYOB — no double entry, no reconciliation headaches, no delays.</p>
+                                <span class="vl-service-boxthree-num mt-24">05</span>
+                            </div>
+                            <a href="#"><span class="vl-service-boxthree-arrowright"><i class="fa-regular fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="vl-service-boxthree mb-30" data-aos="fade-up" data-aos-delay="200">
+                            <div class="vl-service-boxthree-icon">
+                                <span><i class="fa-solid fa-chart-pie" style="font-size:28px;"></i></span>
+                            </div>
+                            <div class="vl-service-boxthree-content">
+                                <h3 class="vl-service-boxthree-title mt-24">Financial Reports</h3>
+                                <p class="vl-service-boxthree-desc mt-16">Exportable financial reports for accountants, boards, and NDIA — all generated in seconds.</p>
+                                <span class="vl-service-boxthree-num mt-24">06</span>
+                            </div>
+                            <a href="#"><span class="vl-service-boxthree-arrowright"><i class="fa-regular fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 5: GOALS & OUTCOMES =========== -->
+        <!-- Layout: content LEFT (col-xl-5) | image RIGHT (col-xl-7) — light purple bg -->
+        <section class="plt-section plt-section-alt" id="goals">
+            <div class="container">
+                <div class="row align-items-center g-5">
+
+                    <!-- CONTENT (left) -->
+                    <div class="col-xl-5 col-lg-6 order-lg-1 order-2" data-aos="fade-right">
+                        <span class="plt-subtitle"><i class="fa-solid fa-bullseye"></i> Goals &amp; Outcomes</span>
+                        <h2 style="font-size:34px;font-weight:800;color:#1a1a2e;line-height:1.2;margin:16px 0;">
+                            Prove Your Impact.
+                        </h2>
+                        <p style="font-size:15px;color:#666;margin-bottom:28px;line-height:1.75;">
+                            Track participant goals in real time, monitor progress against NDIS plan objectives, and generate outcome reports that prove the value of your support services.
+                        </p>
+                        <div class="plt-goal-card">
+                            <div class="gc-icon" style="background:#f0ebff;"><i class="fa-solid fa-flag" style="color:#5932EA;"></i></div>
+                            <div><strong>Goal Tracking &amp; Milestones</strong><span>SMART goals linked to NDIS outcomes with visual progress indicators</span></div>
+                        </div>
+                        <div class="plt-goal-card">
+                            <div class="gc-icon" style="background:#fff0f6;"><i class="fa-solid fa-chart-line" style="color:#e91e8c;"></i></div>
+                            <div><strong>Outcome Monitoring</strong><span>Continuous progress updates, plan alignment checks &amp; automated alerts</span></div>
+                        </div>
+                        <div class="plt-goal-card">
+                            <div class="gc-icon" style="background:#e8fff0;"><i class="fa-solid fa-chart-bar" style="color:#00b874;"></i></div>
+                            <div><strong>Progress Analytics</strong><span>Visual dashboards showing goal achievement rates and support effectiveness</span></div>
+                        </div>
+                        <div class="plt-goal-card">
+                            <div class="gc-icon" style="background:#e8f4ff;"><i class="fa-solid fa-chart-column" style="color:#2980b9;"></i></div>
+                            <div><strong>Exportable Outcome Reports</strong><span>Professional reports for plan reviews, plan managers &amp; LACs on demand</span></div>
+                        </div>
+                    </div>
+
+                    <!-- IMAGE (right) -->
+                    <div class="col-xl-7 col-lg-6 order-lg-2 order-1" data-aos="fade-left">
+                        <div class="plt-img-wrap" style="margin-left:30px;">
+                            <img src="../assets/img/hrmanagement/about/vl-about-inner-thumb1.1.png" alt="Goals and Outcomes Tracking" style="border-radius:20px;box-shadow:0 24px 64px rgba(89,50,234,0.15);">
+                            <div class="plt-img-badge" style="bottom:30px;left:-20px;">
+                                <div class="bi-icon" style="background:#f0ebff;"><i class="fa-solid fa-bullseye" style="color:#5932EA;font-size:16px;"></i></div>
+                                <div class="bi-text"><strong>87%</strong><span>Goals Achieved</span></div>
+                            </div>
+                            <div class="plt-img-badge" style="top:30px;right:-10px;">
+                                <div class="bi-icon" style="background:#e8fff0;"><i class="fa-solid fa-chart-line" style="color:#00b874;font-size:16px;"></i></div>
+                                <div class="bi-text"><strong>250+</strong><span>Outcomes Tracked</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SECTION 6: AI ASSISTANT — redesigned =========== -->
+        <style>
+        .plt-ai2{ background:#fff; padding:100px 0; }
+        .plt-ai2-eyebrow{ display:inline-flex; align-items:center; gap:8px; background:#f0eeff; border:1.5px solid #ede9fe; border-radius:30px; padding:7px 16px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#5932EA; margin-bottom:20px; }
+        .plt-ai2-h{ font-family:'Figtree',sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:800; color:#0f0e1a; line-height:1.15; margin-bottom:14px; }
+        .plt-ai2-desc{ font-size:15px; color:#666; line-height:1.8; margin-bottom:36px; max-width:420px; }
+
+        /* Feature 2x2 grid */
+        .plt-ai2-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:32px; }
+        .plt-ai2-feat{ background:#f8f5ff; border:1.5px solid #ede9fe; border-radius:16px; padding:18px 16px; }
+        .plt-ai2-feat-ico{ width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:12px; }
+        .plt-ai2-feat-ico.purple{ background:#f0eeff; color:#5932EA; }
+        .plt-ai2-feat-ico.amber{ background:#fffbeb; color:#d97706; }
+        .plt-ai2-feat-ico.green{ background:#f0fdf4; color:#00a066; }
+        .plt-ai2-feat-ico.blue{ background:#f0f9ff; color:#0ea5e9; }
+        .plt-ai2-feat h5{ font-size:13px; font-weight:800; color:#0f0e1a; margin:0 0 4px; font-family:'Figtree',sans-serif; }
+        .plt-ai2-feat p{ font-size:12px; color:#888; margin:0; line-height:1.5; }
+
+        /* Stats row */
+        .plt-ai2-stats{ display:flex; gap:24px; flex-wrap:wrap; }
+        .plt-ai2-stat-num{ font-size:32px; font-weight:900; color:#5932EA; font-family:'Figtree',sans-serif; line-height:1; }
+        .plt-ai2-stat-lbl{ font-size:12px; color:#888; font-weight:500; margin-top:3px; }
+
+        /* Right: note document card */
+        .plt-ai2-doc{ background:#fff; border-radius:24px; border:1.5px solid #ede9fe; box-shadow:0 24px 80px rgba(89,50,234,.11); overflow:hidden; }
+        .plt-ai2-doc-stripe{ height:4px; background:linear-gradient(90deg,#5932EA,#772EFE,#00c87a); }
+        .plt-ai2-doc-status{ display:flex; align-items:center; gap:14px; padding:18px 24px; border-bottom:1px solid #f8f5ff; }
+        .plt-ai2-doc-brain{ width:42px; height:42px; border-radius:13px; background:linear-gradient(135deg,#5932EA,#772EFE); display:flex; align-items:center; justify-content:center; color:#fff; font-size:17px; flex-shrink:0; }
+        .plt-ai2-doc-status-title{ font-size:14px; font-weight:800; color:#0f0e1a; font-family:'Figtree',sans-serif; }
+        .plt-ai2-doc-status-sub{ font-size:11px; color:#bbb; margin-top:2px; }
+        .plt-ai2-doc-done{ margin-left:auto; display:flex; align-items:center; gap:6px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:20px; padding:5px 12px; font-size:11px; font-weight:700; color:#00a066; white-space:nowrap; }
+
+        .plt-ai2-doc-body{ padding:22px 24px; }
+        .plt-ai2-doc-client{ font-size:18px; font-weight:800; color:#0f0e1a; margin-bottom:4px; font-family:'Figtree',sans-serif; }
+        .plt-ai2-doc-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+        .plt-ai2-doc-chip{ font-size:11px; font-weight:600; padding:4px 11px; border-radius:20px; background:#f8f5ff; color:#5932EA; border:1px solid #ede9fe; }
+        .plt-ai2-doc-text{ font-size:13px; color:#555; line-height:1.7; margin-bottom:16px; }
+        .plt-ai2-doc-fields{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+        .plt-ai2-doc-field{ background:#f8f5ff; border-radius:12px; padding:12px 14px; }
+        .plt-ai2-doc-field-lbl{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#bbb; margin-bottom:4px; }
+        .plt-ai2-doc-field-val{ font-size:12px; font-weight:600; color:#444; line-height:1.4; }
+        .plt-ai2-doc-ft{ border-top:1px solid #f8f5ff; padding:14px 24px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+        .plt-ai2-doc-approve{ background:#5932EA; color:#fff; border:none; border-radius:10px; padding:9px 20px; font-size:12px; font-weight:700; cursor:default; display:flex; align-items:center; gap:6px; }
+        .plt-ai2-doc-edit{ background:#f8f5ff; color:#555; border:none; border-radius:10px; padding:9px 16px; font-size:12px; font-weight:600; cursor:default; }
+        .plt-ai2-doc-ndis{ margin-left:auto; background:#f59e0b; color:#fff; font-size:10px; font-weight:800; padding:5px 12px; border-radius:8px; }
+        </style>
+
+        <section class="plt-ai2" id="ai">
+            <div class="container">
+                <div class="row align-items-center g-5">
+
+                    <!-- LEFT: copy + features -->
+                    <div class="col-xl-5 col-lg-6" data-aos="fade-right">
+                        <div class="plt-ai2-eyebrow"><i class="fa-solid fa-brain"></i> AI Assistant</div>
+                        <h2 class="plt-ai2-h">Admin that writes<br>itself. Every time.</h2>
+                        <p class="plt-ai2-desc">Plannor AI handles progress notes, billing checks, and incident summaries — so your team spends time on care, not paperwork.</p>
+
+                        <div class="plt-ai2-grid">
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico purple"><i class="fa-solid fa-file-pen"></i></div>
+                                <h5>AI Progress Notes</h5>
+                                <p>NDIS-compliant notes in seconds from voice or text</p>
+                            </div>
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico amber"><i class="fa-solid fa-microphone"></i></div>
+                                <h5>Voice Mode</h5>
+                                <p>Speak — AI formats and submits the note instantly</p>
+                            </div>
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico green"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+                                <h5>Smart Billing</h5>
+                                <p>Flags underclaiming and suggests correct NDIS items</p>
+                            </div>
+                            <div class="plt-ai2-feat">
+                                <div class="plt-ai2-feat-ico blue"><i class="fa-solid fa-chart-line"></i></div>
+                                <h5>AI Insights</h5>
+                                <p>Alerts on participant risks and workforce gaps</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT: AI-generated note document -->
+                    <div class="col-xl-7 col-lg-6" data-aos="fade-left">
+                        <div class="plt-ai2-doc">
+                            <div class="plt-ai2-doc-stripe"></div>
+
+                            <!-- Status bar -->
+                            <div class="plt-ai2-doc-status">
+                                <div class="plt-ai2-doc-brain"><i class="fa-solid fa-brain"></i></div>
+                                <div>
+                                    <div class="plt-ai2-doc-status-title">Plannor AI — Note Generated</div>
+                                    <div class="plt-ai2-doc-status-sub">Community Access &nbsp;·&nbsp; 24 Jun 2026 &nbsp;·&nbsp; Generated in 0.8s</div>
+                                </div>
+                                <div class="plt-ai2-doc-done"><i class="fa-solid fa-circle-check"></i> Ready</div>
+                            </div>
+
+                            <!-- Note body -->
+                            <div class="plt-ai2-doc-body">
+                                <div class="plt-ai2-doc-client">James T.</div>
+                                <div class="plt-ai2-doc-meta">
+                                    <span class="plt-ai2-doc-chip">Community Access</span>
+                                    <span class="plt-ai2-doc-chip">2 Hours</span>
+                                    <span class="plt-ai2-doc-chip">NDIS</span>
+                                </div>
+                                <div class="plt-ai2-doc-text">
+                                    James participated in a 2-hour community access session today. Activities included a visit to the local library and completing his weekly grocery shopping. James demonstrated independence navigating public spaces and made his own selections during shopping with minimal prompting.
+                                </div>
+                                <div class="plt-ai2-doc-fields">
+                                    <div class="plt-ai2-doc-field">
+                                        <div class="plt-ai2-doc-field-lbl">Participant Mood</div>
+                                        <div class="plt-ai2-doc-field-val">Positive throughout. Engaged confidently with staff.</div>
+                                    </div>
+                                    <div class="plt-ai2-doc-field">
+                                        <div class="plt-ai2-doc-field-lbl">Goal Alignment</div>
+                                        <div class="plt-ai2-doc-field-val">Community participation — NDIS Plan Goal #2</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer actions -->
+                            <div class="plt-ai2-doc-ft">
+                                <button class="plt-ai2-doc-approve"><i class="fa-solid fa-check"></i> Approve &amp; Save</button>
+                                <button class="plt-ai2-doc-edit"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="plt-ai2-doc-edit"><i class="fa-solid fa-rotate"></i> Regenerate</button>
+                                <div class="plt-ai2-doc-ndis">NDIS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== cta area start =========== -->
+        <section class="vl-cta-area-wrap fix" style="padding:80px 0;">
+            <div class="container">
+                <div class="vl-cta-bg p-relative parallaxie"
+                    style="background-image: url(assets/img/hrmanagement/cta/vl-cta-thumb-1.1.png);">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-8 mx-auto text-center">
+                            <div class="vl-cta-content">
+                                <div class="vl-section-title vl-section-title-white mb-30">
+                                    <h2 class="title text-anime-style-2">Ready to Transform Your NDIS Operations?</h2>
+                                </div>
+                                <div data-aos="fade-up">
+                                    <a href="../assessment/" class="vl-primary-btn-1" style="background:#fff;border-color:#fff;color:#5932EA;font-size:17px;padding:16px 44px;">Start Free Assessment <span><img src="../assets/img/icon/vl-arrowupright.svg" alt="" style="filter:invert(27%) sepia(90%) saturate(3500%) hue-rotate(240deg) brightness(90%);"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vl-cta-shape-left aniamtion-key-1 d-none d-md-block"><img
+                            src="../assets/img/hrmanagement/cta/vl-cta-shape-left.png" alt=""></div>
+                    <div class="vl-cta-shape-right aniamtion-key-1 d-none d-md-block"><img
+                            src="../assets/img/hrmanagement/cta/vl-cta-shape-right.png" alt=""></div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== cta area end =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress scroll -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- js file include here -->
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+
+    <!-- Smooth scroll for overview strip anchors -->
+    <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                var offset = 90;
+                var top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        });
+    });
+    </script>
+
+</body>
+
+</html>

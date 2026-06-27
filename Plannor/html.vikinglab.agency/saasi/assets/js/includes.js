@@ -21,6 +21,22 @@
                 var tmp = document.createElement('div');
                 tmp.innerHTML = html;
 
+                // Fix relative links/srcs in injected HTML for subdirectory pages
+                if (base) {
+                    tmp.querySelectorAll('a[href]').forEach(function(a) {
+                        var href = a.getAttribute('href');
+                        if (href && href.charAt(0) !== '/' && href.indexOf('://') === -1 && href.charAt(0) !== '#' && href.indexOf('mailto:') !== 0 && href.indexOf('tel:') !== 0) {
+                            a.setAttribute('href', base + href);
+                        }
+                    });
+                    tmp.querySelectorAll('[src]').forEach(function(el) {
+                        var src = el.getAttribute('src');
+                        if (src && src.charAt(0) !== '/' && src.indexOf('://') === -1) {
+                            el.setAttribute('src', base + src);
+                        }
+                    });
+                }
+
                 // Collect inline scripts before moving nodes
                 var scripts = [];
                 tmp.querySelectorAll('script').forEach(function (s) {

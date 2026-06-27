@@ -1,0 +1,3266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Rostering</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* ============================================================
+           SMART ROSTERING HERO
+        ============================================================ */
+        .sr-hero {
+            background: linear-gradient(145deg, #f0f0fa 0%, #f7f7fd 50%, #eef0fb 100%);
+            padding: 70px 0 75px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* blue glow behind dashboard */
+        .sr-hero::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(89,50,234,0.09) 0%, transparent 70%);
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .sr-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            gap: 64px;
+        }
+
+        /* ---- LEFT ---- */
+        .sr-left {
+            flex: 0 0 45%;
+            width: 45%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sr-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #2563EB;
+            margin-bottom: 22px;
+        }
+
+        .sr-heading {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.08;
+            color: #0D1238;
+            margin-bottom: 24px;
+            letter-spacing: -0.025em;
+            max-width: 480px;
+        }
+
+        .sr-heading .highlight {
+            color: #2563EB;
+        }
+
+        .sr-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 440px;
+        }
+
+        .sr-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px;
+        }
+
+        .sr-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1e293b;
+            line-height: 1.55;
+            margin-bottom: 18px;
+        }
+
+        .sr-bullets li:last-child { margin-bottom: 0; }
+
+        .sr-check {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #2563EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .sr-check svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .sr-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #2563EB;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 16px 32px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 6px 24px rgba(37,99,235,0.32);
+        }
+
+        .sr-cta:hover {
+            background: #1d4ed8;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .sr-cta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ---- RIGHT ---- */
+        .sr-right {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* floating "no conflicts" card */
+        .sr-float-top {
+            position: absolute;
+            top: -28px;
+            left: -10px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 10;
+            min-width: 280px;
+        }
+
+        .sr-float-top-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #22C55E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sr-float-top-icon svg { width: 20px; height: 20px; }
+
+        .sr-float-top-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 2px;
+        }
+
+        .sr-float-top-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        /* floating "shifts awaiting" card */
+        .sr-float-bottom {
+            position: absolute;
+            bottom: -28px;
+            right: 20px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            padding: 14px 20px;
+            z-index: 10;
+            min-width: 260px;
+        }
+
+        .sr-float-bottom-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 10px;
+        }
+
+        .sr-float-avatars {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sr-av {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .sr-av-plus {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #EEF2FF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #5932EA;
+            border: 2px solid #fff;
+        }
+
+        /* dotted decoration */
+        .sr-dots {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            display: grid;
+            grid-template-columns: repeat(6, 8px);
+            gap: 7px;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .sr-dots span {
+            width: 4px;
+            height: 4px;
+            background: #5932EA;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* ---- DASHBOARD CARD ---- */
+        .sr-dashboard {
+            background: #fff;
+            border-radius: 28px;
+            box-shadow: 0 20px 80px rgba(89,50,234,0.13), 0 4px 24px rgba(0,0,0,0.07);
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+
+        /* nav bar */
+        .sr-nav {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #F1F5F9;
+            gap: 0;
+        }
+
+        .sr-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #0D1238;
+            margin-right: 36px;
+            letter-spacing: -0.03em;
+            flex-shrink: 0;
+        }
+
+        .sr-logo span { color: #2563EB; }
+
+        .sr-nav-links {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            flex: 1;
+        }
+
+        .sr-nav-link {
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748B;
+            padding: 6px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sr-nav-link.active {
+            color: #2563EB;
+            background: #EFF6FF;
+            font-weight: 700;
+            border-bottom: 2px solid #2563EB;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .sr-nav-link svg {
+            width: 13px;
+            height: 13px;
+            opacity: 0.6;
+        }
+
+        .sr-nav-link.active svg { opacity: 1; }
+
+        /* toolbar */
+        .sr-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-bottom: 1px solid #F1F5F9;
+            background: #FAFBFF;
+            flex-wrap: wrap;
+        }
+
+        .sr-tb-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0D1238;
+            cursor: pointer;
+        }
+
+        .sr-tb-dropdown svg { width: 13px; height: 13px; color: #94A3B8; }
+
+        .sr-tb-date {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0D1238;
+        }
+
+        .sr-tb-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1.5px solid #E2E8F0;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        .sr-tb-cal svg { width: 13px; height: 13px; color: #64748B; }
+
+        .sr-tb-spacer { flex: 1; }
+
+        .sr-tb-filter {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0D1238;
+            cursor: pointer;
+        }
+
+        .sr-tb-filter svg { width: 13px; height: 13px; }
+
+        .sr-tb-publish {
+            background: #2563EB;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* grid */
+        .sr-grid-wrap {
+            overflow-x: auto;
+        }
+
+        .sr-grid {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .sr-grid th {
+            padding: 10px 8px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748B;
+            background: #FAFBFF;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .sr-grid th.time-col {
+            width: 54px;
+            text-align: left;
+            padding-left: 16px;
+            font-size: 10px;
+            color: #94A3B8;
+        }
+
+        .sr-grid th .day-name {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .sr-grid th .day-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 800;
+            color: #0D1238;
+            margin-top: 2px;
+        }
+
+        .sr-grid th.today-col .day-num {
+            background: #2563EB;
+            color: #fff;
+        }
+
+        .sr-grid td {
+            border-bottom: 1px solid #F8FAFC;
+            border-right: 1px solid #F8FAFC;
+            padding: 6px;
+            vertical-align: top;
+        }
+
+        .sr-grid td.time-label {
+            padding: 10px 6px 10px 16px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #94A3B8;
+            white-space: nowrap;
+            vertical-align: middle;
+            background: #FAFBFF;
+            line-height: 1.4;
+        }
+
+        /* shift card */
+        .sr-shift {
+            border-radius: 10px;
+            padding: 8px 10px;
+            position: relative;
+        }
+
+        .sr-shift-head {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .sr-init {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .sr-shift-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: #0D1238;
+        }
+
+        .sr-shift-service {
+            font-size: 9px;
+            color: #475569;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .sr-shift-participant {
+            font-size: 9px;
+            color: #64748B;
+        }
+
+        .sr-shift-ok {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #22C55E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sr-shift-ok svg { width: 8px; height: 8px; }
+
+        .sr-drag-cell {
+            border: 1.5px dashed #CBD5E1;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+            color: #94A3B8;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 16px 8px;
+            cursor: pointer;
+        }
+
+        .sr-drag-cell svg { width: 14px; height: 14px; color: #CBD5E1; }
+
+        /* ---- ROSTER DASHBOARD (new design) ---- */
+        .sr-roster-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 12px 18px 10px;
+            border-bottom: 1px solid #F1F5F9;
+            gap: 12px;
+        }
+        .sr-roster-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            color: #0D1238;
+            margin-bottom: 2px;
+        }
+        .sr-roster-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            color: #94A3B8;
+        }
+        .sr-roster-btns { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+        .sr-open-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 13px;
+            border: 1.5px solid #F59E0B;
+            border-radius: 8px;
+            background: #FFFBEB;
+            color: #92400E;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+        }
+        .sr-open-badge {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: #EF4444;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+        }
+        .sr-add-shift-btn {
+            padding: 8px 15px;
+            border-radius: 8px;
+            background: #2563EB;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* toolbar */
+        .sr-roster-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 18px;
+            border-bottom: 1px solid #F1F5F9;
+            background: #FAFBFF;
+            flex-wrap: wrap;
+        }
+        .sr-search-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 7px 11px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: #94A3B8;
+            background: #fff;
+            min-width: 130px;
+        }
+        .sr-search-box svg { width: 12px; height: 12px; flex-shrink: 0; }
+        .sr-pp-dd {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 7px 11px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: #0D1238;
+            background: #fff;
+            cursor: pointer;
+        }
+        .sr-pp-dd svg { width: 11px; height: 11px; color: #94A3B8; }
+        .sr-date-nav-wrap {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+        }
+        .sr-date-str {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #0D1238;
+            white-space: nowrap;
+        }
+        .sr-nav-arr {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 1.5px solid #E2E8F0;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: #64748B;
+            cursor: pointer;
+        }
+        .sr-today-pill {
+            padding: 4px 9px;
+            border-radius: 6px;
+            border: 1.5px solid #DBEAFE;
+            background: #EFF6FF;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #2563EB;
+            cursor: pointer;
+        }
+        .sr-view-tabs {
+            display: flex;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .sr-view-tab {
+            padding: 5px 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            color: #64748B;
+            background: #fff;
+            border-right: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .sr-view-tab:last-child { border-right: none; }
+        .sr-view-tab.active { background: #2563EB; color: #fff; }
+        .sr-view-tab svg { width: 11px; height: 11px; }
+
+        /* roster table */
+        .sr-roster-wrap { overflow-x: auto; }
+        .sr-roster-tbl {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+        }
+        .sr-roster-tbl th {
+            padding: 7px 6px;
+            text-align: center;
+            background: #FAFBFF;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .sr-roster-tbl th.sr-staff-hd {
+            text-align: left;
+            padding-left: 22px;
+            width: 175px;
+            border-right: 1px solid #F1F5F9;
+        }
+        .sr-staff-hd-txt {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #94A3B8;
+        }
+        .sr-day-name-lbl {
+            display: block;
+            font-size: 8px;
+            font-weight: 700;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .sr-day-num-lbl {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 800;
+            color: #0D1238;
+            margin-top: 1px;
+        }
+        .sr-roster-tbl th.sr-today-hd { border-bottom: 2px solid #2563EB; }
+        .sr-roster-tbl th.sr-today-hd .sr-day-num-lbl { background: #2563EB; color: #fff; }
+        .sr-roster-tbl td {
+            border-bottom: 1px solid #F8FAFC;
+            border-right: 1px solid #F8FAFC;
+            padding: 4px 5px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .sr-roster-tbl td.sr-staff-td {
+            padding: 5px 12px;
+            text-align: left;
+            border-right: 1px solid #F1F5F9;
+        }
+        .sr-staff-row-inner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sr-roster-av {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .sr-roster-av-img {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .sr-staff-nm { font-size: 11px; font-weight: 700; color: #0D1238; line-height: 1.2; }
+        .sr-staff-rl { font-size: 9px; color: #94A3B8; }
+        .sr-add-cell-btn {
+            width: 100%;
+            border: 1.5px dashed #CBD5E1;
+            border-radius: 7px;
+            padding: 5px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #2563EB;
+            background: transparent;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .sr-add-cell-btn:hover { background: #EFF6FF; border-color: #93C5FD; }
+        .sr-today-td { background: #F0F7FF; }
+
+        /* responsive */
+        @media (max-width: 1100px) {
+            .sr-inner { flex-direction: column; padding: 0 24px; gap: 60px; }
+            .sr-left { width: 100%; flex: none; }
+            .sr-heading { font-size: 40px; }
+            .sr-float-top { top: -16px; left: 0; }
+            .sr-float-bottom { bottom: -16px; right: 0; }
+        }
+
+        @media (max-width: 640px) {
+            .sr-hero { padding: 70px 0 80px; }
+            .sr-heading { font-size: 32px; }
+            .sr-nav-links { display: none; }
+        }
+
+        /* ============================================================
+           SCHEDULER SECTION
+        ============================================================ */
+        .sc-section {
+            background: linear-gradient(145deg, #f0f0fa 0%, #f7f7fd 50%, #eef0fb 100%);
+            padding: 70px 0 75px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* background decorations */
+        .sc-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(89,50,234,0.09) 0%, transparent 70%);
+            top: 50%;
+            left: -100px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .sc-section::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(89,50,234,0.06);
+            top: 60px;
+            left: 80px;
+            pointer-events: none;
+        }
+
+        .sc-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            align-items: flex-start;
+            gap: 72px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- LEFT (52%) ---- */
+        .sc-left {
+            flex: 0 0 52%;
+            width: 52%;
+            position: relative;
+        }
+
+        /* dot pattern top-left */
+        .sc-dot-pattern {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            display: grid;
+            grid-template-columns: repeat(7, 10px);
+            gap: 8px;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .sc-dot-pattern span {
+            width: 3px;
+            height: 3px;
+            background: #5932EA;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* add shift floating button */
+        .sc-add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #5932EA;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(89,50,234,0.35);
+            margin-bottom: 12px;
+            margin-left: auto;
+            display: flex;
+            width: fit-content;
+            margin-left: auto;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* dashboard card */
+        .sc-dash {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid #E8ECF4;
+            box-shadow: 0 8px 48px rgba(0,0,0,0.09);
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sc-dash-header {
+            padding: 20px 24px 14px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0D1238;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        /* timeline container */
+        .sc-timeline-wrap {
+            display: flex;
+            padding: 0;
+        }
+
+        /* staff column */
+        .sc-staff-col {
+            flex: 0 0 200px;
+            width: 200px;
+            border-right: 1px solid #F1F5F9;
+        }
+
+        /* time labels row */
+        .sc-time-row {
+            height: 36px;
+            border-bottom: 1px solid #F1F5F9;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        /* staff row */
+        .sc-staff-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-bottom: 1px solid #F8FAFC;
+            height: 80px;
+        }
+
+        .sc-staff-row:last-child { border-bottom: none; }
+
+        .sc-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #E2E8F0;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .sc-online-dot {
+            position: absolute;
+            bottom: 1px;
+            right: 1px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22C55E;
+            border: 2px solid #fff;
+        }
+
+        .sc-staff-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0D1238;
+            line-height: 1.3;
+        }
+
+        .sc-staff-role {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        /* grid column */
+        .sc-grid-col {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* time labels header */
+        .sc-time-labels {
+            display: flex;
+            align-items: center;
+            height: 36px;
+            border-bottom: 1px solid #F1F5F9;
+            padding: 0 8px;
+            position: relative;
+        }
+
+        .sc-time-label {
+            position: absolute;
+            font-size: 10px;
+            font-weight: 600;
+            color: #94A3B8;
+            transform: translateX(-50%);
+        }
+
+        /* grid row for shifts */
+        .sc-grid-row {
+            height: 80px;
+            border-bottom: 1px solid #F8FAFC;
+            position: relative;
+        }
+
+        .sc-grid-row:last-child { border-bottom: none; }
+
+        /* vertical time columns (light lines) */
+        .sc-vline {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #F1F5F9;
+        }
+
+        /* current time indicator */
+        .sc-now-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #5932EA;
+            z-index: 4;
+        }
+
+        .sc-now-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #5932EA;
+            position: absolute;
+            top: -5px;
+            left: -4px;
+        }
+
+        /* shift cards */
+        .sc-shift-card {
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sc-shift-time {
+            font-size: 11px;
+            font-weight: 700;
+            color: inherit;
+            margin-bottom: 2px;
+        }
+
+        .sc-shift-service {
+            font-size: 11px;
+            font-weight: 600;
+            color: #0D1238;
+            margin-bottom: 2px;
+        }
+
+        .sc-shift-clients {
+            font-size: 10px;
+            color: #64748B;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* refresh icon column */
+        .sc-refresh-col {
+            flex: 0 0 44px;
+            width: 44px;
+            border-left: 1px solid #F1F5F9;
+        }
+
+        .sc-refresh-cell {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #F8FAFC;
+            color: #CBD5E1;
+            cursor: pointer;
+        }
+
+        .sc-refresh-cell:last-child { border-bottom: none; }
+        .sc-refresh-cell svg { width: 16px; height: 16px; }
+
+        /* testimonial card */
+        .sc-testimonial {
+            margin-top: 14px;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #E8ECF4;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 20px 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sc-quote-icon {
+            font-size: 52px;
+            line-height: 1;
+            color: #5932EA;
+            font-family: 'Figtree', sans-serif;
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        .sc-testimonial-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.75;
+            margin-bottom: 20px;
+        }
+
+        .sc-testimonial-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 2px;
+        }
+
+        .sc-testimonial-role {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #5932EA;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .sc-stars {
+            color: #FBBF24;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        /* ---- RIGHT (45%) ---- */
+        .sc-right {
+            flex: 1;
+            min-width: 0;
+            padding-top: 0;
+        }
+
+        .sc-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #5932EA;
+            margin-bottom: 20px;
+        }
+
+        .sc-heading {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.08;
+            color: #0D1238;
+            margin-bottom: 28px;
+            letter-spacing: -0.025em;
+        }
+
+        .sc-heading .dot {
+            color: #2563EB;
+        }
+
+        .sc-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            max-width: 420px;
+        }
+
+        /* feature blocks */
+        .sc-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .sc-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .sc-feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sc-feature-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .sc-feature-icon.purple { background: #EDE9FE; }
+        .sc-feature-icon.green  { background: #DCFCE7; }
+        .sc-feature-icon.yellow { background: #FEF9C3; }
+
+        .sc-feature-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 5px;
+        }
+
+        .sc-feature-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.65;
+        }
+
+        /* CTA link */
+        .sc-cta-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #5932EA;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1.5px solid #5932EA;
+            padding-bottom: 2px;
+        }
+
+        .sc-cta-link:hover { color: #4720d4; border-color: #4720d4; }
+
+        @media (max-width: 1100px) {
+            .sc-inner { flex-direction: column; padding: 0 24px; }
+            .sc-left { width: 100%; flex: none; }
+            .sc-heading { font-size: 40px; }
+        }
+
+        @media (max-width: 640px) {
+            .sc-heading { font-size: 32px; }
+        }
+
+
+        /* ============================================================
+           SCHADS SECTION
+        ============================================================ */
+        .shd-section {
+            background: linear-gradient(145deg, #EFF6FF 0%, #F8FBFF 55%, #EEF2FF 100%);
+            padding: 70px 0 75px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* faded glow top-right */
+        .shd-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+            top: -60px;
+            right: -80px;
+            pointer-events: none;
+        }
+
+        /* dot pattern top-right */
+        .shd-dots {
+            position: absolute;
+            top: 32px;
+            right: 130px;
+            display: grid;
+            grid-template-columns: repeat(7,10px);
+            gap: 8px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .shd-dots span {
+            width: 3px;
+            height: 3px;
+            background: #94A3B8;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .shd-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            align-items: flex-start;
+            gap: 64px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- LEFT (48%) ---- */
+        .shd-left {
+            flex: 0 0 48%;
+            width: 48%;
+        }
+
+        .shd-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #2563EB;
+            margin-bottom: 22px;
+        }
+
+        .shd-heading {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.08;
+            color: #0D1238;
+            margin-bottom: 26px;
+            letter-spacing: -0.025em;
+        }
+
+        .shd-heading .blue { color: #2563EB; }
+
+        .shd-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            max-width: 460px;
+        }
+
+        .shd-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .shd-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .shd-feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .shd-feature-icon svg { width: 22px; height: 22px; }
+        .shd-feature-icon.purple { background: #EDE9FE; }
+        .shd-feature-icon.green  { background: #DCFCE7; }
+        .shd-feature-icon.orange { background: #FEF3C7; }
+
+        .shd-feature-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 5px;
+        }
+
+        .shd-feature-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.65;
+        }
+
+        .shd-cta {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2563EB;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1.5px solid #2563EB;
+            padding-bottom: 2px;
+        }
+
+        .shd-cta:hover { color: #1d4ed8; border-color: #1d4ed8; }
+
+        /* ---- RIGHT (55%) ---- */
+        .shd-right {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* dashboard card */
+        .shd-dash {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 48px rgba(0,0,0,0.08);
+            padding: 28px 28px 0;
+            overflow: hidden;
+        }
+
+        /* diagram: 3-col grid */
+        .shd-diagram {
+            display: grid;
+            grid-template-columns: 1fr 140px 1fr;
+            align-items: center;
+            gap: 0;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .shd-pills-col {
+            display: flex;
+            flex-direction: column;
+            gap: 44px;
+        }
+
+        .shd-pills-col.right { align-items: flex-end; }
+
+        .shd-pill-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .shd-pills-col.right .shd-pill-group { align-items: flex-end; }
+
+        .shd-pill-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+
+        .shd-pill {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .shd-pill.lavender { background: #EDE9FE; color: #5932EA; }
+        .shd-pill.peach    { background: #FEF3C7; color: #B45309; }
+        .shd-pill.sky      { background: #E0F2FE; color: #0369A1; }
+        .shd-pill.mint     { background: #DCFCE7; color: #15803D; }
+        .shd-pill.rose     { background: #FFE4E6; color: #BE185D; }
+        .shd-pill.green    { background: #DCFCE7; color: #15803D; }
+
+        /* shield center */
+        .shd-shield-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* SVG connector overlay */
+        .shd-connectors {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        /* status banner */
+        .shd-banner {
+            background: #DBEAFE;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin: 0 -40px;
+        }
+
+        .shd-banner-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .shd-banner-icon svg { width: 20px; height: 20px; }
+
+        .shd-banner-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 3px;
+        }
+
+        .shd-banner-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        /* testimonial */
+        .shd-testimonial {
+            margin-top: 14px;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            padding: 20px 24px;
+            position: relative;
+        }
+
+        .shd-quote-open {
+            font-family: 'Figtree', sans-serif;
+            font-size: 54px;
+            line-height: 1;
+            color: #2563EB;
+            margin-bottom: 8px;
+        }
+
+        .shd-testimonial-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.75;
+            margin-bottom: 18px;
+        }
+
+        .shd-testimonial-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 2px;
+        }
+
+        .shd-testimonial-role {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #2563EB;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .shd-stars { color: #FBBF24; font-size: 18px; letter-spacing: 2px; }
+
+        .shd-quote-close {
+            position: absolute;
+            bottom: 20px;
+            right: 28px;
+            font-family: 'Figtree', sans-serif;
+            font-size: 72px;
+            line-height: 1;
+            color: #2563EB;
+            opacity: 0.4;
+        }
+
+        @media (max-width: 1100px) {
+            .shd-inner { flex-direction: column; padding: 0 24px; }
+            .shd-left { width: 100%; flex: none; }
+            .shd-heading { font-size: 40px; }
+            .shd-diagram { grid-template-columns: 1fr 100px 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .shd-heading { font-size: 32px; }
+        }
+
+
+        /* ============================================================
+           COLLABORATION SECTION
+        ============================================================ */
+        .collab-section {
+            background: linear-gradient(160deg, #f4f3fd 0%, #f8f9ff 55%, #eef1fb 100%);
+            padding: 110px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collab-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(89,50,234,0.07) 0%, transparent 70%);
+            top: -100px;
+            right: -60px;
+            pointer-events: none;
+        }
+
+        .collab-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            gap: 72px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- LEFT ---- */
+        .collab-left {
+            flex: 0 0 45%;
+            width: 45%;
+        }
+
+        .collab-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #5932EA;
+            margin-bottom: 22px;
+        }
+
+        .collab-eyebrow-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #EDE9FE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .collab-eyebrow-icon svg { width: 18px; height: 18px; }
+
+        .collab-heading {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.08;
+            color: #0D1238;
+            margin-bottom: 24px;
+            letter-spacing: -0.025em;
+        }
+
+        .collab-heading .collab-highlight {
+            color: #2563EB;
+            text-decoration: underline;
+            text-decoration-color: #2563EB;
+            text-underline-offset: 4px;
+        }
+
+        .collab-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 40px;
+            max-width: 460px;
+        }
+
+        .collab-features {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+
+        .collab-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .collab-feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .collab-feature-icon svg { width: 22px; height: 22px; }
+        .collab-feature-icon.purple { background: #EDE9FE; }
+        .collab-feature-icon.green  { background: #DCFCE7; }
+        .collab-feature-icon.yellow { background: #FEF9C3; }
+
+        .collab-feature-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 4px;
+        }
+
+        .collab-feature-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.65;
+        }
+
+        .collab-cta-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2563EB;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1.5px solid #2563EB;
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .collab-cta-link:hover { color: #1d4ed8; border-color: #1d4ed8; }
+
+        /* ---- RIGHT ---- */
+        .collab-right {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        /* Phone + notification cards wrapper */
+        .collab-phone-area {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+
+        /* Notification cards (left of phone) */
+        .collab-notifs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-top: 60px;
+            flex: 1;
+            max-width: 260px;
+        }
+
+        .collab-notif {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .collab-notif-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .collab-notif-icon svg { width: 18px; height: 18px; }
+        .collab-notif-icon.purple { background: #EDE9FE; }
+        .collab-notif-icon.green  { background: #DCFCE7; }
+        .collab-notif-icon.yellow { background: #FEF9C3; }
+
+        .collab-notif-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0D1238;
+            margin-bottom: 2px;
+            line-height: 1.3;
+        }
+
+        .collab-notif-app {
+            font-size: 11px;
+            color: #94A3B8;
+            font-weight: 500;
+        }
+
+        .collab-notif-time {
+            font-size: 10px;
+            color: #CBD5E1;
+            margin-top: 2px;
+        }
+
+        /* Phone mockup */
+        .collab-phone {
+            width: 230px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .collab-phone-frame {
+            width: 230px;
+            border-radius: 38px;
+            background: #1a1a1a;
+            padding: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.30), 0 8px 20px rgba(0,0,0,0.20), inset 0 0 0 2px #333;
+            position: relative;
+        }
+
+        /* notch */
+        .collab-phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 28px;
+            background: #1a1a1a;
+            border-radius: 0 0 18px 18px;
+            z-index: 10;
+        }
+
+        .collab-phone-screen {
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            height: 460px;
+            background: #111;
+        }
+
+        .collab-phone-wallpaper {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.88;
+        }
+
+        /* lock screen overlay */
+        .collab-phone-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.60) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 48px 14px 18px;
+        }
+
+        .collab-phone-lock-top {
+            text-align: center;
+        }
+
+        .collab-phone-lock-icon {
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 4px;
+        }
+
+        .collab-phone-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: -1px;
+            line-height: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .collab-phone-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            margin-top: 4px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        }
+
+        /* notification banner on phone screen */
+        .collab-phone-notif {
+            background: rgba(255,255,255,0.20);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .collab-phone-notif-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .collab-phone-notif-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #5932EA, #2563EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .collab-phone-notif-app {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.75);
+            flex: 1;
+        }
+
+        .collab-phone-notif-now {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .collab-phone-notif-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .collab-phone-notif-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.80);
+            line-height: 1.4;
+        }
+
+        /* Dashed decorative lines between notifs and phone */
+        .collab-dashes {
+            position: absolute;
+            top: 140px;
+            right: 240px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .collab-dash-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #CBD5E1;
+        }
+
+        .collab-dash-line {
+            width: 30px;
+            height: 1px;
+            background: #CBD5E1;
+            border-radius: 2px;
+            margin-left: -11px;
+        }
+
+        /* Decorative dots top-right */
+        .collab-dot-grid {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            display: grid;
+            grid-template-columns: repeat(6, 10px);
+            gap: 7px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .collab-dot-grid span {
+            width: 3px;
+            height: 3px;
+            background: #5932EA;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Testimonial below phone area */
+        .collab-testimonial {
+            width: 100%;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #E8ECF4;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 24px 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .collab-testimonial-quote {
+            font-family: 'Figtree', sans-serif;
+            font-size: 52px;
+            line-height: 1;
+            color: #5932EA;
+            flex-shrink: 0;
+            opacity: 0.6;
+            margin-top: -8px;
+        }
+
+        .collab-testimonial-content { flex: 1; }
+
+        .collab-testimonial-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .collab-testimonial-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .collab-testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5932EA, #2563EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .collab-testimonial-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0D1238;
+        }
+
+        .collab-testimonial-role {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #94A3B8;
+        }
+
+        .collab-stars {
+            color: #FBBF24;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 1100px) {
+            .collab-inner { flex-direction: column; padding: 0 24px; gap: 60px; }
+            .collab-left { width: 100%; flex: none; }
+            .collab-heading { font-size: 40px; }
+            .collab-phone-area { justify-content: center; }
+        }
+
+        @media (max-width: 640px) {
+            .collab-heading { font-size: 32px; }
+        }
+
+        @media (max-width: 640px) {
+            .collab-phone { width: 200px; }
+            .collab-phone-frame { width: 200px; }
+            .collab-phone-screen { height: 400px; }
+            .collab-phone-time { font-size: 38px; }
+            .collab-notifs { max-width: 200px; }
+        }
+
+
+        /* ============================================================
+           MOBILE RESPONSIVE — comprehensive
+        ============================================================ */
+
+        /* ---- Tablet (≤ 900px) ---- */
+        @media (max-width: 900px) {
+            .sr-inner, .sc-inner, .shd-inner, .collab-inner { padding: 0 24px; gap: 48px; }
+            .sr-heading, .sc-heading, .shd-heading, .collab-heading { font-size: 36px; }
+        }
+
+        /* ---- Mobile (≤ 640px) already has some rules above; these extend them ---- */
+        @media (max-width: 640px) {
+            /* Inner containers */
+            .sr-inner, .sc-inner, .shd-inner, .collab-inner { padding: 0 16px; gap: 40px; flex-direction: column; }
+            .sr-left, .sc-left, .shd-left, .collab-left { width: 100%; flex: none; }
+
+            /* Section padding */
+            .sr-hero, .sc-section, .shd-section { padding: 40px 0 48px; }
+            .collab-section { padding: 60px 0 70px; }
+
+            /* Headings */
+            .sr-heading, .sc-heading, .shd-heading, .collab-heading { font-size: 28px; }
+
+            /* Body text */
+            .sr-body, .sc-body, .shd-body, .collab-body { font-size: 15px; max-width: 100%; }
+
+            /* Breadcrumb */
+            .vl-breadcrumb-area { min-height: 400px !important; padding-top: 80px !important; padding-bottom: 30px !important; }
+
+            /* ---- ROSTERING HERO ---- */
+            /* Hide floating cards & dots on small screens */
+            .sr-float-top, .sr-float-bottom, .sr-dots { display: none !important; }
+            .sr-dashboard { margin-top: 0 !important; }
+
+            /* Roster header */
+            .sr-roster-head { flex-wrap: wrap; padding: 10px 14px; gap: 8px; }
+            .sr-roster-btns { flex-wrap: wrap; gap: 6px; width: 100%; }
+            .sr-open-btn { flex: 1; justify-content: center; }
+            .sr-add-shift-btn { flex: 1; }
+
+            /* Roster toolbar */
+            .sr-roster-toolbar { flex-wrap: wrap; row-gap: 6px; padding: 8px 12px; }
+            .sr-search-box { flex: 1 1 calc(50% - 4px); min-width: 0; }
+            .sr-pp-dd { flex: 1 1 calc(50% - 4px); min-width: 0; }
+            .sr-date-nav-wrap { width: 100%; justify-content: flex-start; margin-left: 0; }
+            .sr-date-str { font-size: 10px; }
+            .sr-view-tabs { margin-left: auto !important; }
+            .sr-view-tab:nth-child(3), .sr-view-tab:nth-child(4) { display: none; }
+
+            /* Roster table — keep staff col + 4 day cols */
+            .sr-roster-tbl { font-size: 10px; }
+            .sr-roster-tbl th.sr-staff-hd { width: 120px; padding-left: 10px; }
+            .sr-staff-row-inner { gap: 6px; }
+            .sr-roster-av { width: 24px; height: 24px; font-size: 8px; border-radius: 5px; }
+            .sr-staff-nm { font-size: 10px; }
+            .sr-staff-rl { font-size: 8px; }
+            .sr-add-cell-btn { font-size: 9px; padding: 3px 0; }
+
+            /* ---- SCHEDULER ---- */
+            .sc-heading { font-size: 28px; }
+            .sc-add-btn { font-size: 12px; padding: 10px 16px; }
+            .sc-staff-col { flex: 0 0 110px; width: 110px; }
+            .sc-staff-name { font-size: 11px; }
+            .sc-staff-role { font-size: 9px; }
+            .sc-avatar { width: 32px; height: 32px; font-size: 10px; }
+            .sc-staff-row { padding: 10px 10px; gap: 7px; height: 68px; }
+            .sc-grid-row { height: 68px; }
+            .sc-shift-time { font-size: 10px; }
+            .sc-shift-service { font-size: 10px; }
+            .sc-shift-clients { font-size: 9px; }
+            .sc-refresh-col { flex: 0 0 32px; width: 32px; }
+            .sc-refresh-cell { height: 68px; }
+            .sc-testimonial { padding: 16px 18px; }
+            .sc-testimonial-text { font-size: 13px; }
+            .sc-feature-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .sc-feature-title { font-size: 15px; }
+            .sc-feature-desc { font-size: 13px; }
+
+            /* ---- SCHADS ---- */
+            .shd-heading { font-size: 28px; }
+            .shd-diagram { grid-template-columns: 1fr 72px 1fr; }
+            .shd-pill { font-size: 11px; padding: 6px 12px; }
+            .shd-pill-label { font-size: 9px; }
+            .shd-pills-col { gap: 24px; }
+            .shd-feature-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .shd-feature-title { font-size: 15px; }
+            .shd-feature-desc { font-size: 13px; }
+            .shd-banner { padding: 12px 16px; gap: 12px; margin: 0 -16px; }
+            .shd-testimonial { padding: 16px 18px; }
+
+            /* ---- COLLABORATION ---- */
+            .collab-heading { font-size: 28px; }
+            .collab-phone-area { flex-direction: column-reverse; align-items: center; gap: 20px; }
+            .collab-notifs { padding-top: 0; max-width: 100%; width: 100%; flex-direction: row; flex-wrap: wrap; }
+            .collab-notif { flex: 1 1 calc(50% - 6px); min-width: 180px; }
+            .collab-testimonial { flex-direction: column; gap: 6px; }
+            .collab-testimonial-quote { font-size: 40px; margin-top: 0; }
+            .collab-feature-icon { width: 44px; height: 44px; border-radius: 12px; }
+            .collab-feature-title { font-size: 15px; }
+            .collab-feature-desc { font-size: 13px; }
+            .collab-dashes { display: none; }
+        }
+
+        /* ---- Small phones (≤ 480px) ---- */
+        @media (max-width: 480px) {
+            .sr-inner, .sc-inner, .shd-inner, .collab-inner { padding: 0 14px; gap: 32px; }
+            .sr-heading, .sc-heading, .shd-heading, .collab-heading { font-size: 24px; }
+
+            /* Hero bullets */
+            .sr-bullets li { font-size: 14px; gap: 10px; }
+            .sr-check { width: 22px; height: 22px; }
+
+            /* Roster — hide sat col on tiny screens */
+            .sr-roster-tbl th:last-child,
+            .sr-roster-tbl td:last-child { display: none; }
+            .sr-open-btn { display: none; }
+            .sr-add-shift-btn { width: 100%; }
+
+            /* Scheduler — hide refresh column */
+            .sc-refresh-col { display: none; }
+            .sc-staff-col { flex: 0 0 95px; width: 95px; }
+
+            /* SCHADS diagram — simplify */
+            .shd-diagram { grid-template-columns: 1fr 56px 1fr; }
+            .shd-pill { font-size: 10px; padding: 5px 9px; }
+            .shd-pills-col { gap: 16px; }
+            .shd-connectors { display: none; }
+
+            /* Collab phone + notifs */
+            .collab-phone { width: 180px; }
+            .collab-phone-frame { width: 180px; }
+            .collab-phone-screen { height: 360px; }
+            .collab-phone-time { font-size: 36px; }
+            .collab-notif { flex: 1 1 100%; }
+            .collab-dot-grid { display: none; }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div id="global-header"></div>
+
+    <main>
+        <!-- =========== breadcrumb area start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Rostering</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Rostering</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb area end =========== -->
+
+        <!-- =========== Smart Rostering Hero =========== -->
+        <section class="sr-hero">
+            <div class="sr-inner">
+
+                <!-- LEFT -->
+                <div class="sr-left">
+                    <div class="sr-eyebrow">SMART ROSTERING</div>
+
+                    <h1 class="sr-heading">
+                        The right support<br>
+                        worker, in the right<br>
+                        shift &mdash; every <span class="highlight">time.</span>
+                    </h1>
+
+                    <p class="sr-body">
+                        Build and manage your NDIS roster from one simple workspace. Match workers with participants based on availability, skills and continuity of care, then keep everyone updated with instant shift notifications.
+                    </p>
+
+                    <ul class="sr-bullets">
+                        <li>
+                            <span class="sr-check">
+                                <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6.5L5.2 9.75L11 3.25" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            Drag-and-drop weekly and monthly roster views
+                        </li>
+                        <li>
+                            <span class="sr-check">
+                                <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6.5L5.2 9.75L11 3.25" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            Prevent double-bookings, unavailable staff and SCHADS hour conflicts
+                        </li>
+                        <li>
+                            <span class="sr-check">
+                                <svg viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6.5L5.2 9.75L11 3.25" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            Let workers view shifts, check in with GPS and submit timesheets from mobile
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="sr-right">
+
+
+                    <!-- Dashboard card -->
+                    <div class="sr-dashboard" style="margin-top: 16px; margin-bottom: 16px;">
+
+                        <!-- Header -->
+                        <div class="sr-roster-head">
+                            <div>
+                                <div class="sr-roster-title">Roster &amp; Shift Management</div>
+                                <div class="sr-roster-sub">Schedule staff, track shifts, manage your workforce.</div>
+                            </div>
+                            <div class="sr-roster-btns">
+                                <button class="sr-open-btn">
+                                    <svg viewBox="0 0 14 14" fill="none" style="width:13px;height:13px;"><circle cx="7" cy="7" r="3" stroke="#92400E" stroke-width="1.5"/><path d="M2 7a5 5 0 0 1 5-5M7 12a5 5 0 0 0 5-5" stroke="#92400E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    Open Shifts
+                                    <span class="sr-open-badge">2</span>
+                                </button>
+                                <button class="sr-add-shift-btn">+ Add Shift</button>
+                            </div>
+                        </div>
+
+                        <!-- Toolbar -->
+                        <div class="sr-roster-toolbar">
+                            <div class="sr-search-box">
+                                <svg viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="#94A3B8" stroke-width="1.5"/><path d="M10 10l2.5 2.5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                Search staff...
+                            </div>
+                            <div class="sr-pp-dd">
+                                All Participants
+                                <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="sr-date-nav-wrap">
+                                <div class="sr-nav-arr">&#8249;</div>
+                                <span class="sr-date-str">22 Jun – 28 Jun 2026</span>
+                                <div class="sr-nav-arr">&#8250;</div>
+                                <span class="sr-today-pill">Today</span>
+                            </div>
+                            <div class="sr-view-tabs" style="margin-left:auto;">
+                                <div class="sr-view-tab active">
+                                    <svg viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4" height="10" rx="1" fill="currentColor" opacity=".8"/><rect x="7" y="1" width="4" height="10" rx="1" fill="currentColor" opacity=".5"/></svg>
+                                    Timeline
+                                </div>
+                                <div class="sr-view-tab">
+                                    <svg viewBox="0 0 12 12" fill="none"><rect x="1" y="2" width="10" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h10M4 2v2M8 2v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                    Month
+                                </div>
+                                <div class="sr-view-tab">
+                                    <svg viewBox="0 0 12 12" fill="none"><path d="M1 3h10M1 6h7M1 9h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                                    List
+                                </div>
+                                <div class="sr-view-tab">
+                                    <svg viewBox="0 0 12 12" fill="none"><rect x="1" y="2" width="10" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h10M4 2v2M8 2v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="4" cy="8" r="1" fill="currentColor"/><circle cx="8" cy="8" r="1" fill="currentColor"/></svg>
+                                    Calendar
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Roster Grid -->
+                        <div class="sr-roster-wrap">
+                            <table class="sr-roster-tbl">
+                                <thead>
+                                    <tr>
+                                        <th class="sr-staff-hd"><span class="sr-staff-hd-txt">Staff</span></th>
+                                        <th>
+                                            <span class="sr-day-name-lbl">MON</span>
+                                            <span class="sr-day-num-lbl">22</span>
+                                        </th>
+                                        <th>
+                                            <span class="sr-day-name-lbl">TUE</span>
+                                            <span class="sr-day-num-lbl">23</span>
+                                        </th>
+                                        <th>
+                                            <span class="sr-day-name-lbl">WED</span>
+                                            <span class="sr-day-num-lbl">24</span>
+                                        </th>
+                                        <th>
+                                            <span class="sr-day-name-lbl">THU</span>
+                                            <span class="sr-day-num-lbl">25</span>
+                                        </th>
+                                        <th class="sr-today-hd">
+                                            <span class="sr-day-name-lbl">FRI</span>
+                                            <span class="sr-day-num-lbl">26</span>
+                                        </th>
+                                        <th>
+                                            <span class="sr-day-name-lbl">SAT</span>
+                                            <span class="sr-day-num-lbl">27</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Clement Chan -->
+                                    <tr>
+                                        <td class="sr-staff-td">
+                                            <div class="sr-staff-row-inner">
+                                                <div class="sr-roster-av" style="background:#2563EB;">CC</div>
+                                                <div>
+                                                    <div class="sr-staff-nm">Clement Chan</div>
+                                                    <div class="sr-staff-rl">Support Worker</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td class="sr-today-td"><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                    </tr>
+                                    <!-- David Chen -->
+                                    <tr>
+                                        <td class="sr-staff-td">
+                                            <div class="sr-staff-row-inner">
+                                                <div class="sr-roster-av" style="background:#991B1B;">DC</div>
+                                                <div>
+                                                    <div class="sr-staff-nm">David Chen</div>
+                                                    <div class="sr-staff-rl">Senior Support Worker</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td class="sr-today-td"><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                    </tr>
+                                    <!-- Emma Wilson -->
+                                    <tr>
+                                        <td class="sr-staff-td">
+                                            <div class="sr-staff-row-inner">
+                                                <div class="sr-roster-av" style="background:#D97706;">EW</div>
+                                                <div>
+                                                    <div class="sr-staff-nm">Emma Wilson</div>
+                                                    <div class="sr-staff-rl">Support Worker</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td class="sr-today-td"><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                    </tr>
+                                    <!-- Jeremy Nguyen -->
+                                    <tr>
+                                        <td class="sr-staff-td">
+                                            <div class="sr-staff-row-inner">
+                                                <div class="sr-roster-av" style="background:#7C3AED;">JN</div>
+                                                <div>
+                                                    <div class="sr-staff-nm">Jeremy Nguyen</div>
+                                                    <div class="sr-staff-rl">Support Worker</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td class="sr-today-td"><button class="sr-add-cell-btn">+ Add</button></td>
+                                        <td><button class="sr-add-cell-btn">+ Add</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!-- end right -->
+
+            </div>
+        </section>
+        <!-- =========== Smart Rostering Hero end =========== -->
+
+        <!-- =========== Scheduler Section start =========== -->
+        <section class="sc-section">
+            <div class="sc-inner">
+
+                <!-- LEFT -->
+                <div class="sc-left">
+
+                    <!-- dot pattern -->
+                    <div class="sc-dot-pattern">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+
+                    <!-- Add shift button -->
+                    <button class="sc-add-btn">
+                        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;">
+                            <path d="M9 3.75V14.25M3.75 9H14.25" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+                        </svg>
+                        Add shift
+                    </button>
+
+                    <!-- Dashboard card -->
+                    <div class="sc-dash">
+                        <div class="sc-dash-header">Tue, 20 May</div>
+
+                        <div class="sc-timeline-wrap">
+
+                            <!-- Staff column -->
+                            <div class="sc-staff-col">
+                                <!-- time row spacer -->
+                                <div class="sc-time-row"></div>
+
+                                <!-- Daniel Okafor -->
+                                <div class="sc-staff-row">
+                                    <div style="position:relative;flex-shrink:0;">
+                                        <div class="sc-avatar" style="background:#C49270;">DO</div>
+                                        <div class="sc-online-dot"></div>
+                                    </div>
+                                    <div>
+                                        <div class="sc-staff-name">Daniel Okafor</div>
+                                        <div class="sc-staff-role">Support Worker</div>
+                                    </div>
+                                </div>
+
+                                <!-- Emily Chen -->
+                                <div class="sc-staff-row">
+                                    <div style="position:relative;flex-shrink:0;">
+                                        <div class="sc-avatar" style="background:#E8C498;">EC</div>
+                                        <div class="sc-online-dot"></div>
+                                    </div>
+                                    <div>
+                                        <div class="sc-staff-name">Emily Chen</div>
+                                        <div class="sc-staff-role">Support Worker</div>
+                                    </div>
+                                </div>
+
+                                <!-- Liam Patel -->
+                                <div class="sc-staff-row">
+                                    <div style="position:relative;flex-shrink:0;">
+                                        <div class="sc-avatar" style="background:#C09060;">LP</div>
+                                        <div class="sc-online-dot"></div>
+                                    </div>
+                                    <div>
+                                        <div class="sc-staff-name">Liam Patel</div>
+                                        <div class="sc-staff-role">Support Worker</div>
+                                    </div>
+                                </div>
+
+                                <!-- Olivia Smith -->
+                                <div class="sc-staff-row">
+                                    <div style="position:relative;flex-shrink:0;">
+                                        <div class="sc-avatar" style="background:#EED4B8;">OS</div>
+                                        <div class="sc-online-dot"></div>
+                                    </div>
+                                    <div>
+                                        <div class="sc-staff-name">Olivia Smith</div>
+                                        <div class="sc-staff-role">Support Worker</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grid column -->
+                            <div class="sc-grid-col" style="position:relative;">
+
+                                <!-- Time labels -->
+                                <div class="sc-time-labels" style="position:relative;height:36px;border-bottom:1px solid #F1F5F9;">
+                                    <!-- 9AM = 0%, 12PM = 33.3%, 3PM = 66.6%, 6PM = 100% -->
+                                    <span class="sc-time-label" style="left:0%;">9 AM</span>
+                                    <span class="sc-time-label" style="left:33.3%;">12 PM</span>
+                                    <span class="sc-time-label" style="left:66.6%;">3 PM</span>
+                                    <span class="sc-time-label" style="left:100%;">6 PM</span>
+                                </div>
+
+                                <!-- Vertical grid lines -->
+                                <div class="sc-vline" style="left:0%;top:36px;"></div>
+                                <div class="sc-vline" style="left:33.3%;top:0;"></div>
+                                <div class="sc-vline" style="left:66.6%;top:0;"></div>
+                                <div class="sc-vline" style="left:100%;top:0;"></div>
+
+                                <!-- Current time line at 3PM (66.6%) -->
+                                <div class="sc-now-line" style="left:66.6%;top:0;">
+                                    <div class="sc-now-dot"></div>
+                                </div>
+
+                                <!-- Row 1: Daniel — 9am–1pm (0% to 44.4%) -->
+                                <div class="sc-grid-row">
+                                    <div class="sc-shift-card" style="left:1%;width:43%;background:#EDE9FE;color:#5932EA;">
+                                        <div class="sc-shift-time">9am – 1pm</div>
+                                        <div class="sc-shift-service">Community Access</div>
+                                        <div class="sc-shift-clients">
+                                            <svg viewBox="0 0 14 14" fill="none" style="width:11px;height:11px;"><circle cx="5" cy="4" r="2.5" stroke="#64748B" stroke-width="1.2"/><circle cx="9.5" cy="4" r="2.5" stroke="#64748B" stroke-width="1.2"/><path d="M1 12c0-2.209 1.791-4 4-4s4 1.791 4 4" stroke="#64748B" stroke-width="1.2"/><path d="M9.5 8c2.209 0 4 1.791 4 4" stroke="#64748B" stroke-width="1.2"/></svg>
+                                            2 Clients
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Row 2: Emily — 12pm–4pm (33.3% to 77.7%) -->
+                                <div class="sc-grid-row">
+                                    <div class="sc-shift-card" style="left:33.8%;width:43%;background:#DCFCE7;color:#16A34A;">
+                                        <div class="sc-shift-time">12pm – 4pm</div>
+                                        <div class="sc-shift-service">Daily Living</div>
+                                        <div class="sc-shift-clients">
+                                            <svg viewBox="0 0 14 14" fill="none" style="width:11px;height:11px;"><circle cx="7" cy="4" r="2.5" stroke="#64748B" stroke-width="1.2"/><path d="M2 12c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="#64748B" stroke-width="1.2"/></svg>
+                                            1 Client
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Row 3: Liam — 3pm–6pm (66.6% to 100%) -->
+                                <div class="sc-grid-row">
+                                    <div class="sc-shift-card" style="left:67.1%;width:32%;background:#FEF9C3;color:#CA8A04;">
+                                        <div class="sc-shift-time">3pm – 6pm</div>
+                                        <div class="sc-shift-service">Personal Care</div>
+                                        <div class="sc-shift-clients">
+                                            <svg viewBox="0 0 14 14" fill="none" style="width:11px;height:11px;"><circle cx="7" cy="4" r="2.5" stroke="#64748B" stroke-width="1.2"/><path d="M2 12c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="#64748B" stroke-width="1.2"/></svg>
+                                            1 Client
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Row 4: Olivia — empty -->
+                                <div class="sc-grid-row"></div>
+                            </div>
+
+                            <!-- Refresh icons column -->
+                            <div class="sc-refresh-col">
+                                <div style="height:36px;border-bottom:1px solid #F1F5F9;"></div>
+                                <div class="sc-refresh-cell">
+                                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5c1.8 0 3.4.87 4.4 2.2L14 6" stroke="#CBD5E1" stroke-width="1.4" stroke-linecap="round"/>
+                                        <path d="M14 3v3h-3" stroke="#CBD5E1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="sc-refresh-cell" style="color:#5932EA;">
+                                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5c1.8 0 3.4.87 4.4 2.2L14 6" stroke="#5932EA" stroke-width="1.4" stroke-linecap="round"/>
+                                        <path d="M14 3v3h-3" stroke="#5932EA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="sc-refresh-cell" style="color:#CA8A04;">
+                                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5c1.8 0 3.4.87 4.4 2.2L14 6" stroke="#CA8A04" stroke-width="1.4" stroke-linecap="round"/>
+                                        <path d="M14 3v3h-3" stroke="#CA8A04" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="sc-refresh-cell">
+                                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5c1.8 0 3.4.87 4.4 2.2L14 6" stroke="#CBD5E1" stroke-width="1.4" stroke-linecap="round"/>
+                                        <path d="M14 3v3h-3" stroke="#CBD5E1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end dashboard -->
+
+                    <!-- Testimonial card -->
+                    <div class="sc-testimonial">
+                        <div class="sc-quote-icon">&ldquo;</div>
+                        <p class="sc-testimonial-text">
+                            I've worked in the care industry for over 12 years and Plannor is hands down the best software I've used (and now own). It has everything I needed and more. Plannor proved it could do what others couldn't!
+                        </p>
+                        <div class="sc-testimonial-author">Kerrin Spataro</div>
+                        <div class="sc-testimonial-role">Team Leader, All Ways Care</div>
+                        <div class="sc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+
+                </div>
+                <!-- end left -->
+
+                <!-- RIGHT -->
+                <div class="sc-right">
+                    <div class="sc-eyebrow">SCHEDULER</div>
+
+                    <h2 class="sc-heading">
+                        Scheduling that<br>
+                        just works<span class="dot">.</span>
+                    </h2>
+
+                    <p class="sc-body">
+                        Create, manage and publish shifts in just a few clicks. See your team's availability at a glance and match the right people to the right clients&mdash;every time.
+                    </p>
+
+                    <!-- Features -->
+                    <div class="sc-features">
+
+                        <!-- Recurring shifts -->
+                        <div class="sc-feature">
+                            <div class="sc-feature-icon purple">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="4" width="18" height="17" rx="2" stroke="#7C3AED" stroke-width="1.8"/>
+                                    <path d="M3 9h18M8 2v4M16 2v4" stroke="#7C3AED" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M8 14h4M8 18h8" stroke="#7C3AED" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M17 14.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+                                    <path d="M20 14l-1.5 1.5M14 14l1.5 1.5" stroke="#7C3AED" stroke-width="1.3" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="sc-feature-title">Recurring shifts</div>
+                                <div class="sc-feature-desc">Automate repeating shifts, spot gaps early and stay ahead of changes.</div>
+                            </div>
+                        </div>
+
+                        <!-- Group rosters -->
+                        <div class="sc-feature">
+                            <div class="sc-feature-icon green">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="9" cy="7" r="3" stroke="#16A34A" stroke-width="1.8"/>
+                                    <circle cx="17" cy="7" r="3" stroke="#16A34A" stroke-width="1.8"/>
+                                    <path d="M3 20c0-3.314 2.686-6 6-6h0c3.314 0 6 2.686 6 6" stroke="#16A34A" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M17 14c2.209 0 4 1.791 4 4v2" stroke="#16A34A" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="sc-feature-title">Group rosters</div>
+                                <div class="sc-feature-desc">Coordinate team members and clients in one view with custom shift rules.</div>
+                            </div>
+                        </div>
+
+                        <!-- Draft & publish -->
+                        <div class="sc-feature">
+                            <div class="sc-feature-icon yellow">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="4" width="18" height="17" rx="2" stroke="#CA8A04" stroke-width="1.8"/>
+                                    <path d="M3 9h18M8 2v4M16 2v4" stroke="#CA8A04" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M8 14l3 3 5-5" stroke="#CA8A04" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="sc-feature-title">Draft &amp; publish with ease</div>
+                                <div class="sc-feature-desc">Plan, adjust and publish schedules confidently with real-time updates.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end right -->
+
+            </div>
+        </section>
+        <!-- =========== Scheduler Section end =========== -->
+
+        <!-- =========== SCHADS Section start =========== -->
+        <section class="shd-section">
+
+            <!-- dot pattern top-right -->
+            <div class="shd-dots">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="shd-inner">
+
+                <!-- LEFT -->
+                <div class="shd-left">
+                    <div class="shd-eyebrow">SCHADS AWARD INTERPRETATION</div>
+
+                    <h2 class="shd-heading">
+                        Always compliant.<br>
+                        Always <span class="blue">covered.</span>
+                    </h2>
+
+                    <p class="shd-body">
+                        Plannor's SCHADS Award Interpretation helps you create compliant shifts with confidence—catching issues early and keeping your team and business protected.
+                    </p>
+
+                    <div class="shd-features">
+
+                        <div class="shd-feature">
+                            <div class="shd-feature-icon purple">
+                                <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="9" stroke="#7C3AED" stroke-width="1.7"/>
+                                    <path d="M11 7v4.5l2.5 2.5" stroke="#7C3AED" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="shd-feature-title">Real-time validation</div>
+                                <div class="shd-feature-desc">Instantly detect non-compliant hours, missing allowances and other issues as you build or update shifts.</div>
+                            </div>
+                        </div>
+
+                        <div class="shd-feature">
+                            <div class="shd-feature-icon green">
+                                <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 7h16M3 11h10M3 15h6" stroke="#16A34A" stroke-width="1.7" stroke-linecap="round"/>
+                                    <circle cx="17" cy="15" r="3.5" stroke="#16A34A" stroke-width="1.7"/>
+                                    <path d="M15.5 15h3M17 13.5v3" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="shd-feature-title">Custom award settings</div>
+                                <div class="shd-feature-desc">Tailor award rules to different employment types, industry levels and staff profiles with ease.</div>
+                            </div>
+                        </div>
+
+                        <div class="shd-feature">
+                            <div class="shd-feature-icon orange">
+                                <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 2.5C7.5 2.5 5 5 5 8c0 3 2 5 6 5v2l3-2.5" stroke="#CA8A04" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11 13v2M5 17a6 6 0 0 1 12 0" stroke="#CA8A04" stroke-width="1.7" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="shd-feature-title">Clear alerts, quick fixes</div>
+                                <div class="shd-feature-desc">Get clear warnings when something's not right—with guidance on how to fix it fast.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end left -->
+
+                <!-- RIGHT -->
+                <div class="shd-right">
+
+                    <!-- Dashboard card -->
+                    <div class="shd-dash">
+
+                        <!-- Diagram with shield + pills -->
+                        <div class="shd-diagram" id="shdDiagram">
+
+                            <!-- SVG connector lines overlay -->
+                            <svg class="shd-connectors" viewBox="0 0 560 290" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Left vertical line connecting 3 rows -->
+                                <line x1="172" y1="38" x2="172" y2="252" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="5,4"/>
+                                <!-- Left horizontal to shield -->
+                                <line x1="172" y1="145" x2="210" y2="145" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="5,4"/>
+                                <!-- Right vertical line -->
+                                <line x1="388" y1="38" x2="388" y2="252" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="5,4"/>
+                                <!-- Shield to right horizontal -->
+                                <line x1="350" y1="145" x2="388" y2="145" stroke="#CBD5E1" stroke-width="1.4" stroke-dasharray="5,4"/>
+                            </svg>
+
+                            <!-- Left pills column -->
+                            <div class="shd-pills-col">
+                                <div class="shd-pill-group">
+                                    <span class="shd-pill-label">Industry Award</span>
+                                    <span class="shd-pill lavender">SCHADS</span>
+                                </div>
+                                <div class="shd-pill-group">
+                                    <span class="shd-pill-label">Payroll Settings</span>
+                                    <span class="shd-pill peach">Configured</span>
+                                </div>
+                                <div class="shd-pill-group">
+                                    <span class="shd-pill-label">Employee Profile</span>
+                                    <span class="shd-pill sky">Day Worker</span>
+                                </div>
+                            </div>
+
+                            <!-- Center shield -->
+                            <div class="shd-shield-wrap">
+                                <svg width="90" height="102" viewBox="0 0 90 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M45 4L10 18v26c0 22.5 14.9 43.5 35 50 20.1-6.5 35-27.5 35-50V18L45 4z" stroke="#2563EB" stroke-width="3" fill="none"/>
+                                    <path d="M29 51l11 11 21-22" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <!-- Right pills column -->
+                            <div class="shd-pills-col right">
+                                <div class="shd-pill-group">
+                                    <span class="shd-pill-label">Pay Group</span>
+                                    <span class="shd-pill mint">Registered Nurse</span>
+                                </div>
+                                <div class="shd-pill-group">
+                                    <span class="shd-pill-label">Award Level</span>
+                                    <span class="shd-pill rose">Social &amp; Community</span>
+                                </div>
+                                <div class="shd-pill-group">
+                                    <span class="shd-pill-label">Compliant</span>
+                                    <span class="shd-pill green">
+                                        All good
+                                        <svg viewBox="0 0 14 14" fill="none" style="width:14px;height:14px;">
+                                            <circle cx="7" cy="7" r="6" fill="#16A34A"/>
+                                            <path d="M4 7l2 2 4-4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Status banner -->
+                        <div class="shd-banner">
+                            <div class="shd-banner-icon">
+                                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="8" stroke="#5932EA" stroke-width="1.6"/>
+                                    <path d="M6.5 10l2.5 2.5 4.5-5" stroke="#5932EA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="shd-banner-title">Smart checks. Early alerts.</div>
+                                <div class="shd-banner-sub">We flag potential issues before they become a problem.</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end dashboard card -->
+
+                    <!-- Testimonial -->
+                    <div class="shd-testimonial">
+                        <div class="shd-quote-open">&ldquo;</div>
+                        <p class="shd-testimonial-text">
+                            In audit and compliance, we've got everything now. If we have any query about what we're doing, it's just at the tip of a finger.
+                        </p>
+                        <div class="shd-testimonial-author">Clover Laurier</div>
+                        <div class="shd-testimonial-role">Owner Manager, Next Wave Supports</div>
+                        <div class="shd-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <div class="shd-quote-close">&rdquo;</div>
+                    </div>
+
+                </div>
+                <!-- end right -->
+
+            </div>
+        </section>
+        <!-- =========== SCHADS Section end =========== -->
+
+        <!-- =========== Collaboration Section start =========== -->
+        <section class="collab-section">
+            <div class="collab-inner">
+
+                <!-- LEFT -->
+                <div class="collab-left">
+
+                    <div class="collab-eyebrow">
+                        <div class="collab-eyebrow-icon">
+                            <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="2.5" stroke="#5932EA" stroke-width="1.5"/>
+                                <circle cx="12" cy="6" r="2.5" stroke="#5932EA" stroke-width="1.5"/>
+                                <path d="M2 15c0-2.209 1.791-4 4-4s4 1.791 4 4" stroke="#5932EA" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 11c2.209 0 4 1.791 4 4" stroke="#5932EA" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        COLLABORATION
+                    </div>
+
+                    <h2 class="collab-heading">
+                        Connected teams.<br>
+                        Care that <span class="collab-highlight">delivers.</span>
+                    </h2>
+
+                    <p class="collab-body">
+                        Keep your support team and coordinators in sync with real-time updates, shared information and instant alerts—so everyone can focus on what matters most: better care.
+                    </p>
+
+                    <div class="collab-features">
+
+                        <!-- Smarter team coordination -->
+                        <div class="collab-feature">
+                            <div class="collab-feature-icon purple">
+                                <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7" cy="7" r="3" stroke="#7C3AED" stroke-width="1.7"/>
+                                    <circle cx="15" cy="7" r="3" stroke="#7C3AED" stroke-width="1.7"/>
+                                    <path d="M2 18c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="#7C3AED" stroke-width="1.7" stroke-linecap="round"/>
+                                    <path d="M15 13c2.761 0 5 2.239 5 5" stroke="#7C3AED" stroke-width="1.7" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="collab-feature-title">Smarter team coordination</div>
+                                <div class="collab-feature-desc">Share care plans, shift notes and client updates instantly with your team.</div>
+                            </div>
+                        </div>
+
+                        <!-- Real-time notifications -->
+                        <div class="collab-feature">
+                            <div class="collab-feature-icon green">
+                                <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 2.5a6.5 6.5 0 0 1 6.5 6.5v2.5l1.5 2.5H3L4.5 11.5V9A6.5 6.5 0 0 1 11 2.5z" stroke="#16A34A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 17a2 2 0 0 0 4 0" stroke="#16A34A" stroke-width="1.7" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="collab-feature-title">Real-time notifications</div>
+                                <div class="collab-feature-desc">Get instant alerts about shifts, tasks and important updates.</div>
+                            </div>
+                        </div>
+
+                        <!-- In-app messaging -->
+                        <div class="collab-feature">
+                            <div class="collab-feature-icon yellow">
+                                <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 4h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7l-4 3V5a1 1 0 0 1 1-1z" stroke="#CA8A04" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 9h8M7 12h5" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="collab-feature-title">In-app messaging</div>
+                                <div class="collab-feature-desc">Secure one-to-one or group messages to keep conversations in one place.</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!-- end left -->
+
+                <!-- RIGHT -->
+                <div class="collab-right">
+
+                    <!-- Dot grid decoration -->
+                    <div class="collab-dot-grid">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+
+                    <!-- Phone + notification cards -->
+                    <div class="collab-phone-area">
+
+                        <!-- Notification cards -->
+                        <div class="collab-notifs">
+
+                            <div class="collab-notif">
+                                <div class="collab-notif-icon purple">
+                                    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="6" cy="6" r="2.5" stroke="#7C3AED" stroke-width="1.5"/>
+                                        <circle cx="12" cy="6" r="2.5" stroke="#7C3AED" stroke-width="1.5"/>
+                                        <path d="M2 15c0-2.209 1.791-4 4-4s4 1.791 4 4" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M12 11c2.209 0 4 1.791 4 4" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="collab-notif-app">Plannor</div>
+                                    <div class="collab-notif-title">A shift has been assigned to you</div>
+                                    <div class="collab-notif-time">2m ago</div>
+                                </div>
+                            </div>
+
+                            <div class="collab-notif">
+                                <div class="collab-notif-icon green">
+                                    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 2a5.5 5.5 0 0 1 5.5 5.5v2l1.5 2.5H2L3.5 9.5V7.5A5.5 5.5 0 0 1 9 2z" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.5 14a1.5 1.5 0 0 0 3 0" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="collab-notif-app">Plannor</div>
+                                    <div class="collab-notif-title">Your next shift is about to start</div>
+                                    <div class="collab-notif-time">10m ago</div>
+                                </div>
+                            </div>
+
+                            <div class="collab-notif">
+                                <div class="collab-notif-icon yellow">
+                                    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="9" cy="9" r="6.5" stroke="#CA8A04" stroke-width="1.5"/>
+                                        <path d="M6 9l2 2 4-4" stroke="#CA8A04" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="collab-notif-app">Plannor</div>
+                                    <div class="collab-notif-title">Clock out successful!</div>
+                                    <div class="collab-notif-time">25m ago</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end notifs -->
+
+                        <!-- Phone mockup -->
+                        <div class="collab-phone">
+                            <div class="collab-phone-frame">
+                                <div class="collab-phone-notch"></div>
+                                <div class="collab-phone-screen">
+                                    <img
+                                        class="collab-phone-wallpaper"
+                                        src="../assets/img/collab-wallpaper.jpg"
+                                        alt="Care worker with participant"
+                                    >
+                                    <div class="collab-phone-overlay">
+                                        <div class="collab-phone-lock-top">
+                                            <div class="collab-phone-lock-icon">&#128274;</div>
+                                            <div class="collab-phone-time">9:41</div>
+                                            <div class="collab-phone-date">Tuesday, 16 April</div>
+                                        </div>
+                                        <div class="collab-phone-notif">
+                                            <div class="collab-phone-notif-header">
+                                                <div class="collab-phone-notif-logo">P</div>
+                                                <span class="collab-phone-notif-app">Plannor</span>
+                                                <span class="collab-phone-notif-now">now</span>
+                                            </div>
+                                            <div class="collab-phone-notif-title">You have a shift today</div>
+                                            <div class="collab-phone-notif-body">1:00 PM – 7:00 PM<br>Grace Valley, East Region</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end phone -->
+
+                    </div>
+                    <!-- end phone-area -->
+
+                    <!-- Testimonial -->
+                    <div class="collab-testimonial">
+                        <div class="collab-testimonial-quote">&ldquo;</div>
+                        <div class="collab-testimonial-content">
+                            <p class="collab-testimonial-text">
+                                Plannor is an amazing communication tool. Everything is in one place—updates, messages and schedules. It saves us hours every day!
+                            </p>
+                            <div class="collab-testimonial-meta">
+                                <div class="collab-testimonial-avatar">KD</div>
+                                <div>
+                                    <div class="collab-testimonial-name">Katie D.</div>
+                                    <div class="collab-testimonial-role">Support Manager, All Ways Care</div>
+                                    <div class="collab-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end right -->
+
+            </div>
+        </section>
+        <!-- =========== Collaboration Section end =========== -->
+
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress scroll -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+
+</body>
+</html>

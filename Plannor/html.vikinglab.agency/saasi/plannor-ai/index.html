@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor AI — AI-Powered NDIS Management</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/fav-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        :root { --brand:#5932EA; --brand2:#772EFE; --dark:#0f0a2e; }
+
+        /* ── PLANNOR AI SECTION ─────────────────────────── */
+        .ai-section { background:#fff; padding:80px 0 72px; overflow:hidden; }
+        .ai-wrap { display:grid; grid-template-columns:1fr 1.55fr; gap:64px; align-items:stretch; }
+
+        /* Left column */
+        .ai-text { display:flex; flex-direction:column; justify-content:center; }
+        .ai-pill { display:inline-flex;align-items:center;gap:7px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:20px;padding:7px 16px;font-size:11px;font-weight:800;color:#6b7280;letter-spacing:.8px;text-transform:uppercase;margin-bottom:22px;width:fit-content; }
+        .ai-pill svg { width:14px;height:14px;color:#5932EA; }
+        .ai-h1 { font-size:48px;font-weight:900;color:#111827;line-height:1.12;letter-spacing:2px;margin-bottom:18px; }
+        .ai-accent { color:#5932EA; }
+        .ai-desc { font-size:15px;color:#6b7280;line-height:1.72;margin-bottom:34px;max-width:440px; }
+
+        /* Feature list */
+        .ai-feats { display:flex;flex-direction:column;gap:22px;margin-bottom:38px; }
+        .ai-feat { display:flex;align-items:flex-start;gap:16px; }
+        .ai-feat-ic { width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai-feat-ic svg { width:22px;height:22px; }
+        .ai-feat-name { font-size:14.5px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3; }
+        .ai-feat-desc { font-size:13px;color:#6b7280;line-height:1.55; }
+
+        /* CTA */
+        .ai-cta-btn { display:inline-flex;align-items:center;gap:12px;width:fit-content;background:linear-gradient(135deg,#5932EA,#772EFE);color:#fff;font-size:16px;font-weight:700;padding:18px 34px;border-radius:14px;text-decoration:none;box-shadow:0 10px 28px rgba(89,50,234,.38);transition:opacity .2s; }
+        .ai-cta-btn svg { width:18px;height:18px;flex-shrink:0; }
+        .ai-cta-btn:hover { color:#fff;opacity:.9; }
+
+        /* ── MOCKUP SHELL ─────────────────────── */
+        .ai-mock-col { border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(89,50,234,.14),0 4px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;min-height:560px; }
+        .ai-browser { background:#e8eaf0;border-radius:20px;overflow:hidden;flex:1;display:flex;flex-direction:column; }
+        .ai-browser-bar { background:#f1f3f5;padding:9px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #dde1e7;flex-shrink:0; }
+        .ai-bdot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+        .ai-bdot:nth-child(1){background:#f87171;} .ai-bdot:nth-child(2){background:#fbbf24;} .ai-bdot:nth-child(3){background:#4ade80;}
+
+        /* App layout */
+        .ai-app { flex:1;display:flex;overflow:hidden;min-height:0; }
+
+        /* Purple sidebar */
+        .ai-sb2 { width:165px;background:#3730a3;flex-shrink:0;display:flex;flex-direction:column;padding:12px 0;overflow:hidden; }
+        .ai-nav-sec { padding:0 8px 8px; }
+        .ai-nav-lbl { font-size:7.5px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.7px;text-transform:uppercase;padding:0 8px 4px; }
+        .ai-nav-row { display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:7px;font-size:10.5px;color:rgba(255,255,255,.7);cursor:pointer;margin-bottom:1px; }
+        .ai-nav-row svg { width:13px;height:13px;flex-shrink:0; }
+        .ai-nav-row.act { background:rgba(255,255,255,.18);color:#fff;font-weight:700; }
+        .ai-nav-toggle { margin-left:auto;background:#5932EA;border-radius:10px;width:26px;height:13px;display:flex;align-items:center;justify-content:flex-end;padding:2px;flex-shrink:0; }
+        .ai-nav-toggle span { width:9px;height:9px;background:#fff;border-radius:50%;display:block; }
+
+        /* Chat list */
+        .ai-chatlist { width:155px;background:#fff;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;flex-shrink:0;overflow:hidden; }
+        .ai-cl-hd { padding:10px 10px 7px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f3f4f6;flex-shrink:0; }
+        .ai-cl-title { font-size:12px;font-weight:900;color:#111827; }
+        .ai-cl-new { background:#5932EA;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:8.5px;font-weight:700;cursor:pointer; }
+        .ai-cl-recent { font-size:7.5px;font-weight:700;color:#9ca3af;letter-spacing:.6px;text-transform:uppercase;padding:7px 10px 3px; }
+        .ai-cl-items { flex:1;overflow:hidden; }
+        .ai-cl-item { display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:9.5px;color:#374151;border-bottom:1px solid #f9fafb; }
+        .ai-cl-item svg { width:10px;height:10px;color:#d1d5db;flex-shrink:0; }
+
+        /* Main panel */
+        .ai-main2 { flex:1;display:flex;flex-direction:column;background:#fff;min-width:0;overflow:hidden; }
+        .ai-main-nav { padding:8px 12px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:8px;flex-shrink:0; }
+        .ai-main-ttl { font-size:12px;font-weight:900;color:#111827;white-space:nowrap;margin-right:4px; }
+        .ai-srch { flex:1;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:20px;padding:4px 9px;font-size:8.5px;color:#9ca3af;display:flex;align-items:center;gap:4px; }
+        .ai-srch svg { width:9px;height:9px;flex-shrink:0; }
+        .ai-bell { position:relative;width:22px;height:22px;flex-shrink:0; }
+        .ai-bell svg { width:13px;height:13px;color:#6b7280; }
+        .ai-bell-badge { position:absolute;top:-2px;right:-3px;background:#ef4444;color:#fff;font-size:6px;font-weight:800;width:11px;height:11px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #fff; }
+        .ai-user2 { display:flex;align-items:center;gap:5px;flex-shrink:0; }
+        .ai-user2-av { width:22px;height:22px;border-radius:50%;background:#5932EA;color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center; }
+        .ai-user2-name { font-size:9px;font-weight:700;color:#111827;line-height:1.2;white-space:nowrap; }
+        .ai-user2-email { font-size:7.5px;color:#9ca3af;white-space:nowrap; }
+
+        /* Active chat header */
+        .ai-cht-hd { background:#5932EA;padding:8px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0; }
+        .ai-cht-av { width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center; }
+        .ai-cht-av img { width:100%;height:100%;object-fit:cover; }
+        .ai-cht-info { flex:1;min-width:0; }
+        .ai-cht-name { font-size:11px;font-weight:800;color:#fff; }
+        .ai-cht-status { font-size:8.5px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:4px; }
+        .ai-cht-dot { width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0; }
+        .ai-cht-btns { display:flex;gap:5px;flex-shrink:0; }
+        .ai-cht-btn { background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:6px;padding:4px 9px;font-size:8.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:3px;white-space:nowrap; }
+        .ai-cht-btn svg { width:9px;height:9px; }
+
+        /* Warning bar */
+        .ai-warn { background:#fefce8;border-bottom:2px solid #fef08a;padding:5px 12px;display:flex;align-items:center;gap:12px;flex-shrink:0; }
+        .ai-warn-item { font-size:8.5px;color:#854d0e;display:flex;align-items:center;gap:3px; }
+        .ai-warn-item.grn { color:#166534; }
+
+        /* Messages */
+        .ai-msgs { flex:1;padding:12px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end; }
+        .ai-msg-row { display:flex;gap:7px;justify-content:flex-end;align-items:flex-end; }
+        .ai-msg-bubble { background:#fff;border:1px solid #e5e7eb;border-radius:12px 12px 2px 12px;padding:11px 13px;max-width:88%; }
+        .ai-msg-txt { font-size:9.5px;color:#111827;line-height:1.65; }
+        .ai-msg-time { font-size:7.5px;color:#9ca3af;margin-top:5px;text-align:right; }
+        .ai-msg-av { width:24px;height:24px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai-msg-av svg { width:12px;height:12px;color:#9ca3af; }
+
+        /* Chips row */
+        .ai-chips-row { padding:5px 12px;border-top:1px solid #f3f4f6;display:flex;gap:4px;flex-wrap:wrap;flex-shrink:0; }
+        .ai-qchip { background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:3px 8px;font-size:8px;color:#374151;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:3px; }
+
+        /* Input row */
+        .ai-inp-row { padding:7px 12px;border-top:1px solid #e5e7eb;display:flex;align-items:center;gap:7px;flex-shrink:0; }
+        .ai-inp-field { flex:1;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:22px;padding:7px 12px;font-size:9px;color:#9ca3af;display:flex;align-items:center;gap:7px; }
+        .ai-inp-field svg { width:11px;height:11px;color:#9ca3af;flex-shrink:0; }
+        .ai-inp-send { width:28px;height:28px;background:#5932EA;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;flex-shrink:0; }
+        .ai-inp-send svg { width:11px;height:11px;color:#fff; }
+        .ai-footer-note { font-size:7.5px;color:#9ca3af;text-align:center;padding:3px 12px 8px;flex-shrink:0; }
+
+        /* ── BENEFIT CARDS ─────────────────────────── */
+        .ai-benefits { display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px; }
+        .ai-benefit { padding:30px 26px;border-radius:16px;background:#f8f9fc;border:1px solid #eaecf0;transition:box-shadow .2s; }
+        .ai-benefit:hover { box-shadow:0 8px 28px rgba(89,50,234,.1); }
+        .ai-benefit-ic { width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:16px; }
+        .ai-benefit-ic svg { width:22px;height:22px; }
+        .ai-benefit-name { font-size:16px;font-weight:800;color:#111827;margin-bottom:8px; }
+        .ai-benefit-desc { font-size:13.5px;color:#6b7280;line-height:1.62; }
+
+        @media(max-width:1199px){ .ai-h1{font-size:40px;} }
+        @media(max-width:991px){ .ai-benefits{grid-template-columns:repeat(2,1fr);} }
+        /* ai-section: image left, text right — keep image column wide */
+        .ai-wrap     { grid-template-columns:1.55fr 1fr; }
+        .ai-text     { order:2; }
+        .ai-mock-col { order:1; }
+        @media(max-width:768px){ .ai-wrap{grid-template-columns:1fr;gap:40px;} .ai-text{order:1;} .ai-mock-col{order:2;} .ai-h1{font-size:34px;} .ai-benefits{grid-template-columns:repeat(2,1fr);gap:16px;} .ai-cta-btn{max-width:100%;} }
+
+        /* ══════════════════════════════════════════
+           AI2 SECTION — "AI that understands NDIS"
+        ══════════════════════════════════════════ */
+        .ai2-section { background:#f7f6ff; padding:100px 0 96px; overflow:hidden; }
+        .ai2-wrap { display:grid; grid-template-columns:1fr 1.55fr; gap:72px; align-items:stretch; }
+
+        /* Left */
+        .ai2-text { display:flex; flex-direction:column; justify-content:center; }
+        .ai2-pill { display:inline-flex;align-items:center;gap:7px;background:#ede9fe;border:1px solid #c4b5fd;border-radius:20px;padding:7px 16px;font-size:11px;font-weight:800;color:#5932EA;letter-spacing:.6px;text-transform:uppercase;margin-bottom:22px;width:fit-content; }
+        .ai2-pill svg { width:13px;height:13px; }
+        .ai2-h1 { font-size:50px;font-weight:900;color:#111827;line-height:1.08;letter-spacing:2px;margin-bottom:18px; }
+        .ai2-accent { color:#5932EA; display:block; }
+        .ai2-desc { font-size:15px;color:#6b7280;line-height:1.72;margin-bottom:32px;max-width:460px; }
+        .ai2-feats { display:flex;flex-direction:column;gap:16px;margin-bottom:28px; }
+        .ai2-feat { display:flex;align-items:flex-start;gap:14px; }
+        .ai2-feat-ic { width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai2-feat-ic svg { width:21px;height:21px; }
+        .ai2-feat-body { padding-top:2px; }
+        .ai2-feat-name { font-size:13.5px;font-weight:800;color:#111827;margin-bottom:2px; }
+        .ai2-feat-desc { font-size:12.5px;color:#6b7280;line-height:1.5; }
+        .ai2-sec-card { background:linear-gradient(135deg,#ede9fe 0%,#dbeafe 100%);border:1px solid #c4b5fd;border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:14px;margin-top:4px; }
+        .ai2-sec-ic { width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai2-sec-ic svg { width:21px;height:21px; }
+        .ai2-sec-title { font-size:14.5px;font-weight:800;color:#4c1d95;margin-bottom:4px; }
+        .ai2-sec-desc { font-size:12.5px;color:#6b7280; }
+
+        /* Right mockup shell */
+        .ai2-mock { border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(89,50,234,.13),0 4px 18px rgba(0,0,0,.07);display:flex;flex-direction:column;background:#fff; }
+
+        /* Top bar */
+        .ai2-topbar { background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0; }
+        .ai2-logo-wrap { display:flex;align-items:center;gap:6px;margin-right:6px;flex-shrink:0; }
+        .ai2-logo-ic { width:22px;height:22px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai2-logo-ic svg { width:12px;height:12px; }
+        .ai2-logo-name { font-size:12px;font-weight:900;color:#5932EA;letter-spacing:-.3px; }
+        .ai2-app-title { font-size:11px;font-weight:800;color:#111827;white-space:nowrap;flex-shrink:0;border-left:1px solid #e5e7eb;padding-left:10px;margin-left:2px; }
+        .ai2-search { flex:1;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:18px;padding:5px 10px;font-size:8.5px;color:#9ca3af;display:flex;align-items:center;gap:4px;max-width:150px; }
+        .ai2-search svg { width:9px;height:9px;flex-shrink:0; }
+        .ai2-bell { position:relative;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .ai2-bell svg { width:13px;height:13px;color:#6b7280; }
+        .ai2-bell-dot { position:absolute;top:-1px;right:-2px;background:#ef4444;color:#fff;font-size:6px;font-weight:800;width:11px;height:11px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff; }
+        .ai2-usr { display:flex;align-items:center;gap:6px;flex-shrink:0; }
+        .ai2-usr-av { width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center; }
+        .ai2-usr-info { line-height:1.25; }
+        .ai2-usr-name { font-size:9px;font-weight:700;color:#111827;white-space:nowrap; }
+        .ai2-usr-email { font-size:7.5px;color:#9ca3af;white-space:nowrap; }
+
+        /* Body: sidebar + chat */
+        .ai2-body { display:flex;flex:1;overflow:hidden;min-height:0; }
+
+        /* Sidebar */
+        .ai2-sb { width:160px;background:#fff;border-right:1px solid #e5e7eb;flex-shrink:0;padding:10px 0;overflow:hidden;display:flex;flex-direction:column; }
+        .ai2-sb-grp { padding:0 8px 6px; }
+        .ai2-sb-lbl { font-size:7px;font-weight:700;color:#9ca3af;letter-spacing:.7px;text-transform:uppercase;padding:4px 6px 3px; }
+        .ai2-sb-item { display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:7px;font-size:10px;font-weight:600;color:#374151;cursor:pointer;margin-bottom:1px;white-space:nowrap; }
+        .ai2-sb-item svg { width:11px;height:11px;color:#9ca3af;flex-shrink:0; }
+        .ai2-sb-item.active { background:#ede9fe;color:#5932EA;font-weight:700; }
+        .ai2-sb-item.active svg { color:#5932EA; }
+        .ai2-sb-badge { margin-left:auto;background:#f59e0b;color:#fff;border-radius:8px;padding:1px 5px;font-size:6.5px;font-weight:800;flex-shrink:0; }
+        .ai2-sb-spacer { flex:1; }
+
+        /* Chat main */
+        .ai2-chat { flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden; }
+        .ai2-chat-hd { background:#5932EA;padding:9px 12px;display:flex;align-items:center;gap:9px;flex-shrink:0; }
+        .ai2-chat-av { width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.22);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center; }
+        .ai2-chat-av svg { width:16px;height:16px; }
+        .ai2-chat-info { flex:1;min-width:0; }
+        .ai2-chat-name { font-size:11px;font-weight:800;color:#fff;line-height:1.2; }
+        .ai2-chat-status { font-size:8px;color:rgba(255,255,255,.78);display:flex;align-items:center;gap:4px;margin-top:1px; }
+        .ai2-chat-dot { width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0; }
+        .ai2-chat-btns { display:flex;gap:5px;flex-shrink:0; }
+        .ai2-chat-btn { background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:6px;padding:4px 9px;font-size:8px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:3px;white-space:nowrap; }
+        .ai2-chat-btn svg { width:8px;height:8px; }
+        .ai2-warn { background:#fefce8;border-bottom:1px solid #fde68a;padding:5px 12px;display:flex;align-items:center;gap:14px;flex-shrink:0; }
+        .ai2-warn-item { font-size:8px;color:#92400e;display:flex;align-items:center;gap:3px; }
+        .ai2-warn-item.ok { color:#166534; }
+        .ai2-msgs { flex:1;padding:14px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start; }
+        .ai2-msg-row { display:flex;gap:8px;align-items:flex-start; }
+        .ai2-msg-av2 { width:26px;height:26px;border-radius:50%;background:#f3f4f6;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px; }
+        .ai2-msg-av2 svg { width:14px;height:14px;color:#9ca3af; }
+        .ai2-msg-box { flex:1; }
+        .ai2-msg-bubble { background:#fff;border:1px solid #e5e7eb;border-radius:3px 12px 12px 12px;padding:11px 13px;box-shadow:0 2px 8px rgba(0,0,0,.06); }
+        .ai2-msg-txt { font-size:8.5px;color:#111827;line-height:1.68; }
+        .ai2-msg-txt ul { margin:6px 0 0 12px;padding:0; }
+        .ai2-msg-txt li { margin-bottom:5px; }
+        .ai2-msg-txt li strong { color:#111827; }
+        .ai2-msg-txt li span { color:#6b7280; }
+        .ai2-msg-time { font-size:7px;color:#9ca3af;margin-top:5px; }
+        .ai2-chips { padding:6px 12px;border-top:1px solid #f3f4f6;display:flex;gap:5px;flex-wrap:nowrap;flex-shrink:0;overflow:hidden; }
+        .ai2-chip { background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:5px 10px;font-size:7.5px;font-weight:600;color:#374151;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px; }
+        .ai2-chip svg { width:9px;height:9px;flex-shrink:0; }
+        .ai2-inp { padding:8px 12px;border-top:1px solid #e5e7eb;display:flex;align-items:center;gap:6px;flex-shrink:0; }
+        .ai2-inp-field { flex:1;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:22px;padding:7px 12px;font-size:8.5px;color:#9ca3af;display:flex;align-items:center;gap:7px; }
+        .ai2-inp-field svg { width:11px;height:11px;color:#9ca3af;flex-shrink:0; }
+        .ai2-inp-send { width:28px;height:28px;background:#5932EA;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;flex-shrink:0; }
+        .ai2-inp-send svg { width:11px;height:11px; }
+        .ai2-inp-note { font-size:7px;color:#9ca3af;text-align:center;padding:3px 12px 7px;flex-shrink:0; }
+
+        @media(max-width:1199px){ .ai2-h1{font-size:42px;} }
+        @media(max-width:768px){ .ai2-wrap{grid-template-columns:1fr;gap:40px;} .ai2-h1{font-size:34px;} }
+
+        /* ══════════════════════════════════════════
+           MSG SECTION — "Keep your whole team connected"
+        ══════════════════════════════════════════ */
+        .msg-section { background:#f9f9fc; padding:100px 0 96px; overflow:hidden; }
+        .msg-wrap { display:grid; grid-template-columns:1fr 1.82fr; gap:72px; align-items:stretch; }
+
+        /* Left column */
+        .msg-text { display:flex; flex-direction:column; }
+        .msg-pill { display:inline-flex;align-items:center;gap:7px;background:#ede9fe;border:1px solid #c4b5fd;border-radius:20px;padding:7px 16px;font-size:11px;font-weight:800;color:#5932EA;letter-spacing:.6px;text-transform:uppercase;margin-bottom:22px;width:fit-content; }
+        .msg-pill svg { width:13px;height:13px; }
+        .msg-h1 { font-size:48px;font-weight:900;color:#111827;line-height:1.08;letter-spacing:2px;margin-bottom:18px; }
+        .msg-accent { color:#5932EA; }
+        .msg-desc { font-size:14.5px;color:#6b7280;line-height:1.72;margin-bottom:22px;max-width:390px; }
+        .msg-feats { display:flex;flex-direction:column;gap:12px;margin-bottom:20px; }
+        .msg-feat { display:flex;align-items:flex-start;gap:12px; }
+        .msg-feat-ic { width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .msg-feat-ic svg { width:19px;height:19px; }
+        .msg-feat-body { padding-top:2px; }
+        .msg-feat-name { font-size:13px;font-weight:800;color:#111827;margin-bottom:1px; }
+        .msg-feat-desc { font-size:12px;color:#6b7280;line-height:1.5; }
+        .msg-illus { background:linear-gradient(135deg,#ede9fe 0%,#e0e7ff 100%);border-radius:16px;padding:20px 24px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;overflow:hidden; }
+        .msg-sec-card { background:linear-gradient(135deg,#ede9fe 0%,#dbeafe 100%);border:1px solid #c4b5fd;border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:13px; }
+        .msg-sec-ic { width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .msg-sec-ic svg { width:20px;height:20px; }
+        .msg-sec-title { font-size:14px;font-weight:800;color:#4c1d95;margin-bottom:3px; }
+        .msg-sec-desc { font-size:12px;color:#6b7280; }
+
+        /* Right mockup shell */
+        .msg-mock { border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(89,50,234,.11),0 4px 18px rgba(0,0,0,.06);display:flex;flex-direction:column;background:#fff;min-height:540px; }
+
+        /* Top bar */
+        .msg-topbar { background:#fff;border-bottom:1px solid #e5e7eb;padding:9px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0; }
+        .msg-logo-wrap { display:flex;align-items:center;gap:5px;margin-right:6px;flex-shrink:0; }
+        .msg-logo-ic { width:21px;height:21px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:5px;display:flex;align-items:center;justify-content:center; }
+        .msg-logo-ic svg { width:11px;height:11px; }
+        .msg-logo-name { font-size:11.5px;font-weight:900;color:#5932EA; }
+        .msg-page-title { font-size:11px;font-weight:800;color:#111827;border-left:1px solid #e5e7eb;padding-left:9px;flex-shrink:0; }
+        .msg-search { flex:1;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:16px;padding:5px 10px;font-size:8px;color:#9ca3af;display:flex;align-items:center;gap:4px; }
+        .msg-search svg { width:8px;height:8px;flex-shrink:0; }
+        .msg-bell { position:relative;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .msg-bell svg { width:12px;height:12px;color:#6b7280; }
+        .msg-bell-dot { position:absolute;top:-2px;right:-3px;background:#ef4444;color:#fff;font-size:5.5px;font-weight:800;width:11px;height:11px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff; }
+        .msg-usr { display:flex;align-items:center;gap:5px;flex-shrink:0; }
+        .msg-usr-av { width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center; }
+        .msg-usr-info { line-height:1.3; }
+        .msg-usr-name { font-size:8.5px;font-weight:700;color:#111827;white-space:nowrap; }
+        .msg-usr-email { font-size:7px;color:#9ca3af;white-space:nowrap; }
+
+        /* Body layout */
+        .msg-body { display:flex;flex:1;overflow:hidden;min-height:0; }
+
+        /* Left nav sidebar */
+        .msg-nav { width:118px;background:#fff;border-right:1px solid #e5e7eb;flex-shrink:0;padding:8px 0;display:flex;flex-direction:column;overflow:hidden; }
+        .msg-nav-item { display:flex;align-items:center;gap:6px;padding:5px 7px;margin:0 4px 1px;border-radius:6px;font-size:9px;font-weight:600;color:#4b5563;cursor:pointer;white-space:nowrap; }
+        .msg-nav-item svg { width:10px;height:10px;color:#9ca3af;flex-shrink:0; }
+        .msg-nav-item.active { background:#5932EA;color:#fff; }
+        .msg-nav-item.active svg { color:#fff; }
+        .msg-nav-spacer { flex:1; }
+
+        /* Conversation list panel */
+        .msg-convlist { width:188px;background:#fff;border-right:1px solid #e5e7eb;flex-shrink:0;display:flex;flex-direction:column;overflow:hidden; }
+        .msg-cl-head { padding:9px 10px 6px;border-bottom:1px solid #f3f4f6;flex-shrink:0; }
+        .msg-cl-cat { font-size:6.5px;font-weight:700;color:#9ca3af;letter-spacing:.7px;text-transform:uppercase;margin-bottom:1px; }
+        .msg-cl-title-row { display:flex;align-items:center;justify-content:space-between;margin-bottom:3px; }
+        .msg-cl-title-txt { font-size:12px;font-weight:900;color:#111827; }
+        .msg-cl-plus { width:16px;height:16px;background:#5932EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .msg-cl-plus svg { width:8px;height:8px;color:#fff; }
+        .msg-cl-sub { font-size:7px;color:#9ca3af;line-height:1.4; }
+        .msg-cl-srch { display:flex;align-items:center;gap:4px;margin:6px 8px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:12px;padding:4px 8px;font-size:7.5px;color:#9ca3af;flex-shrink:0; }
+        .msg-cl-srch svg { width:8px;height:8px;flex-shrink:0; }
+        .msg-cl-sec { font-size:6.5px;font-weight:700;color:#9ca3af;letter-spacing:.6px;text-transform:uppercase;padding:5px 10px 2px;flex-shrink:0; }
+        .msg-cl-items { flex:1;overflow:hidden; }
+        .msg-cl-row { display:flex;align-items:center;gap:6px;padding:5px 8px;cursor:pointer;border-bottom:1px solid #f9fafb; }
+        .msg-cl-row.active { background:#eff6ff; }
+        .msg-cl-av { width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff; }
+        .msg-cl-info { flex:1;min-width:0; }
+        .msg-cl-name { font-size:8.5px;font-weight:700;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+        .msg-cl-preview { font-size:7.5px;color:#9ca3af;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+        .msg-cl-time { font-size:7px;color:#9ca3af;flex-shrink:0;white-space:nowrap;align-self:flex-start;padding-top:1px; }
+
+        /* Chat panel */
+        .msg-chat { flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden; }
+        .msg-chat-hd { padding:8px 12px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:8px;flex-shrink:0; }
+        .msg-chat-hd-av { width:28px;height:28px;border-radius:50%;background:#fbbf24;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff; }
+        .msg-chat-name { font-size:11px;font-weight:800;color:#111827; }
+        .msg-chat-badge { background:#f3f4f6;color:#6b7280;font-size:7px;font-weight:600;border-radius:6px;padding:2px 6px;margin-left:4px;display:inline-block; }
+        .msg-chat-menu { margin-left:auto;color:#9ca3af;font-size:16px;line-height:1;cursor:pointer; }
+        .msg-chat-body { flex:1;padding:10px 12px;overflow:hidden;display:flex;flex-direction:column;gap:8px; }
+        .msg-msg-in { display:flex;gap:5px;align-items:flex-end; }
+        .msg-msg-in-av { width:20px;height:20px;border-radius:50%;background:#fbbf24;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#fff; }
+        .msg-msg-in-box { flex:1;min-width:0; }
+        .msg-msg-tag { font-size:6.5px;font-weight:700;background:#f3f4f6;color:#6b7280;border-radius:4px;padding:1px 5px;display:inline-block;margin-bottom:3px; }
+        .msg-msg-bubble { background:#f3f4f6;border-radius:2px 10px 10px 10px;padding:7px 9px;display:inline-block; }
+        .msg-msg-text { font-size:8.5px;color:#111827; }
+        .msg-msg-time { font-size:7px;color:#9ca3af;margin-top:3px; }
+        .msg-msg-out { display:flex;justify-content:flex-end; }
+        .msg-msg-out-bubble { background:#3b82f6;border-radius:10px 10px 2px 10px;padding:7px 9px;display:inline-flex;flex-direction:column;align-items:flex-end; }
+        .msg-msg-out-text { font-size:8.5px;color:#fff; }
+        .msg-msg-out-meta { font-size:6.5px;color:rgba(255,255,255,.75);margin-top:2px;display:flex;align-items:center;gap:2px; }
+        .msg-divider { display:flex;align-items:center;gap:7px;flex-shrink:0; }
+        .msg-divider:before,.msg-divider:after { content:'';flex:1;height:1px;background:#e5e7eb; }
+        .msg-div-txt { font-size:6.5px;font-weight:700;color:#9ca3af;letter-spacing:.5px;white-space:nowrap; }
+        .msg-inp { padding:7px 10px;border-top:1px solid #e5e7eb;display:flex;align-items:center;gap:6px;flex-shrink:0; }
+        .msg-inp-clip svg { width:12px;height:12px;color:#9ca3af; }
+        .msg-inp-field { flex:1;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:16px;padding:6px 11px;font-size:8px;color:#9ca3af; }
+        .msg-inp-emojis { display:flex;gap:4px;align-items:center;flex-shrink:0; }
+        .msg-inp-emojis svg { width:13px;height:13px; }
+        .msg-inp-usr { width:22px;height:22px;border-radius:50%;background:#fbbf24;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:#fff;position:relative;flex-shrink:0; }
+        .msg-inp-badge { position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#ef4444;border:1.5px solid #fff; }
+
+        @media(max-width:1199px){ .msg-h1{font-size:40px;} }
+        @media(max-width:768px){ .msg-wrap{grid-template-columns:1fr;gap:40px;} .msg-h1{font-size:34px;} }
+
+        /* ══════════════════════════════════════════
+           MCP SECTION — "Connect Claude AI & ChatGPT to your NDIS data"
+        ══════════════════════════════════════════ */
+        .mcp-section { background:#f4f5ff; padding:100px 0 0; overflow:hidden; }
+        .mcp-wrap { display:grid; grid-template-columns:1.72fr 1fr; gap:64px; align-items:start; }
+
+        /* Left column */
+        .mcp-text { display:flex;flex-direction:column;padding-bottom:100px; }
+        .mcp-pill { display:inline-flex;align-items:center;gap:7px;background:#ede9fe;border:1px solid #c4b5fd;border-radius:20px;padding:7px 16px;font-size:11px;font-weight:800;color:#5932EA;letter-spacing:.6px;text-transform:uppercase;margin-bottom:22px;width:fit-content; }
+        .mcp-pill svg { width:13px;height:13px; }
+        .mcp-h1 { font-size:46px;font-weight:900;color:#111827;line-height:1.1;letter-spacing:2px;margin-bottom:18px; }
+        .mcp-accent { color:#5932EA; }
+        .mcp-desc { font-size:14.5px;color:#6b7280;line-height:1.72;margin-bottom:28px;max-width:380px; }
+        .mcp-feats { display:flex;flex-direction:column;gap:18px;margin-bottom:24px; }
+        .mcp-feat { display:flex;align-items:flex-start;gap:14px; }
+        .mcp-feat-ic { width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .mcp-feat-ic svg { width:23px;height:23px; }
+        .mcp-feat-body { flex:1; }
+        .mcp-feat-name { font-size:13.5px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.35; }
+        .mcp-feat-desc { font-size:12.5px;color:#6b7280;line-height:1.55; }
+        .mcp-sec-card { background:linear-gradient(135deg,#ede9fe 0%,#dbeafe 100%);border:1px solid #c4b5fd;border-radius:14px;padding:17px 20px;display:flex;align-items:center;gap:14px; }
+        .mcp-sec-ic { width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .mcp-sec-ic svg { width:21px;height:21px; }
+        .mcp-sec-title { font-size:14.5px;font-weight:800;color:#4c1d95;margin-bottom:4px; }
+        .mcp-sec-desc { font-size:12.5px;color:#6b7280; }
+
+        /* Right diagram card */
+        .mcp-diagram { background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(89,50,234,.1),0 4px 20px rgba(0,0,0,.06);overflow:hidden; }
+
+        /* AI cards */
+        .mcp-ai-row { display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:22px 22px 0; }
+        .mcp-ai-card { background:#fff;border:1.5px solid #e5e7eb;border-radius:16px;padding:20px 20px 16px;box-shadow:0 2px 12px rgba(0,0,0,.06); }
+        .mcp-ai-hd { display:flex;align-items:center;gap:12px;margin-bottom:14px; }
+        .mcp-ai-ico { width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .mcp-ai-ico svg { width:26px;height:26px; }
+        .mcp-ai-name { font-size:16px;font-weight:800;color:#111827; }
+        .mcp-ai-msg { font-size:13px;color:#374151;line-height:1.65;margin-bottom:14px; }
+        .mcp-ai-dots { display:flex;gap:6px;align-items:center; }
+        .mcp-ai-dot { width:9px;height:9px;border-radius:50%;background:#d1d5db;display:inline-block; }
+
+        /* Connectors */
+        .mcp-conn-top { padding:0; }
+        .mcp-conn-top svg { width:100%;height:56px;display:block; }
+        .mcp-conn-bot { position:relative; }
+        .mcp-conn-bot svg { width:100%;height:68px;display:block; }
+        .mcp-sync-badge { position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);background:#fff;border:1.5px solid #e5e7eb;border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;color:#374151;box-shadow:0 2px 12px rgba(0,0,0,.10);display:flex;align-items:center;gap:6px;white-space:nowrap;z-index:1; }
+        .mcp-sync-badge svg { width:13px;height:13px;color:#5932EA; }
+
+        /* Middle row: cube + server card */
+        .mcp-mid { display:flex;align-items:center;padding:4px 22px;gap:20px; }
+        .mcp-cube-svg-wrap { flex:1;display:flex;align-items:center;justify-content:center;min-width:0; }
+        .mcp-cube-svg-wrap svg { height:210px;width:auto;max-width:100%; }
+        .mcp-server-card { flex:0 0 210px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:16px;padding:18px;align-self:center; }
+        .mcp-server-title { font-size:15px;font-weight:900;color:#111827;margin-bottom:2px; }
+        .mcp-server-sub { font-size:12px;color:#6b7280;margin-bottom:14px;font-weight:500; }
+        .mcp-server-item { display:flex;align-items:center;gap:8px;font-size:12px;color:#374151;margin-bottom:10px;font-weight:600; }
+        .mcp-server-item svg { width:14px;height:14px;flex-shrink:0; }
+        .mcp-server-item:last-child { margin-bottom:0; }
+
+        /* Data cards */
+        .mcp-data-row { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 22px; }
+        .mcp-data-card { background:#fff;border:1.5px solid #e5e7eb;border-radius:14px;padding:12px;overflow:hidden; }
+        .mcp-data-top { display:flex;align-items:center;gap:7px;margin-bottom:4px; }
+        .mcp-data-ico { width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .mcp-data-ico svg { width:17px;height:17px; }
+        .mcp-data-title { font-size:10px;font-weight:800;color:#111827;line-height:1.3; }
+        .mcp-data-live { display:flex;align-items:center;gap:4px;font-size:8.5px;color:#16a34a;font-weight:700;margin-bottom:8px; }
+        .mcp-live-dot { width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;flex-shrink:0; }
+        .mcp-part-rows { display:flex;flex-direction:column;gap:5px; }
+        .mcp-part-row { display:flex;align-items:center;gap:5px; }
+        .mcp-part-av { width:16px;height:16px;border-radius:50%;flex-shrink:0; }
+        .mcp-part-lines { display:flex;flex-direction:column;gap:2px;flex:1; }
+        .mcp-pline { height:3px;background:#e5e7eb;border-radius:2px; }
+        .mcp-shift-rows { display:flex;flex-direction:column;gap:4px; }
+        .mcp-shift-track { height:8px;background:#f3f4f6;border-radius:4px;position:relative;overflow:hidden; }
+        .mcp-shift-bar { position:absolute;top:0;height:100%;border-radius:4px; }
+        .mcp-budget-area { display:flex;align-items:flex-end;gap:6px; }
+        .mcp-dollar { font-size:22px;font-weight:900;color:#d1d5db;line-height:1; }
+        .mcp-comply-rows { display:flex;flex-direction:column;gap:5px; }
+        .mcp-comply-row { display:flex;align-items:center;gap:6px; }
+        .mcp-comply-ic { width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#22c55e);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .mcp-comply-ic svg { width:8px;height:8px; }
+        .mcp-cline { height:3px;background:#e5e7eb;border-radius:2px;flex:1; }
+
+        /* How it works footer */
+        .mcp-how { background:#f3f4f6;padding:16px 22px;margin-top:16px;display:flex;align-items:center;gap:14px; }
+        .mcp-how-label { font-size:12px;font-weight:900;color:#111827;white-space:nowrap;flex-shrink:0;line-height:1.35; }
+        .mcp-how-steps { display:flex;align-items:center;flex:1;gap:0; }
+        .mcp-how-step { display:flex;align-items:center;gap:8px;flex:1;min-width:0; }
+        .mcp-how-ic { width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .mcp-how-ic svg { width:14px;height:14px; }
+        .mcp-how-content { min-width:0; }
+        .mcp-how-num { font-size:8.5px;font-weight:800;color:#111827;margin-bottom:1px; }
+        .mcp-how-desc { font-size:7.5px;color:#9ca3af;line-height:1.4; }
+        .mcp-how-arrow { color:#d1d5db;font-size:13px;flex-shrink:0;margin:0 3px; }
+
+        @media(max-width:1199px){ .mcp-h1{font-size:38px;} }
+        /* mcp: image left, text right */
+        .mcp-text    { order:2; }
+        .mcp-diagram { order:1; }
+        @media(max-width:768px){ .mcp-wrap{grid-template-columns:1fr;} .mcp-text{padding-bottom:0;order:1;} .mcp-diagram{order:2;} .mcp-h1{font-size:32px;} .mcp-data-row{grid-template-columns:repeat(2,1fr);} .mcp-mid{flex-wrap:wrap;} .mcp-server-card{flex:1 1 100%;} }
+
+        /* ══════════════════════════════════════════
+           AUTOMATION SECTION — "Automate your NDIS workflows with n8n"
+        ══════════════════════════════════════════ */
+        .auto-section { background:#f4f5ff; padding:100px 0 0; overflow:hidden; }
+        .auto-wrap { display:grid; grid-template-columns:1fr 1.72fr; gap:64px; align-items:start; }
+        .auto-text { display:flex;flex-direction:column;padding-bottom:100px; }
+        .auto-pill { display:inline-flex;align-items:center;gap:7px;background:#ede9fe;border:1px solid #c4b5fd;border-radius:20px;padding:7px 16px;font-size:11px;font-weight:800;color:#5932EA;letter-spacing:.6px;text-transform:uppercase;margin-bottom:22px;width:fit-content; }
+        .auto-pill svg { width:13px;height:13px; }
+        .auto-h1 { font-size:46px;font-weight:900;color:#111827;line-height:1.1;letter-spacing:2px;margin-bottom:18px; }
+        .auto-accent { color:#5932EA; }
+        .auto-desc { font-size:14.5px;color:#6b7280;line-height:1.72;margin-bottom:28px;max-width:380px; }
+        .auto-feats { display:flex;flex-direction:column;gap:16px;margin-bottom:24px; }
+        .auto-feat { display:flex;align-items:flex-start;gap:14px; }
+        .auto-feat-ic { width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-feat-ic svg { width:22px;height:22px; }
+        .auto-feat-body { flex:1; }
+        .auto-feat-name { font-size:13.5px;font-weight:800;color:#111827;margin-bottom:3px;line-height:1.35; }
+        .auto-feat-desc { font-size:12.5px;color:#6b7280;line-height:1.55; }
+        .auto-sec-card { background:linear-gradient(135deg,#ede9fe 0%,#dbeafe 100%);border:1px solid #c4b5fd;border-radius:14px;padding:17px 20px;display:flex;align-items:center;gap:14px; }
+        .auto-sec-ic { width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-sec-ic svg { width:21px;height:21px; }
+        .auto-sec-title { font-size:14.5px;font-weight:800;color:#4c1d95;margin-bottom:4px; }
+        .auto-sec-desc { font-size:12.5px;color:#6b7280; }
+        /* Diagram card */
+        .auto-diagram { background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(89,50,234,.1),0 4px 20px rgba(0,0,0,.06);overflow:hidden; }
+        .auto-diag-hd { display:flex;align-items:center;gap:10px;padding:15px 20px;border-bottom:1.5px solid #f3f4f6; }
+        .auto-diag-logo { width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-diag-logo svg { width:17px;height:17px; }
+        .auto-diag-brand { font-size:16px;font-weight:900;color:#111827; }
+        /* 3-column body */
+        .auto-diag-body { display:grid;grid-template-columns:1fr 1.05fr 0.95fr;border-bottom:1.5px solid #f3f4f6;position:relative; }
+        /* Trigger column */
+        .auto-trig-col { padding:16px;border-right:1.5px solid #f3f4f6;position:relative; }
+        .auto-col-hd { display:flex;align-items:center;gap:8px;margin-bottom:13px; }
+        .auto-col-title { font-size:11.5px;font-weight:800;color:#111827; }
+        .auto-col-badge { display:inline-block;background:#dcfce7;color:#16a34a;font-size:9px;font-weight:800;border-radius:10px;padding:2px 9px; }
+        .auto-col-badge-blue { display:inline-block;background:#dbeafe;color:#1d4ed8;font-size:9px;font-weight:800;border-radius:10px;padding:2px 9px; }
+        .auto-trig-list { display:flex;flex-direction:column;gap:6px; }
+        .auto-trig-item { display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:#f9fafb;border:1.5px solid #f3f4f6;border-radius:10px; }
+        .auto-trig-ic { width:26px;height:26px;border-radius:7px;background:#fff;border:1.5px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-trig-ic svg { width:12px;height:12px; }
+        .auto-trig-name { font-size:11px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:1px; }
+        .auto-trig-sub { font-size:9.5px;color:#9ca3af;line-height:1.35; }
+        /* n8n workflow column */
+        .auto-flow-col { padding:16px;border-right:1.5px solid #f3f4f6; }
+        .auto-n8n-hd { display:flex;align-items:center;gap:9px;margin-bottom:3px; }
+        .auto-n8n-name { font-size:18px;font-weight:900;color:#111827; }
+        .auto-n8n-sub { font-size:10.5px;font-weight:600;color:#6b7280;margin-bottom:13px;padding-left:2px; }
+        .auto-node { background:#fff;border:1.5px solid #e5e7eb;border-radius:11px;padding:10px 12px;display:flex;align-items:flex-start;gap:9px; }
+        .auto-node-ic { width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-node-ic svg { width:14px;height:14px; }
+        .auto-node-name { font-size:12px;font-weight:800;color:#111827;margin-bottom:2px; }
+        .auto-node-sub { font-size:10px;color:#6b7280;line-height:1.4; }
+        .auto-node-sep { text-align:center;padding:4px 0;color:#8b5cf6;font-size:14px;line-height:1; }
+        .auto-actions-row { display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:7px; }
+        .auto-action-box { background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:10px;padding:9px 5px;text-align:center; }
+        .auto-action-ic { width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin:0 auto 5px; }
+        .auto-action-ic svg { width:13px;height:13px; }
+        .auto-action-label { font-size:9.5px;font-weight:800;color:#111827;margin-bottom:1px; }
+        .auto-action-sub { font-size:8.5px;color:#6b7280;line-height:1.3; }
+        /* Connected apps column */
+        .auto-apps-col { padding:16px; }
+        .auto-app-list { display:flex;flex-direction:column;gap:9px;margin-top:13px; }
+        .auto-app-item { display:flex;align-items:center;gap:10px; }
+        .auto-app-logo { width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-app-logo svg { width:20px;height:20px; }
+        .auto-app-name { font-size:12.5px;font-weight:700;color:#111827;line-height:1.2; }
+        .auto-app-cat { font-size:10px;color:#9ca3af; }
+        /* Status bar */
+        .auto-status { padding:13px 20px;display:flex;align-items:center;gap:12px;border-bottom:1.5px solid #f3f4f6; }
+        .auto-status-ok { width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#22c55e);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-status-ok svg { width:12px;height:12px; }
+        .auto-status-title { font-size:13.5px;font-weight:800;color:#111827;margin-bottom:1px; }
+        .auto-status-sub { font-size:10.5px;color:#6b7280; }
+        .auto-status-flow { display:flex;align-items:center;gap:6px;margin-left:auto; }
+        .auto-snode { width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-sarrow { display:flex;align-items:center;gap:2px; }
+        .auto-sdot { width:4px;height:4px;border-radius:50%;background:#d1d5db;display:inline-block; }
+        /* How it works footer */
+        .auto-how { background:#f3f4f6;padding:15px 20px;display:flex;align-items:center;gap:14px; }
+        .auto-how-label { font-size:12px;font-weight:900;color:#111827;white-space:nowrap;flex-shrink:0;line-height:1.35; }
+        .auto-how-steps { display:flex;align-items:center;flex:1;gap:0; }
+        .auto-how-step { display:flex;align-items:center;gap:8px;flex:1;min-width:0; }
+        .auto-how-ic { width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+        .auto-how-ic svg { width:13px;height:13px; }
+        .auto-how-num { font-size:8.5px;font-weight:800;color:#111827;margin-bottom:1px; }
+        .auto-how-desc { font-size:7.5px;color:#9ca3af;line-height:1.4; }
+        .auto-how-arrow { color:#d1d5db;font-size:12px;flex-shrink:0;margin:0 2px; }
+        @media(max-width:1199px){ .auto-h1{font-size:38px;} }
+        @media(max-width:768px){ .auto-wrap{grid-template-columns:1fr;} .auto-text{padding-bottom:0;} .auto-h1{font-size:32px;} .auto-diag-body{grid-template-columns:1fr;} }
+
+        /* ── GLOBAL MOBILE FIXES ─────────────────────── */
+        html, body { overflow-x: hidden; max-width: 100%; }
+        /* Disable AOS slide transforms on mobile — they shift elements off-screen */
+        @media(max-width:767px) {
+            [data-aos] { opacity: 1 !important; transform: none !important; }
+        }
+
+        @media(max-width:767px) {
+            /* Breadcrumb */
+            .vl-breadcrumb-content .title { font-size: 32px; }
+
+            /* Section padding */
+            .ai2-section, .msg-section { padding: 60px 0 56px; }
+            .mcp-section, .auto-section { padding: 60px 0 0; }
+            .ai-section { padding: 56px 0 52px; }
+
+            /* ── AI-SECTION mockup: hide left panels so main chat fills full width ── */
+            .ai-mock-col { min-height: 0 !important; max-height: none !important; overflow: visible; }
+            .ai-browser { max-height: none; overflow: hidden; }
+            .ai-sb2 { display: none !important; }
+            .ai-chatlist { display: none !important; }
+
+            /* ── AI2-SECTION mockup: hide sidebar ── */
+            .ai2-mock { max-height: none !important; min-height: 0 !important; }
+            .ai2-sb { display: none !important; }
+
+            /* ── MSG-SECTION mockup: hide nav + conversation list ── */
+            .msg-mock { min-height: 0 !important; max-height: none !important; }
+            .msg-nav { display: none !important; }
+            .msg-convlist { display: none !important; }
+
+            /* ── MCP diagram: hide overflow sub-items, show top portion ── */
+            .mcp-diagram { max-height: none !important; overflow: hidden; }
+            .mcp-mid { overflow: hidden; max-height: 260px; }
+
+            /* ── AUTO diagram: limit height on each column ── */
+            .auto-diagram { max-height: none !important; overflow: hidden; }
+            .auto-diag-body { grid-template-columns: 1fr; max-height: 420px; overflow: hidden; }
+
+            /* Pill labels */
+            .ai-pill, .ai2-pill, .msg-pill, .mcp-pill, .auto-pill { font-size: 10px; padding: 6px 12px; }
+
+            /* Feature lists */
+            .ai2-feats, .msg-feats { gap: 14px; }
+            .ai2-feat-ic, .msg-feat-ic, .ai-feat-ic { width: 38px; height: 38px; border-radius: 10px; }
+            .ai2-feat-ic svg, .msg-feat-ic svg, .ai-feat-ic svg { width: 18px; height: 18px; }
+
+            /* CTA buttons */
+            .ai-cta-btn, .mcp-cta-btn, .auto-cta-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+
+            /* MCP data row */
+            .mcp-data-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
+
+            /* Benefits */
+            .ai-benefits { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
+
+            /* ── HOW IT WORKS: stack vertically on mobile ── */
+            .mcp-how, .auto-how { flex-direction: column; gap: 10px; padding: 14px 16px; }
+            .mcp-how-label, .auto-how-label { white-space: normal; font-size: 11px; }
+            .mcp-how-steps, .auto-how-steps { flex-wrap: wrap; gap: 6px; }
+            .mcp-how-step, .auto-how-step { flex: 0 0 auto; min-width: 0; }
+            .mcp-how-arrow, .auto-how-arrow { display: none; }
+        }
+
+        @media(max-width:480px) {
+            .vl-breadcrumb-content .title { font-size: 26px; }
+            .ai-h1 { font-size: 28px; }
+            .ai2-h1, .msg-h1, .mcp-h1, .auto-h1 { font-size: 26px; }
+            .ai-desc, .ai2-desc, .msg-desc, .mcp-desc, .auto-desc { font-size: 14px; }
+            .ai-benefits { grid-template-columns: 1fr; gap: 12px; }
+            .ai2-sec-card, .msg-sec-card { flex-direction: column; gap: 10px; }
+            .mcp-data-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .ai-browser { max-height: 380px; }
+            .ai2-mock, .msg-mock { max-height: 360px; }
+            .mcp-diagram, .auto-diagram { max-height: 320px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== breadcrumb start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px!important;padding-bottom:30px!important;min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Plannor AI</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li>Plannor AI</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb end =========== -->
+
+        <!-- =========== AI2 SECTION START =========== -->
+        <section class="ai2-section">
+            <div class="container">
+                <div class="ai2-wrap">
+
+                    <!-- ── LEFT COLUMN ─────────────────── -->
+                    <div class="ai2-text" data-aos="fade-right">
+
+                        <!-- Pill -->
+                        <div class="ai2-pill">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                            AI-Powered
+                        </div>
+
+                        <!-- Headline -->
+                        <h2 class="ai2-h1">
+                            AI that understands
+                            <span class="ai2-accent">NDIS, not just text</span>
+                        </h2>
+
+                        <!-- Description -->
+                        <p class="ai2-desc">Plannor's AI assistant knows your participants, shifts, compliance status, and funding. It can answer real operational questions or draft NDIS-appropriate progress notes in seconds — hands-free on mobile.</p>
+
+                        <!-- 6 Features -->
+                        <div class="ai2-feats">
+                            <div class="ai2-feat">
+                                <div class="ai2-feat-ic" style="background:linear-gradient(135deg,#7c3aed,#5932EA);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                </div>
+                                <div class="ai2-feat-body">
+                                    <div class="ai2-feat-name">AI progress note writing</div>
+                                    <div class="ai2-feat-desc">Type a few keywords, get a full professional note</div>
+                                </div>
+                            </div>
+                            <div class="ai2-feat">
+                                <div class="ai2-feat-ic" style="background:linear-gradient(135deg,#16a34a,#15803d);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+                                </div>
+                                <div class="ai2-feat-body">
+                                    <div class="ai2-feat-name">Voice mode</div>
+                                    <div class="ai2-feat-desc">Talk to your AI assistant hands-free while on shift</div>
+                                </div>
+                            </div>
+                            <div class="ai2-feat">
+                                <div class="ai2-feat-ic" style="background:linear-gradient(135deg,#10a37f,#2563eb);">
+                                    <svg viewBox="0 0 24 24" fill="#fff"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+                                </div>
+                                <div class="ai2-feat-body">
+                                    <div class="ai2-feat-name">ChatGPT connector</div>
+                                    <div class="ai2-feat-desc">Query participant and shift data from ChatGPT</div>
+                                </div>
+                            </div>
+                            <div class="ai2-feat">
+                                <div class="ai2-feat-ic" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6M7 16h8"/></svg>
+                                </div>
+                                <div class="ai2-feat-body">
+                                    <div class="ai2-feat-name">AI form builder</div>
+                                    <div class="ai2-feat-desc">Generate intake forms from a text prompt or PDF upload</div>
+                                </div>
+                            </div>
+                            <div class="ai2-feat">
+                                <div class="ai2-feat-ic" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                                </div>
+                                <div class="ai2-feat-body">
+                                    <div class="ai2-feat-name">Smart incident summaries</div>
+                                    <div class="ai2-feat-desc">and shift report drafts</div>
+                                </div>
+                            </div>
+                            <div class="ai2-feat">
+                                <div class="ai2-feat-ic" style="background:linear-gradient(135deg,#f43f5e,#ec4899);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                                </div>
+                                <div class="ai2-feat-body">
+                                    <div class="ai2-feat-name">Tenant-isolated</div>
+                                    <div class="ai2-feat-desc">AI never mixes data between organisations</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- /left -->
+
+                    <!-- ── RIGHT COLUMN — MOCKUP ────────── -->
+                    <div class="ai2-mock" data-aos="fade-left">
+
+                        <!-- Top bar -->
+                        <div class="ai2-topbar">
+                            <div class="ai2-logo-wrap">
+                                <div class="ai2-logo-ic">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                </div>
+                                <span class="ai2-logo-name">plannor</span>
+                            </div>
+                            <span class="ai2-app-title">AI Assistant</span>
+                            <div class="ai2-search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                                Search anything...
+                            </div>
+                            <div class="ai2-bell">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                <span class="ai2-bell-dot">5</span>
+                            </div>
+                            <div class="ai2-usr">
+                                <div class="ai2-usr-av">S</div>
+                                <div class="ai2-usr-info">
+                                    <div class="ai2-usr-name">SunCare Admin</div>
+                                    <div class="ai2-usr-email">admin@suncare.com.au</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="ai2-body">
+
+                            <!-- Sidebar -->
+                            <div class="ai2-sb">
+                                <div class="ai2-sb-grp">
+                                    <div class="ai2-sb-lbl">Finance</div>
+                                    <div class="ai2-sb-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                        Finance
+                                        <span class="ai2-sb-badge">2</span>
+                                    </div>
+                                </div>
+                                <div class="ai2-sb-grp">
+                                    <div class="ai2-sb-lbl">Communications</div>
+                                    <div class="ai2-sb-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                        Messages
+                                    </div>
+                                </div>
+                                <div class="ai2-sb-grp">
+                                    <div class="ai2-sb-lbl">Knowledge</div>
+                                    <div class="ai2-sb-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                        Docs &amp; Forms
+                                    </div>
+                                </div>
+                                <div class="ai2-sb-grp">
+                                    <div class="ai2-sb-lbl">Insights &amp; Compliance</div>
+                                    <div class="ai2-sb-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                        Reports &amp; Insights
+                                    </div>
+                                </div>
+                                <div class="ai2-sb-grp" style="margin-top:4px;">
+                                    <div class="ai2-sb-lbl">System</div>
+                                    <div class="ai2-sb-item active">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                                        AI Assistant
+                                    </div>
+                                    <div class="ai2-sb-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                                        Settings
+                                    </div>
+                                    <div class="ai2-sb-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                        Logout
+                                    </div>
+                                </div>
+                                <div class="ai2-sb-spacer"></div>
+                            </div>
+
+                            <!-- Chat area -->
+                            <div class="ai2-chat">
+
+                                <!-- Purple header -->
+                                <div class="ai2-chat-hd">
+                                    <div class="ai2-chat-av">
+                                        <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </div>
+                                    <div class="ai2-chat-info">
+                                        <div class="ai2-chat-name">Koree</div>
+                                        <div class="ai2-chat-status">
+                                            <span class="ai2-chat-dot"></span>
+                                            Online · AI-Powered
+                                        </div>
+                                    </div>
+                                    <div class="ai2-chat-btns">
+                                        <button class="ai2-chat-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                            New Chat
+                                        </button>
+                                        <button class="ai2-chat-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                                            Dashboard
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Warning bar -->
+                                <div class="ai2-warn">
+                                    <span class="ai2-warn-item">⚠️ 1 staff cert(s) expiring soon</span>
+                                    <span class="ai2-warn-item ok">✅ 2 overdue invoice(s)</span>
+                                </div>
+
+                                <!-- Messages -->
+                                <div class="ai2-msgs">
+                                    <div class="ai2-msg-row">
+                                        <div class="ai2-msg-av2">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        </div>
+                                        <div class="ai2-msg-box">
+                                            <div class="ai2-msg-bubble">
+                                                <div class="ai2-msg-txt">
+                                                    Here are the best staff suggestions for <strong>Sarah Mitchell</strong> tomorrow, June 20, 2026, from 9 AM to 10 AM:
+                                                    <ul>
+                                                        <li><strong>Jeremy Nguyen</strong> — Score: 80/100<br><span>(No prior shifts with Sarah, but available and cost-efficient)</span></li>
+                                                        <li><strong>Emma Wilson</strong> — Score: 76/100<br><span>(Has worked with Sarah once, available)</span></li>
+                                                        <li><strong>David Chen</strong> — Score: 75/100<br><span>(Has worked with Sarah once, available)</span></li>
+                                                        <li><strong>Clement Chan</strong> — Score: 70/100<br><span>(No prior shifts with Sarah, available)</span></li>
+                                                        <li><strong>Pierre Malmort</strong> — Score: 55/100<br><span>(Available, but adding this shift would exceed his weekly limit)</span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ai2-msg-time">10:34 AM</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick chips -->
+                                <div class="ai2-chips">
+                                    <span class="ai2-chip">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                        Write progress note
+                                    </span>
+                                    <span class="ai2-chip">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                                        Voice mode
+                                    </span>
+                                    <span class="ai2-chip">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                        Summarise incident
+                                    </span>
+                                    <span class="ai2-chip">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 8h10M7 12h6M7 16h8"/></svg>
+                                        Build a form
+                                    </span>
+                                </div>
+
+                                <!-- Input -->
+                                <div class="ai2-inp">
+                                    <div class="ai2-inp-field">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                                        Ask anything about your NDIS workspace...
+                                    </div>
+                                    <button class="ai2-inp-send">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                    </button>
+                                </div>
+                                <div class="ai2-inp-note">AI-powered · NDIS context aware · Responses may not be 100% accurate</div>
+
+                            </div><!-- /chat -->
+
+                        </div><!-- /body -->
+
+                    </div><!-- /mockup -->
+
+                </div><!-- /wrap -->
+            </div><!-- /container -->
+        </section>
+        <!-- =========== AI2 SECTION END =========== -->
+
+        <!-- =========== page content start =========== -->
+
+        <!-- =========== PLANNOR AI SECTION =========== -->
+        <section class="ai-section">
+            <div class="container">
+
+                <!-- Two-column hero -->
+                <div class="ai-wrap">
+
+                    <!-- LEFT: text -->
+                    <div class="ai-text" data-aos="fade-right">
+                        <div class="ai-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            AI Assistant
+                        </div>
+                        <h1 class="ai-h1">Your NDIS AI assistant,<br><span class="ai-accent">always on</span></h1>
+                        <p class="ai-desc">Ask questions, get instant answers about participants, shifts, budgets, and compliance — all from a conversational interface. Plannor's AI knows your organisation inside out.</p>
+
+                        <div class="ai-feats">
+                            <!-- 1 -->
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#ede9fe;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">Ask anything about participants, budgets &amp; shifts</div>
+                                    <div class="ai-feat-desc">Get accurate answers about your participants, budgets, shifts and more.</div>
+                                </div>
+                            </div>
+                            <!-- 2 -->
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#dcfce7;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">Voice-enabled</div>
+                                    <div class="ai-feat-desc">Hands-free on mobile while on shift with voice-powered answers.</div>
+                                </div>
+                            </div>
+                            <!-- 3 -->
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#fef9c3;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">Instant answers</div>
+                                    <div class="ai-feat-desc">No searching through menus or reports. Get what you need, instantly.</div>
+                                </div>
+                            </div>
+                            <!-- 4 -->
+                            <div class="ai-feat">
+                                <div class="ai-feat-ic" style="background:#eff6ff;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                                </div>
+                                <div>
+                                    <div class="ai-feat-name">Data stays within your organisation</div>
+                                    <div class="ai-feat-desc">Your data is 100% secure, tenant-isolated and never shared.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT: built mockup -->
+                    <div class="ai-mock-col" data-aos="fade-left">
+                        <div class="ai-browser">
+                            <!-- browser chrome -->
+                            <div class="ai-browser-bar">
+                                <div class="ai-bdot"></div><div class="ai-bdot"></div><div class="ai-bdot"></div>
+                            </div>
+                            <!-- app -->
+                            <div class="ai-app">
+
+                                <!-- Purple sidebar -->
+                                <div class="ai-sb2">
+                                    <div class="ai-nav-sec">
+                                        <div class="ai-nav-lbl">Finance</div>
+                                        <div class="ai-nav-row">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                                            Finance
+                                            <div class="ai-nav-toggle"><span></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="ai-nav-sec">
+                                        <div class="ai-nav-lbl">Communications</div>
+                                        <div class="ai-nav-row">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                            Messages
+                                        </div>
+                                    </div>
+                                    <div class="ai-nav-sec">
+                                        <div class="ai-nav-lbl">Knowledge</div>
+                                        <div class="ai-nav-row">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                            Docs &amp; Forms
+                                        </div>
+                                    </div>
+                                    <div class="ai-nav-sec">
+                                        <div class="ai-nav-lbl">Insights &amp; Compliance</div>
+                                        <div class="ai-nav-row">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                            Reports &amp; Insights
+                                        </div>
+                                    </div>
+                                    <div class="ai-nav-sec">
+                                        <div class="ai-nav-lbl">System</div>
+                                        <div class="ai-nav-row act">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                            AI Assistant
+                                        </div>
+                                        <div class="ai-nav-row">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                            Settings
+                                        </div>
+                                        <div class="ai-nav-row">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                            Logout
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Chat list -->
+                                <div class="ai-chatlist">
+                                    <div class="ai-cl-hd">
+                                        <span class="ai-cl-title">Chats</span>
+                                        <button class="ai-cl-new">+ New</button>
+                                    </div>
+                                    <div class="ai-cl-recent">Recent</div>
+                                    <div class="ai-cl-items">
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Which particip...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Find staff with fir...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Add a new partic...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Hello...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Remind me to rev...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Shift swap reque...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Invoice #INV-202...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Compliance over...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Tell me more abo...</div>
+                                        <div class="ai-cl-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Show all today's...</div>
+                                    </div>
+                                </div>
+
+                                <!-- Main panel -->
+                                <div class="ai-main2">
+                                    <!-- Top nav -->
+                                    <div class="ai-main-nav">
+                                        <span class="ai-main-ttl">AI Assistant</span>
+                                        <div class="ai-srch">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                            Search participants, staff...
+                                        </div>
+                                        <div class="ai-bell">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                            <span class="ai-bell-badge">5</span>
+                                        </div>
+                                        <div class="ai-user2">
+                                            <div class="ai-user2-av">S</div>
+                                            <div>
+                                                <div class="ai-user2-name">SunCare Admin</div>
+                                                <div class="ai-user2-email">admin@suncare-services.com</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Active chat header -->
+                                    <div class="ai-cht-hd">
+                                        <div class="ai-cht-av">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                        </div>
+                                        <div class="ai-cht-info">
+                                            <div class="ai-cht-name">korec</div>
+                                            <div class="ai-cht-status"><span class="ai-cht-dot"></span>Online · AI-powered</div>
+                                        </div>
+                                        <div class="ai-cht-btns">
+                                            <button class="ai-cht-btn">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                                New Chat
+                                            </button>
+                                            <button class="ai-cht-btn">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                                                Dashboard
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Warning bar -->
+                                    <div class="ai-warn">
+                                        <span class="ai-warn-item">⚠️ 1 staff (Emily) approaching SCHADS hour limit</span>
+                                        <span class="ai-warn-item grn">🟢 2 compliance item(s) expiring soon</span>
+                                    </div>
+                                    <!-- Messages -->
+                                    <div class="ai-msgs">
+                                        <div class="ai-msg-row">
+                                            <div class="ai-msg-bubble">
+                                                <div class="ai-msg-txt">Good afternoon, <strong>SunCare!</strong> 👋 I'm your NDIS AI Assistant — full-page mode.<br><br>Ask me anything: participants, staff, shifts, emails, compliance, invoices, or anything else in your workspace.<br><br>You can also open chats as a floating widget from any page.</div>
+                                                <div class="ai-msg-time">03:41 PM</div>
+                                            </div>
+                                            <div class="ai-msg-av">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Quick chips -->
+                                    <div class="ai-chips-row">
+                                        <span class="ai-qchip">🔴 Attention</span>
+                                        <span class="ai-qchip">💰 Budget</span>
+                                        <span class="ai-qchip">📅 Shifts</span>
+                                        <span class="ai-qchip">🔴 Incidents</span>
+                                        <span class="ai-qchip">💚 Invoices</span>
+                                        <span class="ai-qchip">✉️ Emails</span>
+                                        <span class="ai-qchip">📋 Notes</span>
+                                    </div>
+                                    <!-- Input -->
+                                    <div class="ai-inp-row">
+                                        <div class="ai-inp-field">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                                            Ask anything about your NDIS workspace...
+                                        </div>
+                                        <button class="ai-inp-send">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                        </button>
+                                    </div>
+                                    <div class="ai-footer-note">AI-powered NDIS answers. Responses may not be 100% accurate.</div>
+                                </div><!-- /ai-main2 -->
+
+                            </div><!-- /ai-app -->
+                        </div><!-- /ai-browser -->
+                    </div><!-- /ai-mock-col -->
+
+                </div><!-- /ai-wrap -->
+
+
+            </div><!-- /container -->
+        </section>
+        <!-- =========== PLANNOR AI SECTION END =========== -->
+
+        <!-- =========== MSG SECTION START =========== -->
+        <section class="msg-section">
+            <div class="container">
+                <div class="msg-wrap">
+
+                    <!-- ── LEFT COLUMN ─────────────────── -->
+                    <div class="msg-text" data-aos="fade-right">
+
+                        <!-- Pill -->
+                        <div class="msg-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            Secure Messaging
+                        </div>
+
+                        <!-- Headline -->
+                        <h2 class="msg-h1">Keep your whole team <span class="msg-accent">connected</span></h2>
+
+                        <!-- Description -->
+                        <p class="msg-desc">Secure, in-platform messaging between support workers, coordinators, participants, and families — no more WhatsApp groups or missed emails.</p>
+
+                        <!-- 6 Features -->
+                        <div class="msg-feats">
+                            <div class="msg-feat">
+                                <div class="msg-feat-ic" style="background:linear-gradient(135deg,#7c3aed,#5932EA);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </div>
+                                <div class="msg-feat-body">
+                                    <div class="msg-feat-name">Direct and group messages</div>
+                                    <div class="msg-feat-desc">between staff, coordinators, and managers</div>
+                                </div>
+                            </div>
+                            <div class="msg-feat">
+                                <div class="msg-feat-ic" style="background:linear-gradient(135deg,#16a34a,#15803d);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </div>
+                                <div class="msg-feat-body">
+                                    <div class="msg-feat-name">Participant circle messaging</div>
+                                    <div class="msg-feat-desc">family members and plan managers included</div>
+                                </div>
+                            </div>
+                            <div class="msg-feat">
+                                <div class="msg-feat-ic" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                </div>
+                                <div class="msg-feat-body">
+                                    <div class="msg-feat-name">File and document sharing</div>
+                                    <div class="msg-feat-desc">within conversations</div>
+                                </div>
+                            </div>
+                            <div class="msg-feat">
+                                <div class="msg-feat-ic" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+                                </div>
+                                <div class="msg-feat-body">
+                                    <div class="msg-feat-name">Shift handover notes</div>
+                                    <div class="msg-feat-desc">linked directly to participant profiles</div>
+                                </div>
+                            </div>
+                            <div class="msg-feat">
+                                <div class="msg-feat-ic" style="background:linear-gradient(135deg,#4f46e5,#4338ca);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                </div>
+                                <div class="msg-feat-body">
+                                    <div class="msg-feat-name">Notifications via email and in-app</div>
+                                    <div class="msg-feat-desc">nothing gets missed</div>
+                                </div>
+                            </div>
+                            <div class="msg-feat">
+                                <div class="msg-feat-ic" style="background:linear-gradient(135deg,#059669,#047857);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                                </div>
+                                <div class="msg-feat-body">
+                                    <div class="msg-feat-name">Full message history retained</div>
+                                    <div class="msg-feat-desc">for compliance and audit</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Illustration card -->
+                        <div class="msg-illus">
+                            <svg viewBox="0 0 300 118" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-height:118px;">
+                                <!-- Dashed circle background -->
+                                <circle cx="150" cy="59" r="54" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.45"/>
+                                <circle cx="150" cy="59" r="38" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 3" opacity="0.28"/>
+                                <!-- Person 1 (left, female) -->
+                                <circle cx="58" cy="32" r="15" fill="#ddd6fe"/>
+                                <path d="M43 27 Q58 14 73 27 Q73 21 58 20 Q43 20 43 27z" fill="#7c3aed"/>
+                                <path d="M40 100 L52 60 Q58 55 64 60 L76 100Z" fill="#5932EA"/>
+                                <rect x="64" y="65" width="11" height="17" rx="2.5" fill="#e0e7ff" opacity="0.9"/>
+                                <!-- Person 2 (right, male) -->
+                                <circle cx="242" cy="32" r="15" fill="#ddd6fe"/>
+                                <path d="M227 27 Q242 20 257 27 Q257 33 242 33 Q227 33 227 27z" fill="#6d28d9"/>
+                                <path d="M224 100 L236 60 Q242 55 248 60 L260 100Z" fill="#4f46e5"/>
+                                <rect x="226" y="65" width="11" height="17" rx="2.5" fill="#e0e7ff" opacity="0.9"/>
+                                <!-- Green speech bubble from person 1 -->
+                                <rect x="84" y="16" width="56" height="26" rx="7" fill="#10b981"/>
+                                <polygon points="88,36 78,44 92,40" fill="#10b981"/>
+                                <rect x="90" y="22" width="34" height="4" rx="2" fill="rgba(255,255,255,0.78)"/>
+                                <rect x="90" y="30" width="24" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+                                <!-- Purple speech bubble from person 2 -->
+                                <rect x="162" y="38" width="56" height="26" rx="7" fill="#7c3aed"/>
+                                <polygon points="214,52 224,60 210,56" fill="#7c3aed"/>
+                                <rect x="168" y="44" width="34" height="4" rx="2" fill="rgba(255,255,255,0.78)"/>
+                                <rect x="168" y="52" width="24" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+                                <!-- Central security badge -->
+                                <circle cx="150" cy="86" r="17" fill="#dbeafe"/>
+                                <circle cx="150" cy="86" r="12" fill="#3b82f6"/>
+                                <path d="M150 78 Q157 80 157 86 Q157 92 150 96 Q143 92 143 86 Q143 80 150 78Z" fill="rgba(255,255,255,0.2)"/>
+                                <path d="M146 86 L149 89 L154 83" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            </svg>
+                        </div>
+
+
+                    </div><!-- /left -->
+
+                    <!-- ── RIGHT COLUMN — MOCKUP ────────── -->
+                    <div class="msg-mock" data-aos="fade-left">
+
+                        <!-- Top bar -->
+                        <div class="msg-topbar">
+                            <div class="msg-logo-wrap">
+                                <div class="msg-logo-ic">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                </div>
+                                <span class="msg-logo-name">plannor</span>
+                            </div>
+                            <span class="msg-page-title">Messages</span>
+                            <div class="msg-search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                                Search participants, staff, shifts, invoices...
+                            </div>
+                            <div class="msg-bell">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                <span class="msg-bell-dot">6</span>
+                            </div>
+                            <div class="msg-usr">
+                                <div class="msg-usr-av">S</div>
+                                <div class="msg-usr-info">
+                                    <div class="msg-usr-name">SunCare Admin</div>
+                                    <div class="msg-usr-email">admin@suncare-services.com</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="msg-body">
+
+                            <!-- Left nav sidebar -->
+                            <div class="msg-nav">
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                                    Dashboard
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    Participants
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    Schedule
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    Shifts
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                                    Timesheets
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                    Finance
+                                </div>
+                                <div class="msg-nav-item active">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    Messages
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    Team Messages
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    Mailbox
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                    Reports
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    Documents
+                                </div>
+                                <div class="msg-nav-spacer"></div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                                    Settings
+                                </div>
+                                <div class="msg-nav-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                    Help &amp; Support
+                                </div>
+                            </div>
+
+                            <!-- Conversation list -->
+                            <div class="msg-convlist">
+                                <div class="msg-cl-head">
+                                    <div class="msg-cl-cat">Communication</div>
+                                    <div class="msg-cl-title-row">
+                                        <div class="msg-cl-title-txt">Messages</div>
+                                        <div class="msg-cl-plus">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                        </div>
+                                    </div>
+                                    <div class="msg-cl-sub">Direct chats, care team groups, and participant conversations.</div>
+                                </div>
+                                <div class="msg-cl-srch">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                                    Search conversations
+                                </div>
+
+                                <div class="msg-cl-items">
+                                    <div class="msg-cl-sec">Direct Messages</div>
+                                    <div class="msg-cl-row active">
+                                        <div class="msg-cl-av" style="background:#f59e0b;">EW</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">Emma Wilson</div>
+                                            <div class="msg-cl-preview">how are you?</div>
+                                        </div>
+                                        <div class="msg-cl-time">11:08 AM</div>
+                                    </div>
+
+                                    <div class="msg-cl-sec">Care Team Groups</div>
+                                    <div class="msg-cl-row">
+                                        <div class="msg-cl-av" style="background:#16a34a;font-size:8px;">CA</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">Care circle thread</div>
+                                            <div class="msg-cl-preview">No new messages yet.</div>
+                                        </div>
+                                        <div class="msg-cl-time">2 wks</div>
+                                    </div>
+                                    <div class="msg-cl-row">
+                                        <div class="msg-cl-av" style="background:#16a34a;font-size:8px;">CA</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">Care circle thread</div>
+                                            <div class="msg-cl-preview">No new messages yet.</div>
+                                        </div>
+                                        <div class="msg-cl-time">1 mo</div>
+                                    </div>
+                                    <div class="msg-cl-row">
+                                        <div class="msg-cl-av" style="background:#16a34a;font-size:8px;">CA</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">Care circle thread</div>
+                                            <div class="msg-cl-preview">No new messages yet.</div>
+                                        </div>
+                                        <div class="msg-cl-time">1 mo</div>
+                                    </div>
+
+                                    <div class="msg-cl-sec">Recent Participants</div>
+                                    <div class="msg-cl-row">
+                                        <div class="msg-cl-av" style="background:#b45309;">DC</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">David Chen</div>
+                                            <div class="msg-cl-preview">Thanks for the update!</div>
+                                        </div>
+                                        <div class="msg-cl-time">1h ago</div>
+                                    </div>
+                                    <div class="msg-cl-row">
+                                        <div class="msg-cl-av" style="background:#be185d;">SM</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">Sarah Mitchell</div>
+                                            <div class="msg-cl-preview">Sounds good, thank you.</div>
+                                        </div>
+                                        <div class="msg-cl-time">3h ago</div>
+                                    </div>
+                                    <div class="msg-cl-row">
+                                        <div class="msg-cl-av" style="background:#1d4ed8;">JB</div>
+                                        <div class="msg-cl-info">
+                                            <div class="msg-cl-name">James Brown</div>
+                                            <div class="msg-cl-preview">I'll be there at 2 PM.</div>
+                                        </div>
+                                        <div class="msg-cl-time">1d ago</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chat panel -->
+                            <div class="msg-chat">
+
+                                <!-- Chat header -->
+                                <div class="msg-chat-hd">
+                                    <div class="msg-chat-hd-av">EW</div>
+                                    <div>
+                                        <span class="msg-chat-name">Emma Wilson</span>
+                                        <span class="msg-chat-badge">Internal</span>
+                                    </div>
+                                    <div class="msg-chat-menu">···</div>
+                                </div>
+
+                                <!-- Messages -->
+                                <div class="msg-chat-body">
+
+                                    <!-- Incoming: Hey -->
+                                    <div class="msg-msg-in">
+                                        <div class="msg-msg-in-av">EW</div>
+                                        <div class="msg-msg-in-box">
+                                            <div><span class="msg-msg-tag">Staff</span></div>
+                                            <div class="msg-msg-bubble">
+                                                <div class="msg-msg-text">Hey</div>
+                                            </div>
+                                            <div class="msg-msg-time">28 Apr, 11:10 AM</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="msg-divider"><span class="msg-div-txt">TUESDAY 1 MAY</span></div>
+
+                                    <!-- Outgoing: Hello -->
+                                    <div class="msg-msg-out">
+                                        <div class="msg-msg-out-bubble">
+                                            <div class="msg-msg-out-text">Hello</div>
+                                            <div class="msg-msg-out-meta">
+                                                01 May, 1:08 AM
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><polyline points="20 6 9 17 4 12"/></svg>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10" style="margin-left:-6px"><polyline points="20 6 9 17 4 12"/></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="msg-divider"><span class="msg-div-txt">SUNDAY 6 MAY</span></div>
+
+                                    <!-- Incoming: how are you -->
+                                    <div class="msg-msg-in">
+                                        <div class="msg-msg-in-av">EW</div>
+                                        <div class="msg-msg-in-box">
+                                            <div><span class="msg-msg-tag">Staff</span></div>
+                                            <div class="msg-msg-bubble">
+                                                <div class="msg-msg-text">how are you</div>
+                                            </div>
+                                            <div class="msg-msg-time">06 May, 12:31 AM</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Input bar -->
+                                <div class="msg-inp">
+                                    <div class="msg-inp-clip">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                                    </div>
+                                    <div class="msg-inp-field">Type a message...</div>
+                                    <div class="msg-inp-emojis">
+                                        <svg viewBox="0 0 24 24" fill="#22c55e" width="14" height="14"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="15" cy="9" r="1" fill="#fff"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="#fbbf24" width="14" height="14"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="15" cy="9" r="1" fill="#fff"/></svg>
+                                    </div>
+                                    <div class="msg-inp-usr">
+                                        EW
+                                        <span class="msg-inp-badge"></span>
+                                    </div>
+                                </div>
+
+                            </div><!-- /chat -->
+
+                        </div><!-- /body -->
+
+                    </div><!-- /mockup -->
+
+                </div><!-- /wrap -->
+            </div><!-- /container -->
+        </section>
+        <!-- =========== MSG SECTION END =========== -->
+
+        <!-- =========== MCP SECTION START =========== -->
+        <section class="mcp-section">
+            <div class="container">
+                <div class="mcp-wrap">
+
+                    <!-- LEFT COLUMN -->
+                    <div class="mcp-text" data-aos="fade-right">
+
+                        <div class="mcp-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                            MCP Integration
+                        </div>
+
+                        <h2 class="mcp-h1">
+                            Connect Claude AI &amp;<br>
+                            ChatGPT to your <span class="mcp-accent">NDIS data</span>
+                        </h2>
+
+                        <p class="mcp-desc">Plannor implements the Model Context Protocol (MCP) — letting you query live participant data, shift schedules, budgets, and compliance status directly from Claude or ChatGPT.</p>
+
+                        <div class="mcp-feats">
+                            <div class="mcp-feat">
+                                <div class="mcp-feat-ic" style="background:linear-gradient(135deg,#7c3aed,#5932EA);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </div>
+                                <div class="mcp-feat-body">
+                                    <div class="mcp-feat-name">Ask Claude or ChatGPT about any participant, shift, or budget in real time</div>
+                                    <div class="mcp-feat-desc">Get instant, accurate answers from your live NDIS data.</div>
+                                </div>
+                            </div>
+                            <div class="mcp-feat">
+                                <div class="mcp-feat-ic" style="background:linear-gradient(135deg,#0ea5e9,#0284c7);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                </div>
+                                <div class="mcp-feat-body">
+                                    <div class="mcp-feat-name">One-click MCP server setup — no coding required</div>
+                                    <div class="mcp-feat-desc">Connect in seconds and start querying your data.</div>
+                                </div>
+                            </div>
+                            <div class="mcp-feat">
+                                <div class="mcp-feat-ic" style="background:linear-gradient(135deg,#16a34a,#15803d);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </div>
+                                <div class="mcp-feat-body">
+                                    <div class="mcp-feat-name">OAuth 2.1 secured — your data never leaves Plannor</div>
+                                    <div class="mcp-feat-desc">Enterprise-grade security with encrypted, private connections.</div>
+                                </div>
+                            </div>
+                            <div class="mcp-feat">
+                                <div class="mcp-feat-ic" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-7.01"/></svg>
+                                </div>
+                                <div class="mcp-feat-body">
+                                    <div class="mcp-feat-name">Live data sync — answers always reflect the current state</div>
+                                    <div class="mcp-feat-desc">Always up-to-date insights powered by real-time data.</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- /left -->
+
+                    <!-- RIGHT COLUMN — white diagram card -->
+                    <div class="mcp-diagram" data-aos="fade-left">
+
+                        <!-- AI Cards -->
+                        <div class="mcp-ai-row">
+                            <!-- Claude AI -->
+                            <div class="mcp-ai-card">
+                                <div class="mcp-ai-hd">
+                                    <div class="mcp-ai-ico" style="background:#fff3e0;">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g stroke="#f97316" stroke-width="2.3" stroke-linecap="round">
+                                                <line x1="12" y1="2" x2="12" y2="22"/>
+                                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+                                                <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <span class="mcp-ai-name">Claude AI</span>
+                                </div>
+                                <div class="mcp-ai-msg">What's the status of Sarah Mitchell's plan?</div>
+                                <div class="mcp-ai-dots">
+                                    <span class="mcp-ai-dot"></span>
+                                    <span class="mcp-ai-dot"></span>
+                                    <span class="mcp-ai-dot"></span>
+                                </div>
+                            </div>
+                            <!-- ChatGPT -->
+                            <div class="mcp-ai-card">
+                                <div class="mcp-ai-hd">
+                                    <div class="mcp-ai-ico" style="background:#e8f9f5;">
+                                        <svg viewBox="0 0 24 24" fill="#10a37f" xmlns="http://www.w3.org/2000/svg"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+                                    </div>
+                                    <span class="mcp-ai-name">ChatGPT</span>
+                                </div>
+                                <div class="mcp-ai-msg">Show me this week's shifts for my participants.</div>
+                                <div class="mcp-ai-dots">
+                                    <span class="mcp-ai-dot" style="background:#f97316;"></span>
+                                    <span class="mcp-ai-dot" style="background:#fbbf24;"></span>
+                                    <span class="mcp-ai-dot" style="background:#4ade80;"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top connector: AI cards → cube -->
+                        <div class="mcp-conn-top">
+                            <!-- viewBox width=779 matches actual rendered px so strokes/dashes are pixel-accurate -->
+                            <svg viewBox="0 0 779 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" height="56">
+                                <defs>
+                                    <marker id="mcp-adn" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+                                        <polygon points="0 0,7 3.5,0 7" fill="#7c3aed"/>
+                                    </marker>
+                                    <marker id="mcp-aup" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+                                        <polygon points="0 0,7 3.5,0 7" fill="#7c3aed"/>
+                                    </marker>
+                                </defs>
+                                <!-- Claude AI center x≈202 (26% of 779) -->
+                                <line x1="202" y1="3" x2="202" y2="44" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-start="url(#mcp-aup)"/>
+                                <!-- ChatGPT center x≈577 (74% of 779) -->
+                                <line x1="577" y1="3" x2="577" y2="44" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-start="url(#mcp-aup)"/>
+                                <!-- Horizontal bar -->
+                                <line x1="202" y1="44" x2="577" y2="44" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5"/>
+                                <!-- Stem to cube center x≈275 -->
+                                <line x1="275" y1="44" x2="275" y2="56" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-end="url(#mcp-adn)"/>
+                            </svg>
+                        </div>
+
+                        <!-- Middle: cube + Plannor MCP Server card -->
+                        <div class="mcp-mid">
+                            <div class="mcp-cube-svg-wrap">
+                                <!-- viewBox tightened to cube bounds for larger render -->
+                                <svg viewBox="42 12 178 230" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+                                    <defs>
+                                        <linearGradient id="mcpTopG" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#e9e0ff"/>
+                                            <stop offset="45%" stop-color="#b197fc"/>
+                                            <stop offset="100%" stop-color="#7c3aed"/>
+                                        </linearGradient>
+                                        <linearGradient id="mcpLeftG" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#7c3aed"/>
+                                            <stop offset="100%" stop-color="#4c1d95"/>
+                                        </linearGradient>
+                                        <linearGradient id="mcpRightG" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#3730a3"/>
+                                            <stop offset="100%" stop-color="#1e1b4b"/>
+                                        </linearGradient>
+                                        <radialGradient id="mcpGloss" cx="30%" cy="25%" r="62%">
+                                            <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+                                            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                        </radialGradient>
+                                        <filter id="mcpSh" x="-50%" y="-50%" width="200%" height="200%">
+                                            <feGaussianBlur stdDeviation="12"/>
+                                        </filter>
+                                        <filter id="mcpGlow" x="-30%" y="-30%" width="160%" height="160%">
+                                            <feGaussianBlur stdDeviation="6" result="blur"/>
+                                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                        </filter>
+                                    </defs>
+                                    <!-- Shadow ellipse -->
+                                    <ellipse cx="130" cy="234" rx="78" ry="10" fill="rgba(89,50,234,0.22)" filter="url(#mcpSh)"/>
+                                    <!-- Purple glow under cube -->
+                                    <ellipse cx="130" cy="216" rx="60" ry="8" fill="rgba(139,92,246,0.18)"/>
+                                    <!-- Right face (dark indigo) -->
+                                    <polygon points="130,96 205,58 205,174 130,212" fill="url(#mcpRightG)"/>
+                                    <!-- Left face (medium purple) -->
+                                    <polygon points="55,58 130,96 130,212 55,174" fill="url(#mcpLeftG)"/>
+                                    <!-- Top face (light lavender → purple) -->
+                                    <polygon points="130,20 205,58 130,96 55,58" fill="url(#mcpTopG)"/>
+                                    <!-- Gloss highlight overlay on top face -->
+                                    <polygon points="130,20 205,58 130,96 55,58" fill="url(#mcpGloss)"/>
+                                    <!-- Edge highlights -->
+                                    <line x1="130" y1="20" x2="55" y2="58" stroke="rgba(255,255,255,0.75)" stroke-width="1.5"/>
+                                    <line x1="130" y1="20" x2="205" y2="58" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                                    <line x1="130" y1="96" x2="130" y2="212" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                                    <!-- Dot grid on right face (isometric-aligned coordinates) -->
+                                    <g fill="rgba(255,255,255,0.32)">
+                                        <circle cx="145" cy="112" r="3"/><circle cx="160" cy="104" r="3"/><circle cx="175" cy="97" r="3"/><circle cx="190" cy="89" r="3"/>
+                                        <circle cx="145" cy="135" r="3"/><circle cx="160" cy="128" r="3"/><circle cx="175" cy="120" r="3"/><circle cx="190" cy="112" r="3"/>
+                                        <circle cx="145" cy="158" r="3"/><circle cx="160" cy="151" r="3"/><circle cx="175" cy="144" r="3"/><circle cx="190" cy="136" r="3"/>
+                                        <circle cx="145" cy="181" r="3"/><circle cx="160" cy="174" r="3"/><circle cx="175" cy="166" r="3"/><circle cx="190" cy="159" r="3"/>
+                                    </g>
+                                    <!-- Shield on left face (center ≈ 92,138) -->
+                                    <path d="M92 120 Q81 123 81 132 Q81 149 92 157 Q103 149 103 132 Q103 123 92 120Z" fill="rgba(255,255,255,0.25)"/>
+                                    <path d="M85 139 L91 146 L101 129" stroke="white" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <!-- "P" on top face center (≈130,58) -->
+                                    <text x="130" y="68" font-size="38" font-weight="900" fill="white" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" opacity="0.95">P</text>
+                                </svg>
+                            </div>
+                            <div class="mcp-server-card">
+                                <div class="mcp-server-title">Plannor</div>
+                                <div class="mcp-server-sub">(MCP Server)</div>
+                                <div class="mcp-server-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                    Secure Connection
+                                </div>
+                                <div class="mcp-server-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    OAuth 2.1 Protected
+                                </div>
+                                <div class="mcp-server-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    Your Data Stays Safe
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom connector: cube → 4 data cards + Live Data Sync badge -->
+                        <div class="mcp-conn-bot">
+                            <!-- viewBox width=779 matches actual rendered px -->
+                            <svg viewBox="0 0 779 68" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" height="68">
+                                <defs>
+                                    <marker id="mcp-adn2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse">
+                                        <polygon points="0 0,7 3.5,0 7" fill="#7c3aed"/>
+                                    </marker>
+                                    <marker id="mcp-aup2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+                                        <polygon points="0 0,7 3.5,0 7" fill="#7c3aed"/>
+                                    </marker>
+                                </defs>
+                                <!-- Stem from cube center x≈275 -->
+                                <line x1="275" y1="0" x2="275" y2="28" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-start="url(#mcp-aup2)"/>
+                                <!-- Horizontal bar: card centers x=110,296,483,669 -->
+                                <line x1="110" y1="28" x2="669" y2="28" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5"/>
+                                <!-- Branch: Participants x=110 -->
+                                <line x1="110" y1="28" x2="110" y2="68" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-end="url(#mcp-adn2)"/>
+                                <!-- Branch: Shifts x=296 -->
+                                <line x1="296" y1="28" x2="296" y2="68" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-end="url(#mcp-adn2)"/>
+                                <!-- Branch: Budgets x=483 -->
+                                <line x1="483" y1="28" x2="483" y2="68" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-end="url(#mcp-adn2)"/>
+                                <!-- Branch: Compliance x=669 -->
+                                <line x1="669" y1="28" x2="669" y2="68" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 3.5" marker-end="url(#mcp-adn2)"/>
+                            </svg>
+                            <div class="mcp-sync-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-7.01"/></svg>
+                                Live Data Sync
+                            </div>
+                        </div>
+
+                        <!-- Data Cards (4 columns) -->
+                        <div class="mcp-data-row">
+                            <!-- Participants -->
+                            <div class="mcp-data-card">
+                                <div class="mcp-data-top">
+                                    <div class="mcp-data-ico" style="background:linear-gradient(135deg,#7c3aed,#5932EA);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </div>
+                                    <div class="mcp-data-title">Participants</div>
+                                </div>
+                                <div class="mcp-data-live"><span class="mcp-live-dot"></span>Live Data</div>
+                                <div class="mcp-part-rows">
+                                    <div class="mcp-part-row"><div class="mcp-part-av" style="background:#8b5cf6;"></div><div class="mcp-part-lines"><div class="mcp-pline" style="width:72%"></div><div class="mcp-pline" style="width:46%"></div></div></div>
+                                    <div class="mcp-part-row"><div class="mcp-part-av" style="background:#f59e0b;"></div><div class="mcp-part-lines"><div class="mcp-pline" style="width:60%"></div><div class="mcp-pline" style="width:38%"></div></div></div>
+                                    <div class="mcp-part-row"><div class="mcp-part-av" style="background:#0ea5e9;"></div><div class="mcp-part-lines"><div class="mcp-pline" style="width:66%"></div><div class="mcp-pline" style="width:50%"></div></div></div>
+                                </div>
+                            </div>
+                            <!-- Shifts & Schedule -->
+                            <div class="mcp-data-card">
+                                <div class="mcp-data-top">
+                                    <div class="mcp-data-ico" style="background:linear-gradient(135deg,#0ea5e9,#0284c7);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    </div>
+                                    <div class="mcp-data-title">Shifts &amp; Schedule</div>
+                                </div>
+                                <div class="mcp-data-live"><span class="mcp-live-dot"></span>Live Data</div>
+                                <div class="mcp-shift-rows">
+                                    <div class="mcp-shift-track"><div class="mcp-shift-bar" style="left:10%;width:52%;background:#38bdf8;"></div></div>
+                                    <div class="mcp-shift-track"><div class="mcp-shift-bar" style="left:28%;width:42%;background:#818cf8;"></div></div>
+                                    <div class="mcp-shift-track"><div class="mcp-shift-bar" style="left:5%;width:62%;background:#34d399;"></div></div>
+                                    <div class="mcp-shift-track"><div class="mcp-shift-bar" style="left:20%;width:48%;background:#fb923c;"></div></div>
+                                </div>
+                            </div>
+                            <!-- Budgets & Funding -->
+                            <div class="mcp-data-card">
+                                <div class="mcp-data-top">
+                                    <div class="mcp-data-ico" style="background:linear-gradient(135deg,#16a34a,#15803d);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    </div>
+                                    <div class="mcp-data-title">Budgets &amp; Funding</div>
+                                </div>
+                                <div class="mcp-data-live"><span class="mcp-live-dot"></span>Live Data</div>
+                                <div class="mcp-budget-area">
+                                    <span class="mcp-dollar">$</span>
+                                    <svg viewBox="0 0 70 40" style="flex:1;height:40px;">
+                                        <path d="M2 36 L16 28 L30 20 L46 12 L62 4" stroke="#16a34a" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2 36 L16 28 L30 20 L46 12 L62 4 L62 40 L2 40Z" fill="rgba(22,163,74,0.09)"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Compliance -->
+                            <div class="mcp-data-card">
+                                <div class="mcp-data-top">
+                                    <div class="mcp-data-ico" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                                    </div>
+                                    <div class="mcp-data-title">Compliance</div>
+                                </div>
+                                <div class="mcp-data-live"><span class="mcp-live-dot"></span>Live Data</div>
+                                <div class="mcp-comply-rows">
+                                    <div class="mcp-comply-row">
+                                        <div class="mcp-comply-ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                        <div class="mcp-cline" style="width:72%"></div>
+                                    </div>
+                                    <div class="mcp-comply-row">
+                                        <div class="mcp-comply-ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                        <div class="mcp-cline" style="width:58%"></div>
+                                    </div>
+                                    <div class="mcp-comply-row">
+                                        <div class="mcp-comply-ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                        <div class="mcp-cline" style="width:65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- How it works footer strip -->
+                        <div class="mcp-how">
+                            <div class="mcp-how-label">How it<br>works</div>
+                            <div class="mcp-how-steps">
+                                <div class="mcp-how-step">
+                                    <div class="mcp-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                    </div>
+                                    <div class="mcp-how-content">
+                                        <div class="mcp-how-num">1 Connect</div>
+                                        <div class="mcp-how-desc">Authorize with one click</div>
+                                    </div>
+                                </div>
+                                <span class="mcp-how-arrow">→</span>
+                                <div class="mcp-how-step">
+                                    <div class="mcp-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                    </div>
+                                    <div class="mcp-how-content">
+                                        <div class="mcp-how-num">2 Sync</div>
+                                        <div class="mcp-how-desc">Secure MCP connection established</div>
+                                    </div>
+                                </div>
+                                <span class="mcp-how-arrow">→</span>
+                                <div class="mcp-how-step">
+                                    <div class="mcp-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    </div>
+                                    <div class="mcp-how-content">
+                                        <div class="mcp-how-num">3 Query</div>
+                                        <div class="mcp-how-desc">Ask anything in natural language</div>
+                                    </div>
+                                </div>
+                                <span class="mcp-how-arrow">→</span>
+                                <div class="mcp-how-step">
+                                    <div class="mcp-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                    </div>
+                                    <div class="mcp-how-content">
+                                        <div class="mcp-how-num">4 Get Answers</div>
+                                        <div class="mcp-how-desc">Real-time insights from your data</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /diagram -->
+
+                </div><!-- /wrap -->
+            </div><!-- /container -->
+        </section>
+        <!-- =========== MCP SECTION END =========== -->
+
+        <!-- =========== AUTOMATION SECTION START =========== -->
+        <section class="auto-section">
+            <div class="container">
+                <div class="auto-wrap">
+
+                    <!-- LEFT COLUMN -->
+                    <div class="auto-text" data-aos="fade-right">
+
+                        <div class="auto-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            Automation
+                        </div>
+
+                        <h2 class="auto-h1">
+                            Automate your<br>
+                            NDIS workflows<br>
+                            <span class="auto-accent">with n8n</span>
+                        </h2>
+
+                        <p class="auto-desc">Plannor's webhook API and n8n connector lets you build powerful automations — no code required. Trigger actions in your other tools the moment something happens in Plannor.</p>
+
+                        <div class="auto-feats">
+                            <div class="auto-feat">
+                                <div class="auto-feat-ic" style="background:linear-gradient(135deg,#7c3aed,#5932EA);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/><circle cx="18" cy="7" r="3"/><circle cx="12" cy="7" r="3" fill="none"/></svg>
+                                </div>
+                                <div class="auto-feat-body">
+                                    <div class="auto-feat-name">Webhook triggers</div>
+                                    <div class="auto-feat-desc">on shift completion, invoice creation, budget alerts, and more</div>
+                                </div>
+                            </div>
+                            <div class="auto-feat">
+                                <div class="auto-feat-ic" style="background:linear-gradient(135deg,#16a34a,#15803d);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                                </div>
+                                <div class="auto-feat-body">
+                                    <div class="auto-feat-name">Auto-sync to 400+ apps</div>
+                                    <div class="auto-feat-desc">Xero, MYOB, Slack, Google Sheets, and more via n8n</div>
+                                </div>
+                            </div>
+                            <div class="auto-feat">
+                                <div class="auto-feat-ic" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                </div>
+                                <div class="auto-feat-body">
+                                    <div class="auto-feat-name">Automated reminders</div>
+                                    <div class="auto-feat-desc">for WWCC expiry, plan reviews, and compliance deadlines</div>
+                                </div>
+                            </div>
+                            <div class="auto-feat">
+                                <div class="auto-feat-ic" style="background:linear-gradient(135deg,#0284c7,#0369a1);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                </div>
+                                <div class="auto-feat-body">
+                                    <div class="auto-feat-name">REST API</div>
+                                    <div class="auto-feat-desc">with full documentation for custom integrations</div>
+                                </div>
+                            </div>
+                            <div class="auto-feat">
+                                <div class="auto-feat-ic" style="background:linear-gradient(135deg,#ec4899,#be185d);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3z"/></svg>
+                                </div>
+                                <div class="auto-feat-body">
+                                    <div class="auto-feat-name">No-code workflow builder</div>
+                                    <div class="auto-feat-desc">your coordinator can set it up in minutes</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- /left -->
+
+                    <!-- RIGHT COLUMN — diagram card -->
+                    <div class="auto-diagram" data-aos="fade-left">
+
+                        <!-- Card header: Plannor brand -->
+                        <div class="auto-diag-hd">
+                            <div class="auto-diag-logo">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="4" fill="white" opacity="0.25"/><text x="12" y="16" font-size="11" font-weight="900" fill="white" text-anchor="middle" font-family="Arial,sans-serif">P</text></svg>
+                            </div>
+                            <span class="auto-diag-brand">plannor</span>
+                        </div>
+
+                        <!-- 3-column diagram body -->
+                        <div class="auto-diag-body">
+
+                            <!-- COLUMN 1: Trigger events -->
+                            <div class="auto-trig-col">
+                                <div class="auto-col-hd">
+                                    <span class="auto-col-title">Trigger event in Plannor</span>
+                                    <span class="auto-col-badge">Webhook</span>
+                                </div>
+                                <div class="auto-trig-list">
+                                    <div class="auto-trig-item">
+                                        <div class="auto-trig-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+                                        </div>
+                                        <div>
+                                            <div class="auto-trig-name">Shift Completed</div>
+                                            <div class="auto-trig-sub">Support shift marked as complete</div>
+                                        </div>
+                                    </div>
+                                    <div class="auto-trig-item">
+                                        <div class="auto-trig-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><path d="M8 3v6M16 3v6"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></svg>
+                                        </div>
+                                        <div>
+                                            <div class="auto-trig-name">Invoice Created</div>
+                                            <div class="auto-trig-sub">New invoice generated</div>
+                                        </div>
+                                    </div>
+                                    <div class="auto-trig-item">
+                                        <div class="auto-trig-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                        </div>
+                                        <div>
+                                            <div class="auto-trig-name">Budget Alert</div>
+                                            <div class="auto-trig-sub">Budget threshold reached</div>
+                                        </div>
+                                    </div>
+                                    <div class="auto-trig-item">
+                                        <div class="auto-trig-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                        </div>
+                                        <div>
+                                            <div class="auto-trig-name">Document Uploaded</div>
+                                            <div class="auto-trig-sub">New document added</div>
+                                        </div>
+                                    </div>
+                                    <div class="auto-trig-item">
+                                        <div class="auto-trig-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        </div>
+                                        <div>
+                                            <div class="auto-trig-name">Compliance Due</div>
+                                            <div class="auto-trig-sub">WWCC or training expiring</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- COLUMN 2: n8n Workflow -->
+                            <div class="auto-flow-col">
+                                <div class="auto-n8n-hd">
+                                    <!-- n8n logo SVG -->
+                                    <svg width="42" height="28" viewBox="0 0 52 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="9" cy="16" r="8" fill="#FF6D5A"/>
+                                        <line x1="17" y1="16" x2="26" y2="9" stroke="#FF6D5A" stroke-width="3" stroke-linecap="round"/>
+                                        <line x1="17" y1="16" x2="26" y2="23" stroke="#EA4B71" stroke-width="3" stroke-linecap="round"/>
+                                        <circle cx="34" cy="9" r="8" fill="#FF6D5A"/>
+                                        <circle cx="34" cy="23" r="8" fill="#EA4B71"/>
+                                    </svg>
+                                    <span class="auto-n8n-name">n8n</span>
+                                </div>
+                                <div class="auto-n8n-sub">n8n Workflow</div>
+
+                                <!-- Webhook Trigger node -->
+                                <div class="auto-node">
+                                    <div class="auto-node-ic" style="background:linear-gradient(135deg,#5932EA,#772EFE);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="auto-node-name">Webhook Trigger</div>
+                                        <div class="auto-node-sub">Receive data from Plannor</div>
+                                    </div>
+                                </div>
+                                <div class="auto-node-sep">↓</div>
+
+                                <!-- Process Data node -->
+                                <div class="auto-node">
+                                    <div class="auto-node-ic" style="background:linear-gradient(135deg,#5932EA,#772EFE);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="auto-node-name">Process Data</div>
+                                        <div class="auto-node-sub">Filter, format &amp; validate</div>
+                                    </div>
+                                </div>
+                                <div class="auto-node-sep">↓</div>
+
+                                <!-- Router node -->
+                                <div class="auto-node">
+                                    <div class="auto-node-ic" style="background:linear-gradient(135deg,#5932EA,#772EFE);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="16 3 21 8 16 13"/><path d="M4 20v-9a9 9 0 0 1 9-9h8"/><polyline points="16 14 21 19 16 24" transform="translate(0,-6)"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="auto-node-name">Router</div>
+                                        <div class="auto-node-sub">Split workflow based on rules</div>
+                                    </div>
+                                </div>
+
+                                <!-- Action boxes -->
+                                <div class="auto-actions-row">
+                                    <div class="auto-action-box">
+                                        <div class="auto-action-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                        </div>
+                                        <div class="auto-action-label">Action</div>
+                                        <div class="auto-action-sub">Create invoice</div>
+                                    </div>
+                                    <div class="auto-action-box">
+                                        <div class="auto-action-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                        </div>
+                                        <div class="auto-action-label">Action</div>
+                                        <div class="auto-action-sub">Send notification</div>
+                                    </div>
+                                    <div class="auto-action-box">
+                                        <div class="auto-action-ic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-7.01"/></svg>
+                                        </div>
+                                        <div class="auto-action-label">Action</div>
+                                        <div class="auto-action-sub">Update record</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- COLUMN 3: Connected Apps -->
+                            <div class="auto-apps-col">
+                                <div class="auto-col-hd">
+                                    <span class="auto-col-title">Connected Apps</span>
+                                    <span class="auto-col-badge-blue">400+ Apps</span>
+                                </div>
+                                <div class="auto-app-list">
+                                    <!-- Xero -->
+                                    <div class="auto-app-item">
+                                        <div class="auto-app-logo" style="background:#1ab6d4;">
+                                            <svg viewBox="0 0 24 24" fill="white"><text x="12" y="17" font-size="13" font-weight="900" text-anchor="middle" font-family="Arial,sans-serif">X</text></svg>
+                                        </div>
+                                        <div><div class="auto-app-name">Xero</div><div class="auto-app-cat">Accounting</div></div>
+                                    </div>
+                                    <!-- MYOB -->
+                                    <div class="auto-app-item">
+                                        <div class="auto-app-logo" style="background:#6c1d95;">
+                                            <svg viewBox="0 0 32 16" fill="white"><text x="16" y="12" font-size="7.5" font-weight="900" text-anchor="middle" font-family="Arial,sans-serif">MYOB</text></svg>
+                                        </div>
+                                        <div><div class="auto-app-name">MYOB</div><div class="auto-app-cat">Accounting</div></div>
+                                    </div>
+                                    <!-- Slack -->
+                                    <div class="auto-app-item">
+                                        <div class="auto-app-logo" style="background:#fff;border:1.5px solid #e5e7eb;">
+                                            <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="4.5" height="4.5" rx="1.5" fill="#E01E5A"/><rect x="14.5" y="5" width="4.5" height="4.5" rx="1.5" fill="#36C5F0"/><rect x="5" y="14.5" width="4.5" height="4.5" rx="1.5" fill="#2EB67D"/><rect x="14.5" y="14.5" width="4.5" height="4.5" rx="1.5" fill="#ECB22E"/></svg>
+                                        </div>
+                                        <div><div class="auto-app-name">Slack</div><div class="auto-app-cat">Communication</div></div>
+                                    </div>
+                                    <!-- Google Sheets -->
+                                    <div class="auto-app-item">
+                                        <div class="auto-app-logo" style="background:#0f9d58;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="12" y2="16"/></svg>
+                                        </div>
+                                        <div><div class="auto-app-name">Google Sheets</div><div class="auto-app-cat">Spreadsheets</div></div>
+                                    </div>
+                                    <!-- Outlook -->
+                                    <div class="auto-app-item">
+                                        <div class="auto-app-logo" style="background:#0072C6;">
+                                            <svg viewBox="0 0 24 24" fill="none"><text x="12" y="17" font-size="14" font-weight="900" fill="white" text-anchor="middle" font-family="Arial,sans-serif">O</text></svg>
+                                        </div>
+                                        <div><div class="auto-app-name">Outlook</div><div class="auto-app-cat">Email</div></div>
+                                    </div>
+                                    <!-- More apps -->
+                                    <div class="auto-app-item">
+                                        <div class="auto-app-logo" style="background:#f3f4f6;border:1.5px solid #e5e7eb;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                        </div>
+                                        <div><div class="auto-app-name" style="color:#5932EA;">+ 400 More Apps</div><div class="auto-app-cat">via n8n</div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- /diag-body -->
+
+                        <!-- Status bar -->
+                        <div class="auto-status">
+                            <div class="auto-status-ok">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <div class="auto-status-title">Automation is running</div>
+                                <div class="auto-status-sub">Last run: 2 mins ago</div>
+                            </div>
+                            <div class="auto-status-flow">
+                                <!-- P node -->
+                                <div class="auto-snode" style="background:linear-gradient(135deg,#5932EA,#772EFE);">
+                                    <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" font-size="11" font-weight="900" fill="white" text-anchor="middle" font-family="Arial,sans-serif">P</text></svg>
+                                </div>
+                                <div class="auto-sarrow"><span class="auto-sdot"></span><span class="auto-sdot"></span><span class="auto-sdot"></span>→</div>
+                                <!-- n8n node -->
+                                <div class="auto-snode" style="background:#fff4f0;border:1.5px solid #fde8e3;">
+                                    <svg width="22" height="14" viewBox="0 0 52 32" fill="none"><circle cx="9" cy="16" r="8" fill="#FF6D5A"/><line x1="17" y1="16" x2="26" y2="9" stroke="#FF6D5A" stroke-width="3" stroke-linecap="round"/><line x1="17" y1="16" x2="26" y2="23" stroke="#EA4B71" stroke-width="3" stroke-linecap="round"/><circle cx="34" cy="9" r="8" fill="#FF6D5A"/><circle cx="34" cy="23" r="8" fill="#EA4B71"/></svg>
+                                </div>
+                                <div class="auto-sarrow"><span class="auto-sdot"></span><span class="auto-sdot"></span><span class="auto-sdot"></span>→</div>
+                                <!-- Action icons -->
+                                <div style="display:flex;gap:4px;align-items:center;">
+                                    <div class="auto-snode" style="background:linear-gradient(135deg,#5932EA,#772EFE);width:28px;height:28px;border-radius:7px;">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="width:13px;height:13px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-7.01"/></svg>
+                                    </div>
+                                    <div class="auto-snode" style="background:linear-gradient(135deg,#16a34a,#22c55e);width:28px;height:28px;border-radius:7px;">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" style="width:13px;height:13px;"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- How it works footer -->
+                        <div class="auto-how">
+                            <div class="auto-how-label">How it<br>works</div>
+                            <div class="auto-how-steps">
+                                <div class="auto-how-step">
+                                    <div class="auto-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    </div>
+                                    <div class="auto-how-content">
+                                        <div class="auto-how-num">Trigger</div>
+                                        <div class="auto-how-desc">Event happens in Plannor</div>
+                                    </div>
+                                </div>
+                                <span class="auto-how-arrow">→</span>
+                                <div class="auto-how-step">
+                                    <div class="auto-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;"><circle cx="9" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2"/><line x1="13" y1="12" x2="19" y2="8" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="12" x2="19" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="8" r="2.5" fill="#fff"/><circle cx="20" cy="16" r="2.5" fill="#fff"/></svg>
+                                    </div>
+                                    <div class="auto-how-content">
+                                        <div class="auto-how-num">Workflow</div>
+                                        <div class="auto-how-desc">n8n processes the data</div>
+                                    </div>
+                                </div>
+                                <span class="auto-how-arrow">→</span>
+                                <div class="auto-how-step">
+                                    <div class="auto-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                    </div>
+                                    <div class="auto-how-content">
+                                        <div class="auto-how-num">Action</div>
+                                        <div class="auto-how-desc">Action runs in your apps</div>
+                                    </div>
+                                </div>
+                                <span class="auto-how-arrow">→</span>
+                                <div class="auto-how-step">
+                                    <div class="auto-how-ic">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <div class="auto-how-content">
+                                        <div class="auto-how-num">Complete</div>
+                                        <div class="auto-how-desc">You save time &amp; reduce manual work</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /diagram -->
+
+                </div><!-- /wrap -->
+            </div><!-- /container -->
+        </section>
+        <!-- =========== AUTOMATION SECTION END =========== -->
+
+        <!-- =========== page content end =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+</body>
+</html>

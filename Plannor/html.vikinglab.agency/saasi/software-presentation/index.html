@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Presentation - Plannor</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .vl-footer-area { margin-top: 0 !important; padding-top: 80px !important; }
+        * { box-sizing: border-box; }
+
+        /* ── HERO ─────────────────────────────────── */
+        .sp-hero {
+            background: #f5f3ff;
+            padding: 64px 0 52px;
+        }
+        .sp-top-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #fff; border: 1.5px solid #ddd6fe;
+            border-radius: 50px; padding: 7px 20px;
+            font-size: 12px; font-weight: 700; color: #5932EA;
+            letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 26px;
+            box-shadow: 0 2px 10px rgba(89,50,234,0.07);
+        }
+        .sp-hero-title {
+            font-size: 44px; font-weight: 900; color: #1e1b4b;
+            line-height: 1.18; margin-bottom: 16px;
+        }
+        .sp-hero-title .purple { color: #5932EA; }
+        .sp-hero-desc {
+            font-size: 16px; color: #64748b;
+            max-width: 480px; line-height: 1.7; margin-bottom: 24px;
+        }
+        .sp-hero-tagline {
+            display: inline-flex; align-items: center; gap: 9px;
+            font-size: 15px; font-weight: 500; color: #374151;
+        }
+        .sp-hero-tagline .purple { color: #5932EA; font-weight: 700; }
+
+        /* hero mockup */
+        .sp-hero-mockup {
+            background: #fff; border-radius: 16px;
+            border: 1.5px solid #e8e5f7;
+            box-shadow: 0 20px 60px rgba(89,50,234,0.13);
+            overflow: hidden;
+        }
+        .sp-mockup-bar {
+            background: linear-gradient(135deg, #3d1eb5, #5932EA);
+            padding: 10px 16px; display: flex; align-items: center; gap: 6px;
+        }
+        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .sp-mockup-body { padding: 18px 16px; background: #faf9ff; }
+        .mock-stat-row { display: flex; gap: 8px; margin-bottom: 12px; }
+        .mock-stat {
+            flex: 1; background: #fff; border-radius: 8px;
+            border: 1px solid #ede9fe; padding: 10px 8px; text-align: center;
+        }
+        .mock-stat-lbl { font-size: 9px; color: #94a3b8; font-weight: 600; margin-bottom: 2px; }
+        .mock-stat-val { font-size: 16px; font-weight: 800; color: #1e1b4b; line-height: 1.1; }
+        .mock-stat-chg { font-size: 9px; color: #10b981; font-weight: 700; }
+        .mock-chart-box {
+            background: #fff; border-radius: 8px; border: 1px solid #ede9fe;
+            padding: 12px; margin-bottom: 8px;
+        }
+        .mock-chart-lbl { font-size: 9px; color: #94a3b8; font-weight: 600; margin-bottom: 8px; }
+        .mock-bars { display: flex; align-items: flex-end; gap: 4px; height: 44px; }
+        .mock-b { flex: 1; border-radius: 3px 3px 0 0; background: #ede9fe; }
+        .mock-b.hi { background: linear-gradient(180deg,#5932EA,#7c3aed); }
+        .mock-donut-row { display: flex; gap: 8px; }
+        .mock-donut-card {
+            flex: 1; background: #fff; border-radius: 8px;
+            border: 1px solid #ede9fe; padding: 10px;
+            display: flex; align-items: center;
+        }
+        .mock-donut {
+            width: 48px; height: 48px; border-radius: 50%;
+            border: 7px solid #5932EA;
+            border-top-color: #ede9fe; border-right-color: #ede9fe;
+            flex-shrink: 0;
+        }
+
+        /* ── FEATURES SECTION ─────────────────────── */
+        .sp-features-section {
+            background: #f5f3ff;
+            padding: 20px 0 60px;
+        }
+        .sp-feat-card {
+            background: #fff;
+            border-radius: 18px;
+            border: 1.5px solid #ede9fe;
+            padding: 28px 28px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 16px rgba(89,50,234,0.06);
+        }
+
+        /* left col: number + icon + title + desc */
+        .sp-feat-left-col { padding-right: 8px; }
+        .sp-num-circle {
+            width: 42px; height: 42px; border-radius: 50%;
+            border: 2px solid #e8e5f7;
+            background: #f8f8fc;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 800; color: #374151;
+            margin-bottom: 18px;
+        }
+        .sp-icon-tile {
+            width: 72px; height: 72px; border-radius: 18px;
+            background: #f5f3ff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; margin-bottom: 16px;
+        }
+        .sp-feat-title { font-size: 20px; font-weight: 800; color: #1e1b4b; margin-bottom: 8px; }
+        .sp-feat-desc  { font-size: 13.5px; color: #64748b; line-height: 1.62; margin: 0; }
+
+        /* middle col: problem + solved side by side */
+        .sp-ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .sp-ps-card {
+            border-radius: 12px; padding: 14px 14px;
+        }
+        .sp-ps-card.bad  { background: #fff5f5; border: 1.5px solid #fecaca; }
+        .sp-ps-card.good { background: #f0fdf4; border: 1.5px solid #bbf7d0; }
+        .sp-ps-head {
+            display: flex; align-items: center; gap: 7px; margin-bottom: 8px;
+        }
+        .sp-ps-icon {
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; flex-shrink: 0;
+        }
+        .sp-ps-icon.bad  { background: #ef4444; color: #fff; }
+        .sp-ps-icon.good { background: #16a34a; color: #fff; }
+        .sp-ps-lbl { font-size: 12px; font-weight: 700; }
+        .sp-ps-lbl.bad  { color: #ef4444; }
+        .sp-ps-lbl.good { color: #16a34a; }
+        .sp-ps-txt { font-size: 12.5px; color: #475569; line-height: 1.55; }
+
+        /* app mockup */
+        .sp-app-panel {
+            background: #fff; border: 1.5px solid #e8e5f7;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(89,50,234,0.09);
+        }
+        .sp-app-inner { display: flex; }
+        .sp-app-sidebar {
+            background: linear-gradient(180deg,#3d1eb5,#5932EA);
+            width: 34px; flex-shrink: 0;
+            display: flex; flex-direction: column;
+            align-items: center; padding: 12px 0; gap: 12px;
+        }
+        .sp-sidebar-ic {
+            width: 20px; height: 20px; border-radius: 5px;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .sp-app-content { flex: 1; padding: 12px 13px; min-width: 0; }
+        .sp-app-hdr {
+            font-size: 11.5px; font-weight: 700; color: #1e1b4b;
+            margin-bottom: 9px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .sp-app-search {
+            display: flex; align-items: center; gap: 5px;
+            background: #f8f8fc; border: 1px solid #e8e5f7;
+            border-radius: 6px; padding: 4px 9px;
+            font-size: 9.5px; color: #94a3b8;
+        }
+
+        /* participants table */
+        .mock-tbl { width: 100%; border-collapse: collapse; }
+        .mock-tbl th { font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase; padding: 0 5px 7px; text-align: left; }
+        .mock-tbl td { font-size: 10.5px; color: #374151; padding: 6px 5px; border-top: 1px solid #f5f3ff; }
+        .ms-active { display: inline-block; padding: 2px 7px; border-radius: 20px; background: #dcfce7; color: #16a34a; font-size: 9.5px; font-weight: 700; }
+        .ms-add { width: 18px; height: 18px; border-radius: 5px; background: #5932EA; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+
+        /* automation rows */
+        .auto-row { display: flex; align-items: flex-start; gap: 9px; padding: 8px 0; border-bottom: 1px solid #f5f3ff; }
+        .auto-row:last-child { border-bottom: none; }
+        .auto-ic { width: 26px; height: 26px; border-radius: 7px; background: #f5f3ff; border: 1px solid #ede9fe; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5932EA; flex-shrink: 0; }
+        .auto-title { font-size: 10.5px; font-weight: 700; color: #1e1b4b; }
+        .auto-trigger { font-size: 9.5px; color: #94a3b8; margin-top: 1px; }
+        .toggle-pill { width: 30px; height: 17px; border-radius: 9px; background: #5932EA; margin-left: auto; flex-shrink: 0; margin-top: 4px; position: relative; }
+        .toggle-pill::after { content: ''; position: absolute; top: 2.5px; right: 2.5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+
+        /* AI chat */
+        .ai-prompt { background: #5932EA; border-radius: 8px 8px 2px 8px; padding: 8px 11px; font-size: 10.5px; color: #fff; margin-bottom: 7px; text-align: right; }
+        .ai-reply  { background: #f5f3ff; border: 1px solid #ede9fe; border-radius: 8px 8px 8px 2px; padding: 9px 11px; font-size: 10.5px; color: #374151; line-height: 1.5; margin-bottom: 7px; }
+        .ai-sources { display: flex; gap: 5px; align-items: center; margin-bottom: 5px; }
+        .ai-src-lbl { font-size: 9.5px; color: #94a3b8; font-weight: 600; }
+        .ai-chip { background: #f0eefb; border-radius: 4px; padding: 2px 7px; font-size: 9.5px; color: #5932EA; font-weight: 600; }
+        .ai-input { display: flex; align-items: center; gap: 7px; background: #f8f8fc; border: 1px solid #e8e5f7; border-radius: 7px; padding: 7px 10px; font-size: 10px; color: #94a3b8; margin-top: 6px; }
+
+        /* perf reporting */
+        .perf-stats { display: flex; gap: 8px; margin-bottom: 10px; }
+        .perf-stat { flex: 1; }
+        .perf-lbl { font-size: 9px; color: #94a3b8; font-weight: 600; }
+        .perf-val { font-size: 14px; font-weight: 800; color: #1e1b4b; }
+        .perf-chg { font-size: 9px; color: #10b981; font-weight: 700; }
+        .perf-chart { height: 40px; }
+        .perf-chart svg { width: 100%; height: 100%; }
+
+        /* schedule */
+        .sch-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .sch-tabs { display: flex; gap: 3px; }
+        .sch-tab { font-size: 9px; padding: 2px 7px; border-radius: 4px; color: #94a3b8; }
+        .sch-tab.on { background: #5932EA; color: #fff; }
+        .sch-grid { display: grid; grid-template-columns: 48px repeat(5,1fr); gap: 3px; }
+        .sch-day-lbl { font-size: 8.5px; font-weight: 700; color: #94a3b8; text-align: center; padding-bottom: 4px; }
+        .sch-time-lbl { font-size: 8.5px; color: #94a3b8; padding-top: 2px; }
+        .sch-event { border-radius: 4px; padding: 3px 5px; font-size: 8.5px; font-weight: 600; color: #fff; line-height: 1.3; }
+
+        /* invoicing */
+        .inv-stats { display: flex; gap: 6px; margin-bottom: 10px; }
+        .inv-stat { flex: 1; background: #f8f8fc; border-radius: 7px; border: 1px solid #f0eefb; padding: 7px 8px; text-align: center; }
+        .inv-stat.ov { background: #fff5f5; border-color: #fecaca; }
+        .inv-stat-lbl { font-size: 8.5px; color: #94a3b8; font-weight: 600; }
+        .inv-stat-val { font-size: 14px; font-weight: 800; color: #1e1b4b; }
+        .inv-stat-val.ov { color: #ef4444; }
+        .inv-stat-amt { font-size: 8.5px; color: #64748b; }
+        .inv-new { background: #5932EA; color: #fff; border-radius: 5px; padding: 4px 8px; font-size: 9.5px; font-weight: 700; white-space: nowrap; }
+        .inv-tbl th { font-size: 8.5px; color: #94a3b8; font-weight: 700; text-transform: uppercase; padding: 3px 5px; }
+        .inv-tbl td { font-size: 10px; color: #374151; padding: 5px 5px; border-top: 1px solid #f5f3ff; }
+        .inv-s { display: inline-block; padding: 1px 6px; border-radius: 20px; font-size: 9px; font-weight: 700; }
+        .inv-s.paid    { background: #dcfce7; color: #16a34a; }
+        .inv-s.sent    { background: #dbeafe; color: #2563eb; }
+        .inv-s.overdue { background: #fee2e2; color: #ef4444; }
+
+        /* ── BOTTOM CTA ──────────────────────────── */
+        .sp-bottom-cta {
+            background: #f5f3ff;
+            padding: 32px 0;
+            border-top: 1.5px solid #ede9fe;
+        }
+        .sp-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+        .sp-cta-left  { display: flex; align-items: center; gap: 16px; }
+        .sp-rocket-box {
+            width: 54px; height: 54px; border-radius: 16px;
+            background: linear-gradient(135deg,#ede9fe,#f5f3ff);
+            border: 1.5px solid #c4b5fd;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: #5932EA; flex-shrink: 0;
+        }
+        .sp-cta-text { font-size: 16px; color: #1e1b4b; font-weight: 500; line-height: 1.5; max-width: 500px; }
+        .sp-cta-text .purple { color: #5932EA; font-weight: 700; }
+        .sp-cta-btn {
+            display: inline-flex; align-items: center; gap: 9px;
+            background: linear-gradient(135deg,#5932EA,#7c3aed);
+            color: #fff; font-weight: 700; font-size: 15px;
+            padding: 14px 28px; border-radius: 12px;
+            text-decoration: none; white-space: nowrap;
+            box-shadow: 0 4px 18px rgba(89,50,234,0.28);
+            transition: all 0.2s;
+        }
+        .sp-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(89,50,234,0.38); color: #fff; text-decoration: none; }
+
+        /* ── dashboard widget cards (matching screenshots) ── */
+        .dash-card { background:#fff; border:1.5px solid #e8e5f7; border-radius:14px; padding:16px 18px; box-shadow:0 4px 20px rgba(89,50,234,0.09); }
+        .dash-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+        .dash-title { font-size:13px; font-weight:800; color:#1e1b4b; }
+        .dash-more { background:#f5f5f5; border-radius:6px; padding:4px 10px; font-size:11px; color:#64748b; cursor:pointer; }
+        .dash-viewall { font-size:11px; font-weight:600; color:#2563eb; }
+        .dash-live { font-size:11px; font-weight:600; color:#2563eb; }
+        /* shift list */
+        .shift-item { display:flex; align-items:center; gap:14px; padding:10px 0; border-bottom:1px solid #f5f3ff; }
+        .shift-item:last-child { border-bottom:none; }
+        .shift-date-block { text-align:center; min-width:44px; background:#f8f8fc; border-radius:8px; padding:6px 4px; border:1px solid #ede9fe; }
+        .shift-month { font-size:9px; font-weight:700; color:#ef4444; text-transform:uppercase; letter-spacing:0.5px; }
+        .shift-day { font-size:20px; font-weight:800; color:#1e1b4b; line-height:1.1; }
+        .shift-name { font-size:11.5px; font-weight:700; color:#1e1b4b; margin-bottom:2px; }
+        .shift-time { font-size:10.5px; color:#64748b; display:flex; align-items:center; gap:4px; margin-bottom:2px; }
+        .shift-worker { font-size:10.5px; color:#2563eb; display:flex; align-items:center; gap:4px; }
+        /* donut legend */
+        .donut-legend-row { display:flex; align-items:center; justify-content:space-between; padding:6px 0; border-bottom:1px solid #f5f3ff; }
+        .donut-legend-row:last-child { border-bottom:none; }
+        .donut-legend-left { display:flex; align-items:center; gap:8px; }
+        .donut-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+        .donut-legend-lbl { font-size:12px; color:#374151; }
+        .donut-legend-val { font-size:13px; font-weight:700; color:#1e1b4b; }
+        .donut-legend-val.red { color:#ef4444; }
+
+        @media (max-width: 991px) {
+            .sp-hero-title { font-size: 30px; }
+            .sp-ps-grid { grid-template-columns: 1fr; }
+            .sp-cta-inner { flex-direction: column; text-align: center; }
+            .sp-cta-left  { flex-direction: column; text-align: center; }
+        }
+        html, body { overflow-x: hidden; max-width: 100%; }
+        @media (max-width: 767px) {
+            .sp-hero .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preloader preloader-6">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- ── breadcrumb ─────────────────────────────── -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px !important;padding-bottom:30px !important;min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Software Presentation</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Software Presentation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- HERO                                        -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="sp-hero">
+            <div class="container">
+                <div class="text-center mb-4" data-aos="fade-up">
+                    <div class="sp-top-badge">
+                        <i class="fa-regular fa-display"></i> Software Presentation
+                    </div>
+                </div>
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h1 class="sp-hero-title">The logical next step<br><span class="purple">for NDIS providers</span></h1>
+                        <p class="sp-hero-desc">Our software connects your people, processes and data in one place  helping you save time, stay compliant and deliver better outcomes.</p>
+                        <div class="sp-hero-tagline">
+                            <i class="fa-solid fa-sparkles" style="color:#5932EA;font-size:13px;"></i>
+                            This isn't where you start. <span class="purple">It's where you scale.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                        <div class="sp-hero-mockup">
+                            <div class="sp-mockup-bar">
+                                <div class="mockup-dot" style="background:#ff5f57;"></div>
+                                <div class="mockup-dot" style="background:#ffbd2e;"></div>
+                                <div class="mockup-dot" style="background:#28ca41;"></div>
+                                <span style="color:rgba(255,255,255,0.5);font-size:11px;margin-left:10px;">Overview</span>
+                            </div>
+                            <div class="sp-mockup-body">
+                                <div class="mock-stat-row">
+                                    <div class="mock-stat"><div class="mock-stat-lbl">Participants</div><div class="mock-stat-val">1,246</div><div class="mock-stat-chg">+12%</div></div>
+                                    <div class="mock-stat"><div class="mock-stat-lbl">Active Plans</div><div class="mock-stat-val">842</div><div class="mock-stat-chg">+8%</div></div>
+                                    <div class="mock-stat"><div class="mock-stat-lbl">Revenue</div><div class="mock-stat-val" style="font-size:14px;">$2.48M</div><div class="mock-stat-chg">+13%</div></div>
+                                    <div class="mock-stat"><div class="mock-stat-lbl">Compliance</div><div class="mock-stat-val" style="color:#10b981;">98%</div><div class="mock-stat-chg">+6%</div></div>
+                                </div>
+                                <div class="mock-chart-box">
+                                    <div class="mock-chart-lbl">Compliance / Revenue</div>
+                                    <div class="mock-bars">
+                                        <div class="mock-b" style="height:28%;"></div>
+                                        <div class="mock-b hi" style="height:44%;"></div>
+                                        <div class="mock-b" style="height:36%;"></div>
+                                        <div class="mock-b hi" style="height:60%;"></div>
+                                        <div class="mock-b" style="height:52%;"></div>
+                                        <div class="mock-b hi" style="height:74%;"></div>
+                                        <div class="mock-b" style="height:62%;"></div>
+                                        <div class="mock-b hi" style="height:86%;"></div>
+                                        <div class="mock-b" style="height:72%;"></div>
+                                        <div class="mock-b hi" style="height:100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-donut-row">
+                                    <div class="mock-donut-card">
+                                        <div class="mock-donut"></div>
+                                        <div style="margin-left:10px;"><div style="font-size:9px;color:#94a3b8;font-weight:600;">Plan Types</div><div style="font-size:15px;font-weight:800;color:#5932EA;">68%</div></div>
+                                    </div>
+                                    <div class="mock-donut-card">
+                                        <div class="mock-donut" style="border-color:#10b981;border-top-color:#ede9fe;border-right-color:#ede9fe;"></div>
+                                        <div style="margin-left:10px;"><div style="font-size:9px;color:#94a3b8;font-weight:600;">Compliance</div><div style="font-size:15px;font-weight:800;color:#10b981;">98%</div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- FEATURE CARDS                               -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="sp-features-section">
+            <div class="container">
+
+                <!-- 01 Centralised Data -->
+                <div class="sp-feat-card" data-aos="fade-up">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-3 sp-feat-left-col">
+                            <div class="sp-num-circle">01</div>
+                            <div class="sp-icon-tile"><i class="fa-solid fa-database" style="color:#5932EA;"></i></div>
+                            <h3 class="sp-feat-title">Centralised Data</h3>
+                            <p class="sp-feat-desc">All your participant, staff and compliance data in one secure place.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="sp-ps-grid">
+                                <div class="sp-ps-card bad">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon bad"><i class="fa-solid fa-xmark"></i></div><span class="sp-ps-lbl bad">Problem:</span></div>
+                                    <div class="sp-ps-txt">Scattered data in spreadsheets, emails and multiple tools.</div>
+                                </div>
+                                <div class="sp-ps-card good">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon good"><i class="fa-solid fa-check"></i></div><span class="sp-ps-lbl good">Solved:</span></div>
+                                    <div class="sp-ps-txt">One source of truth, always up-to-date.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dash-card">
+                                <div class="dash-hdr">
+                                    <span class="dash-title">Participant Growth</span>
+                                    <span class="dash-more">···</span>
+                                </div>
+                                <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible;">
+                                    <defs>
+                                        <linearGradient id="pgGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22"/>
+                                            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.02"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- grid lines -->
+                                    <line x1="30" y1="10" x2="290" y2="10" stroke="#f0eefb" stroke-width="0.8"/>
+                                    <line x1="30" y1="37" x2="290" y2="37" stroke="#f0eefb" stroke-width="0.8"/>
+                                    <line x1="30" y1="63" x2="290" y2="63" stroke="#f0eefb" stroke-width="0.8"/>
+                                    <line x1="30" y1="90" x2="290" y2="90" stroke="#e8e5f7" stroke-width="0.8"/>
+                                    <!-- Y labels -->
+                                    <text x="24" y="13" text-anchor="end" font-size="9" fill="#94a3b8">3</text>
+                                    <text x="24" y="40" text-anchor="end" font-size="9" fill="#94a3b8">2</text>
+                                    <text x="24" y="66" text-anchor="end" font-size="9" fill="#94a3b8">1</text>
+                                    <text x="24" y="93" text-anchor="end" font-size="9" fill="#94a3b8">0</text>
+                                    <!-- area fill -->
+                                    <path d="M30,90 L82,90 L134,90 C158,90 158,10 186,10 C208,10 216,37 238,37 C258,37 268,63 290,63 L290,90 Z" fill="url(#pgGrad)"/>
+                                    <!-- line -->
+                                    <path d="M30,90 L82,90 L134,90 C158,90 158,10 186,10 C208,10 216,37 238,37 C258,37 268,63 290,63" stroke="#7c3aed" stroke-width="1.8" fill="none"/>
+                                    <!-- data points -->
+                                    <circle cx="30" cy="90" r="3" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <circle cx="82" cy="90" r="3" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <circle cx="134" cy="90" r="3" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <circle cx="186" cy="10" r="3" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <circle cx="238" cy="37" r="3" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <circle cx="290" cy="63" r="3" fill="white" stroke="#7c3aed" stroke-width="1.5"/>
+                                    <!-- X labels -->
+                                    <text x="30"  y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Jan 2026</text>
+                                    <text x="82"  y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Feb 2026</text>
+                                    <text x="134" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Mar 2026</text>
+                                    <text x="186" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Apr 2026</text>
+                                    <text x="238" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">May 2026</text>
+                                    <text x="290" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Jun 2026</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 Automation -->
+                <div class="sp-feat-card" data-aos="fade-up" data-aos-delay="40">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-3 sp-feat-left-col">
+                            <div class="sp-num-circle">02</div>
+                            <div class="sp-icon-tile" style="background:#f0fdf4;"><i class="fa-solid fa-gear" style="color:#059669;"></i></div>
+                            <h3 class="sp-feat-title">Automation</h3>
+                            <p class="sp-feat-desc">Automate admin tasks and workflows to save hours every week.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="sp-ps-grid">
+                                <div class="sp-ps-card bad">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon bad"><i class="fa-solid fa-xmark"></i></div><span class="sp-ps-lbl bad">Problem:</span></div>
+                                    <div class="sp-ps-txt">Repetitive manual admin takes time and increases errors.</div>
+                                </div>
+                                <div class="sp-ps-card good">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon good"><i class="fa-solid fa-check"></i></div><span class="sp-ps-lbl good">Solved:</span></div>
+                                    <div class="sp-ps-txt">Automated workflows free up your team.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dash-card">
+                                <div class="dash-hdr">
+                                    <span class="dash-title">System Activity (Last 7 Days)</span>
+                                    <span class="dash-live">Live Updates</span>
+                                </div>
+                                <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible;">
+                                    <defs>
+                                        <linearGradient id="saGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#2563eb" stop-opacity="0.18"/>
+                                            <stop offset="100%" stop-color="#2563eb" stop-opacity="0.02"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- grid lines -->
+                                    <line x1="30" y1="10" x2="290" y2="10" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="30" y1="30" x2="290" y2="30" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="30" y1="50" x2="290" y2="50" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="30" y1="70" x2="290" y2="70" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="30" y1="90" x2="290" y2="90" stroke="#e8eef8" stroke-width="0.8"/>
+                                    <!-- Y labels: 0,4,8,12,16 -->
+                                    <text x="24" y="13"  text-anchor="end" font-size="9" fill="#94a3b8">16</text>
+                                    <text x="24" y="33"  text-anchor="end" font-size="9" fill="#94a3b8">12</text>
+                                    <text x="24" y="53"  text-anchor="end" font-size="9" fill="#94a3b8">8</text>
+                                    <text x="24" y="73"  text-anchor="end" font-size="9" fill="#94a3b8">4</text>
+                                    <text x="24" y="93"  text-anchor="end" font-size="9" fill="#94a3b8">0</text>
+                                    <!-- area fill: data 11,16,8,5,6,5,8 → y=35,10,50,65,60,65,50 -->
+                                    <path d="M30,35 C44,22 58,8 73,10 C88,12 103,48 117,50 C131,52 145,64 160,65 C175,66 188,62 203,60 C218,58 232,64 247,65 C262,66 276,52 290,50 L290,90 L30,90 Z" fill="url(#saGrad)"/>
+                                    <!-- line -->
+                                    <path d="M30,35 C44,22 58,8 73,10 C88,12 103,48 117,50 C131,52 145,64 160,65 C175,66 188,62 203,60 C218,58 232,64 247,65 C262,66 276,52 290,50" stroke="#2563eb" stroke-width="1.8" fill="none"/>
+                                    <!-- data points -->
+                                    <circle cx="30"  cy="35" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="73"  cy="10" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="117" cy="50" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="160" cy="65" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="203" cy="60" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="247" cy="65" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="290" cy="50" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <!-- X labels -->
+                                    <text x="30"  y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Wed, Jun 10</text>
+                                    <text x="73"  y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Thu, Jun 11</text>
+                                    <text x="117" y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Fri, Jun 12</text>
+                                    <text x="160" y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Sat, Jun 13</text>
+                                    <text x="203" y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Sun, Jun 14</text>
+                                    <text x="247" y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Mon, Jun 15</text>
+                                    <text x="290" y="108" text-anchor="middle" font-size="7.5" fill="#94a3b8">Tue, Jun 16</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 AI Assistant -->
+                <div class="sp-feat-card" data-aos="fade-up" data-aos-delay="40">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-3 sp-feat-left-col">
+                            <div class="sp-num-circle">03</div>
+                            <div class="sp-icon-tile" style="background:#eff6ff;"><i class="fa-solid fa-sparkles" style="color:#2563eb;"></i></div>
+                            <h3 class="sp-feat-title">AI Assistant</h3>
+                            <p class="sp-feat-desc">Get instant answers, summaries and smart suggestions using AI.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="sp-ps-grid">
+                                <div class="sp-ps-card bad">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon bad"><i class="fa-solid fa-xmark"></i></div><span class="sp-ps-lbl bad">Problem:</span></div>
+                                    <div class="sp-ps-txt">Finding information and creating documents takes too long.</div>
+                                </div>
+                                <div class="sp-ps-card good">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon good"><i class="fa-solid fa-check"></i></div><span class="sp-ps-lbl good">Solved:</span></div>
+                                    <div class="sp-ps-txt">AI gives you answers and drafts in seconds.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dash-card" style="padding:0;overflow:hidden;">
+                                <!-- top bar -->
+                                <div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0eefb;gap:8px;">
+                                    <span style="font-size:11px;font-weight:800;color:#1e1b4b;white-space:nowrap;">AI Assistant</span>
+                                    <div style="flex:1;background:#f8f8fc;border:1px solid #e8e5f7;border-radius:20px;padding:4px 10px;display:flex;align-items:center;gap:5px;min-width:0;">
+                                        <i class="fa-regular fa-magnifying-glass" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i>
+                                        <span style="font-size:8.5px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Search participants, staff, shifts, invoices...</span>
+                                    </div>
+                                    <div style="position:relative;flex-shrink:0;">
+                                        <i class="fa-regular fa-bell" style="font-size:12px;color:#374151;"></i>
+                                        <span style="position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;border-radius:50%;width:12px;height:12px;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:700;">5</span>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;">
+                                        <div style="width:20px;height:20px;border-radius:50%;background:#2563eb;display:flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:700;">S</div>
+                                        <div>
+                                            <div style="font-size:8.5px;font-weight:700;color:#1e1b4b;white-space:nowrap;">SunCare Admin</div>
+                                            <div style="font-size:7px;color:#94a3b8;white-space:nowrap;">admin@suncare-services.com</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- body: sidebar + chat -->
+                                <div style="display:flex;height:268px;">
+                                    <!-- sidebar chats -->
+                                    <div style="width:115px;border-right:1px solid #f0eefb;padding:8px 8px;flex-shrink:0;overflow:hidden;">
+                                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                                            <span style="font-size:10px;font-weight:800;color:#1e1b4b;">Chats</span>
+                                            <div style="background:#5932EA;color:#fff;border-radius:5px;padding:2px 6px;font-size:8px;font-weight:700;">+ New</div>
+                                        </div>
+                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">can i create a shift?...</span></div>
+                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">What needs attention...</span></div>
+                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Show budget overview...</span></div>
+                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">List recent incidents...</span></div>
+                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Show all today's shifts...</span></div>
+                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span>hello...</span></div>
+                                    </div>
+                                    <!-- chat main -->
+                                    <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;">
+                                        <!-- chat header purple -->
+                                        <div style="background:linear-gradient(135deg,#3730a3,#5932EA);padding:7px 10px;display:flex;align-items:center;gap:7px;flex-shrink:0;">
+                                            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;">🧑</div>
+                                            <div>
+                                                <div style="font-size:9.5px;font-weight:700;color:#fff;">koree</div>
+                                                <div style="font-size:7.5px;color:rgba(255,255,255,0.75);display:flex;align-items:center;gap:3px;"><span style="width:5px;height:5px;background:#10b981;border-radius:50%;display:inline-block;"></span> Online · AI-powered</div>
+                                            </div>
+                                            <div style="margin-left:auto;display:flex;gap:4px;">
+                                                <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:5px;padding:3px 7px;font-size:7.5px;color:#fff;white-space:nowrap;">+ New Chat</div>
+                                                <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:5px;padding:3px 7px;font-size:7.5px;color:#fff;white-space:nowrap;">Dashboard</div>
+                                            </div>
+                                        </div>
+                                        <!-- alert bar -->
+                                        <div style="background:#fffbeb;border-bottom:1px solid #fef3c7;padding:5px 10px;display:flex;gap:6px;align-items:center;flex-shrink:0;">
+                                            <span style="font-size:8px;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:20px;padding:2px 7px;white-space:nowrap;">⚠ 1 staff cert(s) expiring soon</span>
+                                            <span style="font-size:8px;color:#065f46;background:#d1fae5;border:1px solid #a7f3d0;border-radius:20px;padding:2px 7px;white-space:nowrap;">💎 2 overdue invoice(s)</span>
+                                        </div>
+                                        <!-- messages -->
+                                        <div style="flex:1;overflow:hidden;padding:10px 10px 6px;background:#f8f8fc;">
+                                            <div style="background:#fff;border-radius:10px;padding:9px 11px;box-shadow:0 1px 6px rgba(0,0,0,0.07);margin-bottom:5px;">
+                                                <p style="font-size:9px;color:#1e1b4b;line-height:1.55;margin:0 0 4px;">Good afternoon, <strong style="color:#5932EA;">SunCare!</strong> 👋 I'm your NDIS AI Assistant  full-page mode.</p>
+                                                <p style="font-size:9px;color:#374151;line-height:1.55;margin:0 0 4px;">Ask me anything: participants, staff, shifts, emails, compliance, invoices, or anything else in your workspace.</p>
+                                                <p style="font-size:8.5px;color:#64748b;font-style:italic;margin:0;">Tip: You can also open this as a floating widget from any page.</p>
+                                            </div>
+                                            <div style="font-size:7.5px;color:#94a3b8;text-align:center;margin-bottom:6px;">04:08 PM</div>
+                                            <div style="display:flex;gap:3px;flex-wrap:wrap;">
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">🔴 Attention</span>
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">💰 Budget</span>
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">📅 Shifts</span>
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">🔴 Incidents</span>
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">💎 Invoices</span>
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">📧 Emails</span>
+                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">📋 Certs</span>
+                                            </div>
+                                        </div>
+                                        <!-- input bar -->
+                                        <div style="padding:7px 10px;border-top:1px solid #f0eefb;background:#fff;flex-shrink:0;">
+                                            <div style="display:flex;align-items:center;gap:7px;background:#f8f8fc;border:1px solid #e8e5f7;border-radius:20px;padding:5px 8px;">
+                                                <i class="fa-regular fa-microphone" style="font-size:10px;color:#94a3b8;flex-shrink:0;"></i>
+                                                <span style="font-size:8.5px;color:#94a3b8;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Ask anything about your NDIS workspace...</span>
+                                                <div style="width:20px;height:20px;border-radius:50%;background:#5932EA;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                                    <i class="fa-solid fa-paper-plane-top" style="font-size:8px;color:#fff;"></i>
+                                                </div>
+                                            </div>
+                                            <div style="text-align:center;font-size:7px;color:#94a3b8;margin-top:4px;">AI-powered · NDIS context aware · Responses may not be 100% accurate</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04 Reporting -->
+                <div class="sp-feat-card" data-aos="fade-up" data-aos-delay="40">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-3 sp-feat-left-col">
+                            <div class="sp-num-circle">04</div>
+                            <div class="sp-icon-tile" style="background:#fffbeb;"><i class="fa-solid fa-chart-column" style="color:#d97706;"></i></div>
+                            <h3 class="sp-feat-title">Reporting</h3>
+                            <p class="sp-feat-desc">Powerful reports that give you real-time insights into your business.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="sp-ps-grid">
+                                <div class="sp-ps-card bad">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon bad"><i class="fa-solid fa-xmark"></i></div><span class="sp-ps-lbl bad">Problem:</span></div>
+                                    <div class="sp-ps-txt">Manual reporting takes hours and data is often outdated.</div>
+                                </div>
+                                <div class="sp-ps-card good">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon good"><i class="fa-solid fa-check"></i></div><span class="sp-ps-lbl good">Solved:</span></div>
+                                    <div class="sp-ps-txt">Real-time reports for confident decision-making.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dash-card">
+                                <div class="dash-hdr">
+                                    <span class="dash-title">Revenue Overview</span>
+                                    <span class="dash-more">···</span>
+                                </div>
+                                <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible;">
+                                    <defs>
+                                        <linearGradient id="roGrad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#2563eb" stop-opacity="0.18"/>
+                                            <stop offset="100%" stop-color="#2563eb" stop-opacity="0.02"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- grid lines -->
+                                    <line x1="38" y1="10" x2="290" y2="10" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="38" y1="24" x2="290" y2="24" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="38" y1="37" x2="290" y2="37" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="38" y1="50" x2="290" y2="50" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="38" y1="64" x2="290" y2="64" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="38" y1="77" x2="290" y2="77" stroke="#f0f4ff" stroke-width="0.8"/>
+                                    <line x1="38" y1="90" x2="290" y2="90" stroke="#e8eef8" stroke-width="0.8"/>
+                                    <!-- Y labels -->
+                                    <text x="32" y="13"  text-anchor="end" font-size="8" fill="#94a3b8">$600</text>
+                                    <text x="32" y="27"  text-anchor="end" font-size="8" fill="#94a3b8">$500</text>
+                                    <text x="32" y="40"  text-anchor="end" font-size="8" fill="#94a3b8">$400</text>
+                                    <text x="32" y="53"  text-anchor="end" font-size="8" fill="#94a3b8">$300</text>
+                                    <text x="32" y="67"  text-anchor="end" font-size="8" fill="#94a3b8">$200</text>
+                                    <text x="32" y="80"  text-anchor="end" font-size="8" fill="#94a3b8">$100</text>
+                                    <text x="32" y="93"  text-anchor="end" font-size="8" fill="#94a3b8">$0</text>
+                                    <!-- area: data $0,$0,$0,$0,$560,$0 → y=90,90,90,90,12,90 -->
+                                    <path d="M38,90 L90,90 L142,90 L194,90 L246,12 L290,90 Z" fill="url(#roGrad)"/>
+                                    <!-- line -->
+                                    <path d="M38,90 L90,90 L142,90 L194,90 L246,12 L290,90" stroke="#2563eb" stroke-width="1.8" fill="none"/>
+                                    <!-- data points -->
+                                    <circle cx="38"  cy="90" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="90"  cy="90" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="142" cy="90" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="194" cy="90" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="246" cy="12" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <circle cx="290" cy="90" r="3" fill="white" stroke="#2563eb" stroke-width="1.5"/>
+                                    <!-- X labels -->
+                                    <text x="38"  y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Jan 2026</text>
+                                    <text x="90"  y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Feb 2026</text>
+                                    <text x="142" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Mar 2026</text>
+                                    <text x="194" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Apr 2026</text>
+                                    <text x="246" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">May 2026</text>
+                                    <text x="290" y="108" text-anchor="middle" font-size="8" fill="#94a3b8">Jun 2026</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 05 Scheduling -->
+                <div class="sp-feat-card" data-aos="fade-up" data-aos-delay="40">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-3 sp-feat-left-col">
+                            <div class="sp-num-circle">05</div>
+                            <div class="sp-icon-tile" style="background:#fff7ed;"><i class="fa-solid fa-calendar-days" style="color:#ea580c;"></i></div>
+                            <h3 class="sp-feat-title">Scheduling</h3>
+                            <p class="sp-feat-desc">Smart scheduling that reduces clashes and improves participant outcomes.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="sp-ps-grid">
+                                <div class="sp-ps-card bad">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon bad"><i class="fa-solid fa-xmark"></i></div><span class="sp-ps-lbl bad">Problem:</span></div>
+                                    <div class="sp-ps-txt">Double bookings, last-minute changes and time wasted.</div>
+                                </div>
+                                <div class="sp-ps-card good">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon good"><i class="fa-solid fa-check"></i></div><span class="sp-ps-lbl good">Solved:</span></div>
+                                    <div class="sp-ps-txt">Optimised schedules and better roster management.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dash-card">
+                                <div class="dash-hdr">
+                                    <span class="dash-title">Upcoming Shifts</span>
+                                    <span class="dash-viewall">View All</span>
+                                </div>
+                                <div class="shift-item">
+                                    <div class="shift-date-block">
+                                        <div class="shift-month">JUN</div>
+                                        <div class="shift-day">16</div>
+                                    </div>
+                                    <div>
+                                        <div class="shift-name">Marcel Bouly</div>
+                                        <div class="shift-time"><i class="fa-regular fa-clock" style="font-size:9px;"></i> 12:30 PM – 03:00 PM</div>
+                                        <div class="shift-worker"><i class="fa-regular fa-user" style="font-size:9px;"></i> Pierre</div>
+                                    </div>
+                                </div>
+                                <div class="shift-item">
+                                    <div class="shift-date-block">
+                                        <div class="shift-month">JUN</div>
+                                        <div class="shift-day">17</div>
+                                    </div>
+                                    <div>
+                                        <div class="shift-name">Marcel Bouly</div>
+                                        <div class="shift-time"><i class="fa-regular fa-clock" style="font-size:9px;"></i> 12:30 PM – 03:00 PM</div>
+                                        <div class="shift-worker"><i class="fa-regular fa-user" style="font-size:9px;"></i> Pierre</div>
+                                    </div>
+                                </div>
+                                <div class="shift-item">
+                                    <div class="shift-date-block">
+                                        <div class="shift-month">JUN</div>
+                                        <div class="shift-day">18</div>
+                                    </div>
+                                    <div>
+                                        <div class="shift-name">Marcel Bouly</div>
+                                        <div class="shift-time"><i class="fa-regular fa-clock" style="font-size:9px;"></i> 12:30 PM – 03:00 PM</div>
+                                        <div class="shift-worker"><i class="fa-regular fa-user" style="font-size:9px;"></i> Pierre</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 06 Invoicing -->
+                <div class="sp-feat-card" data-aos="fade-up" data-aos-delay="40">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-3 sp-feat-left-col">
+                            <div class="sp-num-circle">06</div>
+                            <div class="sp-icon-tile" style="background:#fff7ed;"><i class="fa-solid fa-file-invoice-dollar" style="color:#ea580c;"></i></div>
+                            <h3 class="sp-feat-title">Invoicing</h3>
+                            <p class="sp-feat-desc">Create, send and track invoices in minutes. Get paid faster.</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="sp-ps-grid">
+                                <div class="sp-ps-card bad">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon bad"><i class="fa-solid fa-xmark"></i></div><span class="sp-ps-lbl bad">Problem:</span></div>
+                                    <div class="sp-ps-txt">Chasing invoices and manual billing slows cash flow.</div>
+                                </div>
+                                <div class="sp-ps-card good">
+                                    <div class="sp-ps-head"><div class="sp-ps-icon good"><i class="fa-solid fa-check"></i></div><span class="sp-ps-lbl good">Solved:</span></div>
+                                    <div class="sp-ps-txt">Faster invoicing and improved cash flow.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dash-card">
+                                <div class="dash-hdr">
+                                    <span class="dash-title">Invoice Status</span>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:24px;">
+                                    <!-- donut chart -->
+                                    <div style="flex-shrink:0;">
+                                        <svg viewBox="0 0 120 120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+                                            <!-- background track -->
+                                            <circle cx="60" cy="60" r="40" fill="none" stroke="#f0eefb" stroke-width="16"/>
+                                            <g transform="rotate(-90 60 60)">
+                                                <!-- Draft: grey 2/6 = 83.77 of 251.33 -->
+                                                <circle cx="60" cy="60" r="40" fill="none" stroke="#9ca3af" stroke-width="16"
+                                                    stroke-dasharray="83.77 167.56" stroke-dashoffset="0"/>
+                                                <!-- Paid: green 2/6 -->
+                                                <circle cx="60" cy="60" r="40" fill="none" stroke="#16a34a" stroke-width="16"
+                                                    stroke-dasharray="83.77 167.56" stroke-dashoffset="-83.77"/>
+                                                <!-- Overdue: red 2/6 -->
+                                                <circle cx="60" cy="60" r="40" fill="none" stroke="#ef4444" stroke-width="16"
+                                                    stroke-dasharray="83.77 167.56" stroke-dashoffset="-167.54"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <!-- legend -->
+                                    <div style="flex:1;">
+                                        <div class="donut-legend-row">
+                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#9ca3af;"></div><span class="donut-legend-lbl">Draft</span></div>
+                                            <span class="donut-legend-val">2</span>
+                                        </div>
+                                        <div class="donut-legend-row">
+                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#f59e0b;"></div><span class="donut-legend-lbl">Pending</span></div>
+                                            <span class="donut-legend-val">0</span>
+                                        </div>
+                                        <div class="donut-legend-row">
+                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#16a34a;"></div><span class="donut-legend-lbl">Paid</span></div>
+                                            <span class="donut-legend-val">2</span>
+                                        </div>
+                                        <div class="donut-legend-row">
+                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#ef4444;"></div><span class="donut-legend-lbl">Overdue</span></div>
+                                            <span class="donut-legend-val red">2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- BOTTOM CTA                                  -->
+        <!-- ═══════════════════════════════════════════ -->
+        <section class="sp-bottom-cta" data-aos="fade-up">
+            <div class="container">
+                <div class="sp-cta-inner">
+                    <div class="sp-cta-left">
+                        <div class="sp-rocket-box"><i class="fa-solid fa-rocket-launch"></i></div>
+                        <p class="sp-cta-text">
+                            Plannor brings everything together so you can focus on<br>
+                            what matters most  <span class="purple">your participants.</span>
+                        </p>
+                    </div>
+                    <a href="../contact/" class="sp-cta-btn">
+                        See Plannor in Action <i class="fa-regular fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var p = document.querySelector('.preloader');
+                if (p) { p.style.opacity = '0'; p.style.display = 'none'; }
+                AOS.init({ duration: 800, once: true });
+            }, 400);
+        });
+    </script>
+</body>
+</html>

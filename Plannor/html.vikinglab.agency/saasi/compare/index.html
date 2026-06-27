@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Compare Plans</title>
+
+    <link rel="shortcut icon" href="Plannor/html.vikinglab.agency/saasi/assets/img/logo/fav-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/nice-select.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/aos.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="Plannor/html.vikinglab.agency/saasi/assets/css/style.css">
+
+    <style>
+        /* ============================================
+           COMPARE PAGE — PREMIUM REDESIGN
+        ============================================ */
+
+        /* Section background with subtle pattern */
+        .cp-section {
+            padding: 90px 0 110px;
+            background: #f7f5ff;
+            position: relative;
+            overflow: hidden;
+        }
+        .cp-section::before {
+            content: '';
+            position: absolute;
+            top: -120px; left: -120px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(89,50,234,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cp-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; right: -100px;
+            width: 440px; height: 440px;
+            background: radial-gradient(circle, rgba(119,46,254,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ---- Title block ---- */
+        .cp-title-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        .cp-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(89,50,234,0.08);
+            border: 1px solid rgba(89,50,234,0.2);
+            border-radius: 30px;
+            padding: 6px 18px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #5932EA;
+            margin-bottom: 22px;
+        }
+        .cp-eyebrow i { font-size: 11px; }
+
+        .cp-title-wrap h2 {
+            font-size: 48px;
+            font-weight: 900;
+            color: #0f0a2e;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 14px;
+        }
+        .cp-title-wrap h2 span {
+            background: linear-gradient(135deg, #5932EA, #772EFE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .cp-title-wrap .cp-sub {
+            font-size: 17px;
+            font-weight: 600;
+            color: #3d3d6b;
+            margin-bottom: 14px;
+        }
+        .cp-title-wrap .cp-desc {
+            font-size: 15px;
+            color: #7474a0;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ---- Table card ---- */
+        .cp-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 48px rgba(89,50,234,0.10), 0 1px 4px rgba(0,0,0,0.04);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cp-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cp-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            table-layout: fixed;
+        }
+
+        /* ---- Header ---- */
+        .cp-table thead tr th {
+            background: #0f0a2e;
+            color: #9590c0;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 20px 16px;
+            text-align: center;
+            width: 20%;
+        }
+        .cp-table thead tr th:first-child {
+            text-align: left;
+            width: 40%;
+            color: #fff;
+            font-size: 12px;
+            letter-spacing: 1px;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            background: #0f0a2e;
+        }
+
+        /* Plannor column header — lifted badge effect */
+        .cp-table thead tr th.th-plannor {
+            background: linear-gradient(160deg, #5932EA 0%, #772EFE 100%);
+            color: #fff;
+            padding: 0;
+            vertical-align: bottom;
+            position: relative;
+        }
+        .th-plannor-inner {
+            padding: 14px 16px 22px;
+        }
+        .th-plannor-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .th-plannor-name {
+            display: block;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        .th-plannor-sub {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ---- Body rows ---- */
+        .cp-table tbody tr td {
+            padding: 14px 16px;
+            font-size: 14px;
+            color: #2c2c52;
+            border-bottom: 1px solid #f0edf9;
+            vertical-align: middle;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .cp-table tbody tr:last-child td { border-bottom: none; }
+        .cp-table tbody tr td:first-child {
+            text-align: left !important;
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background: #fff !important;
+            box-shadow: 2px 0 8px rgba(89,50,234,0.06);
+        }
+        .cp-table tbody tr:nth-child(even) td:first-child { background: #f8f7ff !important; }
+        .cp-table tbody tr:hover td:first-child { background: #f2effe !important; }
+
+        /* Plannor column body — glowing highlight */
+        .cp-table tbody tr td.td-plannor {
+            background: linear-gradient(180deg, rgba(89,50,234,0.05) 0%, rgba(119,46,254,0.03) 100%);
+            border-left: none;
+            border-right: none;
+            position: relative;
+        }
+        .cp-table thead th.th-plannor,
+        .cp-table tbody td.td-plannor {
+            box-shadow: inset -1px 0 0 rgba(89,50,234,0.12), inset 1px 0 0 rgba(89,50,234,0.12);
+        }
+
+        /* Row hover */
+        .cp-table tbody tr:hover td { background: #faf8ff; }
+        .cp-table tbody tr:hover td.td-plannor {
+            background: linear-gradient(180deg, rgba(89,50,234,0.09) 0%, rgba(119,46,254,0.06) 100%);
+        }
+
+        /* ---- Feature name cell ---- */
+        .cp-feature-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cp-feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(89,50,234,0.1), rgba(119,46,254,0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 13px;
+            color: #5932EA;
+        }
+        .cp-feature-name {
+            font-size: 13.5px;
+            color: #1e1a40 !important;
+            line-height: 1.35;
+            font-weight: 500 !important;
+        }
+        .cp-feature-name.bold { font-weight: 700 !important; }
+
+        .cp-feature-icon {
+            color: #5932EA !important;
+        }
+
+        /* ---- Status indicators ---- */
+        .cp-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            font-size: 13px;
+            box-shadow: 0 3px 10px rgba(34,197,94,0.35);
+        }
+        .cp-minus {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: 2px solid #9b95c9;
+            color: #7b75aa;
+            font-size: 18px;
+            font-weight: 500;
+            background: rgba(155,149,201,0.08);
+        }
+        .cp-partial {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #5932EA;
+            background: rgba(89,50,234,0.08);
+            border: 1px solid rgba(89,50,234,0.18);
+            border-radius: 20px;
+            padding: 4px 13px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Plannor check — slightly larger glow */
+        .td-plannor .cp-check {
+            width: 36px; height: 36px;
+            box-shadow: 0 4px 16px rgba(34,197,94,0.45);
+        }
+
+        /* ---- Column labels row (competitor names) ---- */
+        .cp-comp-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #9590c0;
+            display: block;
+        }
+
+        /* ---- Footnote ---- */
+        .cp-footnote {
+            text-align: center;
+            font-size: 13px;
+            color: #aaa8c8;
+            margin-top: 28px;
+            margin-bottom: 0;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        .cp-footnote i { font-size: 12px; margin-right: 5px; }
+
+        /* ---- Bottom CTA strip ---- */
+        .cp-cta-strip {
+            margin-top: 60px;
+            background: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .cp-cta-strip::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 250px; height: 250px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+        .cp-cta-strip::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -40px;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .cp-cta-strip h3 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .cp-cta-strip p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+        .cp-cta-strip .cp-cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .cp-cta-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #5932EA;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .cp-cta-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+            color: #5932EA;
+            text-decoration: none;
+        }
+        .cp-cta-btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 13px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.4);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .cp-cta-btn-ghost:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.7);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .cp-title-wrap h2 { font-size: 32px; }
+            .cp-table tbody tr td,
+            .cp-table thead tr th { padding: 12px 14px; }
+            .cp-feature-icon { display: none; }
+            .cp-cta-strip { padding: 36px 24px; }
+            .cp-cta-strip h3 { font-size: 22px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- preloader -->
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="Plannor/html.vikinglab.agency/saasi/assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== breadcrumb area start =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px!important;padding-bottom:30px!important;min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Compare Plans</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li>Compare Plans</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== breadcrumb area end =========== -->
+
+
+        <!-- =========== compare section start =========== -->
+        <section class="cp-section">
+            <div class="container">
+
+                <!-- Title -->
+                <div class="cp-title-wrap" data-aos="fade-up">
+                    <span class="cp-eyebrow">
+                        <i class="fa-solid fa-chart-bar"></i>
+                        Feature Comparison
+                    </span>
+                    <h2>Side-by-Side <span>Comparison</span></h2>
+                    <p class="cp-sub">How Plannor compares to the competition</p>
+                    <p class="cp-desc">We built every feature specifically for Australian NDIS providers — not retrofitted from general healthcare or international care software.</p>
+                </div>
+
+                <!-- Table card -->
+                <div class="cp-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cp-table-wrap">
+                        <table class="cp-table">
+                            <thead>
+                                <tr>
+                                    <th>Features</th>
+                                    <th class="th-plannor">
+                                        <div class="th-plannor-inner">
+                                            <span class="th-plannor-badge">&#10003; Best Choice</span>
+                                            <span class="th-plannor-name">Plannor</span>
+                                            <span class="th-plannor-sub">All-In-One AI Platform</span>
+                                        </div>
+                                    </th>
+                                    <th>Professional Tools</th>
+                                    <th>General NDIS Tools</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-file-invoice"></i></div>
+                                            <span class="cp-feature-name">NEMs makes billing &amp; claims</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-chart-line"></i></div>
+                                            <span class="cp-feature-name">Real-time budget tracking per participant</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-wand-magic-sparkles"></i></div>
+                                            <span class="cp-feature-name">AI powered notes (built-in)</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-location-dot"></i></div>
+                                            <span class="cp-feature-name">Multi-state &amp; for mobile workers</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-wheelchair"></i></div>
+                                            <span class="cp-feature-name">Disability / NDIS automation</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-scanner-image"></i></div>
+                                            <span class="cp-feature-name">OCR / AI optical automation</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-link"></i></div>
+                                            <span class="cp-feature-name bold">Xero + MYOB integration</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-graduation-cap"></i></div>
+                                            <span class="cp-feature-name bold">Staff LMS &amp; training modules</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-shield-halved"></i></div>
+                                            <span class="cp-feature-name">Incident &amp; risk management</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-file-lines"></i></div>
+                                            <span class="cp-feature-name">Custom form builder with AI generation</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-users"></i></div>
+                                            <span class="cp-feature-name bold">Participant &amp; intake management</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-building"></i></div>
+                                            <span class="cp-feature-name bold">Multi-tenant (Sub providers)</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-filter"></i></div>
+                                            <span class="cp-feature-name bold">Lead capture &amp; intake management</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                    <td><span class="cp-minus">&minus;</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="cp-feature-cell">
+                                            <div class="cp-feature-icon"><i class="fa-regular fa-tag"></i></div>
+                                            <span class="cp-feature-name">NDIS support item price catalogue</span>
+                                        </div>
+                                    </td>
+                                    <td class="td-plannor"><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-check"><i class="fa-solid fa-check"></i></span></td>
+                                    <td><span class="cp-partial">Partial</span></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="cp-footnote">
+                    <i class="fa-regular fa-circle-info"></i>
+                    Comparison based on publicly available feature information. Last updated April 2024.
+                </p>
+
+                <!-- CTA Strip -->
+                <div class="cp-cta-strip" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Ready to see Plannor in action?</h3>
+                    <p>Join hundreds of NDIS providers already saving time and growing with confidence.</p>
+                    <div class="cp-cta-btns">
+                        <a href="../assessment/" class="cp-cta-btn-primary">
+                            <i class="fa-solid fa-rocket"></i> Start Free Assessment
+                        </a>
+                        <a href="../contact/" class="cp-cta-btn-ghost">
+                            <i class="fa-regular fa-calendar"></i> Book a Demo
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- =========== compare section end =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <!-- progress -->
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/swiper-bundle.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/nice-select.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/aos.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/fontawesome.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/plugin.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/gAnim.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/SmoothScroll.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/odometer.min.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/parallaxie.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/main.js"></script>
+    <script src="Plannor/html.vikinglab.agency/saasi/assets/js/includes.js"></script>
+</body>
+</html>
