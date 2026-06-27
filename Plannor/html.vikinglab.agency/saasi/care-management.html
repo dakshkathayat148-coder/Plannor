@@ -1771,15 +1771,42 @@
         /* ---- Global overflow fix ---- */
         html, body { overflow-x: hidden; max-width: 100%; }
 
-        /* ---- Disable AOS slide transforms on mobile ---- */
+        /* ---- Disable AOS slide transforms on mobile to prevent off-screen shift ---- */
         @media (max-width: 767px) {
-            [data-aos] { opacity: 1 !important; transform: none !important; }
+            [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
 
-            /* Hero: remove min-height so page doesn't have blank gap when dashboard is hidden */
-            .cm-hero { min-height: 0 !important; padding: 50px 0 40px; }
+            /* --- cm-hero: kill blank gap when dashboard is hidden --- */
+            .cm-hero { min-height: 0 !important; padding: 50px 0 48px; }
+            .cm-hero .container > .row { min-height: 0 !important; }
+            .cm-hero .col-lg-7 { display: none; }
 
-            /* ch-hero strip: remove negative bottom positioning on small screens */
-            .ch-hero { padding-bottom: 50px; }
+            /* --- cs-section: hide right visual col so it doesn't leave gap --- */
+            .cs-section .col-lg-7 { display: none; }
+
+            /* --- ch-hero: clip the large circle that overflows right --- */
+            .ch-hero { overflow: hidden; padding-bottom: 60px; }
+            .ch-inner { overflow: hidden; }
+            /* Shrink circle more on mobile so it stays in bounds */
+            .ch-circle { width: 260px; height: 260px; transform: translate(-10%, -48%); }
+            /* Full-width CTAs */
+            .ch-btn-primary,
+            .ch-btn-secondary { width: 100%; justify-content: center; box-sizing: border-box; }
+
+            /* --- pf-section: clip absolutely-positioned photo collages --- */
+            .pf-right { overflow: hidden; }
+
+            /* --- im2-section: clip lavender bg (right:-24px) --- */
+            .im2-visual { overflow: hidden; }
+            .im2-lavender { right: 0; bottom: 0; }
+
+            /* --- msgv2: clip photo collage --- */
+            .msgv2-left { overflow: hidden; }
+        }
+
+        @media (max-width: 480px) {
+            .ch-circle { width: 220px; height: 220px; transform: translate(-5%, -44%); }
+            .ch-card-ov { width: 150px; font-size: 10px; }
+            .ch-card-up { width: 130px; }
         }
 
     </style>
