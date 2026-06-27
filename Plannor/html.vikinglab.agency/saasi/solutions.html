@@ -228,6 +228,16 @@
             .sol-solutions-wrap { padding-left: 0; margin-top: 24px; }
             .sol-num { font-size: 56px; }
         }
+        html, body { overflow-x: hidden; max-width: 100%; }
+        @media (max-width: 767px) {
+            /* Disable AOS pre-animation shift (fade-up pushes elements down, creating gap) */
+            [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .sol-section { padding: 44px 0; }
+            .sol-cta-row { margin-top: 20px; padding-top: 20px; }
+            .sol-cta-row p { font-size: 15px; }
+            .sol-cta-row strong { font-size: 17px; }
+            .sol-num { display: none; }
+        }
     </style>
 </head>
 
