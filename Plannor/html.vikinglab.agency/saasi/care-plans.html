@@ -764,13 +764,21 @@
             /* Banner */
             .vl-breadcrumb-content .title { font-size: 32px; }
 
-            /* Intro */
+            /* Intro — fix Bootstrap g-5 negative margins overflowing viewport */
             .cp-intro { padding: 50px 0 60px; }
+            .cp-intro .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
             .cp-intro-title { font-size: 28px; letter-spacing: -0.5px; }
             .cp-intro-desc { font-size: 15px; }
             .cp-intro-btns { flex-direction: column; }
             .cp-btn-ghost { width: 100%; justify-content: center; }
             .cp-intro-visual { padding: 20px 0 0; }
+            /* Glow circle — shrink to prevent overflow */
+            .cp-glow-bg { width: 280px; height: 280px; }
+            /* Card constrained to column width */
+            .cp-card-main { width: 100%; max-width: 100%; }
+            /* Highlight items */
+            .cp-hl-text strong { font-size: 13px; }
+            .cp-hl-text span { font-size: 12px; }
 
             /* Sections */
             .cp-section-title { font-size: 26px; }
