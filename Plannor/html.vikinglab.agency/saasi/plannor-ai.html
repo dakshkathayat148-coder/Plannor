@@ -561,13 +561,28 @@
             .mcp-section, .auto-section { padding: 60px 0 0; }
             .ai-section { padding: 56px 0 52px; }
 
-            /* Cap tall mockup/diagram containers */
-            .ai-mock-col { min-height: 0 !important; max-height: 440px; overflow: hidden; }
-            .ai-browser { max-height: 440px; overflow: hidden; }
-            .ai2-mock { max-height: 420px; overflow: hidden; }
-            .msg-mock { min-height: 0 !important; max-height: 420px; overflow: hidden; }
-            .mcp-diagram { max-height: 380px; overflow: hidden; }
-            .auto-diagram { max-height: 380px; overflow: hidden; }
+            /* ── AI-SECTION mockup: hide left panels so main chat fills full width ── */
+            .ai-mock-col { min-height: 0 !important; max-height: none !important; overflow: visible; }
+            .ai-browser { max-height: none; overflow: hidden; }
+            .ai-sb2 { display: none !important; }
+            .ai-chatlist { display: none !important; }
+
+            /* ── AI2-SECTION mockup: hide sidebar ── */
+            .ai2-mock { max-height: none !important; min-height: 0 !important; }
+            .ai2-sb { display: none !important; }
+
+            /* ── MSG-SECTION mockup: hide nav + conversation list ── */
+            .msg-mock { min-height: 0 !important; max-height: none !important; }
+            .msg-nav { display: none !important; }
+            .msg-convlist { display: none !important; }
+
+            /* ── MCP diagram: hide overflow sub-items, show top portion ── */
+            .mcp-diagram { max-height: none !important; overflow: hidden; }
+            .mcp-mid { overflow: hidden; max-height: 260px; }
+
+            /* ── AUTO diagram: limit height on each column ── */
+            .auto-diagram { max-height: none !important; overflow: hidden; }
+            .auto-diag-body { grid-template-columns: 1fr; max-height: 420px; overflow: hidden; }
 
             /* Pill labels */
             .ai-pill, .ai2-pill, .msg-pill, .mcp-pill, .auto-pill { font-size: 10px; padding: 6px 12px; }
@@ -580,11 +595,8 @@
             /* CTA buttons */
             .ai-cta-btn, .mcp-cta-btn, .auto-cta-btn { width: 100%; justify-content: center; box-sizing: border-box; }
 
-            /* MCP data row already handles 2 cols at 768px; keep on mobile */
+            /* MCP data row */
             .mcp-data-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
-
-            /* auto-diag already single col; keep it */
-            .auto-diag-body { grid-template-columns: 1fr; }
 
             /* Benefits */
             .ai-benefits { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
@@ -598,7 +610,6 @@
             .ai-benefits { grid-template-columns: 1fr; gap: 12px; }
             .ai2-sec-card, .msg-sec-card { flex-direction: column; gap: 10px; }
             .mcp-data-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .ai-mock-col { max-height: 380px; }
             .ai-browser { max-height: 380px; }
             .ai2-mock, .msg-mock { max-height: 360px; }
             .mcp-diagram, .auto-diagram { max-height: 320px; }
