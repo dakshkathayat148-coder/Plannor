@@ -423,28 +423,8 @@
             .cp-title-wrap .cp-sub { font-size: 14px; }
             .cp-title-wrap .cp-desc { font-size: 13px; }
 
-            /* Table wrapper — allow horizontal scroll, no body overflow */
-            .cp-card { border-radius: 14px; }
-            .cp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-            /* Table column widths on mobile */
-            .cp-table { min-width: 480px; }
-            .cp-table thead tr th { width: 18%; padding: 10px 8px; font-size: 9.5px; letter-spacing: 1px; }
-            .cp-table thead tr th:first-child { width: 46%; padding: 10px 10px; font-size: 10px; }
-
-            /* Plannor header — compact */
-            .th-plannor-badge { display: none; }
-            .th-plannor-inner { padding: 10px 8px 14px; }
-            .th-plannor-name { font-size: 14px; letter-spacing: 1px; }
-            .th-plannor-sub { font-size: 9px; letter-spacing: 1.2px; }
-
-            /* Body rows */
-            .cp-table tbody tr td { padding: 10px 8px; font-size: 12.5px; }
-            .cp-feature-icon { display: none; }
-            .cp-feature-name { font-size: 12px; }
-            .cp-check, .cp-minus { width: 24px; height: 24px; font-size: 10px; }
-            .td-plannor .cp-check { width: 26px; height: 26px; }
-            .cp-partial { font-size: 10px; padding: 3px 8px; }
+            /* Hide table card on mobile — slider replaces it */
+            .cp-card { display: none !important; }
 
             /* CTA strip */
             .cp-cta-strip { padding: 30px 20px; margin-top: 32px; border-radius: 14px; }
@@ -456,8 +436,147 @@
 
         @media (max-width: 480px) {
             .cp-title-wrap h2 { font-size: 20px; }
-            .cp-table { min-width: 420px; }
-            .cp-table thead tr th:first-child { width: 44%; }
+        }
+
+        /* ---- Mobile Comparison Slider ---- */
+        .cp-mobile-slider { display: none; }
+
+        @media (max-width: 767px) {
+            .cp-mobile-slider { display: block; position: relative; z-index: 1; overflow: hidden; padding: 0 0 4px; }
+
+            .cp-compare-swiper {
+                padding-bottom: 44px !important;
+                overflow: visible !important;
+            }
+            .cp-compare-swiper .swiper-wrapper { align-items: stretch; }
+            .cp-compare-swiper .swiper-slide { height: auto; }
+
+            .cp-compare-swiper .swiper-pagination { bottom: 8px; }
+            .cp-compare-swiper .swiper-pagination-bullet {
+                width: 8px; height: 8px;
+                background: #c5bcf5;
+                opacity: 1;
+            }
+            .cp-compare-swiper .swiper-pagination-bullet-active {
+                background: #5932EA;
+                width: 22px;
+                border-radius: 4px;
+            }
+
+            .cp-slide-card {
+                background: #fff;
+                border-radius: 18px;
+                overflow: hidden;
+                box-shadow: 0 4px 24px rgba(89,50,234,0.10), 0 1px 4px rgba(0,0,0,0.04);
+                height: 100%;
+            }
+
+            /* Plannor slide — purple gradient */
+            .cp-slide-plannor .cp-slide-card {
+                background: linear-gradient(155deg, #4826d4 0%, #5932EA 55%, #6d2ef0 100%);
+            }
+
+            .cp-slide-head {
+                padding: 22px 20px 18px;
+                text-align: center;
+                border-bottom: 1px solid rgba(0,0,0,0.07);
+            }
+            .cp-slide-plannor .cp-slide-head {
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+
+            .cp-slide-badge {
+                display: inline-block;
+                background: rgba(255,255,255,0.2);
+                border: 1px solid rgba(255,255,255,0.4);
+                border-radius: 20px;
+                color: #fff;
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                padding: 4px 12px;
+                margin-bottom: 10px;
+            }
+
+            .cp-slide-name {
+                font-family: "Figtree", sans-serif;
+                font-size: 22px;
+                font-weight: 800;
+                letter-spacing: 1px;
+                color: #0f0a2e;
+                display: block;
+                margin-bottom: 4px;
+            }
+            .cp-slide-plannor .cp-slide-name { color: #fff; }
+
+            .cp-slide-sub {
+                font-size: 10.5px;
+                font-weight: 600;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                color: #888;
+                display: block;
+            }
+            .cp-slide-plannor .cp-slide-sub { color: rgba(255,255,255,0.65); }
+
+            .cp-slide-body { padding: 6px 0 0; }
+
+            .cp-slide-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 13px 18px;
+                border-bottom: 1px solid #f0edf9;
+                gap: 8px;
+            }
+            .cp-slide-plannor .cp-slide-row {
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .cp-slide-row:last-child { border-bottom: none; }
+
+            .cp-slide-even { background: #faf8ff; }
+            .cp-slide-plannor .cp-slide-even { background: rgba(255,255,255,0.06); }
+
+            .cp-slide-feat {
+                font-size: 13px;
+                font-weight: 500;
+                color: #2c2c52;
+                flex: 1;
+                line-height: 1.35;
+            }
+            .cp-slide-plannor .cp-slide-feat { color: rgba(255,255,255,0.92); }
+
+            /* Status icons inside slider */
+            .cp-slide-row .cp-check { width: 28px; height: 28px; font-size: 11px; flex-shrink: 0; }
+            .cp-slide-row .cp-minus { width: 28px; height: 28px; font-size: 16px; flex-shrink: 0; }
+            .cp-slide-row .cp-partial { font-size: 11px; padding: 4px 10px; flex-shrink: 0; }
+
+            /* Plannor check — white glow */
+            .cp-slide-plannor .cp-slide-row .cp-check {
+                background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.2));
+                box-shadow: 0 2px 10px rgba(255,255,255,0.2);
+                color: #fff;
+            }
+            .cp-slide-plannor .cp-slide-row .cp-minus {
+                background: rgba(255,255,255,0.08);
+                border-color: rgba(255,255,255,0.25);
+                color: rgba(255,255,255,0.4);
+            }
+            .cp-slide-plannor .cp-slide-row .cp-partial {
+                background: rgba(255,255,255,0.18);
+                border-color: rgba(255,255,255,0.35);
+                color: #fff;
+            }
+
+            .cp-slider-hint {
+                text-align: center;
+                font-size: 12px;
+                color: #aaa8c8;
+                margin-top: 6px;
+                letter-spacing: 0.5px;
+            }
+            .cp-slider-hint i { margin-right: 4px; }
         }
     </style>
 </head>
@@ -707,6 +826,97 @@
                     </div>
                 </div>
 
+                <!-- Mobile Comparison Slider — replaces table on mobile -->
+                <div class="cp-mobile-slider">
+                    <div class="swiper cp-compare-swiper">
+                        <div class="swiper-wrapper">
+
+                            <!-- Slide 1: Plannor -->
+                            <div class="swiper-slide cp-slide-plannor">
+                                <div class="cp-slide-card">
+                                    <div class="cp-slide-head">
+                                        <span class="cp-slide-badge">&#10003; Best Choice</span>
+                                        <span class="cp-slide-name">Plannor</span>
+                                        <span class="cp-slide-sub">All-In-One AI Platform</span>
+                                    </div>
+                                    <div class="cp-slide-body">
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">NEMs makes billing &amp; claims</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Real-time budget tracking per participant</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">AI powered notes (built-in)</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Multi-state &amp; for mobile workers</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Disability / NDIS automation</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">OCR / AI optical automation</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Xero + MYOB integration</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Staff LMS &amp; training modules</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Incident &amp; risk management</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Custom form builder with AI generation</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Participant &amp; intake management</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Multi-tenant (Sub providers)</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Lead capture &amp; intake management</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">NDIS support item price catalogue</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Professional Tools -->
+                            <div class="swiper-slide">
+                                <div class="cp-slide-card">
+                                    <div class="cp-slide-head">
+                                        <span class="cp-slide-name">Professional Tools</span>
+                                        <span class="cp-slide-sub">Generic Professional Software</span>
+                                    </div>
+                                    <div class="cp-slide-body">
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">NEMs makes billing &amp; claims</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Real-time budget tracking per participant</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">AI powered notes (built-in)</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Multi-state &amp; for mobile workers</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Disability / NDIS automation</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">OCR / AI optical automation</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Xero + MYOB integration</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Staff LMS &amp; training modules</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Incident &amp; risk management</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Custom form builder with AI generation</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Participant &amp; intake management</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Multi-tenant (Sub providers)</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Lead capture &amp; intake management</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">NDIS support item price catalogue</span><span class="cp-check"><i class="fa-solid fa-check"></i></span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: General NDIS Tools -->
+                            <div class="swiper-slide">
+                                <div class="cp-slide-card">
+                                    <div class="cp-slide-head">
+                                        <span class="cp-slide-name">General NDIS Tools</span>
+                                        <span class="cp-slide-sub">Basic NDIS Software</span>
+                                    </div>
+                                    <div class="cp-slide-body">
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">NEMs makes billing &amp; claims</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Real-time budget tracking per participant</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">AI powered notes (built-in)</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Multi-state &amp; for mobile workers</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Disability / NDIS automation</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">OCR / AI optical automation</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Xero + MYOB integration</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Staff LMS &amp; training modules</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Incident &amp; risk management</span><span class="cp-partial">Partial</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Custom form builder with AI generation</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Participant &amp; intake management</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">Multi-tenant (Sub providers)</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row"><span class="cp-slide-feat">Lead capture &amp; intake management</span><span class="cp-minus">&minus;</span></div>
+                                        <div class="cp-slide-row cp-slide-even"><span class="cp-slide-feat">NDIS support item price catalogue</span><span class="cp-partial">Partial</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <p class="cp-slider-hint"><i class="fa-regular fa-hand-pointer"></i> Swipe to compare tools</p>
+                </div>
+                <!-- end mobile slider -->
+
                 <p class="cp-footnote">
                     <i class="fa-regular fa-circle-info"></i>
                     Comparison based on publicly available feature information. Last updated April 2024.
@@ -757,5 +967,24 @@
     <script src="../assets/js/parallaxie.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/includes.js"></script>
+    <script>
+        (function () {
+            if (window.innerWidth <= 767 && typeof Swiper !== 'undefined') {
+                new Swiper('.cp-compare-swiper', {
+                    slidesPerView: 1.08,
+                    centeredSlides: true,
+                    spaceBetween: 14,
+                    initialSlide: 0,
+                    pagination: {
+                        el: '.cp-compare-swiper .swiper-pagination',
+                        clickable: true
+                    },
+                    breakpoints: {
+                        480: { slidesPerView: 1.15, spaceBetween: 16 }
+                    }
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
