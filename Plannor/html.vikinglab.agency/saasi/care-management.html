@@ -1771,15 +1771,22 @@
         /* ---- Global overflow fix ---- */
         html, body { overflow-x: hidden; max-width: 100%; }
 
+        /* ---- Heading font consistency: match rest of site (Figtree 700, letter-spacing 2px) ---- */
+        .cm-title,
+        .ch-headline,
+        .cs-headline,
+        .pf-heading,
+        .im2-feat-body h5,
+        .cs-feat-body h5,
+        .pf-feat-body h5 {
+            font-family: "Figtree", sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
         /* ---- Disable AOS slide transforms on mobile to prevent off-screen shift ---- */
         @media (max-width: 767px) {
             [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
-
-            /* --- Heading font consistency with rest of site --- */
-            .cm-title    { font-weight: 700; letter-spacing: -0.5px; }
-            .ch-headline { font-weight: 700; letter-spacing: -0.5px; }
-            .cs-headline { font-weight: 700; letter-spacing: -0.5px; }
-            .pf-heading  { font-weight: 700; letter-spacing: -0.5px; }
 
             /* --- Section paddings — reduce on mobile --- */
             .pf-section  { padding: 44px 0; }
