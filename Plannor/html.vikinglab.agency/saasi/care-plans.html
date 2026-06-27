@@ -748,20 +748,67 @@
         }
 
         /* ── RESPONSIVE ── */
+        * { box-sizing: border-box; }
+        html, body { overflow-x: hidden; max-width: 100%; }
+
         @media (max-width: 1199px) {
             .cp-intro-title { font-size: 40px; }
             .cp-intro-visual { padding: 30px 10px; }
         }
         @media (max-width: 991px) {
             .cp-notif-1, .cp-notif-2 { display: none; }
+            .cp-feat-left { position: static; }
+            .cp-vs-divider { padding: 20px 0; }
         }
         @media (max-width: 767px) {
-            .cp-intro { padding: 60px 0 70px; }
-            .cp-intro-title { font-size: 30px; }
-            .cp-section-title { font-size: 28px; }
-            .cp-features { padding: 70px 0; }
-            .cp-how { padding: 70px 0; }
-            .cp-step-num { font-size: 52px; }
+            /* Banner */
+            .vl-breadcrumb-content .title { font-size: 32px; }
+
+            /* Intro */
+            .cp-intro { padding: 50px 0 60px; }
+            .cp-intro-title { font-size: 28px; letter-spacing: -0.5px; }
+            .cp-intro-desc { font-size: 15px; }
+            .cp-intro-btns { flex-direction: column; }
+            .cp-btn-ghost { width: 100%; justify-content: center; }
+            .cp-intro-visual { padding: 20px 0 0; }
+
+            /* Sections */
+            .cp-section-title { font-size: 26px; }
+            .cp-section-desc { font-size: 14px; }
+            .cp-features { padding: 60px 0; }
+            .cp-how { padding: 60px 0; }
+            .cp-compare { padding: 60px 0; }
+
+            /* Features list */
+            .cp-feat-row { padding: 18px 16px; gap: 14px; }
+            .cp-feat-row-num { display: none; }
+            .cp-feat-row-title { font-size: 15px; }
+            .cp-feat-row-desc { font-size: 12px; }
+            .cp-feat-row-icon { width: 38px; height: 38px; font-size: 15px; }
+
+            /* Timeline */
+            .cp-tl-card { padding: 22px 18px; }
+            .cp-tl-title { font-size: 18px; }
+            .cp-tl-desc { font-size: 13px; }
+            .cp-tl-bg-num { font-size: 60px; }
+
+            /* Compare panels */
+            .cp-panel { padding: 26px 20px; }
+            .cp-panel-title { font-size: 20px; }
+            .cp-ci-text { font-size: 13px; }
+            .cp-compare-strip { grid-template-columns: repeat(2, 1fr); }
+            .cp-strip-num { font-size: 26px; }
+        }
+        @media (max-width: 480px) {
+            .cp-intro-title { font-size: 24px; }
+            .cp-section-title { font-size: 22px; }
+            .cp-compare-strip { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .cp-strip-item { padding: 14px 12px; }
+            .cp-feat-stats { gap: 8px; }
+            .cp-feat-stat { padding: 12px 14px; }
+            .cp-tl-row { padding-left: 64px; }
+            .cp-timeline::before { left: 24px; }
+            .cp-tl-node { left: 24px; width: 52px; height: 52px; font-size: 18px; }
         }
     </style>
 </head>
