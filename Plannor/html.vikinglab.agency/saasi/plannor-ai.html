@@ -553,18 +553,55 @@
         html, body { overflow-x: hidden; max-width: 100%; }
 
         @media(max-width:767px) {
+            /* Breadcrumb */
             .vl-breadcrumb-content .title { font-size: 32px; }
-            .ai2-section, .msg-section, .mcp-section, .auto-section { padding: 64px 0 60px; }
-            .ai-section { padding: 60px 0 56px; }
-            .ai-benefits { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
-            .ai2-feats, .msg-feats { gap: 16px; }
+
+            /* Section padding */
+            .ai2-section, .msg-section { padding: 60px 0 56px; }
+            .mcp-section, .auto-section { padding: 60px 0 0; }
+            .ai-section { padding: 56px 0 52px; }
+
+            /* Cap tall mockup/diagram containers */
+            .ai-mock-col { min-height: 0 !important; max-height: 440px; overflow: hidden; }
+            .ai-browser { max-height: 440px; overflow: hidden; }
+            .ai2-mock { max-height: 420px; overflow: hidden; }
+            .msg-mock { min-height: 0 !important; max-height: 420px; overflow: hidden; }
+            .mcp-diagram { max-height: 380px; overflow: hidden; }
+            .auto-diagram { max-height: 380px; overflow: hidden; }
+
+            /* Pill labels */
+            .ai-pill, .ai2-pill, .msg-pill, .mcp-pill, .auto-pill { font-size: 10px; padding: 6px 12px; }
+
+            /* Feature lists */
+            .ai2-feats, .msg-feats { gap: 14px; }
+            .ai2-feat-ic, .msg-feat-ic, .ai-feat-ic { width: 38px; height: 38px; border-radius: 10px; }
+            .ai2-feat-ic svg, .msg-feat-ic svg, .ai-feat-ic svg { width: 18px; height: 18px; }
+
+            /* CTA buttons */
+            .ai-cta-btn, .mcp-cta-btn, .auto-cta-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+
+            /* MCP data row already handles 2 cols at 768px; keep on mobile */
+            .mcp-data-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
+
+            /* auto-diag already single col; keep it */
+            .auto-diag-body { grid-template-columns: 1fr; }
+
+            /* Benefits */
+            .ai-benefits { grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 40px; }
         }
 
         @media(max-width:480px) {
             .vl-breadcrumb-content .title { font-size: 26px; }
-            .ai2-h1, .msg-h1, .mcp-h1, .auto-h1 { font-size: 28px; }
+            .ai-h1 { font-size: 28px; }
+            .ai2-h1, .msg-h1, .mcp-h1, .auto-h1 { font-size: 26px; }
+            .ai-desc, .ai2-desc, .msg-desc, .mcp-desc, .auto-desc { font-size: 14px; }
             .ai-benefits { grid-template-columns: 1fr; gap: 12px; }
             .ai2-sec-card, .msg-sec-card { flex-direction: column; gap: 10px; }
+            .mcp-data-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .ai-mock-col { max-height: 380px; }
+            .ai-browser { max-height: 380px; }
+            .ai2-mock, .msg-mock { max-height: 360px; }
+            .mcp-diagram, .auto-diagram { max-height: 320px; }
         }
     </style>
 </head>
