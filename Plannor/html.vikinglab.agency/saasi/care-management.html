@@ -1775,19 +1775,34 @@
         @media (max-width: 767px) {
             [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
 
+            /* --- Heading font consistency with rest of site --- */
+            .cm-title    { font-weight: 700; letter-spacing: -0.5px; }
+            .ch-headline { font-weight: 700; letter-spacing: -0.5px; }
+            .cs-headline { font-weight: 700; letter-spacing: -0.5px; }
+            .pf-heading  { font-weight: 700; letter-spacing: -0.5px; }
+
+            /* --- Section paddings — reduce on mobile --- */
+            .pf-section  { padding: 44px 0; }
+            .pf-testi-wrap { margin-top: 32px; }
+            .im2-section { padding: 44px 0 0; }
+            .msgv2-section { padding: 44px 0 0; }
+            .cs-section  { padding: 44px 0 0; }
+
             /* --- cm-hero: kill blank gap when dashboard is hidden --- */
-            .cm-hero { min-height: 0 !important; padding: 50px 0 48px; }
+            .cm-hero { min-height: 0 !important; padding: 50px 0 40px; }
             .cm-hero .container > .row { min-height: 0 !important; }
             .cm-hero .col-lg-7 { display: none; }
 
             /* --- cs-section: hide right visual col so it doesn't leave gap --- */
             .cs-section .col-lg-7 { display: none; }
+            .cs-comp { margin-top: 36px; }
 
             /* --- ch-hero: clip the large circle that overflows right --- */
-            .ch-hero { overflow: hidden; padding-bottom: 60px; }
+            .ch-hero { overflow: hidden; padding-top: 50px; padding-bottom: 50px; }
             .ch-inner { overflow: hidden; }
-            /* Shrink circle more on mobile so it stays in bounds */
-            .ch-circle { width: 260px; height: 260px; transform: translate(-10%, -48%); }
+            .ch-right { height: 260px; }
+            .ch-circle { width: 240px; height: 240px; transform: translate(-10%, -48%); }
+
             /* Full-width CTAs */
             .ch-btn-primary,
             .ch-btn-secondary { width: 100%; justify-content: center; box-sizing: border-box; }
@@ -1795,16 +1810,19 @@
             /* --- pf-section: clip absolutely-positioned photo collages --- */
             .pf-right { overflow: hidden; }
 
-            /* --- im2-section: clip lavender bg (right:-24px) --- */
-            .im2-visual { overflow: hidden; }
-            .im2-lavender { right: 0; bottom: 0; }
+            /* --- ms-left: remove excess min-height (photo is 200px, no need for 280px) --- */
+            .ms-left { min-height: 0 !important; }
+
+            /* --- im2-visual: hide complex absolutely-positioned collage on mobile --- */
+            .im2-visual { display: none; }
 
             /* --- msgv2: clip photo collage --- */
             .msgv2-left { overflow: hidden; }
         }
 
         @media (max-width: 480px) {
-            .ch-circle { width: 220px; height: 220px; transform: translate(-5%, -44%); }
+            .ch-circle { width: 200px; height: 200px; transform: translate(-5%, -44%); }
+            .ch-right  { height: 220px; }
             .ch-card-ov { width: 150px; font-size: 10px; }
             .ch-card-up { width: 130px; }
         }
