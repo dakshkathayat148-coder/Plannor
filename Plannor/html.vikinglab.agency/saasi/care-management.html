@@ -1768,6 +1768,20 @@
             .pf-testi-right, .msgv2-testi-person, .im2-testi-person { display: none; }
         }
 
+        /* ---- Global overflow fix ---- */
+        html, body { overflow-x: hidden; max-width: 100%; }
+
+        /* ---- Disable AOS slide transforms on mobile ---- */
+        @media (max-width: 767px) {
+            [data-aos] { opacity: 1 !important; transform: none !important; }
+
+            /* Hero: remove min-height so page doesn't have blank gap when dashboard is hidden */
+            .cm-hero { min-height: 0 !important; padding: 50px 0 40px; }
+
+            /* ch-hero strip: remove negative bottom positioning on small screens */
+            .ch-hero { padding-bottom: 50px; }
+        }
+
     </style>
 </head>
 
