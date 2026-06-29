@@ -35,6 +35,15 @@
                             el.setAttribute('src', base + src);
                         }
                     });
+                    // Fix background-image: url(...) in inline styles
+                    tmp.querySelectorAll('[style]').forEach(function(el) {
+                        var style = el.getAttribute('style');
+                        if (style) {
+                            el.setAttribute('style', style.replace(/url\(['"]?(?!\/|data:|http|https)([^'")\s]+)['"]?\)/g, function(match, p1) {
+                                return 'url(' + base + p1 + ')';
+                            }));
+                        }
+                    });
                 }
 
                 // Collect inline scripts before moving nodes
