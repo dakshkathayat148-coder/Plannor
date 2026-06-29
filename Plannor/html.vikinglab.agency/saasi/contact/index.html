@@ -165,11 +165,40 @@
                                         <textarea name="message" id="message" placeholder="Write Your Message" required></textarea>
                                     </div>
                                 </div>
+                                <div class="col-xl-12 mb-24">
+                                    <div class="vl-contact-singlebox">
+                                        <label id="captcha-label-contact" style="font-weight:600;"></label>
+                                        <input type="text" id="captcha-input-contact" placeholder="Enter the answer" autocomplete="off" style="margin-top:8px;">
+                                        <p id="captcha-error-contact" style="color:#e53e3e;font-size:14px;margin-top:6px;display:none;">Incorrect answer. Please try again.</p>
+                                    </div>
+                                </div>
                                 <div class="col-xl-12 text-xl-end">
                                     <button type="submit" class="vl-primary-btn-1" style="color:#fff;">Claim Your Free Trial <span><img src="../assets/img/icon/vl-arrowupright.svg" alt=""></span></button>
                                 </div>
                             </div>
                             </form>
+                            <script>
+                            (function(){
+                                var a, b, answer;
+                                function gen(){
+                                    a = Math.floor(Math.random()*20)+1;
+                                    b = Math.floor(Math.random()*20)+1;
+                                    answer = a + b;
+                                    document.getElementById('captcha-label-contact').textContent = 'Security check: What is ' + a + ' + ' + b + '?';
+                                    document.getElementById('captcha-input-contact').value = '';
+                                    document.getElementById('captcha-error-contact').style.display = 'none';
+                                }
+                                gen();
+                                document.getElementById('contact-form').addEventListener('submit', function(e){
+                                    var val = parseInt(document.getElementById('captcha-input-contact').value, 10);
+                                    if(val !== answer){
+                                        e.preventDefault();
+                                        document.getElementById('captcha-error-contact').style.display = 'block';
+                                        gen();
+                                    }
+                                });
+                            })();
+                            </script>
                         </div>
                     </div>
                 </div>

@@ -74,6 +74,7 @@
 
                 <div class="row">
                     <div class="col-xl-12">
+                        <form id="demo-form">
                         <div class="vl-contact-inner-bg">
                             <div class="row">
                                 <div class="col-xl-6 col-md-6 mb-24">
@@ -124,11 +125,41 @@
                                         <textarea name="message" id="message" placeholder="Tell us what features matter most to you..."></textarea>
                                     </div>
                                 </div>
+                                <div class="col-xl-12 mb-24">
+                                    <div class="vl-contact-singlebox">
+                                        <label id="captcha-label-demo" style="font-weight:600;"></label>
+                                        <input type="text" id="captcha-input-demo" placeholder="Enter the answer" autocomplete="off" style="margin-top:8px;">
+                                        <p id="captcha-error-demo" style="color:#e53e3e;font-size:14px;margin-top:6px;display:none;">Incorrect answer. Please try again.</p>
+                                    </div>
+                                </div>
                                 <div class="col-xl-12 text-xl-end">
                                     <button type="submit" class="vl-primary-btn-1" style="color:#fff;">Book My Demo <span><img src="../assets/img/icon/vl-arrowupright.svg" alt=""></span></button>
                                 </div>
                             </div>
                         </div>
+                        </form>
+                        <script>
+                        (function(){
+                            var a, b, answer;
+                            function gen(){
+                                a = Math.floor(Math.random()*20)+1;
+                                b = Math.floor(Math.random()*20)+1;
+                                answer = a + b;
+                                document.getElementById('captcha-label-demo').textContent = 'Security check: What is ' + a + ' + ' + b + '?';
+                                document.getElementById('captcha-input-demo').value = '';
+                                document.getElementById('captcha-error-demo').style.display = 'none';
+                            }
+                            gen();
+                            document.getElementById('demo-form').addEventListener('submit', function(e){
+                                e.preventDefault();
+                                var val = parseInt(document.getElementById('captcha-input-demo').value, 10);
+                                if(val !== answer){
+                                    document.getElementById('captcha-error-demo').style.display = 'block';
+                                    gen();
+                                }
+                            });
+                        })();
+                        </script>
                     </div>
                 </div>
             </div>
