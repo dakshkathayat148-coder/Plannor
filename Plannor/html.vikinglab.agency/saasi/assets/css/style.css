@@ -12018,7 +12018,7 @@ span.menu-dwn-arrow2 {
   color: var(--vl-black);
   padding-bottom: 16px;
 }
-.vl-contact-singlebox input[type=text], .vl-contact-singlebox textarea {
+.vl-contact-singlebox input[type=text], .vl-contact-singlebox input[type=email], .vl-contact-singlebox input[type=tel], .vl-contact-singlebox input[type=date], .vl-contact-singlebox input[type=time], .vl-contact-singlebox textarea {
   background: #F5F6F9;
   border-radius: 12px;
   font-size: 18px;
@@ -12028,7 +12028,7 @@ span.menu-dwn-arrow2 {
   border: none;
   height: 66px;
 }
-.vl-contact-singlebox input[type=text]::placeholder, .vl-contact-singlebox textarea::placeholder {
+.vl-contact-singlebox input[type=text]::placeholder, .vl-contact-singlebox input[type=email]::placeholder, .vl-contact-singlebox input[type=tel]::placeholder, .vl-contact-singlebox textarea::placeholder {
   font-size: 18px;
   line-height: 18px;
   font-weight: 500;

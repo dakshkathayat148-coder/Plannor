@@ -61,6 +61,20 @@
             border-color: transparent;
             box-shadow: 0 24px 60px rgba(89,50,234,.4);
         }
+        .pl-first-month-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #fef9c3, #fef08a);
+            border: 1.5px solid #fde047;
+            color: #854d0e;
+            font-size: 12px; font-weight: 700;
+            padding: 5px 14px; border-radius: 30px;
+            margin-bottom: 14px;
+        }
+        .pl-featured .pl-first-month-badge {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.35);
+            color: #fff;
+        }
         .pl-featured-badge {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
             background: linear-gradient(90deg, #f59e0b, #f97316);
@@ -216,7 +230,7 @@
                     <div class="col-xl-5 col-lg-4 mb-20 text-xl-end">
                         <div class="billing-buttons">
                             <button class="billing-btn active" id="btnMonthly" onclick="setBilling('monthly')">Monthly</button>
-                            <button class="billing-btn" id="btnYearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save 40%</span></button>
+                            <button class="billing-btn" id="btnYearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save 17%</span></button>
                         </div>
                     </div>
                 </div>
@@ -229,11 +243,13 @@
                         <div class="pl-pricing-card">
                             <p class="pl-plan-name">Basic</p>
                             <p class="pl-plan-tagline">For small providers just getting started</p>
+                            <div class="pl-first-month-badge"><i class="fa-solid fa-bolt"></i> 1st Month $1</div>
                             <div class="pl-price-row">
                                 <span class="pl-currency">$</span>
                                 <span class="pl-amount" id="price-basic">40</span>
+                                <span style="font-size:18px;font-weight:600;color:#aaa;margin-left:2px;line-height:2;" id="suffix-basic">/mo</span>
                             </div>
-                            <p class="pl-period">per month, billed <span id="period-basic">monthly</span></p>
+                            <p class="pl-period"><span id="period-basic">per month, billed monthly</span></p>
                             <div class="pl-divider"></div>
                             <ul class="pl-features">
                                 <li><i class="fa-solid fa-circle-check"></i><span>Up to 10 participants</span></li>
@@ -256,11 +272,13 @@
                             <div class="pl-featured-badge">Most Popular</div>
                             <p class="pl-plan-name">Professional</p>
                             <p class="pl-plan-tagline">For growing providers needing more power</p>
+                            <div class="pl-first-month-badge"><i class="fa-solid fa-bolt"></i> 1st Month $1</div>
                             <div class="pl-price-row">
                                 <span class="pl-currency">$</span>
                                 <span class="pl-amount" id="price-professional">65</span>
+                                <span style="font-size:18px;font-weight:600;color:rgba(255,255,255,0.6);margin-left:2px;line-height:2;" id="suffix-professional">/mo</span>
                             </div>
-                            <p class="pl-period">per month, billed <span id="period-professional">monthly</span></p>
+                            <p class="pl-period"><span id="period-professional">per month, billed monthly</span></p>
                             <div class="pl-divider"></div>
                             <ul class="pl-features">
                                 <li><i class="fa-solid fa-circle-check"></i><span>Up to 50 participants</span></li>
@@ -282,11 +300,13 @@
                         <div class="pl-pricing-card">
                             <p class="pl-plan-name">Premium</p>
                             <p class="pl-plan-tagline">For established providers scaling fast</p>
+                            <div class="pl-first-month-badge"><i class="fa-solid fa-bolt"></i> 1st Month $1</div>
                             <div class="pl-price-row">
                                 <span class="pl-currency">$</span>
                                 <span class="pl-amount" id="price-premium">100</span>
+                                <span style="font-size:18px;font-weight:600;color:#aaa;margin-left:2px;line-height:2;" id="suffix-premium">/mo</span>
                             </div>
-                            <p class="pl-period">per month, billed <span id="period-premium">monthly</span></p>
+                            <p class="pl-period"><span id="period-premium">per month, billed monthly</span></p>
                             <div class="pl-divider"></div>
                             <ul class="pl-features">
                                 <li><i class="fa-solid fa-circle-check"></i><span>Up to 200 participants</span></li>
@@ -390,8 +410,8 @@
 
     <script>
     var PRICES = {
-        monthly:  { basic: 40,  professional: 65,  premium: 100 },
-        yearly:   { basic: 33,  professional: 54,  premium: 83  }
+        monthly:  { basic: 40,   professional: 65,   premium: 100  },
+        yearly:   { basic: 400,  professional: 650,  premium: 1000 }
     };
 
     function setBilling(type) {
@@ -402,8 +422,10 @@
         ['basic','professional','premium'].forEach(function(plan) {
             var el = document.getElementById('price-' + plan);
             var periodEl = document.getElementById('period-' + plan);
-            if (el) animatePrice(el, parseInt(el.textContent), p[plan]);
-            if (periodEl) periodEl.textContent = type === 'yearly' ? 'annually' : 'monthly';
+            var suffixEl = document.getElementById('suffix-' + plan);
+            if (el) el.textContent = p[plan].toLocaleString();
+            if (periodEl) periodEl.textContent = type === 'yearly' ? 'billed annually' : 'per month, billed monthly';
+            if (suffixEl) suffixEl.textContent = type === 'yearly' ? '/yr' : '/mo';
         });
     }
 
