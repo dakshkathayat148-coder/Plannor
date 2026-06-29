@@ -17,7 +17,7 @@
     <style>
         /* ---- stats section ---- */
         .cs-stats-section { background: #fff; }
-        .cs-stats-left h2 { color: #1a1a2e; font-size: 36px; font-weight: 800; line-height: 1.25; margin-bottom: 14px; }
+        .cs-stats-left h2 { color: #1a1a2e; font-size: 36px; font-weight: 400; line-height: 1.25; margin-bottom: 14px; }
         .cs-stats-left p { color: #666; font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
         .cs-check-list { list-style: none; padding: 0; margin: 0; }
         .cs-check-list li {
@@ -105,7 +105,7 @@
         .cs-card-head .bg-num { position:absolute; right:-8px; bottom:-16px; font-size:110px; font-weight:900; opacity:.12; line-height:1; color:#fff; letter-spacing:-4px; pointer-events:none; }
         .cs-card-num { font-size:13px; font-weight:700; letter-spacing:2px; opacity:.75; margin-bottom:10px; text-transform:uppercase; }
         .cs-card-badge { font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px; display:inline-block; margin-bottom:14px; background:rgba(255,255,255,.2); color:#fff; }
-        .cs-card-head h3 { color:#fff; font-size:19px; font-weight:800; line-height:1.35; margin:0; position:relative; }
+        .cs-card-head h3 { color:#fff; font-size:19px; font-weight: 400; line-height:1.35; margin:0; position:relative; }
         .cs-card-body { padding:28px; flex:1; display:flex; flex-direction:column; }
         .cs-step { display:flex; gap:14px; align-items:flex-start; }
         .cs-step-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
@@ -123,7 +123,7 @@
             text-align: center;
             color: #fff;
         }
-        .cs-cta-section h2 { color: #fff; font-size: 42px; font-weight: 800; margin-bottom: 16px; }
+        .cs-cta-section h2 { color: #fff; font-size: 42px; font-weight: 400; margin-bottom: 16px; }
         .cs-cta-section p { color: rgba(255,255,255,.8); font-size: 18px; margin-bottom: 36px; }
         .cs-cta-btn {
             background: #fff; color: #5932EA;
@@ -265,6 +265,8 @@
                 margin-bottom: 20px !important;
             }
         }
+        /* Heading font — match home page Cal Sans weight 400 */
+        .cs-stats-left h2, .cs-card-head h3, .cs-cta-section h2 { font-family: 'Cal Sans', sans-serif; font-weight: 400; }
     </style>
 </head>
 

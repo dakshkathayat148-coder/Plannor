@@ -52,7 +52,7 @@
             margin-bottom: 20px;
         }
         .ap-hero-h1 {
-            font-size: 44px; font-weight: 900; color: var(--dark);
+            font-size: 44px; font-weight: 400; color: var(--dark);
             letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 18px;
         }
         .ap-hero-h1 span { color: var(--brand); }
@@ -146,7 +146,7 @@
             font-size:11px; font-weight:800; letter-spacing:1.3px;
             text-transform:uppercase; color:var(--cc, var(--brand)); margin-bottom:7px;
         }
-        .ap-ctitle { font-size:21px; font-weight:900; color:var(--dark); margin-bottom:8px; line-height:1.3; }
+        .ap-ctitle { font-size:21px; font-weight: 400; color:var(--dark); margin-bottom:8px; line-height:1.3; }
         .ap-cdesc  { font-size:14px; color:var(--muted); line-height:1.72; margin-bottom:18px; }
         .ap-ctags  { display:flex; flex-wrap:wrap; gap:8px; }
         .ap-ctag {
@@ -200,7 +200,7 @@
         }
 
         .ap-imp-tag { font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--brand); margin-bottom:10px; }
-        .ap-imp-h2  { font-size:36px; font-weight:900; color:var(--dark); letter-spacing:-1.2px; line-height:1.15; }
+        .ap-imp-h2  { font-size:36px; font-weight: 400; color:var(--dark); letter-spacing:-1.2px; line-height:1.15; }
         .ap-imp-sub { font-size:15px; color:var(--muted); line-height:1.75; }
 
         .ap-metric  { display:flex; align-items:flex-start; gap:16px; margin-top:36px; }
@@ -232,7 +232,7 @@
 
         .ap-cta-wrap { display:flex; align-items:center; gap:48px; position:relative; z-index:1; }
         .ap-cta-text { flex:1; }
-        .ap-cta-h2   { font-size:32px; font-weight:900; color:#fff; letter-spacing:-1px; line-height:1.2; margin-bottom:14px; }
+        .ap-cta-h2   { font-size:32px; font-weight: 400; color:#fff; letter-spacing:-1px; line-height:1.2; margin-bottom:14px; }
         .ap-cta-sub  { font-size:15px; color:rgba(255,255,255,.72); line-height:1.75; margin-bottom:28px; max-width:400px; }
         .ap-cta-btn  {
             display:inline-flex; align-items:center; gap:10px;
@@ -243,6 +243,8 @@
         .ap-cta-btn:hover { background:rgba(255,255,255,.12); border-color:#fff; color:#fff; text-decoration:none; }
         .ap-cta-visual { flex-shrink:0; width:300px; display:flex; align-items:center; justify-content:center; }
         @media(max-width:767px){ .ap-cta-wrap{flex-direction:column;} .ap-cta-visual{width:100%;max-width:240px;} }
+        /* Heading font — match home page Cal Sans weight 400 */
+        .ap-hero-h1, .ap-imp-h2, .ap-cta-h2, .ap-ctitle { font-family: 'Cal Sans', sans-serif; font-weight: 400; }
     </style>
 </head>
 <body>
