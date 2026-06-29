@@ -10286,6 +10286,7 @@ p {
 /*  6.1 Footer Style 1
 /*----------------------------------------*/
 .vl-footer-area {
+  background-image: url('../img/footer/vl-footer-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
