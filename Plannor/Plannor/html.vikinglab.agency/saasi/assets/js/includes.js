@@ -35,6 +35,19 @@
                             el.setAttribute('src', base + src);
                         }
                     });
+                    // Fix inline style background-image url() references
+                    tmp.querySelectorAll('[style]').forEach(function(el) {
+                        var style = el.getAttribute('style');
+                        if (style && style.indexOf('url(') !== -1) {
+                            var fixed = style.replace(/url\(['"]?([^'")]+)['"]?\)/g, function(match, url) {
+                                if (url.charAt(0) !== '/' && url.indexOf('://') === -1 && url.indexOf('data:') !== 0) {
+                                    return 'url(' + base + url + ')';
+                                }
+                                return match;
+                            });
+                            el.setAttribute('style', fixed);
+                        }
+                    });
                 }
 
                 // Collect inline scripts before moving nodes
