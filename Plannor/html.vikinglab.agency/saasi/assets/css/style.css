@@ -2533,19 +2533,27 @@
   object-position: top center;
 }
 .vl-tab-thumb-dashbord-framed {
-  background: #ffffff;
-  border: 2.5px solid #ddd6fe;
+  background: #ede9fe;
+  border: 2px solid #c4b5fd;
   border-radius: 24px;
-  padding: 10px;
-  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.10);
-  overflow: hidden;
+  padding: 14px;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.12);
+  overflow: visible;
 }
-.vl-tab-thumb-dashbord-framed img {
+.vl-tab-thumb-dashbord-framed .tab-img-inner {
+  background: #ffffff;
   border-radius: 16px;
+  border: 1px solid #e9d5ff;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+.vl-tab-thumb-dashbord-framed .tab-img-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  display: block;
+  border-radius: 0;
 }
 .vl-tab-thumb:hover .vl-tab-thumb-bg {
   transform: rotate(0);
