@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* ── tokens ───────────────────────────────────────── */
+        /* â”€â”€ tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         :root {
             --p:      #5932EA;
             --p-d:    #4520d4;
@@ -31,13 +31,13 @@
             --border: #ede9fe;
         }
 
-        /* ── page background ──────────────────────────────── */
+        /* â”€â”€ page background â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-page { background: #f8f8fc; padding-bottom: 36px; }
 
-        /* ── footer fix ───────────────────────────────────── */
+        /* â”€â”€ footer fix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .vl-footer-area { margin-top: 0 !important; padding-top: 80px !important; }
 
-        /* ── hero header ──────────────────────────────────── */
+        /* â”€â”€ hero header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-hero {
             background: #fff;
             border-bottom: 1px solid #f0eeff;
@@ -92,7 +92,7 @@
             position: relative;
         }
 
-        /* ── cards section ────────────────────────────────── */
+        /* â”€â”€ cards section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-cards-section { padding: 48px 0 0; }
         .tpl-cards-list {
             display: grid;
@@ -100,7 +100,7 @@
             gap: 24px;
         }
 
-        /* ── individual card ──────────────────────────────── */
+        /* â”€â”€ individual card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-card {
             background: #fff;
             border-radius: 20px;
@@ -237,7 +237,7 @@
         .btn-blue   { background: linear-gradient(135deg, #5932EA 0%, #772EFE 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
         .btn-orange { background: linear-gradient(135deg, #5932EA 0%, #7c3aed 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
 
-        /* ── security bar ─────────────────────────────────── */
+        /* â”€â”€ security bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-security {
             margin-top: 20px;
             background: #fff;
@@ -270,7 +270,7 @@
         }
         .tpl-sec-rhs i { color: #10b981; font-size: 18px; }
 
-        /* ── toast ────────────────────────────────────────── */
+        /* â”€â”€ toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-toast {
             position: fixed;
             bottom: 32px;
@@ -297,23 +297,27 @@
         }
         .tpl-toast i { color: #a7f3d0; font-size: 16px; }
 
-        /* ── responsive ───────────────────────────────────── */
+        /* â”€â”€ responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         @media (max-width: 1199px) {
-            .tpl-cards-list { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+            .tpl-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 991px) {
             .tpl-hero-inner { flex-direction: column; text-align: center; }
             .tpl-hero-rhs   { width: 220px; }
             .tpl-hero-desc  { max-width: 100%; }
-            .tpl-cards-list { grid-template-columns: repeat(2, 1fr); }
+            .tpl-browse-wrap { flex-direction: column; }
+            .tpl-sidebar { width: 100%; }
+            .tpl-cat-list { flex-direction: row; flex-wrap: wrap; }
+            .tpl-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 640px) {
             .tpl-hero-title { font-size: 28px; }
             .tpl-hero-rhs   { display: none; }
-            .tpl-cards-list { grid-template-columns: 1fr; }
+            .tpl-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
         @media (max-width: 576px) {
             .tpl-hero { padding: 50px 0 36px; }
+            .tpl-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -330,7 +334,7 @@
     <div id="global-header"></div>
 
     <main>
-        <!-- ── breadcrumb ──────────────────────────────────── -->
+        <!-- â”€â”€ breadcrumb â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <section class="vl-breadcrumb-area p-relative"
             style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
             <div class="container">
@@ -351,7 +355,7 @@
             </div>
         </section>
 
-        <!-- ── templates page ─────────────────────────────── -->
+        <!-- â”€â”€ templates page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <div class="tpl-page">
 
             <!-- HERO HEADER -->
@@ -674,3 +678,5 @@
     </script>
 </body>
 </html>
+
+
