@@ -1845,6 +1845,46 @@
             .ch-card-up { width: 130px; }
         }
 
+        /* =====================================================
+           EXTRA MOBILE FIXES
+        ====================================================== */
+        @media (max-width: 767px) {
+            /* Breadcrumb — reduce tall hero on mobile */
+            .vl-breadcrumb-area {
+                min-height: 180px !important;
+                padding-top: 60px !important;
+                padding-bottom: 20px !important;
+            }
+
+            /* Messaging section — hide background photos that sit behind phone mockup */
+            .msgv2-photo-woman,
+            .msgv2-photo-man { display: none !important; }
+            .msgv2-dots { display: none !important; }
+            .msgv2-left {
+                height: auto !important;
+                min-height: 0 !important;
+                background: linear-gradient(135deg, #f4f2ff 0%, #eef2ff 100%);
+                border-radius: 20px;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                padding: 20px 0;
+            }
+            .msgv2-phone {
+                position: relative !important;
+                left: auto !important;
+                bottom: auto !important;
+                margin: 0 auto;
+            }
+
+            /* Manage Funds visual — remove extra min-height once images stack statically */
+            .mf-visual { min-height: 0 !important; }
+        }
+
+        @media (max-width: 480px) {
+            .msgv2-phone { width: 130px !important; height: 275px !important; }
+        }
+
     </style>
 </head>
 
