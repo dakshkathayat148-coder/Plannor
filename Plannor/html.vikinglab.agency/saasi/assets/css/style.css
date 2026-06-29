@@ -2525,14 +2525,12 @@
   transition: 0.3s;
   aspect-ratio: 1006 / 750;
   overflow: hidden;
-  border-radius: 12px;
 }
 .vl-tab-thumb-dashbord img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  border-radius: 12px;
 }
 .vl-tab-thumb:hover .vl-tab-thumb-bg {
   transform: rotate(0);
