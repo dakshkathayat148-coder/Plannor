@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Plannor</title>
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        :root {
+            --brand: #5932EA;
+            --brand2: #772EFE;
+            --navy: #0f0e1a;
+            --muted: #64748b;
+        }
+
+        /* ── Intro ── */
+        .int-intro {
+            background: #fff;
+            padding: 72px 0 64px;
+            text-align: center;
+        }
+        .int-eyebrow {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: #f0eeff; color: var(--brand);
+            font-size: 12px; font-weight: 800; letter-spacing: .1em;
+            text-transform: uppercase; padding: 6px 16px; border-radius: 99px;
+            margin-bottom: 20px;
+        }
+        .int-h {
+            font-family: 'Figtree', sans-serif;
+            font-size: 42px; font-weight: 800;
+            color: var(--navy); margin-bottom: 16px; line-height: 1.2;
+        }
+        @media(max-width:768px) { .int-h { font-size: 28px; } }
+        .int-desc {
+            font-family: 'Figtree', sans-serif;
+            font-size: 17px; color: #555; line-height: 1.7;
+            max-width: 560px; margin: 0 auto;
+        }
+
+        /* ── Grid ── */
+        .int-grid-wrap {
+            background: #f8f5ff;
+            padding: 64px 0 80px;
+        }
+        .int-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        @media(max-width:991px) { .int-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width:575px) { .int-grid { grid-template-columns: 1fr; } }
+
+        /* ── Card ── */
+        .int-card {
+            background: #fff;
+            border-radius: 20px;
+            border: 1.5px solid #ede9fe;
+            padding: 32px 28px;
+            display: flex; flex-direction: column; gap: 16px;
+            transition: box-shadow .2s, transform .2s;
+            text-decoration: none !important;
+        }
+        .int-card:hover {
+            box-shadow: 0 16px 48px rgba(89,50,234,.10);
+            transform: translateY(-4px);
+        }
+        .int-card-top {
+            display: flex; align-items: center; gap: 16px;
+        }
+        .int-logo {
+            width: 56px; height: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            font-size: 26px;
+        }
+        .int-card-name {
+            font-family: 'Figtree', sans-serif;
+            font-size: 18px; font-weight: 800;
+            color: var(--navy); margin: 0;
+        }
+        .int-card-cat {
+            font-size: 11px; font-weight: 700; letter-spacing: .08em;
+            text-transform: uppercase; color: var(--muted);
+            margin-top: 2px;
+        }
+        .int-card-desc {
+            font-family: 'Figtree', sans-serif;
+            font-size: 14px; color: #555; line-height: 1.65;
+            margin: 0;
+        }
+        .int-card-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 700;
+            padding: 5px 12px; border-radius: 99px;
+            width: fit-content; margin-top: auto;
+        }
+        .badge-live {
+            background: #f0fdf4; color: #16a34a;
+        }
+        .badge-ai {
+            background: #f0eeff; color: var(--brand);
+        }
+
+        /* Featured (wide) card — Claude spans full col */
+        .int-card-featured {
+            grid-column: span 1;
+        }
+
+        /* ── Bottom CTA ── */
+        .int-cta {
+            background: #fff;
+            padding: 64px 0 80px;
+            text-align: center;
+        }
+        .int-cta-box {
+            background: linear-gradient(135deg, #3d1eb5 0%, #5932EA 55%, #772EFE 100%);
+            border-radius: 24px;
+            padding: 56px 40px;
+        }
+        .int-cta-box h2 {
+            font-family: 'Figtree', sans-serif;
+            font-size: 30px; font-weight: 800;
+            color: #fff; margin-bottom: 12px;
+        }
+        .int-cta-box p {
+            font-size: 16px; color: rgba(255,255,255,.75);
+            margin-bottom: 28px; font-family: 'Figtree', sans-serif;
+        }
+        .int-cta-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #fff; color: var(--brand);
+            border-radius: 99px; padding: 14px 34px;
+            font-size: 15px; font-weight: 800;
+            text-decoration: none; transition: opacity .2s;
+            font-family: 'Figtree', sans-serif;
+        }
+        .int-cta-btn:hover { opacity: .9; color: var(--brand); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+        <!-- Banner -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px!important;padding-bottom:30px!important;min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Integrations</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Integrations</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intro -->
+        <section class="int-intro">
+            <div class="container">
+                <div class="int-eyebrow"><i class="fa-solid fa-plug"></i> Connect Everything</div>
+                <h2 class="int-h">Tools your team already uses,<br>now connected to Plannor.</h2>
+                <p class="int-desc">Plannor plugs into your existing software stack — accounting, scheduling, AI, and more — so nothing needs to change except how much time you save.</p>
+            </div>
+        </section>
+
+        <!-- Integration Cards -->
+        <section class="int-grid-wrap">
+            <div class="container">
+                <div class="int-grid">
+
+                    <!-- Xero -->
+                    <div class="int-card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#f0fdf8;">
+                                <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="24" fill="#13B5EA"/>
+                                    <text x="24" y="32" font-size="20" font-weight="900" text-anchor="middle" fill="#fff" font-family="Arial">X</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">Xero</h3>
+                                <div class="int-card-cat">Accounting</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Sync invoices, payroll, and NDIS claims directly into Xero. Eliminate double entry and keep your books accurate in real time.</p>
+                        <span class="int-card-badge badge-live"><i class="fa-solid fa-circle-check"></i> Live Integration</span>
+                    </div>
+
+                    <!-- MYOB -->
+                    <div class="int-card" data-aos="fade-up" data-aos-delay="60">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#fff3e0;">
+                                <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="24" fill="#E8621A"/>
+                                    <text x="24" y="31" font-size="13" font-weight="900" text-anchor="middle" fill="#fff" font-family="Arial">MYOB</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">MYOB</h3>
+                                <div class="int-card-cat">Accounting</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Push billing data, timesheets, and worker costs to MYOB automatically. Stay compliant without the manual reconciliation.</p>
+                        <span class="int-card-badge badge-live"><i class="fa-solid fa-circle-check"></i> Live Integration</span>
+                    </div>
+
+                    <!-- QuickBooks -->
+                    <div class="int-card" data-aos="fade-up" data-aos-delay="120">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#e8f5e9;">
+                                <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="24" fill="#2CA01C"/>
+                                    <text x="24" y="32" font-size="20" font-weight="900" text-anchor="middle" fill="#fff" font-family="Arial">Q</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">QuickBooks</h3>
+                                <div class="int-card-cat">Accounting</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Sync financial data with QuickBooks Online. Track revenue, expenses, and NDIS funding without leaving your workflow.</p>
+                        <span class="int-card-badge badge-live"><i class="fa-solid fa-circle-check"></i> Live Integration</span>
+                    </div>
+
+                    <!-- Google Calendar -->
+                    <div class="int-card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#fce4ec;">
+                                <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="48" height="48" rx="10" fill="#fff"/>
+                                    <rect x="4" y="4" width="40" height="40" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+                                    <rect x="4" y="4" width="40" height="12" rx="0" fill="#1a73e8"/>
+                                    <rect x="4" y="4" width="40" height="12" rx="8" fill="#1a73e8"/>
+                                    <rect x="4" y="10" width="40" height="6" fill="#1a73e8"/>
+                                    <text x="24" y="36" font-size="16" font-weight="900" text-anchor="middle" fill="#1a73e8" font-family="Arial">31</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">Google Calendar</h3>
+                                <div class="int-card-cat">Scheduling</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Shifts, appointments, and care visits sync to Google Calendar automatically. Workers always know where to be.</p>
+                        <span class="int-card-badge badge-live"><i class="fa-solid fa-circle-check"></i> Live Integration</span>
+                    </div>
+
+                    <!-- iCall -->
+                    <div class="int-card" data-aos="fade-up" data-aos-delay="60">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#e8eaf6;">
+                                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3f51b5,#7986cb);display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa-solid fa-phone" style="color:#fff;font-size:22px;"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">iCall</h3>
+                                <div class="int-card-cat">Communications</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Log calls and participant communication directly inside Plannor. Keep every interaction documented and auditable.</p>
+                        <span class="int-card-badge badge-live"><i class="fa-solid fa-circle-check"></i> Live Integration</span>
+                    </div>
+
+                    <!-- ChatGPT -->
+                    <div class="int-card" data-aos="fade-up" data-aos-delay="120">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#f0fdf4;">
+                                <div style="width:48px;height:48px;border-radius:12px;background:#10a37f;display:flex;align-items:center;justify-content:center;">
+                                    <svg width="26" height="26" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-6.211-3.864 10.079 10.079 0 0 0-11.784 4.945 9.964 9.964 0 0 0-6.675 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 6.211 3.864 10.079 10.079 0 0 0 11.784-4.945 9.965 9.965 0 0 0 6.675-4.834 10.079 10.079 0 0 0-1.24-11.818zm-17.798 24.062a7.479 7.479 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.543zm-16.134-6.904a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zm-2.223-17.19a7.47 7.47 0 0 1 3.903-3.287c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L10.014 23.37a7.504 7.504 0 0 1-2.637-10.532zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.497v4.998l-4.331 2.5-4.331-2.5V21.218z" fill="currentColor" fill-opacity=".9" style="color:#fff"/></svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">ChatGPT</h3>
+                                <div class="int-card-cat">AI Assistant</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Use ChatGPT inside Plannor to draft progress notes, summarise incidents, and generate care plan content with one click.</p>
+                        <span class="int-card-badge badge-ai"><i class="fa-solid fa-sparkles"></i> AI Powered</span>
+                    </div>
+
+                    <!-- Claude -->
+                    <div class="int-card" style="border-color:#d8b4fe;background:linear-gradient(135deg,#fdfbff,#f9f5ff);" data-aos="fade-up" data-aos-delay="60">
+                        <div class="int-card-top">
+                            <div class="int-logo" style="background:#f0eeff;">
+                                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa-solid fa-brain" style="color:#fff;font-size:22px;"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="int-card-name">Claude</h3>
+                                <div class="int-card-cat">AI Assistant</div>
+                            </div>
+                        </div>
+                        <p class="int-card-desc">Plannor's native AI engine is powered by Claude — delivering intelligent progress notes, billing checks, and risk alerts built right into your workflow.</p>
+                        <span class="int-card-badge badge-ai"><i class="fa-solid fa-sparkles"></i> Native AI Engine</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="int-cta">
+            <div class="container">
+                <div class="int-cta-box" data-aos="fade-up">
+                    <h2>Need a custom integration?</h2>
+                    <p>We're always expanding our integrations. Reach out and we'll work with your team directly.</p>
+                    <a href="../contact/" class="int-cta-btn">
+                        <i class="fa-solid fa-envelope"></i> Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+</body>
+</html>

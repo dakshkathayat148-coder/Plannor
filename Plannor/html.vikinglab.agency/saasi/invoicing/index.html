@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor – Invoicing Software</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+
+        /* =========================================================
+           PAGE INTRO
+        ========================================================= */
+        .pg-intro {
+            background: #fff;
+            padding: 76px 0 72px;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .pg-intro-eye {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: #5932EA;
+            background: rgba(89,50,234,0.08); padding: 6px 20px;
+            border-radius: 30px; margin-bottom: 26px;
+        }
+        .pg-intro-eye-dot { width: 6px; height: 6px; border-radius: 50%; background: #5932EA; display: inline-block; }
+        .pg-intro-h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 56px; font-weight: 900;
+            line-height: 1.05; letter-spacing: -0.03em;
+            color: #0D1238; margin-bottom: 20px;
+        }
+        .pg-intro-h1 em { font-style: normal; color: #5932EA; }
+        .pg-intro-p {
+            font-size: 17px; color: #64748b; line-height: 1.75;
+            max-width: 590px; margin: 0 auto 46px; font-weight: 400;
+        }
+        .pg-pills { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .pg-pill {
+            display: inline-flex; align-items: center; gap: 9px;
+            font-size: 13px; font-weight: 700; color: #374151;
+            background: #F8FAFC; border: 1.5px solid #E5E7EB;
+            padding: 9px 20px; border-radius: 40px;
+        }
+        .pg-pill-d { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .pg-pill-d.p { background: #5932EA; }
+        .pg-pill-d.b { background: #2563EB; }
+
+        /* =========================================================
+           SHARED FEATURE SECTION
+        ========================================================= */
+        .fs          { padding: 84px 0 90px; }
+        .fs-in       { display: flex; align-items: center; gap: 72px; }
+        .fs-in.rev   { flex-direction: row-reverse; }
+        .fs-txt      { flex: 0 0 44%; width: 44%; }
+        .fs-vis      { flex: 1; min-width: 0; }
+
+        .fs-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 10.5px; font-weight: 800; letter-spacing: 2px;
+            text-transform: uppercase; padding: 5px 16px; border-radius: 30px; margin-bottom: 20px;
+        }
+        .fs-tag.p { background: rgba(89,50,234,0.09); color: #5932EA; }
+        .fs-tag.b { background: rgba(37,99,235,0.09);  color: #2563EB; }
+
+        .fs-h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px; font-weight: 900;
+            line-height: 1.08; letter-spacing: -0.025em;
+            color: #0D1238; margin-bottom: 18px;
+        }
+        .fs-desc {
+            font-size: 15.5px; color: #64748b;
+            line-height: 1.78; margin-bottom: 38px; max-width: 460px;
+        }
+        .fs-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px; }
+        .fs-li   { display: flex; align-items: flex-start; gap: 14px; }
+        .fs-ico  {
+            width: 36px; height: 36px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+        }
+        .fs-ico.p { background: rgba(89,50,234,0.1); }
+        .fs-ico.b { background: rgba(37,99,235,0.1); }
+        .fs-li-body strong { font-size: 14.5px; font-weight: 700; color: #0D1238; display: block; line-height: 1.3; margin-bottom: 4px; }
+        .fs-li-body span   { font-size: 13.5px; color: #64748b; line-height: 1.65; }
+
+        .bg-p { background: linear-gradient(148deg, #f3f0ff 0%, #f8f6ff 55%, #ede9fe 100%); }
+        .bg-b { background: linear-gradient(148deg, #EFF6FF 0%, #F5F8FF 55%, #E0EAFF 100%); }
+
+        /* =========================================================
+           SHARED CARD SHELL
+        ========================================================= */
+        .vis-card {
+            border-radius: 22px; overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 28px 70px rgba(89,50,234,0.12);
+            background: #fff;
+        }
+        .vis-card.blue-shadow {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 28px 70px rgba(37,99,235,0.12);
+        }
+        .vis-hd {
+            padding: 18px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .vis-hd.purple { background: linear-gradient(135deg, #4826C9 0%, #5932EA 60%, #7C3AED 100%); }
+        .vis-hd.blue   { background: linear-gradient(135deg, #1540B8 0%, #1D4ED8 55%, #2563EB 100%); }
+        .vis-hd-title  { font-size: 14.5px; font-weight: 800; color: #fff; }
+        .vis-hd-pill {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(255,255,255,0.16); color: #fff;
+            font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 30px;
+        }
+        .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; animation: blink 2s ease-in-out infinite; }
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+        .vis-hd-badge { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); font-size: 10.5px; font-weight: 700; padding: 4px 12px; border-radius: 30px; }
+        .vis-divider  { height: 1px; background: #f1f5f9; }
+        .vis-row-hd   { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; padding: 14px 22px 8px; }
+
+        /* =========================================================
+           S1 — INVOICING  (purple · text-left · vis-right)
+        ========================================================= */
+        .inv-meta {
+            display: grid; grid-template-columns: 1fr 1fr;
+            padding: 18px 24px; border-bottom: 1px solid #f1f5f9; gap: 16px;
+        }
+        .inv-ml { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .inv-mv { font-size: 13.5px; font-weight: 700; color: #0f172a; }
+        .inv-mv.ac { color: #5932EA; font-size: 15px; }
+        .inv-mv-sub { font-size: 11.5px; font-weight: 500; color: #94a3b8; margin-top: 2px; }
+        .inv-lines { padding: 8px 24px 4px; }
+        .inv-lhd {
+            display: grid; grid-template-columns: 1fr 50px 78px;
+            font-size: 10px; font-weight: 700; color: #94a3b8;
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 9px 0; border-bottom: 1px solid #f1f5f9;
+        }
+        .inv-lhd span:not(:first-child) { text-align: right; }
+        .inv-lr {
+            display: grid; grid-template-columns: 1fr 50px 78px;
+            padding: 11px 0; border-bottom: 1px solid #f8fafc; align-items: center;
+        }
+        .inv-lr:last-child { border-bottom: none; }
+        .inv-ln  { font-size: 13px; font-weight: 600; color: #374151; }
+        .inv-lc  { font-size: 10px; color: #94a3b8; margin-top: 3px; }
+        .inv-lh  { font-size: 13px; color: #64748b; text-align: right; }
+        .inv-la  { font-size: 13.5px; font-weight: 700; color: #0f172a; text-align: right; }
+        .inv-total {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 24px; background: #F5F3FF; border-top: 2px solid #DDD6FE;
+        }
+        .inv-total-l { font-size: 14px; font-weight: 800; color: #0D1238; }
+        .inv-total-r { display: flex; align-items: center; gap: 14px; }
+        .inv-total-v { font-size: 24px; font-weight: 900; color: #5932EA; }
+        .inv-paid {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 700;
+            background: #ede9fe; color: #5932EA; padding: 5px 14px; border-radius: 30px;
+        }
+        .inv-pd { width: 7px; height: 7px; border-radius: 50%; background: #5932EA; }
+        .inv-foot {
+            display: flex; align-items: center; gap: 9px;
+            padding: 12px 24px; background: #FAFBFF; border-top: 1px solid #f1f5f9;
+        }
+        .inv-foot-t { font-size: 12px; color: #64748b; }
+        .inv-foot-t strong { color: #5932EA; font-weight: 700; }
+
+        /* =========================================================
+           S2 — NDIS READY  (blue · vis-left · text-right)
+        ========================================================= */
+        .nr-checks {
+            display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #f1f5f9;
+        }
+        .nr-chk {
+            display: flex; align-items: center; gap: 11px;
+            padding: 13px 16px; border-right: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9;
+        }
+        .nr-chk:nth-child(2n) { border-right: none; }
+        .nr-chk:nth-child(3), .nr-chk:nth-child(4) { border-bottom: none; }
+        .nr-chk-ico {
+            width: 26px; height: 26px; border-radius: 8px;
+            background: #dbeafe; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .nr-chk-n { font-size: 12px; font-weight: 700; color: #0f172a; line-height: 1.3; }
+        .nr-chk-s { font-size: 10.5px; color: #94a3b8; margin-top: 2px; }
+        .nr-items-hd { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; padding: 14px 20px 8px; }
+        .nr-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 14px; margin: 0 14px 7px;
+            background: #F8FAFC; border-radius: 11px; border: 1px solid #f1f5f9;
+        }
+        .nr-item-n { font-size: 12.5px; font-weight: 700; color: #0f172a; }
+        .nr-item-c { font-size: 10.5px; color: #94a3b8; margin-top: 2px; }
+        .nr-item-r { font-size: 14px; font-weight: 800; color: #2563EB; }
+        .nr-budget { padding: 14px 20px 18px; }
+        .nr-bud { margin-bottom: 12px; }
+        .nr-bud:last-child { margin-bottom: 0; }
+        .nr-bud-t { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+        .nr-bud-n { font-size: 12.5px; font-weight: 700; color: #0f172a; }
+        .nr-bud-v { font-size: 11.5px; color: #64748b; }
+        .nr-bud-v strong { color: #2563EB; font-weight: 700; }
+        .nr-track { height: 7px; background: #EFF6FF; border-radius: 4px; overflow: hidden; }
+        .nr-fill   { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #2563EB, #60A5FA); }
+        .nr-fill.w { background: linear-gradient(90deg, #5932EA, #7C3AED); }
+
+        /* =========================================================
+           S3 — ACCOUNTING INTEGRATION  (purple · text-left · vis-right)
+        ========================================================= */
+        .ai-conns { padding: 20px 22px; border-bottom: 1px solid #f1f5f9; display: flex; flex-direction: column; gap: 12px; }
+        .ai-row   { display: flex; align-items: center; gap: 12px; }
+        .ai-box   {
+            flex: 1; display: flex; align-items: center; gap: 11px;
+            background: #F8FAFC; border: 2px solid #f1f5f9; border-radius: 13px; padding: 11px 14px;
+        }
+        .ai-box.on  { background: #F5F3FF; border-color: #DDD6FE; }
+        .ai-box.dim { opacity: 0.5; }
+        .ai-logo {
+            width: 38px; height: 38px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 900; color: #fff; flex-shrink: 0;
+        }
+        .ai-logo.p { background: #5932EA; }
+        .ai-logo.x { background: #13B5EA; }
+        .ai-logo.m { background: #8CC63F; }
+        .ai-box-n { font-size: 13px; font-weight: 700; color: #0f172a; }
+        .ai-box-s { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+        .ai-box-st { margin-left: auto; font-size: 11.5px; font-weight: 700; }
+        .ai-box-st.on  { color: #5932EA; }
+        .ai-box-st.off { color: #94a3b8; }
+        .ai-arr { flex-shrink: 0; display: flex; align-items: center; }
+        .ai-log-row { display: flex; align-items: center; gap: 11px; padding: 9px 22px; border-bottom: 1px solid #f8fafc; }
+        .ai-log-row:last-child { border-bottom: none; }
+        .ai-log-ico { width: 28px; height: 28px; border-radius: 8px; background: #ede9fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .ai-log-txt { flex: 1; font-size: 12.5px; color: #374151; }
+        .ai-log-txt strong { color: #5932EA; }
+        .ai-log-t   { font-size: 11px; color: #94a3b8; flex-shrink: 0; }
+        .ai-stats { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid #f1f5f9; }
+        .ai-stat  { padding: 15px 12px; text-align: center; border-right: 1px solid #f1f5f9; }
+        .ai-stat:last-child { border-right: none; }
+        .ai-stat-v { font-size: 21px; font-weight: 800; color: #5932EA; }
+        .ai-stat-l { font-size: 10.5px; color: #94a3b8; font-weight: 600; margin-top: 4px; }
+
+        /* =========================================================
+           S4 — CASHFLOW MANAGEMENT  (blue · vis-left · text-right)
+        ========================================================= */
+        .cf-metrics { display: grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid #f1f5f9; }
+        .cf-met     { padding: 17px 12px; text-align: center; border-right: 1px solid #f1f5f9; }
+        .cf-met:last-child { border-right: none; }
+        .cf-met-v   { font-size: 20px; font-weight: 900; line-height: 1; }
+        .cf-met-v.b { color: #2563EB; }
+        .cf-met-v.p { color: #5932EA; }
+        .cf-met-v.r { color: #DC2626; }
+        .cf-met-l   { font-size: 10.5px; color: #94a3b8; font-weight: 600; margin-top: 5px; }
+        .cf-met-t   { font-size: 10.5px; font-weight: 700; margin-top: 4px; }
+        .cf-met-t.up  { color: #5932EA; }
+        .cf-met-t.dn  { color: #DC2626; }
+
+        /* bar chart */
+        .cf-chart { padding: 18px 22px 14px; border-bottom: 1px solid #f1f5f9; }
+        .cf-chart-l { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+        .cf-bars  { display: flex; align-items: flex-end; gap: 8px; height: 80px; }
+        .cf-bc    { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; height: 100%; justify-content: flex-end; }
+        .cf-bpair { width: 100%; display: flex; align-items: flex-end; gap: 3px; flex: 1; }
+        .cf-ba    { flex: 1; border-radius: 4px 4px 0 0; }
+        .cf-bb    { flex: 1; border-radius: 4px 4px 0 0; }
+        .cf-bm    { font-size: 9.5px; color: #94a3b8; font-weight: 600; }
+        .cf-leg   { display: flex; gap: 16px; margin-top: 10px; }
+        .cf-leg-i { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; color: #64748b; }
+        .cf-leg-s { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+        /* overdue */
+        .cf-od-row { display: flex; align-items: center; gap: 13px; padding: 10px 22px; border-bottom: 1px solid #f8fafc; }
+        .cf-od-row:last-of-type { border-bottom: none; }
+        .cf-od-av  { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800; color: #fff; flex-shrink: 0; }
+        .cf-od-inf { flex: 1; min-width: 0; }
+        .cf-od-n   { font-size: 12.5px; font-weight: 700; color: #0f172a; }
+        .cf-od-d   { font-size: 11px; color: #DC2626; font-weight: 600; margin-top: 2px; }
+        .cf-od-a   { font-size: 14px; font-weight: 800; color: #0D1238; flex-shrink: 0; }
+        .cf-od-btn { font-size: 11px; font-weight: 700; color: #2563EB; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 5px 12px; border-radius: 8px; flex-shrink: 0; white-space: nowrap; }
+        .cf-foot   { display: flex; align-items: center; justify-content: space-between; padding: 13px 22px; background: #EFF6FF; border-top: 1px solid #BFDBFE; }
+        .cf-foot-l { font-size: 12px; font-weight: 700; color: #1D4ED8; }
+        .cf-foot-v { font-size: 17px; font-weight: 900; color: #2563EB; }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media (max-width: 1100px) {
+            .pg-intro-h1 { font-size: 44px; }
+            .fs-h2 { font-size: 38px; }
+            .fs-in { gap: 48px; }
+        }
+        @media (max-width: 900px) {
+            .pg-intro-h1 { font-size: 36px; }
+            .fs-h2 { font-size: 32px; }
+            .fs { padding: 60px 0 65px; }
+        }
+        @media (max-width: 768px) {
+            .pg-intro { padding: 54px 0 50px; }
+            .pg-intro-h1 { font-size: 30px; }
+            .fs-in, .fs-in.rev { flex-direction: column; gap: 38px; }
+            .fs-txt { flex: none; width: 100%; }
+            .nr-checks { grid-template-columns: 1fr; }
+            .nr-chk { border-right: none; }
+            .nr-chk:nth-child(3), .nr-chk:nth-child(4) { border-bottom: 1px solid #f1f5f9; }
+            .nr-chk:last-child { border-bottom: none; }
+            .cf-metrics { grid-template-columns: 1fr 1fr; }
+            .cf-met:nth-child(2) { border-right: none; }
+            .cf-met:nth-child(3) { grid-column: 1/-1; border-top: 1px solid #f1f5f9; border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- BREADCRUMB -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%);
+                   display:flex; align-items:center; justify-content:center;
+                   padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Invoicing</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Invoicing</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE INTRO -->
+        <section class="pg-intro">
+            <div class="container">
+                <div class="pg-intro-eye">
+                    <span class="pg-intro-eye-dot"></span>
+                    Invoicing &amp; Billing Software
+                </div>
+                <h1 class="pg-intro-h1">Stop chasing payments.<br/><em>Start getting paid.</em></h1>
+                <p class="pg-intro-p">
+                    Plannor automates your entire billing cycle — from shift to invoice to bank account. Purpose-built for NDIS providers with built-in compliance, accounting integrations, and real-time cashflow visibility.
+                </p>
+                <div class="pg-pills">
+                    <div class="pg-pill"><div class="pg-pill-d p"></div>Auto Invoicing</div>
+                    <div class="pg-pill"><div class="pg-pill-d b"></div>NDIS Compliant</div>
+                    <div class="pg-pill"><div class="pg-pill-d p"></div>Xero &amp; MYOB Sync</div>
+                    <div class="pg-pill"><div class="pg-pill-d b"></div>Real-time Cashflow</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 1 — INVOICING
+             purple bg · text left · visual right
+        ============================================================ -->
+        <section class="fs bg-p">
+            <div class="container">
+                <div class="fs-in">
+
+                    <div class="fs-txt">
+                        <div class="fs-tag p">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                            Invoicing
+                        </div>
+                        <h2 class="fs-h2">Professional invoices.<br/>Zero manual work.</h2>
+                        <p class="fs-desc">
+                            Every approved shift becomes a fully itemised, client-ready invoice — automatically. No spreadsheets, no manual entry. Just accurate invoices, delivered on time.
+                        </p>
+                        <ul class="fs-list">
+                            <li class="fs-li">
+                                <div class="fs-ico p">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Auto-generated from approved shifts</strong>
+                                    <span>Completed shifts convert to invoices instantly with the correct participant, rate, and support category — no manual input required.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico p">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Deliver directly to plan managers</strong>
+                                    <span>Send invoices straight to clients, plan managers, or support coordinators — no manual email prep needed.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico p">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Track every invoice in real time</strong>
+                                    <span>Know exactly where each invoice sits — draft, sent, viewed, or paid — so nothing slips through the cracks at month end.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- VISUAL: Invoice Card -->
+                    <div class="fs-vis">
+                        <div class="vis-card">
+                            <div class="vis-hd purple">
+                                <div class="vis-hd-title">
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <div style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;">
+                                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-size:15px;font-weight:800;color:#fff;">Plannor</div>
+                                            <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;">Tax Invoice</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vis-hd-badge">Auto-Generated</div>
+                            </div>
+                            <div class="inv-meta">
+                                <div>
+                                    <div class="inv-ml">Invoice No.</div>
+                                    <div class="inv-mv ac">INV-2026-0412</div>
+                                </div>
+                                <div>
+                                    <div class="inv-ml">Invoice Date</div>
+                                    <div class="inv-mv">30 June 2026</div>
+                                </div>
+                                <div>
+                                    <div class="inv-ml">Billed To</div>
+                                    <div class="inv-mv">Margaret Thompson</div>
+                                    <div class="inv-mv-sub">Brightlife Plan Management</div>
+                                </div>
+                                <div>
+                                    <div class="inv-ml">Service Period</div>
+                                    <div class="inv-mv">1 Jun – 30 Jun 2026</div>
+                                </div>
+                            </div>
+                            <div class="inv-lines">
+                                <div class="inv-lhd"><span>Support Item</span><span>Hrs</span><span>Amount</span></div>
+                                <div class="inv-lr">
+                                    <div><div class="inv-ln">Personal Care</div><div class="inv-lc">01_011_0107_1_1 · Weekday</div></div>
+                                    <div class="inv-lh">8.0</div>
+                                    <div class="inv-la">$467.20</div>
+                                </div>
+                                <div class="inv-lr">
+                                    <div><div class="inv-ln">Community Access</div><div class="inv-lc">04_104_0125_6_1 · Weekday</div></div>
+                                    <div class="inv-lh">4.0</div>
+                                    <div class="inv-la">$258.80</div>
+                                </div>
+                                <div class="inv-lr">
+                                    <div><div class="inv-ln">Domestic Assistance</div><div class="inv-lc">01_019_0120_1_1 · Standard</div></div>
+                                    <div class="inv-lh">2.0</div>
+                                    <div class="inv-la">$106.20</div>
+                                </div>
+                            </div>
+                            <div class="inv-total">
+                                <div class="inv-total-l">Total Amount</div>
+                                <div class="inv-total-r">
+                                    <div class="inv-paid"><div class="inv-pd"></div>Paid</div>
+                                    <div class="inv-total-v">$832.20</div>
+                                </div>
+                            </div>
+                            <div class="inv-foot">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                <div class="inv-foot-t">Emailed to plan manager · <strong>Viewed 2 hours ago</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 2 — NDIS READY
+             blue bg · visual left · text right
+        ============================================================ -->
+        <section class="fs bg-b">
+            <div class="container">
+                <div class="fs-in rev">
+
+                    <div class="fs-txt">
+                        <div class="fs-tag b">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            NDIS Ready
+                        </div>
+                        <h2 class="fs-h2">Every invoice NDIS-compliant, every time.</h2>
+                        <p class="fs-desc">
+                            Purpose-built for NDIS providers. Support Catalogue rates, price guide items, and PRODA integration are all built in — so every claim goes out accurate and ready.
+                        </p>
+                        <ul class="fs-list">
+                            <li class="fs-li">
+                                <div class="fs-ico b">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>NDIS price guide rates auto-applied</strong>
+                                    <span>Current rates applied per support category automatically — always up to date, never under- or over-billed.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico b">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Submit claims directly to PRODA</strong>
+                                    <span>Connect your PRODA account and submit bulk claims to the NDIA without ever leaving Plannor.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico b">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Pre-submission error checking</strong>
+                                    <span>Plannor catches budget overruns, expired plans, and coding errors before they reach the NDIA — so you get paid first time.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- VISUAL: NDIS Billing Panel -->
+                    <div class="fs-vis">
+                        <div class="vis-card blue-shadow">
+                            <div class="vis-hd blue">
+                                <div class="vis-hd-title">NDIS Billing Centre</div>
+                                <div style="display:flex;align-items:center;gap:8px;">
+                                    <div class="vis-hd-pill"><div class="live-dot"></div>PRODA Connected</div>
+                                    <div class="vis-hd-badge">PG 2025–26</div>
+                                </div>
+                            </div>
+                            <div class="nr-checks">
+                                <div class="nr-chk">
+                                    <div class="nr-chk-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                    <div><div class="nr-chk-n">Price Guide Current</div><div class="nr-chk-s">Auto-updated</div></div>
+                                </div>
+                                <div class="nr-chk">
+                                    <div class="nr-chk-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                    <div><div class="nr-chk-n">All Plan Types Supported</div><div class="nr-chk-s">Self, Plan &amp; NDIA-managed</div></div>
+                                </div>
+                                <div class="nr-chk">
+                                    <div class="nr-chk-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                    <div><div class="nr-chk-n">Pre-submission Validated</div><div class="nr-chk-s">Zero errors before NDIA</div></div>
+                                </div>
+                                <div class="nr-chk">
+                                    <div class="nr-chk-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                    <div><div class="nr-chk-n">Live Claim Tracking</div><div class="nr-chk-s">Approved · Pending · Rejected</div></div>
+                                </div>
+                            </div>
+                            <div class="nr-items-hd">Support items on this invoice</div>
+                            <div class="nr-item">
+                                <div><div class="nr-item-n">Personal Care</div><div class="nr-item-c">01_011_0107_1_1 · Weekday</div></div>
+                                <div class="nr-item-r">$58.40<span style="font-size:11px;font-weight:600;color:#64748b;">/hr</span></div>
+                            </div>
+                            <div class="nr-item">
+                                <div><div class="nr-item-n">Community Access</div><div class="nr-item-c">04_104_0125_6_1 · Weekday</div></div>
+                                <div class="nr-item-r">$64.70<span style="font-size:11px;font-weight:600;color:#64748b;">/hr</span></div>
+                            </div>
+                            <div class="nr-item" style="margin-bottom:4px;">
+                                <div><div class="nr-item-n">Supported Ind. Living</div><div class="nr-item-c">07_002_0106_6_3 · Standard</div></div>
+                                <div class="nr-item-r">$78.85<span style="font-size:11px;font-weight:600;color:#64748b;">/hr</span></div>
+                            </div>
+                            <div class="vis-row-hd" style="border-top:1px solid #f1f5f9;">Participant plan budgets</div>
+                            <div class="nr-budget">
+                                <div class="nr-bud">
+                                    <div class="nr-bud-t"><div class="nr-bud-n">Margaret Thompson</div><div class="nr-bud-v"><strong>$24,500</strong> / $38,000 used</div></div>
+                                    <div class="nr-track"><div class="nr-fill" style="width:64%;"></div></div>
+                                </div>
+                                <div class="nr-bud">
+                                    <div class="nr-bud-t"><div class="nr-bud-n">Robert Davis</div><div class="nr-bud-v"><strong>$18,900</strong> / $22,000 used</div></div>
+                                    <div class="nr-track"><div class="nr-fill w" style="width:86%;"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 3 — ACCOUNTING INTEGRATION
+             purple bg · text left · visual right
+        ============================================================ -->
+        <section class="fs bg-p">
+            <div class="container">
+                <div class="fs-in">
+
+                    <div class="fs-txt">
+                        <div class="fs-tag p">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                            Accounting Integration
+                        </div>
+                        <h2 class="fs-h2">Connect Xero or MYOB and stay in sync.</h2>
+                        <p class="fs-desc">
+                            Invoices, payments, and reconciliations flow across to Xero or MYOB automatically. Eliminate double-entry and keep your accounts always up to date — zero extra effort.
+                        </p>
+                        <ul class="fs-list">
+                            <li class="fs-li">
+                                <div class="fs-ico p">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>One-click Xero &amp; MYOB connection</strong>
+                                    <span>Connect in minutes with a single authorisation — Plannor handles every sync automatically from that point on.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico p">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>GST calculated correctly — BAS-ready</strong>
+                                    <span>GST rules applied accurately across all support categories, with BAS-ready figures exported straight to your accounting software.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico p">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Bank reconciliation matched automatically</strong>
+                                    <span>Incoming payments are matched to the correct invoice in your accounting system — no manual hunting through bank transactions.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- VISUAL: Accounting Sync Dashboard -->
+                    <div class="fs-vis">
+                        <div class="vis-card">
+                            <div class="vis-hd purple">
+                                <div class="vis-hd-title">Accounting Integration</div>
+                                <div class="vis-hd-pill"><div class="live-dot"></div>Syncing live</div>
+                            </div>
+                            <div class="ai-conns">
+                                <!-- Xero — active -->
+                                <div class="ai-row">
+                                    <div class="ai-box on">
+                                        <div class="ai-logo p">P</div>
+                                        <div><div class="ai-box-n">Plannor</div><div class="ai-box-s">Source of truth</div></div>
+                                    </div>
+                                    <div class="ai-arr">
+                                        <svg width="44" height="18" viewBox="0 0 44 18" fill="none">
+                                            <line x1="4" y1="9" x2="40" y2="9" stroke="#DDD6FE" stroke-width="2"/>
+                                            <polyline points="34,5 40,9 34,13" fill="none" stroke="#5932EA" stroke-width="2" stroke-linecap="round"/>
+                                            <polyline points="10,5 4,9 10,13" fill="none" stroke="#5932EA" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ai-box on">
+                                        <div class="ai-logo x">X</div>
+                                        <div style="flex:1;"><div class="ai-box-n">Xero</div><div class="ai-box-s">Last sync 2 min ago</div></div>
+                                        <div class="ai-box-st on">● Active</div>
+                                    </div>
+                                </div>
+                                <!-- MYOB — available -->
+                                <div class="ai-row">
+                                    <div class="ai-box dim">
+                                        <div class="ai-logo p">P</div>
+                                        <div><div class="ai-box-n">Plannor</div><div class="ai-box-s">Source of truth</div></div>
+                                    </div>
+                                    <div class="ai-arr">
+                                        <svg width="44" height="18" viewBox="0 0 44 18" fill="none">
+                                            <line x1="4" y1="9" x2="40" y2="9" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5 3"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ai-box dim">
+                                        <div class="ai-logo m">M</div>
+                                        <div style="flex:1;"><div class="ai-box-n">MYOB</div><div class="ai-box-s">Click to connect</div></div>
+                                        <div class="ai-box-st off">Connect →</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vis-row-hd">Recent sync activity</div>
+                            <div class="ai-log-row">
+                                <div class="ai-log-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="ai-log-txt">INV-2026-0412 synced to Xero · <strong>$832.20</strong></div>
+                                <div class="ai-log-t">2 min ago</div>
+                            </div>
+                            <div class="ai-log-row">
+                                <div class="ai-log-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="ai-log-txt">Payment matched · Robert Davis · <strong>$3,240.00</strong></div>
+                                <div class="ai-log-t">18 min ago</div>
+                            </div>
+                            <div class="ai-log-row">
+                                <div class="ai-log-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="ai-log-txt">GST calculated on 4 invoices — <strong>BAS-ready</strong></div>
+                                <div class="ai-log-t">1 hr ago</div>
+                            </div>
+                            <div class="ai-log-row">
+                                <div class="ai-log-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="ai-log-txt">Bank reconciliation matched · 6 transactions</div>
+                                <div class="ai-log-t">3 hr ago</div>
+                            </div>
+                            <div class="ai-stats">
+                                <div class="ai-stat"><div class="ai-stat-v">48</div><div class="ai-stat-l">Invoices synced</div></div>
+                                <div class="ai-stat"><div class="ai-stat-v">$0</div><div class="ai-stat-l">Discrepancies</div></div>
+                                <div class="ai-stat"><div class="ai-stat-v">100%</div><div class="ai-stat-l">Accuracy rate</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 4 — CASHFLOW MANAGEMENT
+             blue bg · visual left · text right
+        ============================================================ -->
+        <section class="fs bg-b">
+            <div class="container">
+                <div class="fs-in rev">
+
+                    <div class="fs-txt">
+                        <div class="fs-tag b">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            Cashflow Management
+                        </div>
+                        <h2 class="fs-h2">Your cashflow, clearly in view.</h2>
+                        <p class="fs-desc">
+                            Always know what's been invoiced, paid, and what's at risk. Spot overdue amounts early, forecast upcoming revenue, and make confident financial decisions every week.
+                        </p>
+                        <ul class="fs-list">
+                            <li class="fs-li">
+                                <div class="fs-ico b">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Live cashflow dashboard</strong>
+                                    <span>Total invoiced, received, outstanding, and overdue — updated in real time, visible at a glance on any device.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico b">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Automatic overdue alerts</strong>
+                                    <span>Overdue invoices flagged immediately with automatic reminders sent at 7, 14, and 30 days — no manual follow-up from your team.</span>
+                                </div>
+                            </li>
+                            <li class="fs-li">
+                                <div class="fs-ico b">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                </div>
+                                <div class="fs-li-body">
+                                    <strong>Payment forecasting</strong>
+                                    <span>Upcoming revenue projected from scheduled shifts and billing cycles — plan cash requirements weeks ahead with confidence.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- VISUAL: Cashflow Dashboard -->
+                    <div class="fs-vis">
+                        <div class="vis-card blue-shadow">
+                            <div class="vis-hd blue">
+                                <div class="vis-hd-title">Cashflow Dashboard</div>
+                                <div class="vis-hd-badge">Jan – Jun 2026</div>
+                            </div>
+                            <div class="cf-metrics">
+                                <div class="cf-met">
+                                    <div class="cf-met-v b">$148k</div>
+                                    <div class="cf-met-l">Total Invoiced</div>
+                                    <div class="cf-met-t up">↑ 12% vs prior period</div>
+                                </div>
+                                <div class="cf-met">
+                                    <div class="cf-met-v p">$124k</div>
+                                    <div class="cf-met-l">Payments Received</div>
+                                    <div class="cf-met-t up">84% collection rate</div>
+                                </div>
+                                <div class="cf-met">
+                                    <div class="cf-met-v r">$8.4k</div>
+                                    <div class="cf-met-l">Overdue</div>
+                                    <div class="cf-met-t dn">3 invoices at risk</div>
+                                </div>
+                            </div>
+                            <div class="cf-chart">
+                                <div class="cf-chart-l">Monthly revenue — invoiced vs received</div>
+                                <div class="cf-bars">
+                                    <div class="cf-bc"><div class="cf-bpair"><div class="cf-ba" style="height:52px;background:rgba(37,99,235,0.2);"></div><div class="cf-bb" style="height:44px;background:#2563EB;"></div></div><div class="cf-bm">Jan</div></div>
+                                    <div class="cf-bc"><div class="cf-bpair"><div class="cf-ba" style="height:58px;background:rgba(37,99,235,0.2);"></div><div class="cf-bb" style="height:50px;background:#2563EB;"></div></div><div class="cf-bm">Feb</div></div>
+                                    <div class="cf-bc"><div class="cf-bpair"><div class="cf-ba" style="height:64px;background:rgba(37,99,235,0.2);"></div><div class="cf-bb" style="height:58px;background:#2563EB;"></div></div><div class="cf-bm">Mar</div></div>
+                                    <div class="cf-bc"><div class="cf-bpair"><div class="cf-ba" style="height:70px;background:rgba(37,99,235,0.2);"></div><div class="cf-bb" style="height:62px;background:#2563EB;"></div></div><div class="cf-bm">Apr</div></div>
+                                    <div class="cf-bc"><div class="cf-bpair"><div class="cf-ba" style="height:60px;background:rgba(37,99,235,0.2);"></div><div class="cf-bb" style="height:54px;background:#2563EB;"></div></div><div class="cf-bm">May</div></div>
+                                    <div class="cf-bc"><div class="cf-bpair"><div class="cf-ba" style="height:75px;background:rgba(37,99,235,0.2);"></div><div class="cf-bb" style="height:60px;background:#2563EB;"></div></div><div class="cf-bm">Jun</div></div>
+                                </div>
+                                <div class="cf-leg">
+                                    <div class="cf-leg-i"><div class="cf-leg-s" style="background:rgba(37,99,235,0.2);"></div>Invoiced</div>
+                                    <div class="cf-leg-i"><div class="cf-leg-s" style="background:#2563EB;"></div>Received</div>
+                                </div>
+                            </div>
+                            <div class="vis-row-hd">Overdue invoices</div>
+                            <div class="cf-od-row">
+                                <div class="cf-od-av" style="background:#DC2626;">AW</div>
+                                <div class="cf-od-inf">
+                                    <div class="cf-od-n">Alice Wilson — INV-2026-0410</div>
+                                    <div class="cf-od-d">16 days overdue · Due 10 Jun</div>
+                                </div>
+                                <div class="cf-od-a">$5,640</div>
+                                <div class="cf-od-btn">Remind</div>
+                            </div>
+                            <div class="cf-od-row">
+                                <div class="cf-od-av" style="background:#92400E;">JP</div>
+                                <div class="cf-od-inf">
+                                    <div class="cf-od-n">James Park — INV-2026-0405</div>
+                                    <div class="cf-od-d">9 days overdue · Due 17 Jun</div>
+                                </div>
+                                <div class="cf-od-a">$2,780</div>
+                                <div class="cf-od-btn">Remind</div>
+                            </div>
+                            <div class="cf-foot">
+                                <div class="cf-foot-l">30-day revenue forecast</div>
+                                <div class="cf-foot-v">$42,300 expected</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+</body>
+</html>
