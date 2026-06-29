@@ -2910,7 +2910,7 @@
 .vl-tab-wrap-2-thumb img {
   height: 195px;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 16px;
 }
 .vl-tab-wrap-2-content .title {
