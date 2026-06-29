@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Benchmark - Plannor</title>
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        :root {
+            --brand:  #5932EA;
+            --brand-d:#4520d4;
+            --brand-l:#ede9fe;
+            --blue:   #2563eb;
+            --purple: #7c3aed;
+            --green:  #16a34a;
+            --navy:   #0f172a;
+            --navy2:  #1e1b4b;
+            --muted:  #64748b;
+            --border: #e8e5f7;
+            --r:      20px;
+            --shadow: 0 4px 24px rgba(89,50,234,.09);
+            --shadow-m:0 8px 40px rgba(89,50,234,.15);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION 1 · HERO (below standard breadcrumb)
+        ═══════════════════════════════════════════════════ */
+        .ib-hero {
+            background: linear-gradient(160deg, #f5f3ff 0%, #eef2ff 50%, #f0f9ff 100%);
+            padding: 80px 0 72px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #e8eaf6;
+        }
+        .ib-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(89,50,234,.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+        .ib-hero-inner { position: relative; z-index: 2; }
+
+        .ib-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #ede9fe; color: var(--brand);
+            border: 1px solid #c4b5fd;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 11.5px; font-weight: 700; letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+        .ib-eyebrow span {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--brand); display: inline-block;
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.6)} }
+
+        .ib-hero-title {
+            font-size: 52px; font-weight: 800;
+            color: var(--navy); line-height: 1.1;
+            letter-spacing: -1.5px; margin-bottom: 18px;
+        }
+        .ib-hero-title em { font-style: normal; color: var(--brand); }
+        @media(max-width:768px){ .ib-hero-title{ font-size:32px; } }
+
+        .ib-hero-sub {
+            font-size: 16px; color: var(--muted);
+            line-height: 1.75; max-width: 460px; margin-bottom: 36px;
+        }
+
+        .ib-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+        .ib-chip {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: #fff;
+            border: 1.5px solid #ddd6fe;
+            border-radius: 50px; padding: 7px 16px;
+            font-size: 13px; font-weight: 600; color: var(--navy);
+            box-shadow: 0 2px 8px rgba(89,50,234,.07);
+        }
+        .ib-chip i { font-size: 12px; color: var(--brand); }
+
+        .ib-badge {
+            position: absolute;
+            bottom: -10px; left: -24px;
+            background: #fff; border-radius: 14px;
+            padding: 12px 18px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.14);
+            display: flex; align-items: center; gap: 10px;
+            z-index: 3;
+        }
+        .ib-badge-ic {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: #dcfce7; color: #16a34a;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+        }
+        .ib-badge-num { font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1; }
+        .ib-badge-lbl { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION 2 · SCORE OVERVIEW
+        ═══════════════════════════════════════════════════ */
+        .ib-scores {
+            background: #f7f8fe;
+            padding: 80px 0;
+            border-bottom: 1px solid #eef0f8;
+        }
+        .ib-sec-label {
+            font-size: 12px; font-weight: 800; letter-spacing: 1.4px;
+            text-transform: uppercase; color: var(--brand);
+            margin-bottom: 8px;
+        }
+        .ib-sec-title {
+            font-size: 36px; font-weight: 800;
+            color: var(--navy); margin-bottom: 12px; line-height: 1.2;
+        }
+        .ib-sec-sub { font-size: 16px; color: var(--muted); margin-bottom: 44px; }
+
+        .ib-sc {
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: var(--shadow);
+            transition: box-shadow .25s, transform .25s;
+        }
+        .ib-sc:hover { box-shadow: var(--shadow-m); transform: translateY(-4px); }
+
+        .ib-sc-accent { height: 5px; }
+        .ib-sc-body { padding: 28px 28px 30px; }
+
+        .ib-sc-head { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
+        .ib-sc-icon {
+            width: 46px; height: 46px; border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 19px; flex-shrink: 0;
+        }
+        .ib-sc-icon.blue   { background: #dbeafe; color: var(--blue); }
+        .ib-sc-icon.purple { background: #ede9fe; color: var(--purple); }
+        .ib-sc-icon.green  { background: #dcfce7; color: var(--green); }
+
+        .ib-sc-lbl { font-size: 14px; font-weight: 600; color: #374151; }
+
+        .ib-sc-num {
+            font-size: 64px; font-weight: 800; line-height: 1;
+            margin-bottom: 6px; letter-spacing: -2px;
+        }
+        .ib-sc-num.blue   { color: var(--blue); }
+        .ib-sc-num.purple { color: var(--purple); }
+        .ib-sc-num.green  { color: var(--green); }
+        .ib-sc-denom { font-size: 18px; font-weight: 600; color: #cbd5e1; letter-spacing: 0; }
+
+        .ib-sc-bar-wrap { margin-top: 16px; }
+        .ib-sc-bar-meta {
+            display: flex; justify-content: space-between;
+            font-size: 12px; font-weight: 600; color: var(--muted);
+            margin-bottom: 7px;
+        }
+        .ib-bar-track {
+            height: 9px; background: #f1f5f9;
+            border-radius: 99px; overflow: hidden;
+        }
+        .ib-bar-fill {
+            height: 100%; border-radius: 99px;
+            width: 0; transition: width 1.4s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION 3 · CATEGORIES
+        ═══════════════════════════════════════════════════ */
+        .ib-cats { background: #fff; padding: 88px 0; }
+
+        .ib-legend {
+            display: flex; align-items: center;
+            gap: 22px; flex-wrap: wrap;
+            padding: 14px 20px;
+            background: #f8faff;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 36px;
+        }
+        .ib-leg-item { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #475569; }
+        .ib-leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        .ib-cat {
+            display: flex; align-items: center; gap: 20px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            border: 1.5px solid transparent;
+            background: #fafbff;
+            margin-bottom: 12px;
+            transition: border-color .2s, box-shadow .2s, background .2s;
+        }
+        .ib-cat:hover { border-color: var(--border); box-shadow: var(--shadow); background: #fff; }
+
+        .ib-cat-ic {
+            width: 50px; height: 50px; border-radius: 14px;
+            background: #eff6ff; color: var(--blue);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .ib-cat-left { width: 180px; flex-shrink: 0; }
+        .ib-cat-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+        .ib-cat-rank { font-size: 12px; color: var(--muted); }
+
+        .ib-cat-bars { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+        .ib-cat-bar-row { display: flex; align-items: center; gap: 12px; }
+        .ib-cat-bar-track {
+            flex: 1; height: 10px;
+            background: #f1f5f9; border-radius: 99px; overflow: hidden;
+        }
+        .ib-cat-bar-fill {
+            height: 100%; border-radius: 99px;
+            width: 0; transition: width 1.4s cubic-bezier(.4,0,.2,1);
+        }
+        .ib-cat-score {
+            font-size: 13px; font-weight: 800;
+            width: 60px; text-align: right; flex-shrink: 0;
+        }
+
+        @media(max-width:576px){
+            .ib-cat { gap: 14px; padding: 16px; }
+            .ib-cat-left { width: 110px; }
+            .ib-cat-name { font-size: 13px; }
+            .ib-cat-ic { width: 40px; height: 40px; font-size: 16px; }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION 4 · INSIGHT
+        ═══════════════════════════════════════════════════ */
+        .ib-insight {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff3e0 100%);
+            border-top: 3px solid #fcd34d;
+            border-bottom: 3px solid #fcd34d;
+            padding: 70px 0;
+        }
+        .ib-insight-inner {
+            display: flex; align-items: center;
+            gap: 36px; flex-wrap: wrap;
+        }
+        .ib-insight-icon-wrap {
+            width: 80px; height: 80px; border-radius: 22px;
+            background: linear-gradient(135deg, #fed7aa, #fdba74);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 34px; color: #c2410c; flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(249,115,22,.25);
+        }
+        .ib-insight-body { flex: 1; min-width: 240px; }
+        .ib-insight-eye {
+            font-size: 11px; font-weight: 800; letter-spacing: 1.3px;
+            text-transform: uppercase; color: #f97316;
+            margin-bottom: 10px;
+        }
+        .ib-insight-text {
+            font-size: 24px; font-weight: 800;
+            color: var(--navy); line-height: 1.4;
+        }
+        .ib-insight-text strong { color: #ea580c; }
+        .ib-insight-desc {
+            flex: 1.3; min-width: 240px;
+            font-size: 15px; color: #92400e; line-height: 1.75;
+            padding: 20px 24px;
+            background: rgba(255,255,255,.6);
+            border-radius: 14px;
+            border: 1px solid #fed7aa;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION 5 · CTA
+        ═══════════════════════════════════════════════════ */
+        .ib-cta {
+            background: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%);
+            padding: 90px 0;
+            position: relative; overflow: hidden;
+        }
+        .ib-cta::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .ib-cta::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px; border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255,255,255,.12) 0%, transparent 70%);
+            bottom: -200px; right: -100px;
+            pointer-events: none;
+        }
+        .ib-cta-inner { position: relative; z-index: 2; text-align: center; }
+        .ib-cta-tag {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.22);
+            border-radius: 50px; padding: 6px 16px;
+            font-size: 12px; font-weight: 700; letter-spacing: .08em;
+            text-transform: uppercase; color: #e9d5ff;
+            margin-bottom: 20px;
+        }
+        .ib-cta-title {
+            font-size: 44px; font-weight: 800;
+            color: #fff; margin-bottom: 14px;
+            letter-spacing: -1px;
+        }
+        @media(max-width:768px){ .ib-cta-title{ font-size:28px; } }
+        .ib-cta-sub {
+            font-size: 17px; color: rgba(255,255,255,.65);
+            max-width: 500px; margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .ib-cta-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fff; color: var(--brand);
+            font-size: 17px; font-weight: 800;
+            border-radius: 14px; padding: 18px 44px;
+            text-decoration: none;
+            transition: background .2s, transform .2s, box-shadow .2s;
+            box-shadow: 0 8px 28px rgba(0,0,0,.18);
+        }
+        .ib-cta-btn:hover {
+            background: #f5f3ff; color: var(--brand-d);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(0,0,0,.22);
+        }
+
+        /* ═════ animate trigger ═════ */
+        .ib-go .ib-bar-fill,
+        .ib-go .ib-cat-bar-fill { width: var(--w) !important; }
+
+        html, body { overflow-x: hidden; max-width: 100%; }
+        @media (max-width: 767px) {
+            .ib-hero .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+            .ib-cta .row.g-5  { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- ── Standard Breadcrumb (same as all other pages) ─── -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Industry Benchmark</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Industry Benchmark</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════
+             SECTION 1 · HERO
+        ══════════════════════════════════════════════════════ -->
+        <section class="ib-hero">
+            <div class="container ib-hero-inner">
+                <div class="row align-items-center g-5">
+
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="ib-eyebrow">
+                            <span></span> Industry Benchmark
+                        </div>
+                        <h1 class="ib-hero-title">
+                            How does your<br>business <em>compare?</em>
+                        </h1>
+                        <p class="ib-hero-sub">
+                            See how your automation score and operational maturity stack up against industry peers  and discover exactly where to improve.
+                        </p>
+                        <div class="ib-chips">
+                            <div class="ib-chip"><i class="fa-regular fa-chart-bar"></i> 4 categories measured</div>
+                            <div class="ib-chip"><i class="fa-regular fa-users"></i> Industry benchmarked</div>
+                            <div class="ib-chip"><i class="fa-regular fa-bolt"></i> Instant insights</div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 d-flex justify-content-center" data-aos="fade-left">
+                        <div style="position:relative; width:360px;">
+                            <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; filter:drop-shadow(0 16px 40px rgba(89,50,234,.18));">
+                                <!-- subtle dot bg -->
+                                <rect width="340" height="260" rx="16" fill="#f0eeff"/>
+                                <rect width="340" height="260" rx="16" fill="url(#dots2)"/>
+                                <!-- baseline -->
+                                <line x1="30" y1="228" x2="310" y2="228" stroke="#ddd6fe" stroke-width="1.5"/>
+                                <!-- bar 1 (you) – blue -->
+                                <rect x="58"  y="155" width="62" height="73"  rx="10" fill="url(#b1)"/>
+                                <!-- bar 2 (industry) – purple -->
+                                <rect x="139" y="108" width="62" height="120" rx="10" fill="url(#b2)"/>
+                                <!-- bar 3 (top) – green -->
+                                <rect x="220" y="55"  width="62" height="173" rx="10" fill="url(#b3)"/>
+                                <!-- star ring -->
+                                <circle cx="251" cy="40" r="18" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+                                <text x="251" y="46" text-anchor="middle" font-size="17" fill="#16a34a" font-family="Arial">★</text>
+                                <!-- labels -->
+                                <text x="89"  y="248" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="700" font-family="Arial,sans-serif">You</text>
+                                <text x="170" y="248" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="700" font-family="Arial,sans-serif">Industry</text>
+                                <text x="251" y="248" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="700" font-family="Arial,sans-serif">Top</text>
+                                <!-- score labels on bars -->
+                                <text x="89"  y="148" text-anchor="middle" font-size="13" fill="#1d4ed8" font-weight="800" font-family="Arial,sans-serif">62</text>
+                                <text x="170" y="101" text-anchor="middle" font-size="13" fill="#6d28d9" font-weight="800" font-family="Arial,sans-serif">71</text>
+                                <text x="251" y="48"  text-anchor="middle" font-size="13" fill="#15803d" font-weight="800" font-family="Arial,sans-serif"></text>
+                                <defs>
+                                    <pattern id="dots2" patternUnits="userSpaceOnUse" width="20" height="20">
+                                        <circle cx="10" cy="10" r="1.2" fill="#c4b5fd" opacity="0.4"/>
+                                    </pattern>
+                                    <linearGradient id="b1" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#93c5fd"/>
+                                        <stop offset="100%" stop-color="#2563eb"/>
+                                    </linearGradient>
+                                    <linearGradient id="b2" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#c4b5fd"/>
+                                        <stop offset="100%" stop-color="#7c3aed"/>
+                                    </linearGradient>
+                                    <linearGradient id="b3" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#6ee7b7"/>
+                                        <stop offset="100%" stop-color="#16a34a"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <!-- floating badge -->
+                            <div class="ib-badge">
+                                <div class="ib-badge-ic"><i class="fa-solid fa-trophy"></i></div>
+                                <div>
+                                    <div class="ib-badge-num">89</div>
+                                    <div class="ib-badge-lbl">Top performers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════
+             SECTION 2 · SCORE OVERVIEW
+        ══════════════════════════════════════════════════════ -->
+        <section class="ib-scores" id="ibScores">
+            <div class="container">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <div class="ib-sec-label">Overall Scores</div>
+                    <h2 class="ib-sec-title">Where you stand right now</h2>
+                    <p class="ib-sec-sub">Your business scores lower than the industry average  here's the full picture.</p>
+                </div>
+                <div class="row g-4">
+
+                    <!-- your score -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                        <div class="ib-sc">
+                            <div class="ib-sc-accent" style="background:linear-gradient(90deg,#2563eb,#60a5fa);"></div>
+                            <div class="ib-sc-body">
+                                <div class="ib-sc-head">
+                                    <div class="ib-sc-icon blue"><i class="fa-regular fa-user"></i></div>
+                                    <div class="ib-sc-lbl">Your automation score</div>
+                                </div>
+                                <div class="ib-sc-num blue">62 <span class="ib-sc-denom">/100</span></div>
+                                <div class="ib-sc-bar-wrap">
+                                    <div class="ib-sc-bar-meta">
+                                        <span>Score</span><span>62%</span>
+                                    </div>
+                                    <div class="ib-bar-track">
+                                        <div class="ib-bar-fill" style="--w:62%;background:linear-gradient(90deg,#2563eb,#60a5fa);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- industry average -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="ib-sc">
+                            <div class="ib-sc-accent" style="background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                            <div class="ib-sc-body">
+                                <div class="ib-sc-head">
+                                    <div class="ib-sc-icon purple"><i class="fa-regular fa-users"></i></div>
+                                    <div class="ib-sc-lbl">Industry average</div>
+                                </div>
+                                <div class="ib-sc-num purple">71 <span class="ib-sc-denom">/100</span></div>
+                                <div class="ib-sc-bar-wrap">
+                                    <div class="ib-sc-bar-meta">
+                                        <span>Score</span><span>71%</span>
+                                    </div>
+                                    <div class="ib-bar-track">
+                                        <div class="ib-bar-fill" style="--w:71%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- top performers -->
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="ib-sc">
+                            <div class="ib-sc-accent" style="background:linear-gradient(90deg,#16a34a,#34d399);"></div>
+                            <div class="ib-sc-body">
+                                <div class="ib-sc-head">
+                                    <div class="ib-sc-icon green"><i class="fa-regular fa-trophy"></i></div>
+                                    <div class="ib-sc-lbl">Top-performing businesses</div>
+                                </div>
+                                <div class="ib-sc-num green">89 <span class="ib-sc-denom">/100</span></div>
+                                <div class="ib-sc-bar-wrap">
+                                    <div class="ib-sc-bar-meta">
+                                        <span>Score</span><span>89%</span>
+                                    </div>
+                                    <div class="ib-bar-track">
+                                        <div class="ib-bar-fill" style="--w:89%;background:linear-gradient(90deg,#16a34a,#34d399);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════
+             SECTION 3 · SCORE BY CATEGORY
+        ══════════════════════════════════════════════════════ -->
+        <section class="ib-cats" id="ibCats">
+            <div class="container">
+
+                <div class="row mb-4" data-aos="fade-up">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="ib-sec-label">Category Breakdown</div>
+                        <h2 class="ib-sec-title">Score by category</h2>
+                        <p class="ib-sec-sub" style="margin-bottom:28px;">Drill into each area to see where you lead, where you lag, and what top performers do differently.</p>
+                        <div class="ib-legend">
+                            <div class="ib-leg-item"><span class="ib-leg-dot" style="background:var(--blue)"></span> Your business</div>
+                            <div class="ib-leg-item"><span class="ib-leg-dot" style="background:var(--purple)"></span> Industry average</div>
+                            <div class="ib-leg-item"><span class="ib-leg-dot" style="background:var(--green)"></span> Top performers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-10 mx-auto">
+
+                    <!-- Administration -->
+                    <div class="ib-cat" data-aos="fade-up" data-aos-delay="0">
+                        <div class="ib-cat-ic"><i class="fa-regular fa-file-lines"></i></div>
+                        <div class="ib-cat-left">
+                            <div class="ib-cat-name">Administration</div>
+                            <div class="ib-cat-rank">-14 vs industry avg</div>
+                        </div>
+                        <div class="ib-cat-bars">
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:55%;background:linear-gradient(90deg,var(--blue),#60a5fa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--blue)">55/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:69%;background:linear-gradient(90deg,var(--purple),#a78bfa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--purple)">69/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:88%;background:linear-gradient(90deg,var(--green),#34d399);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--green)">88/100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation -->
+                    <div class="ib-cat" data-aos="fade-up" data-aos-delay="60">
+                        <div class="ib-cat-ic"><i class="fa-regular fa-gear"></i></div>
+                        <div class="ib-cat-left">
+                            <div class="ib-cat-name">Automation</div>
+                            <div class="ib-cat-rank">-12 vs industry avg</div>
+                        </div>
+                        <div class="ib-cat-bars">
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:60%;background:linear-gradient(90deg,var(--blue),#60a5fa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--blue)">60/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:72%;background:linear-gradient(90deg,var(--purple),#a78bfa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--purple)">72/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:90%;background:linear-gradient(90deg,var(--green),#34d399);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--green)">90/100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reporting -->
+                    <div class="ib-cat" data-aos="fade-up" data-aos-delay="120">
+                        <div class="ib-cat-ic"><i class="fa-regular fa-chart-bar"></i></div>
+                        <div class="ib-cat-left">
+                            <div class="ib-cat-name">Reporting</div>
+                            <div class="ib-cat-rank">-12 vs industry avg</div>
+                        </div>
+                        <div class="ib-cat-bars">
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:58%;background:linear-gradient(90deg,var(--blue),#60a5fa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--blue)">58/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:70%;background:linear-gradient(90deg,var(--purple),#a78bfa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--purple)">70/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:87%;background:linear-gradient(90deg,var(--green),#34d399);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--green)">87/100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Maturity -->
+                    <div class="ib-cat" data-aos="fade-up" data-aos-delay="180">
+                        <div class="ib-cat-ic"><i class="fa-regular fa-crosshairs"></i></div>
+                        <div class="ib-cat-left">
+                            <div class="ib-cat-name">Operational maturity</div>
+                            <div class="ib-cat-rank">+2 vs industry avg</div>
+                        </div>
+                        <div class="ib-cat-bars">
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:75%;background:linear-gradient(90deg,var(--blue),#60a5fa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--blue)">75/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:73%;background:linear-gradient(90deg,var(--purple),#a78bfa);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--purple)">73/100</span>
+                            </div>
+                            <div class="ib-cat-bar-row">
+                                <div class="ib-cat-bar-track"><div class="ib-cat-bar-fill" style="--w:91%;background:linear-gradient(90deg,var(--green),#34d399);"></div></div>
+                                <span class="ib-cat-score" style="color:var(--green)">91/100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════
+             SECTION 4 · KEY INSIGHT
+        ══════════════════════════════════════════════════════ -->
+        <section class="ib-insight" data-aos="fade-up">
+            <div class="container">
+                <div class="ib-insight-inner">
+                    <div class="ib-insight-icon-wrap">
+                        <i class="fa-regular fa-arrow-trend-up"></i>
+                    </div>
+                    <div class="ib-insight-body">
+                        <div class="ib-insight-eye">Key Insight</div>
+                        <div class="ib-insight-text">
+                            Your business is more manual<br>than <strong>68%</strong> of similar organisations.
+                        </div>
+                    </div>
+                    <div class="ib-insight-desc">
+                        Three of your four categories sit below the industry average. Improving administration and reporting automation alone could move you into the top 40%  often with minimal tooling changes.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════
+             SECTION 5 · CTA
+        ══════════════════════════════════════════════════════ -->
+        <section class="ib-cta" data-aos="fade-up">
+            <div class="container ib-cta-inner">
+                <div class="ib-cta-tag">
+                    <i class="fa-regular fa-bolt"></i> Get your personalised plan
+                </div>
+                <h2 class="ib-cta-title">Ready to close the gap?</h2>
+                <p class="ib-cta-sub">Take the free assessment and get a step-by-step action plan tailored to your business.</p>
+                <a href="../assessment/" class="ib-cta-btn">
+                    <i class="fa-regular fa-arrow-trend-up"></i>
+                    Improve your score
+                    <i class="fa-regular fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+
+    <script>
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('ib-go');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        ['ibScores','ibCats'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) io.observe(el);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Plannor",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "C:\\xampp\\htdocs\\vishwa_projects\\Plannor", "-p", "3000", "--cors", "-c-1"],
+      "port": 3000
+    }
+  ]
+}

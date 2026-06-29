@@ -1,0 +1,533 @@
+<!-- =========== header area start =========== -->
+<style>
+html, body { overflow-x: hidden; }
+.header-sticky.vl-header-area { padding-top: 6px !important; padding-bottom: 6px !important; background: #000000 !important; }
+.vl-banner-lft-shape img, .vl-banner-rht-shape img {
+    clip-path: inset(62px 0 0 0);
+    transform: translateY(-62px);
+}
+@media (max-width: 1199px) {
+    #vl-header-sticky .row { justify-content: space-between; }
+}
+
+/* ── Mega Menu ── */
+header { position: relative; }
+.has-mega { position: static !important; }
+
+.mega-menu {
+    display: none;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 76px;
+    width: 920px;
+    background: #fff;
+    border-radius: 20px;
+    border: 1.5px solid #ede9fe;
+    border-top: 3px solid #5932EA;
+    box-shadow: 0 24px 80px rgba(15,14,26,.18);
+    z-index: 9999;
+    overflow: hidden;
+}
+.has-mega:hover .mega-menu { display: block; }
+
+.mega-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.mega-col {
+    padding: 32px 28px 28px;
+}
+.mega-col:not(:last-child) {
+    border-right: 1px solid #f0eeff;
+}
+
+.mega-col-label {
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: #0f0e1a;
+    margin-bottom: 18px;
+    font-family: 'Figtree', sans-serif;
+}
+
+.mega-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 12px;
+    text-decoration: none !important;
+    border-radius: 12px;
+    transition: background .15s, transform .15s;
+    margin: 0 -12px;
+}
+.mega-item:hover {
+    background: #f8f5ff;
+    transform: translateX(4px);
+}
+.mega-item.ai-item {
+    background: linear-gradient(135deg, #f0eeff, #faf5ff);
+    border: 1px solid #ede9fe;
+}
+.mega-item.ai-item:hover {
+    background: linear-gradient(135deg, #ede9fe, #f5f0ff);
+    transform: translateX(4px);
+}
+
+.mega-ico {
+    width: 44px; height: 44px;
+    border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+.mega-ico.blue   { background: #eff6ff; color: #3b82f6; }
+.mega-ico.teal   { background: #f0fdf4; color: #00c87a; }
+.mega-ico.amber  { background: #fffbeb; color: #d97706; }
+.mega-ico.purple { background: #f0eeff; color: #5932EA; }
+.mega-ico.indigo { background: #eef2ff; color: #6366f1; }
+.mega-ico.violet { background: linear-gradient(135deg,#5932EA,#772EFE); color: #fff; }
+.mega-ico.pink   { background: #fff1f2; color: #f43f5e; }
+.mega-ico.orange { background: #fff7ed; color: #ea580c; }
+.mega-ico.green  { background: #f0fdf4; color: #16a34a; }
+
+.mega-txt { min-width: 0; }
+.mega-txt h6 {
+    font-size: 14px; font-weight: 700;
+    color: #0f0e1a; margin: 0 0 2px;
+    font-family: 'Figtree', sans-serif;
+    line-height: 1.2;
+    display: flex; align-items: center; gap: 7px;
+}
+.mega-txt p {
+    font-size: 12px; color: #999;
+    margin: 0; line-height: 1.4;
+}
+.mega-new {
+    font-size: 9px; font-weight: 800;
+    background: linear-gradient(90deg,#5932EA,#772EFE);
+    color: #fff;
+    padding: 2px 7px; border-radius: 20px;
+    letter-spacing: .04em; text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.mega-footer {
+    border-top: 1px solid #f0eeff;
+    padding: 14px 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fdfcff;
+}
+.mega-footer-link {
+    font-size: 13px; font-weight: 700; color: #5932EA;
+    text-decoration: none !important;
+    display: flex; align-items: center; gap: 6px;
+    transition: gap .15s;
+}
+.mega-footer-link:hover { gap: 10px; }
+.mega-footer-demo {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #5932EA; color: #fff;
+    font-size: 12px; font-weight: 700;
+    padding: 9px 20px; border-radius: 30px;
+    text-decoration: none !important;
+    transition: background .15s;
+}
+.mega-footer-demo:hover { background: #4a28c8; color: #fff; }
+
+/* ── hard reset: undo all global nav-link styles inside mega menu ── */
+.mega-menu, .mega-menu * { box-sizing: border-box; }
+.mega-menu a.mega-item,
+.mega-menu a.mega-item:hover,
+.mega-menu a.mega-item:focus {
+    background: transparent !important;
+    border-radius: 12px !important;
+    padding: 11px 12px !important;
+    margin: 0 -12px !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: background .15s, transform .15s !important;
+    transform: none;
+}
+.mega-menu a.mega-item:hover { background: #f8f5ff !important; transform: translateX(4px) !important; }
+.mega-menu a.mega-item.ai-item { background: linear-gradient(135deg,#f0eeff,#faf5ff) !important; border: 1px solid #ede9fe !important; }
+.mega-menu a.mega-item.ai-item:hover { background: linear-gradient(135deg,#ede9fe,#f5f0ff) !important; }
+
+.mega-menu .mega-ico {
+    width: 44px !important; height: 44px !important;
+    border-radius: 13px !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    font-size: 17px !important;
+    flex-shrink: 0 !important;
+    background: inherit;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.mega-menu .mega-ico.blue   { background: #eff6ff !important; color: #3b82f6 !important; }
+.mega-menu .mega-ico.teal   { background: #f0fdf4 !important; color: #00c87a !important; }
+.mega-menu .mega-ico.amber  { background: #fffbeb !important; color: #d97706 !important; }
+.mega-menu .mega-ico.purple { background: #f0eeff !important; color: #5932EA !important; }
+.mega-menu .mega-ico.indigo { background: #eef2ff !important; color: #6366f1 !important; }
+.mega-menu .mega-ico.violet { background: linear-gradient(135deg,#5932EA,#772EFE) !important; color: #fff !important; }
+.mega-menu .mega-ico.pink   { background: #fff1f2 !important; color: #f43f5e !important; }
+.mega-menu .mega-ico.orange { background: #fff7ed !important; color: #ea580c !important; }
+.mega-menu .mega-ico.green  { background: #f0fdf4 !important; color: #16a34a !important; }
+
+.mega-menu .mega-txt h6 {
+    font-size: 14px !important; font-weight: 700 !important;
+    color: #0f0e1a !important; margin: 0 0 2px !important;
+    font-family: 'Figtree', sans-serif !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+.mega-menu .mega-txt p {
+    font-size: 12px !important; color: #999 !important;
+    margin: 0 !important; line-height: 1.4 !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+</style>
+
+<header>
+    <div id="vl-header-sticky" class="vl-header-area vl-header-1 vl-transparent-header">
+        <div class="container">
+            <div class="row align-items-center" style="flex-wrap:nowrap;">
+                <!-- Logo -->
+                <div class="col-md-6 col-6" style="flex:0 0 auto;width:auto;padding:0 15px;">
+                    <div class="vl-logo">
+                        <a href="./"><img src="assets/img/logo/plannor-logomain.png" alt="" style="max-height:65px;width:auto;"></a>
+                    </div>
+                </div>
+
+                <!-- Desktop nav -->
+                <div class="d-none d-xl-block" style="flex:1;min-width:0;padding:0 0 0 30px;">
+                    <div class="vl-main-menu vl-main-menu-1 vl-main-menu-1-9 text-center">
+                        <nav class="vl-mobile-menu-active">
+                            <ul style="display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:0;padding:0 12px;">
+
+                                <li style="white-space:nowrap;">
+                                    <a href="platform/" style="font-size:17px;padding:10px 14px;">Platform</a>
+                                </li>
+
+                                <li style="white-space:nowrap;">
+                                    <a href="about/" style="font-size:17px;padding:10px 14px;">About Us</a>
+                                </li>
+
+                                <li style="white-space:nowrap;">
+                                    <a href="assessment/" style="font-size:17px;padding:10px 14px;">Business Assessment</a>
+                                </li>
+
+                                <li style="white-space:nowrap;">
+                                    <a href="roi-calculator/" style="font-size:17px;padding:10px 14px;">ROI Calculator</a>
+                                </li>
+
+                                <!-- Features — mega menu -->
+                                <li class="has-mega has-dropdown" style="white-space:nowrap;">
+                                    <a href="#" style="font-size:17px;padding:10px 14px;">
+                                        Features <i class="fa-solid fa-chevron-down" style="font-size:10px;margin-left:4px;opacity:.7;"></i>
+                                    </a>
+
+                                    <div class="mega-menu">
+
+                                        <!-- 3-column grid -->
+                                        <div class="mega-body">
+
+                                            <!-- Col 1 -->
+                                            <div class="mega-col">
+                                                <div class="mega-col-label">Scheduling & Care</div>
+
+                                                <a href="rostering/" class="mega-item">
+                                                    <div class="mega-ico blue"><i class="fa-solid fa-calendar-days"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Rostering</h6>
+                                                        <p>Smart shift scheduling and workforce management</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="care-management/" class="mega-item">
+                                                    <div class="mega-ico teal"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Care Management</h6>
+                                                        <p>End-to-end client care coordination</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="payroll/" class="mega-item">
+                                                    <div class="mega-ico amber"><i class="fa-solid fa-money-check-dollar"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Payroll &amp; Workforce</h6>
+                                                        <p>Automated pay runs and workforce reporting</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <!-- Col 2 -->
+                                            <div class="mega-col">
+                                                <div class="mega-col-label">Finance & Apps</div>
+
+                                                <a href="invoicing/" class="mega-item">
+                                                    <div class="mega-ico purple"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Invoicing</h6>
+                                                        <p>NDIS-compliant invoicing with one click</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="support-worker-app/" class="mega-item">
+                                                    <div class="mega-ico indigo"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Support Worker App</h6>
+                                                        <p>GPS clock-in, notes, and timesheets on mobile</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="plannor-ai/" class="mega-item ai-item">
+                                                    <div class="mega-ico violet"><i class="fa-solid fa-brain"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Plannor AI <span class="mega-new">New</span></h6>
+                                                        <p>AI-powered insights and automated workflows</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <!-- Col 3 -->
+                                            <div class="mega-col">
+                                                <div class="mega-col-label">Compliance & Family</div>
+
+                                                <a href="family-portal/" class="mega-item">
+                                                    <div class="mega-ico pink"><i class="fa-solid fa-house-heart"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Plannor Family Portal</h6>
+                                                        <p>Real-time visibility and updates for families</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="compliance/" class="mega-item">
+                                                    <div class="mega-ico orange"><i class="fa-solid fa-shield-halved"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Compliance</h6>
+                                                        <p>NDIS audit-ready records and reporting</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="care-plans/" class="mega-item">
+                                                    <div class="mega-ico green"><i class="fa-solid fa-notes-medical"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Care Plans</h6>
+                                                        <p>Structured NDIS-aligned care planning tools</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </li>
+
+                                <!-- Solution -->
+                                <li style="white-space:nowrap;">
+                                    <a href="solutions/" style="font-size:17px;padding:10px 14px;">Solution</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- CTA + hamburger -->
+                <div class="col-md-6 col-6" style="flex:0 0 auto;width:auto;display:flex;align-items:center;gap:16px;">
+                    <div class="d-none d-xl-block">
+                        <a href="assessment/" class="vl-primary-btn-1" style="background:#ffffff;border-color:#ffffff;color:#1a1a2e;white-space:nowrap;padding-top:7px;padding-bottom:7px;font-size:16px;">Get Started <span><img src="assets/img/icon/vl-arrowupright.svg" alt=""></span></a>
+                    </div>
+                    <div class="vl-header-action-item vl-header-action-item-6 d-block d-xl-none">
+                        <button type="button" class="vl-offcanvas-toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16">
+                                <rect x="10" width="20" height="2" fill="currentColor"></rect>
+                                <rect x="5" y="7" width="25" height="2" fill="currentColor"></rect>
+                                <rect x="10" y="14" width="20" height="2" fill="currentColor"></rect>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MouseCursor -->
+<div class="mouseCursor cursor-outer color-9"></div>
+<div class="mouseCursor cursor-inner color-9"></div>
+
+<!-- offcanvas menu -->
+<div class="vl-offcanvas">
+    <div class="vl-offcanvas-wrapper">
+        <div class="vl-offcanvas-header d-flex justify-content-between align-items-center mb-50">
+            <div class="vl-offcanvas-logo">
+                <a href="./"><img src="assets/img/logo/plannor-logomain1.png" alt="" style="max-height:45px;width:auto;"></a>
+            </div>
+            <div class="vl-offcanvas-close">
+                <button class="vl-offcanvas-close-toggle"><i class="fa-regular fa-xmark"></i></button>
+            </div>
+        </div>
+        <div class="vl-offcanvas-menu d-lg-block mb-40">
+            <style>
+            .mob-nav { list-style: none; margin: 0; padding: 0; }
+            .mob-nav li { border-bottom: 1px solid #f0eeff; }
+            .mob-nav li:last-child { border-bottom: none; }
+            .mob-nav > li > a,
+            .mob-nav > li > button.mob-feat-toggle {
+                display: flex; align-items: center; justify-content: space-between;
+                padding: 14px 0;
+                font-size: 16px; font-weight: 600;
+                color: #0f0e1a;
+                text-decoration: none;
+                background: none; border: none; width: 100%; cursor: pointer;
+                font-family: 'Figtree', sans-serif;
+                transition: color .15s;
+            }
+            .mob-nav > li > a:hover,
+            .mob-nav > li > button.mob-feat-toggle:hover { color: #5932EA; }
+            .mob-feat-toggle i { font-size: 11px; transition: transform .25s; }
+            .mob-feat-toggle.open i { transform: rotate(90deg); }
+
+            .mob-sub { list-style: none; margin: 0; padding: 0 0 8px 12px; display: none; }
+            .mob-sub.open { display: block; }
+            .mob-sub li a {
+                display: flex; align-items: center; gap: 10px;
+                padding: 10px 0;
+                font-size: 14px; font-weight: 500;
+                color: #444;
+                text-decoration: none;
+                font-family: 'Figtree', sans-serif;
+                transition: color .15s;
+            }
+            .mob-sub li a:hover { color: #5932EA; }
+            .mob-sub-ico {
+                width: 30px; height: 30px; border-radius: 8px;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 13px; flex-shrink: 0;
+            }
+            .mob-book-btn {
+                display: block; margin-top: 20px;
+                background: #5932EA; color: #fff !important;
+                text-align: center; padding: 14px;
+                border-radius: 12px; font-size: 15px; font-weight: 700;
+                text-decoration: none; font-family: 'Figtree', sans-serif;
+                transition: background .15s;
+            }
+            .mob-book-btn:hover { background: #4a28c8; }
+            </style>
+            <nav>
+                <ul class="mob-nav">
+                    <li><a href="./">Home</a></li>
+                    <li><a href="about/">About Us</a></li>
+                    <li><a href="platform/">Platform</a></li>
+                    <li><a href="solutions/">Solution</a></li>
+                    <li><a href="assessment/">Business Assessment</a></li>
+                    <li><a href="roi-calculator/">ROI Calculator</a></li>
+                    <li>
+                        <button class="mob-feat-toggle" type="button" id="mob-feat-btn">
+                            Features <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <ul class="mob-sub" id="mob-feat-sub">
+                            <li><a href="rostering/">Rostering</a></li>
+                            <li><a href="care-management/">Care Management</a></li>
+                            <li><a href="payroll/">Payroll &amp; Workforce</a></li>
+                            <li><a href="invoicing/">Invoicing</a></li>
+                            <li><a href="support-worker-app/">Support Worker App</a></li>
+                            <li><a href="plannor-ai/">Plannor AI</a></li>
+                            <li><a href="family-portal/">Plannor Family Portal</a></li>
+                            <li><a href="compliance/">Compliance</a></li>
+                            <li><a href="care-plans/">Care Plans</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="book-a-demo/" class="mob-book-btn">Book a Demo</a>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="vl-offcanvas-overlay"></div>
+
+<script>
+(function () {
+    document.addEventListener('click', function (e) {
+        if (e.target.closest('.vl-offcanvas-toggle')) {
+            var oc = document.querySelector('.vl-offcanvas');
+            var ol = document.querySelector('.vl-offcanvas-overlay');
+            if (oc) oc.classList.add('vl-offcanvas-open');
+            if (ol) ol.classList.add('vl-offcanvas-overlay-open');
+        }
+        if (e.target.closest('.vl-offcanvas-close-toggle') || e.target.classList.contains('vl-offcanvas-overlay')) {
+            var oc = document.querySelector('.vl-offcanvas');
+            var ol = document.querySelector('.vl-offcanvas-overlay');
+            if (oc) oc.classList.remove('vl-offcanvas-open');
+            if (ol) ol.classList.remove('vl-offcanvas-overlay-open');
+        }
+    });
+
+    // Features accordion
+    var featBtn = document.getElementById('mob-feat-btn');
+    var featSub = document.getElementById('mob-feat-sub');
+    if (featBtn && featSub) {
+        featBtn.addEventListener('click', function() {
+            var open = featSub.classList.toggle('open');
+            featBtn.classList.toggle('open', open);
+        });
+    }
+
+    // Portal mega menus to <body> to escape transformed ancestors
+    function initMegaMenus() {
+        var header = document.getElementById('vl-header-sticky');
+        document.querySelectorAll('.has-mega').forEach(function(li) {
+            var menu = li.querySelector('.mega-menu');
+            if (!menu) return;
+            document.body.appendChild(menu);
+            menu.style.setProperty('position', 'fixed', 'important');
+
+            var hideTimer;
+
+            function showMenu() {
+                clearTimeout(hideTimer);
+                if (header) menu.style.top = Math.max(header.getBoundingClientRect().bottom, 0) + 'px';
+                menu.style.display = 'block';
+            }
+            function scheduleHide() {
+                clearTimeout(hideTimer);
+                hideTimer = setTimeout(function() {
+                    menu.style.display = 'none';
+                }, 200);
+            }
+
+            li.addEventListener('mouseenter', showMenu);
+            li.addEventListener('mouseleave', scheduleHide);
+            menu.addEventListener('mouseenter', function() { clearTimeout(hideTimer); });
+            menu.addEventListener('mouseleave', scheduleHide);
+        });
+        window.addEventListener('scroll', function() {
+            if (header) {
+                var bottom = Math.max(header.getBoundingClientRect().bottom, 0);
+                document.querySelectorAll('.mega-menu').forEach(function(m) {
+                    if (m.style.display === 'block') m.style.top = bottom + 'px';
+                });
+            }
+        }, { passive: true });
+    }
+    initMegaMenus();
+})();
+</script>
+<!-- =========== header area end =========== -->

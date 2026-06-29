@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalised Action Plan - Plannor</title>
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        :root {
+            --brand:  #5932EA;
+            --brand2: #7c3aed;
+            --brand3: #2563eb;
+            --brandl: #ede9fe;
+            --dark:   #0f172a;
+            --muted:  #64748b;
+            --bdr:    #e8e5f7;
+            --r:      14px;
+            --sh:     0 2px 18px rgba(89,50,234,.08);
+            --sh2:    0 10px 40px rgba(89,50,234,.16);
+        }
+
+        /* ═══════════════════════════════════
+           HERO
+        ═══════════════════════════════════ */
+        .ap-hero {
+            background: #fff;
+            padding: 72px 0 80px;
+            position: relative; overflow: hidden;
+        }
+        .ap-hero::before {
+            content:''; position:absolute; inset:0;
+            background: radial-gradient(ellipse 90% 70% at 50% -10%, #f5f3ff 0%, transparent 65%);
+            pointer-events:none;
+        }
+
+        .ap-hero-tag {
+            display: inline-block;
+            background: rgba(89,50,234,.08);
+            border: 1px solid rgba(89,50,234,.2);
+            border-radius: 99px;
+            padding: 5px 16px;
+            font-size: 11px; font-weight: 800;
+            letter-spacing: 1.2px; text-transform: uppercase; color: var(--brand);
+            margin-bottom: 20px;
+        }
+        .ap-hero-h1 {
+            font-size: 44px; font-weight: 900; color: var(--dark);
+            letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 18px;
+        }
+        .ap-hero-h1 span { color: var(--brand); }
+        @media(max-width:768px){ .ap-hero-h1{ font-size:30px; } }
+
+        .ap-hero-sub {
+            font-size: 15px; color: var(--muted);
+            line-height: 1.75; max-width: 360px;
+        }
+
+        /* Score ring */
+        .ap-score-col { text-align: center; }
+        .ap-ring-wrap { position: relative; display: inline-block; }
+        .ap-ring-svg  { width: 170px; height: 170px; transform: rotate(-90deg); }
+        .ap-ring-bg   { fill:none; stroke:#ede9fe; stroke-width:13; }
+        .ap-ring-prog {
+            fill:none; stroke:url(#rg); stroke-width:13;
+            stroke-linecap: round;
+            stroke-dasharray: 503;   /* 2π×80 */
+            stroke-dashoffset: 503;
+            transition: stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1);
+        }
+        .ap-ring-prog.go { stroke-dashoffset: 191; } /* (1-0.62)×503 */
+        .ap-ring-center {
+            position:absolute; inset:0;
+            display:flex; flex-direction:column;
+            align-items:center; justify-content:center;
+        }
+        .ap-ring-num { font-size: 52px; font-weight: 900; color: var(--dark); line-height:1; letter-spacing:-2px; }
+        .ap-ring-of  { font-size: 13px; color: var(--muted); font-weight:600; }
+        .ap-ring-lbl {
+            font-size: 11px; font-weight:800; letter-spacing:1px;
+            text-transform:uppercase; color:var(--brand);
+            margin-top: 12px; display: block;
+        }
+
+        /* Mini badges below ring */
+        .ap-badge-row { display:flex; gap:10px; justify-content:center; margin-top:18px; }
+        .ap-badge {
+            background:#fff; border:1.5px solid var(--bdr);
+            border-radius:12px; padding:9px 14px;
+            display:flex; align-items:center; gap:8px;
+            box-shadow:var(--sh); flex:1;
+        }
+        .ap-badge-icon { font-size:18px; line-height:1; }
+        .ap-badge-t { font-size:13px; font-weight:800; color:var(--dark); display:block; line-height:1.2; }
+        .ap-badge-s { font-size:11px; color:var(--muted); }
+
+        /* Clipboard illustration */
+        .ap-clip-wrap { display:flex; justify-content:center; align-items:center; }
+
+        /* ═══════════════════════════════════
+           PRIORITY CARDS
+        ═══════════════════════════════════ */
+        .ap-priorities { background:#f8f9ff; padding:60px 0 72px; }
+
+        .ap-card {
+            background:#fff;
+            border-radius:var(--r);
+            border:1px solid var(--bdr);
+            box-shadow:var(--sh);
+            display:flex; align-items:stretch;
+            margin-bottom:16px; overflow:hidden;
+            transition:box-shadow .25s, transform .25s;
+        }
+        .ap-card:last-child { margin-bottom:0; }
+        .ap-card:hover { box-shadow:var(--sh2); transform:translateY(-2px); }
+
+        /* Left: number + illustration */
+        .ap-card-l {
+            flex-shrink:0; width:172px;
+            padding:28px 18px;
+            display:flex; flex-direction:column;
+            align-items:center; gap:14px;
+        }
+        .ap-cnum {
+            width:44px; height:44px; border-radius:50%;
+            background:var(--cc, var(--brand));
+            color:#fff; font-size:15px; font-weight:900;
+            display:flex; align-items:center; justify-content:center;
+            flex-shrink:0; align-self:flex-start;
+        }
+        .ap-cillus { width:100px; height:80px; display:flex; align-items:center; justify-content:center; }
+
+        /* Divider */
+        .ap-cdiv { width:1px; background:#f1f5f9; flex-shrink:0; }
+
+        /* Content */
+        .ap-card-m { flex:1; padding:28px 32px; }
+        .ap-ckicker {
+            font-size:11px; font-weight:800; letter-spacing:1.3px;
+            text-transform:uppercase; color:var(--cc, var(--brand)); margin-bottom:7px;
+        }
+        .ap-ctitle { font-size:21px; font-weight:900; color:var(--dark); margin-bottom:8px; line-height:1.3; }
+        .ap-cdesc  { font-size:14px; color:var(--muted); line-height:1.72; margin-bottom:18px; }
+        .ap-ctags  { display:flex; flex-wrap:wrap; gap:8px; }
+        .ap-ctag {
+            display:inline-flex; align-items:center; gap:6px;
+            border:1.5px solid var(--cc-bdr, rgba(89,50,234,.22));
+            border-radius:99px; padding:5px 14px;
+            font-size:12.5px; font-weight:700;
+            color:var(--cc, var(--brand)); background:transparent;
+        }
+        .ap-ctag i { font-size:10px; }
+
+        /* Right: icon ring + labels */
+        .ap-card-r {
+            flex-shrink:0; width:162px;
+            padding:28px 18px;
+            display:flex; flex-direction:column;
+            align-items:center; justify-content:center; gap:10px;
+        }
+        .ap-cring {
+            width:66px; height:66px; border-radius:50%;
+            border:2px solid var(--cc, var(--brand));
+            color:var(--cc, var(--brand));
+            display:flex; align-items:center; justify-content:center;
+            font-size:27px;
+            background:rgba(255,255,255,.5);
+        }
+        .ap-clevel { font-size:11px; font-weight:800; letter-spacing:.9px; text-transform:uppercase; color:var(--dark); text-align:center; }
+        .ap-cbadge {
+            display:inline-block; padding:4px 14px; border-radius:99px;
+            font-size:12px; font-weight:700;
+            white-space: nowrap;
+            color:var(--cc, var(--brand));
+            border:1.5px solid var(--cc, var(--brand));
+            background:var(--cc-bg, rgba(89,50,234,.07));
+        }
+
+        @media(max-width:991px){ .ap-card-r{ display:none; } .ap-card-l{ width:130px; } }
+        @media(max-width:575px){ .ap-card{ flex-direction:column; } .ap-cdiv{ display:none; } .ap-card-l{ width:100%; flex-direction:row; } }
+
+        /* ═══════════════════════════════════
+           IMPACT SECTION
+        ═══════════════════════════════════ */
+        .ap-impact {
+            background:linear-gradient(160deg,#f5f3ff 0%,#eef2ff 55%,#f0f9ff 100%);
+            padding:80px 0; position:relative; overflow:hidden;
+        }
+        .ap-impact::before {
+            content:''; position:absolute; inset:0;
+            background-image:radial-gradient(rgba(89,50,234,.055) 1.2px, transparent 1.2px);
+            background-size:26px 26px; pointer-events:none;
+        }
+
+        .ap-imp-tag { font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--brand); margin-bottom:10px; }
+        .ap-imp-h2  { font-size:36px; font-weight:900; color:var(--dark); letter-spacing:-1.2px; line-height:1.15; }
+        .ap-imp-sub { font-size:15px; color:var(--muted); line-height:1.75; }
+
+        .ap-metric  { display:flex; align-items:flex-start; gap:16px; margin-top:36px; }
+        .ap-met-ic  {
+            width:52px; height:52px; border-radius:50%;
+            background:var(--mic-bg, #ede9fe); color:var(--mic, var(--brand));
+            display:flex; align-items:center; justify-content:center;
+            font-size:22px; flex-shrink:0;
+        }
+        .ap-met-title { font-size:16px; font-weight:900; color:var(--mic, var(--brand)); line-height:1.3; margin-bottom:4px; }
+        .ap-met-desc  { font-size:13px; color:var(--muted); line-height:1.6; }
+
+        /* ═══════════════════════════════════
+           CTA  dark navy
+        ═══════════════════════════════════ */
+        .ap-cta { background:linear-gradient(135deg,#3d1eb5 0%,#5932EA 55%,#772EFE 100%); padding:64px 0; position:relative; overflow:hidden; }
+        .ap-cta::before {
+            content:''; position:absolute; inset:0;
+            background-image:radial-gradient(rgba(255,255,255,.06) 1.2px, transparent 1.2px);
+            background-size:24px 24px; pointer-events:none;
+        }
+        .ap-cta-blob {
+            position:absolute; border-radius:50%;
+            background:radial-gradient(ellipse,rgba(255,255,255,.1) 0%,transparent 65%);
+            pointer-events:none;
+        }
+        .ap-cta-blob-a { width:480px; height:480px; left:-140px; top:-180px; }
+        .ap-cta-blob-b { width:360px; height:360px; right:-80px; bottom:-120px; }
+
+        .ap-cta-wrap { display:flex; align-items:center; gap:48px; position:relative; z-index:1; }
+        .ap-cta-text { flex:1; }
+        .ap-cta-h2   { font-size:32px; font-weight:900; color:#fff; letter-spacing:-1px; line-height:1.2; margin-bottom:14px; }
+        .ap-cta-sub  { font-size:15px; color:rgba(255,255,255,.72); line-height:1.75; margin-bottom:28px; max-width:400px; }
+        .ap-cta-btn  {
+            display:inline-flex; align-items:center; gap:10px;
+            border:2px solid rgba(255,255,255,.5); border-radius:99px;
+            padding:12px 28px; font-size:14px; font-weight:700; color:#fff;
+            text-decoration:none; transition:background .2s, border-color .2s;
+        }
+        .ap-cta-btn:hover { background:rgba(255,255,255,.12); border-color:#fff; color:#fff; text-decoration:none; }
+        .ap-cta-visual { flex-shrink:0; width:300px; display:flex; align-items:center; justify-content:center; }
+        @media(max-width:767px){ .ap-cta-wrap{flex-direction:column;} .ap-cta-visual{width:100%;max-width:240px;} }
+    </style>
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- Breadcrumb ────────────────────────────────── -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px!important;padding-bottom:30px!important;min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Personalised Action Plan</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li>Action Plan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+             HERO  3 columns
+        ═══════════════════════════════════════ -->
+        <section class="ap-hero">
+            <div class="container">
+                <div class="row align-items-center g-4">
+
+                    <!-- Col 1: Text -->
+                    <div class="col-lg-4" data-aos="fade-right">
+                        <span class="ap-hero-tag">Personalised Action Plan</span>
+                        <h1 class="ap-hero-h1">Your Personalised <span>Action Plan</span></h1>
+                        <p class="ap-hero-sub">Based on your results, we've created a prioritised plan to help you save time, reduce manual work and scale with confidence.</p>
+                    </div>
+
+                    <!-- Col 2: Score ring + badges -->
+                    <div class="col-lg-4 ap-score-col" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="ap-ring-wrap">
+                            <svg class="ap-ring-svg" viewBox="0 0 170 170">
+                                <defs>
+                                    <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%"   stop-color="#5932EA"/>
+                                        <stop offset="100%" stop-color="#772EFE"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle class="ap-ring-bg"   cx="85" cy="85" r="80"/>
+                                <circle class="ap-ring-prog" cx="85" cy="85" r="80"/>
+                            </svg>
+                            <div class="ap-ring-center">
+                                <div class="ap-ring-num">62</div>
+                                <div class="ap-ring-of">out of 100</div>
+                            </div>
+                        </div>
+                        <span class="ap-ring-lbl">Your Automation Score</span>
+
+                        <div class="ap-badge-row">
+                            <div class="ap-badge">
+                                <span class="ap-badge-icon" style="color:#5932EA;">
+                                    <i class="fa-solid fa-star" style="font-size:16px;"></i>
+                                </span>
+                                <div>
+                                    <span class="ap-badge-t">8 Strengths</span>
+                                    <span class="ap-badge-s">You're doing well</span>
+                                </div>
+                            </div>
+                            <div class="ap-badge">
+                                <span class="ap-badge-icon" style="color:var(--brand);">
+                                    <i class="fa-regular fa-bullseye-arrow" style="font-size:16px;"></i>
+                                </span>
+                                <div>
+                                    <span class="ap-badge-t">3 Focus Areas</span>
+                                    <span class="ap-badge-s">Recommended to grow</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Clipboard illustration -->
+                    <div class="col-lg-4 d-none d-lg-flex justify-content-center" data-aos="fade-left">
+                        <svg width="220" height="270" viewBox="0 0 220 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- clipboard body -->
+                            <rect x="22" y="38" width="162" height="210" rx="16" fill="#eef2ff"/>
+                            <rect x="22" y="38" width="162" height="210" rx="16" fill="white" fill-opacity="0.55"/>
+                            <rect x="22" y="38" width="162" height="210" rx="16" stroke="#e0e7ff" stroke-width="1.5"/>
+                            <!-- clip -->
+                            <rect x="72" y="24" width="76" height="28" rx="8" fill="#5932EA"/>
+                            <rect x="80" y="30" width="60" height="16" rx="5" fill="#7c3aed"/>
+                            <!-- header bar -->
+                            <rect x="22" y="54" width="162" height="28" rx="0" fill="#5932EA" fill-opacity="0.07"/>
+
+                            <!-- Row 1 -->
+                            <circle cx="52" cy="96" r="14" fill="#ede9fe"/>
+                            <path d="M46 96 L50 100 L59 89" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <rect x="74" y="89" width="88" height="9" rx="4" fill="#ddd6fe"/>
+                            <rect x="74" y="102" width="64" height="7" rx="3" fill="#f1f5f9"/>
+
+                            <!-- Row 2 -->
+                            <circle cx="52" cy="136" r="14" fill="#ede9fe"/>
+                            <path d="M46 136 L50 140 L59 129" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <rect x="74" y="129" width="98" height="9" rx="4" fill="#e0e7ff"/>
+                            <rect x="74" y="142" width="72" height="7" rx="3" fill="#f1f5f9"/>
+
+                            <!-- Row 3 -->
+                            <circle cx="52" cy="176" r="14" fill="#ede9fe"/>
+                            <path d="M46 176 L50 180 L59 169" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <rect x="74" y="169" width="78" height="9" rx="4" fill="#ddd6fe"/>
+                            <rect x="74" y="182" width="56" height="7" rx="3" fill="#f1f5f9"/>
+
+                            <!-- Target / bullseye icon (overlay bottom-right of clipboard) -->
+                            <circle cx="166" cy="218" r="28" fill="white" fill-opacity="0.9"/>
+                            <circle cx="166" cy="218" r="24" fill="white" stroke="#ede9fe" stroke-width="1.5"/>
+                            <circle cx="166" cy="218" r="18" stroke="#c4b5fd" stroke-width="2" fill="none"/>
+                            <circle cx="166" cy="218" r="11" stroke="#a78bfa" stroke-width="2" fill="none"/>
+                            <circle cx="166" cy="218" r="5"  fill="#5932EA"/>
+                            <!-- small dart -->
+                            <line x1="175" y1="209" x2="169" y2="215" stroke="#5932EA" stroke-width="2" stroke-linecap="round"/>
+                            <polygon points="176,206 173,212 179,210" fill="#5932EA"/>
+
+                            <!-- plant pot -->
+                            <ellipse cx="196" cy="255" rx="16" ry="6" fill="#bfdbfe" fill-opacity="0.7"/>
+                            <rect x="180" y="241" width="32" height="18" rx="5" fill="#93c5fd"/>
+                            <ellipse cx="196" cy="241" rx="18" ry="7" fill="#bfdbfe"/>
+                            <!-- leaves -->
+                            <path d="M196 238 Q182 218 188 204" stroke="#34d399" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                            <path d="M196 238 Q210 212 205 198" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M196 238 Q196 216 196 205" stroke="#6ee7b7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+             PRIORITY CARDS
+        ═══════════════════════════════════════ -->
+        <section class="ap-priorities">
+            <div class="container">
+
+                <!-- Card 1  Purple -->
+                <div class="ap-card" style="--cc:#5932EA; --cc-bdr:rgba(89,50,234,.25); --cc-bg:rgba(89,50,234,.07);"
+                     data-aos="fade-up">
+                    <div class="ap-card-l">
+                        <div class="ap-cnum" style="background:#5932EA;">01</div>
+                        <div class="ap-cillus">
+                            <!-- Documents + DB illustration -->
+                            <svg width="96" height="78" viewBox="0 0 96 78" fill="none">
+                                <!-- doc back -->
+                                <rect x="18" y="8" width="52" height="64" rx="7" fill="#c4b5fd" fill-opacity="0.4"/>
+                                <!-- doc front -->
+                                <rect x="10" y="4" width="52" height="64" rx="7" fill="white" stroke="#ddd6fe" stroke-width="1.2"/>
+                                <rect x="18" y="14" width="36" height="5" rx="2.5" fill="#ddd6fe"/>
+                                <rect x="18" y="24" width="28" height="4" rx="2" fill="#f1f5f9"/>
+                                <rect x="18" y="32" width="32" height="4" rx="2" fill="#f1f5f9"/>
+                                <rect x="18" y="40" width="22" height="4" rx="2" fill="#f1f5f9"/>
+                                <!-- DB cylinder -->
+                                <ellipse cx="74" cy="56" rx="16" ry="5" fill="#7c3aed"/>
+                                <rect x="58" y="46" width="32" height="14" fill="#5932EA"/>
+                                <ellipse cx="74" cy="46" rx="16" ry="5" fill="#a78bfa"/>
+                                <ellipse cx="74" cy="50" rx="16" ry="5" fill="#7c3aed" fill-opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ap-cdiv"></div>
+                    <div class="ap-card-m">
+                        <div class="ap-ckicker">Priority #1</div>
+                        <div class="ap-ctitle">Reduce duplicate data entry.</div>
+                        <div class="ap-cdesc">Connect your tools and stop entering the same information in multiple places.</div>
+                        <div class="ap-ctags">
+                            <span class="ap-ctag"><i class="fa-regular fa-check"></i> Identify duplicate sources</span>
+                            <span class="ap-ctag"><i class="fa-regular fa-check"></i> Automate data capture</span>
+                        </div>
+                    </div>
+                    <div class="ap-cdiv"></div>
+                    <div class="ap-card-r">
+                        <div class="ap-cring" style="border-color:#5932EA; color:#5932EA;">
+                            <i class="fa-regular fa-table-list"></i>
+                        </div>
+                        <div class="ap-clevel">High Impact</div>
+                        <div class="ap-cbadge" style="border-color:#5932EA; color:#5932EA; background:rgba(89,50,234,.08);">Start here</div>
+                    </div>
+                </div>
+
+                <!-- Card 2  Purple medium -->
+                <div class="ap-card" style="--cc:#7c3aed; --cc-bdr:rgba(124,58,237,.25); --cc-bg:rgba(124,58,237,.07);"
+                     data-aos="fade-up" data-aos-delay="60">
+                    <div class="ap-card-l">
+                        <div class="ap-cnum" style="background:#7c3aed;">02</div>
+                        <div class="ap-cillus">
+                            <!-- Charts illustration -->
+                            <svg width="96" height="78" viewBox="0 0 96 78" fill="none">
+                                <!-- bar chart bg -->
+                                <rect x="4" y="12" width="64" height="60" rx="7" fill="#f5f3ff" fill-opacity="0.8"/>
+                                <!-- bars -->
+                                <rect x="14" y="46" width="12" height="22" rx="3" fill="#7c3aed" fill-opacity="0.35"/>
+                                <rect x="30" y="32" width="12" height="36" rx="3" fill="#7c3aed" fill-opacity="0.6"/>
+                                <rect x="46" y="22" width="12" height="46" rx="3" fill="#7c3aed"/>
+                                <!-- donut chart -->
+                                <circle cx="78" cy="36" r="18" stroke="#ddd6fe" stroke-width="10" fill="none"/>
+                                <circle cx="78" cy="36" r="18" stroke="#7c3aed" stroke-width="10" fill="none"
+                                        stroke-dasharray="71 42" stroke-dashoffset="28" stroke-linecap="round"/>
+                                <circle cx="78" cy="36" r="10" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ap-cdiv"></div>
+                    <div class="ap-card-m">
+                        <div class="ap-ckicker" style="color:#7c3aed;">Priority #2</div>
+                        <div class="ap-ctitle">Automate recurring reports.</div>
+                        <div class="ap-cdesc">Schedule the reports your team runs every week or month. They'll land in inboxes automatically  no manual work required.</div>
+                        <div class="ap-ctags">
+                            <span class="ap-ctag" style="color:#7c3aed; border-color:rgba(124,58,237,.25);"><i class="fa-regular fa-check"></i> Use recurring reports</span>
+                            <span class="ap-ctag" style="color:#7c3aed; border-color:rgba(124,58,237,.25);"><i class="fa-regular fa-check"></i> Schedule &amp; auto-delivery</span>
+                        </div>
+                    </div>
+                    <div class="ap-cdiv"></div>
+                    <div class="ap-card-r">
+                        <div class="ap-cring" style="border-color:#7c3aed; color:#7c3aed;">
+                            <i class="fa-regular fa-file-lines"></i>
+                        </div>
+                        <div class="ap-clevel">Medium Impact</div>
+                        <div class="ap-cbadge" style="border-color:#7c3aed; color:#7c3aed; background:rgba(124,58,237,.08);">High value</div>
+                    </div>
+                </div>
+
+                <!-- Card 3  Blue -->
+                <div class="ap-card" style="--cc:#2563eb; --cc-bdr:rgba(37,99,235,.25); --cc-bg:rgba(37,99,235,.07);"
+                     data-aos="fade-up" data-aos-delay="120">
+                    <div class="ap-card-l">
+                        <div class="ap-cnum" style="background:#2563eb;">03</div>
+                        <div class="ap-cillus">
+                            <!-- Person + ID card illustration -->
+                            <svg width="96" height="78" viewBox="0 0 96 78" fill="none">
+                                <!-- person -->
+                                <circle cx="36" cy="20" r="13" fill="#bfdbfe"/>
+                                <path d="M12 68 C12 50 60 50 60 68" fill="#bfdbfe"/>
+                                <!-- ID card -->
+                                <rect x="52" y="38" width="40" height="28" rx="5" fill="white" stroke="#93c5fd" stroke-width="1.5"/>
+                                <circle cx="62" cy="48" r="6" fill="#93c5fd"/>
+                                <rect x="72" y="44" width="16" height="4" rx="2" fill="#2563eb" fill-opacity="0.4"/>
+                                <rect x="72" y="52" width="12" height="3" rx="1.5" fill="#e5e7eb"/>
+                                <rect x="55" y="56" width="30" height="3" rx="1.5" fill="#e5e7eb"/>
+                                <!-- blue accent blob -->
+                                <circle cx="18" cy="52" r="20" fill="#2563eb" fill-opacity="0.07"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ap-cdiv"></div>
+                    <div class="ap-card-m">
+                        <div class="ap-ckicker" style="color:#2563eb;">Priority #3</div>
+                        <div class="ap-ctitle">Centralise participant information.</div>
+                        <div class="ap-cdesc">One source of truth for all participant data means fewer errors, faster decisions, and better collaboration.</div>
+                        <div class="ap-ctags">
+                            <span class="ap-ctag" style="color:#2563eb; border-color:rgba(37,99,235,.25);"><i class="fa-regular fa-check"></i> Consolidate data sources</span>
+                            <span class="ap-ctag" style="color:#2563eb; border-color:rgba(37,99,235,.25);"><i class="fa-regular fa-check"></i> Standardise fields</span>
+                        </div>
+                    </div>
+                    <div class="ap-cdiv"></div>
+                    <div class="ap-card-r">
+                        <div class="ap-cring" style="border-color:#2563eb; color:#2563eb;">
+                            <i class="fa-regular fa-users"></i>
+                        </div>
+                        <div class="ap-clevel">Quick Win</div>
+                        <div class="ap-cbadge" style="border-color:#2563eb; color:#2563eb; background:rgba(37,99,235,.08);">Easy to implement</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+             ESTIMATED IMPACT
+        ═══════════════════════════════════════ -->
+        <section class="ap-impact">
+            <div class="container">
+
+                <!-- Header row -->
+                <div class="row align-items-end mb-4" data-aos="fade-up">
+                    <div class="col-lg-5">
+                        <div class="ap-imp-tag">Estimated Impact</div>
+                        <div class="ap-imp-h2">What acting now<br>means for your team</div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <p class="ap-imp-sub">By working through these priorities, your organisation can achieve the following within the next 60 days.</p>
+                    </div>
+                </div>
+
+                <!-- 3 metrics -->
+                <div class="row g-4" data-aos="fade-up" data-aos-delay="60">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ap-metric">
+                            <div class="ap-met-ic" style="--mic:#5932EA; --mic-bg:#ede9fe;">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="ap-met-title" style="--mic:#5932EA;">Save 8 hours<br>per week</div>
+                                <div class="ap-met-desc">By eliminating manual and repetitive tasks.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ap-metric">
+                            <div class="ap-met-ic" style="--mic:#7c3aed; --mic-bg:#f5f3ff;">
+                                <i class="fa-regular fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="ap-met-title" style="--mic:#7c3aed;">Reduce<br>administration</div>
+                                <div class="ap-met-desc">Spend less time on admin and more on impact.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ap-metric">
+                            <div class="ap-met-ic" style="--mic:#2563eb; --mic-bg:#dbeafe;">
+                                <i class="fa-regular fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="ap-met-title" style="--mic:#2563eb;">Improve<br>visibility</div>
+                                <div class="ap-met-desc">Get real-time insights to make better decisions.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+             CTA  dark navy
+        ═══════════════════════════════════════ -->
+        <section class="ap-cta">
+            <div class="ap-cta-blob ap-cta-blob-a"></div>
+            <div class="ap-cta-blob ap-cta-blob-b"></div>
+            <div class="container" data-aos="fade-up">
+                <div class="ap-cta-wrap">
+
+                    <!-- Text -->
+                    <div class="ap-cta-text">
+                        <div class="ap-cta-h2">See how automated businesses<br>solve these problems.</div>
+                        <p class="ap-cta-sub">Explore real-world examples and see how organisations like yours save time, reduce manual work and grow faster with automation.</p>
+                        <a href="../assessment/" class="ap-cta-btn">
+                            See how automated businesses solve these problems
+                            <i class="fa-regular fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Visual -->
+                    <div class="ap-cta-visual">
+                        <svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- laptop/screen frame -->
+                            <rect x="10" y="10" width="220" height="150" rx="12" fill="white" fill-opacity="0.1" stroke="white" stroke-opacity="0.25" stroke-width="1.5"/>
+                            <!-- screen inner -->
+                            <rect x="20" y="20" width="200" height="130" rx="8" fill="white" fill-opacity="0.08"/>
+                            <!-- chart inside screen -->
+                            <!-- header bar -->
+                            <rect x="28" y="28" width="90" height="8" rx="3" fill="white" fill-opacity="0.2"/>
+                            <rect x="28" y="40" width="60" height="6" rx="3" fill="white" fill-opacity="0.12"/>
+                            <!-- bars -->
+                            <rect x="28"  y="90" width="22" height="54" rx="4" fill="white" fill-opacity="0.15"/>
+                            <rect x="58"  y="70" width="22" height="74" rx="4" fill="white" fill-opacity="0.25"/>
+                            <rect x="88"  y="50" width="22" height="94" rx="4" fill="white" fill-opacity="0.4"/>
+                            <rect x="118" y="75" width="22" height="69" rx="4" fill="white" fill-opacity="0.25"/>
+                            <rect x="148" y="60" width="22" height="84" rx="4" fill="white" fill-opacity="0.35"/>
+                            <!-- line chart overlay -->
+                            <polyline points="39,110 69,85 99,65 129,88 159,70 189,50"
+                                      stroke="white" stroke-opacity="0.5" stroke-width="2"
+                                      fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- dots on line -->
+                            <circle cx="39"  cy="110" r="3" fill="white" fill-opacity="0.6"/>
+                            <circle cx="99"  cy="65"  r="3" fill="white" fill-opacity="0.6"/>
+                            <circle cx="159" cy="70"  r="3" fill="white" fill-opacity="0.6"/>
+                            <circle cx="189" cy="50"  r="3" fill="white" fill-opacity="0.6"/>
+                            <!-- laptop stand -->
+                            <path d="M50 162 L170 162 L185 180 L35 180 Z" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.15" stroke-width="1"/>
+                            <rect x="95" y="158" width="50" height="8" rx="3" fill="white" fill-opacity="0.1"/>
+
+                            <!-- floating rocket icon circle -->
+                            <circle cx="258" cy="65" r="38" fill="#5932EA"/>
+                            <circle cx="258" cy="65" r="38" fill="white" fill-opacity="0.1"/>
+                            <circle cx="258" cy="65" r="38" stroke="white" stroke-opacity="0.3" stroke-width="1.5"/>
+                            <!-- rocket -->
+                            <path d="M258 44 C266 50 270 60 266 74 L258 78 L250 74 C246 60 250 50 258 44 Z" fill="white" fill-opacity="0.9"/>
+                            <path d="M250 74 L244 82 L252 80 Z" fill="white" fill-opacity="0.6"/>
+                            <path d="M266 74 L272 82 L264 80 Z" fill="white" fill-opacity="0.6"/>
+                            <circle cx="258" cy="62" r="5" fill="#5932EA"/>
+                            <!-- small glow dots -->
+                            <circle cx="232" cy="40" r="4" fill="white" fill-opacity="0.3"/>
+                            <circle cx="280" cy="90" r="3" fill="white" fill-opacity="0.2"/>
+                        </svg>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            </svg>
+        </div>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+
+    <script>
+        // animate score ring when hero scrolls into view
+        const prog = document.querySelector('.ap-ring-prog');
+        if (prog) {
+            new IntersectionObserver(([e]) => {
+                if (e.isIntersecting) { prog.classList.add('go'); }
+            }, { threshold: 0.5 }).observe(prog.closest('section'));
+        }
+    </script>
+</body>
+</html>
