@@ -2908,8 +2908,9 @@
   padding: 14px 15px;
 }
 .vl-tab-wrap-2-thumb img {
-  height: 300px;
-  object-fit: cover;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
   border-radius: 16px;
 }
 .vl-tab-wrap-2-content .title {
