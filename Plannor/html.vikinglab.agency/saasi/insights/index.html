@@ -224,241 +224,417 @@
         </section>
         <!-- =========== banner end =========== -->
 
-        <!-- =========== tools section =========== -->
-        <section class="fix" style="background:#ffffff;padding:70px 0 80px;">
+        <!-- =========== tools strip =========== -->
+        <style>
+        .tool-pill { display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:40px;text-decoration:none;transition:all .2s;border:1.5px solid #ddd5fc;background:#f8f5ff; }
+        .tool-pill .pill-ico { width:32px;height:32px;background:#ede9fe;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s; }
+        .tool-pill .pill-lbl { font-size:14px;font-weight:600;white-space:nowrap;transition:color .2s; }
+        .tool-pill-1 .pill-lbl { color:#5932EA; }
+        .tool-pill-2 .pill-lbl { color:#3d1eb5; }
+        .tool-pill-3 .pill-lbl { color:#772EFE; }
+        .tool-pill-1:hover { background:#5932EA;border-color:#5932EA; }
+        .tool-pill-2:hover { background:#3d1eb5;border-color:#3d1eb5; }
+        .tool-pill-3:hover { background:#772EFE;border-color:#772EFE; }
+        .tool-pill:hover .pill-ico { background:rgba(255,255,255,0.22); }
+        .tool-pill:hover .pill-lbl { color:#fff; }
+        .tool-pill:hover .pill-ico svg { stroke:#fff; }
+        </style>
+        <section class="fix" style="background:#ffffff;padding:50px 0 44px;">
             <div class="container">
-
-                <!-- Section heading -->
-                <div class="row justify-content-center" style="margin-bottom:52px;">
-                    <div class="col-xl-8 text-center">
-                        <span style="display:inline-block;background:#f0ebff;color:#5932EA;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:18px;">Free Tools for NDIS Providers</span>
-                        <h2 style="font-size:38px;font-weight:700;color:#0f0c29;line-height:1.2;margin-bottom:14px;font-family:'Cal Sans',sans-serif;">Understand Where You Stand</h2>
-                        <p style="font-size:17px;color:#6b7280;max-width:560px;margin:0 auto;line-height:1.65;">Use our free tools to benchmark your operations, assess your risks and calculate your ROI — in minutes, not months.</p>
-                    </div>
+                <div class="text-center" style="margin-bottom:28px;">
+                    <h2 style="font-size:38px;font-weight:700;color:#1a1a2e;line-height:1.2;margin:0;">Free Tools for NDIS Providers</h2>
                 </div>
+                <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;">
 
-                <!-- 3 CTA Cards -->
-                <div class="row g-4 justify-content-center">
+                    <!-- Operational Assessment -->
+                    <a href="../assessment/" class="tool-pill tool-pill-1">
+                        <span class="pill-ico">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                        </span>
+                        <span class="pill-lbl">Operational Assessment</span>
+                    </a>
 
-                    <!-- Card 1: Operational Assessment -->
-                    <div class="col-xl-4 col-md-6">
-                        <a href="../assessment/" style="text-decoration:none;display:block;border-radius:20px;padding:40px 36px 36px;background:#f8f5ff;border:1.5px solid #ede8ff;position:relative;overflow:hidden;transition:all .25s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(0,0,0,.10)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
-                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5932EA,#772EFE);border-radius:20px 20px 0 0;"></div>
-                            <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:rgba(89,50,234,.07);pointer-events:none;"></div>
-                            <div style="position:relative;z-index:2;">
-                                <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 8px 20px rgba(89,50,234,.3);">
-                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                                </div>
-                                <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5932EA;margin-bottom:10px;">Assessment</p>
-                                <h3 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:14px;line-height:1.3;">Operational Assessment</h3>
-                                <p style="font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:28px;">Identify gaps across rostering, compliance, billing and care delivery with a 5-minute provider health check.</p>
-                                <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#5932EA;">
-                                    Start Assessment
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                    <span style="color:#ddd;font-size:20px;font-weight:300;">|</span>
 
-                    <!-- Card 2: Industry Benchmark -->
-                    <div class="col-xl-4 col-md-6">
-                        <a href="../industry-benchmark/" style="text-decoration:none;display:block;border-radius:20px;padding:40px 36px 36px;background:#f0ebff;border:1.5px solid #ddd5fc;position:relative;overflow:hidden;transition:all .25s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(89,50,234,.12)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
-                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3d1eb5,#5932EA);border-radius:20px 20px 0 0;"></div>
-                            <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:rgba(61,30,181,.07);pointer-events:none;"></div>
-                            <div style="position:relative;z-index:2;">
-                                <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#3d1eb5,#5932EA);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 8px 20px rgba(61,30,181,.3);">
-                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-                                </div>
-                                <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#3d1eb5;margin-bottom:10px;">Benchmarking</p>
-                                <h3 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:14px;line-height:1.3;">Industry Benchmark</h3>
-                                <p style="font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:28px;">See how your provider stacks up against industry peers on cost per participant, staff utilisation and claim accuracy.</p>
-                                <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#3d1eb5;">
-                                    Compare Now
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                    <!-- Industry Benchmark -->
+                    <a href="../industry-benchmark/" class="tool-pill tool-pill-2">
+                        <span class="pill-ico">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3d1eb5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                        </span>
+                        <span class="pill-lbl">Industry Benchmark</span>
+                    </a>
 
-                    <!-- Card 3: ROI Calculator -->
-                    <div class="col-xl-4 col-md-6">
-                        <a href="../roi-calculator/" style="text-decoration:none;display:block;border-radius:20px;padding:40px 36px 36px;background:#ede9fe;border:1.5px solid #d5ccf9;position:relative;overflow:hidden;transition:all .25s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(119,46,254,.12)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
-                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5932EA,#772EFE);border-radius:20px 20px 0 0;"></div>
-                            <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:rgba(119,46,254,.07);pointer-events:none;"></div>
-                            <div style="position:relative;z-index:2;">
-                                <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 8px 20px rgba(119,46,254,.3);">
-                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                </div>
-                                <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#772EFE;margin-bottom:10px;">Calculator</p>
-                                <h3 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:14px;line-height:1.3;">ROI Calculator</h3>
-                                <p style="font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:28px;">Enter your current team size and participant count to see your projected time savings and revenue gains with Plannor.</p>
-                                <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#772EFE;">
-                                    Calculate ROI
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                    <span style="color:#ddd;font-size:20px;font-weight:300;">|</span>
+
+                    <!-- ROI Calculator -->
+                    <a href="../roi-calculator/" class="tool-pill tool-pill-3">
+                        <span class="pill-ico">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#772EFE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </span>
+                        <span class="pill-lbl">ROI Calculator</span>
+                    </a>
 
                 </div>
             </div>
         </section>
-        <!-- =========== tools end =========== -->
+        <!-- =========== tools strip end =========== -->
+
+        <!-- =========== checklists & blueprints =========== -->
+        <style>
+        /* ── card shell ── */
+        .cb-card { background:#fff;border-radius:22px;overflow:hidden;border:1.5px solid #e8e1fc;height:100%;display:flex;flex-direction:column;transition:box-shadow .35s,transform .35s; }
+        .cb-card:hover { box-shadow:0 28px 70px rgba(89,50,234,.14);transform:translateY(-7px); }
+        /* ── image top ── */
+        .cb-img-top { position:relative;overflow:hidden;flex-shrink:0; }
+        .cb-img-top img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease; }
+        .cb-card:hover .cb-img-top img { transform:scale(1.06); }
+        .cb-img-grad { position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,8,60,.04) 0%,rgba(20,8,60,.72) 100%); }
+        /* ── number badge floating on image ── */
+        .cb-num-badge { position:absolute;top:16px;right:16px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-radius:16px;padding:10px 16px;box-shadow:0 6px 24px rgba(0,0,0,.13);text-align:center;min-width:60px; }
+        /* ── caption at image bottom ── */
+        .cb-img-caption { position:absolute;bottom:0;left:0;right:0;padding:18px 24px 22px; }
+        /* ── card body ── */
+        .cb-body { padding:26px 28px 30px;flex:1;display:flex;flex-direction:column; }
+        /* ── feature list ── */
+        .cb-list { list-style:none;padding:0;margin:0 0 20px; }
+        .cb-list li { display:flex;align-items:flex-start;gap:12px;padding:9px 0;font-size:13.5px;color:#4a4a6a;border-bottom:1px solid #f3f0ff;line-height:1.5; }
+        .cb-list li:last-child { border-bottom:none; }
+        .cb-check { width:22px;height:22px;background:#f0ebff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px; }
+        .cb-check svg { display:block; }
+        /* ── bottom action bar ── */
+        .cb-action-bar { display:flex;align-items:center;justify-content:space-between;gap:14px;background:#f5f0ff;border-radius:14px;padding:14px 18px;margin-top:auto; }
+        .cb-action-btn { display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#5932EA,#772EFE);color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:30px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;flex-shrink:0; }
+        .cb-action-btn:hover { opacity:.9;color:#fff;transform:translateY(-1px); }
+        /* ── divider row ── */
+        .cb-divider { display:flex;align-items:center;gap:14px;margin-bottom:28px; }
+        .cb-divider::after { content:'';flex:1;height:1px;background:linear-gradient(90deg,#ede9fe,transparent); }
+        /* ── blueprint pill tag on image ── */
+        .cb-tag { display:inline-block;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.32);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:8px; }
+
+        /* ── Blueprint cards use .vl-service-wrap10 from style.css ── */
+        .bp-service-thumb img { width:100%;border-radius:10px;margin-top:28px; }
+        /* ── Articles section overrides ── */
+        .vl-blog-area-lavender { background:#f0ebff !important; padding-bottom:50px !important; }
+        .vl-blog-wrap10-content .title { font-size:15px !important;line-height:22px !important; }
+        .vl-blog-wrap10-content .readmore { font-size:14px !important; }
+        .vl-subtitle-gbg11-white .subtitle { font-size:13px !important;line-height:13px !important; }
+        /* ── Video gallery ── */
+        .vg-tile { position:relative;display:block;overflow:hidden;border-radius:14px;aspect-ratio:16/9;cursor:pointer; }
+        .vg-tile img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease; }
+        .vg-tile:hover img { transform:scale(1.06); }
+        .vg-tile-overlay { position:absolute;inset:0;background:rgba(15,6,50,.38);transition:background .3s; }
+        .vg-tile:hover .vg-tile-overlay { background:rgba(15,6,50,.52); }
+        .vg-tile-play { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(89,50,234,.4);transition:transform .25s,box-shadow .25s; }
+        .vg-tile-play svg { margin-left:3px; }
+        .vg-tile:hover .vg-tile-play { transform:translate(-50%,-50%) scale(1.14);box-shadow:0 10px 32px rgba(89,50,234,.55); }
+        </style>
+        <section class="fix" style="background:linear-gradient(180deg,#f5f0ff 0%,#fff 220px);padding:80px 0 100px;border-top:1px solid #ede9fe;">
+            <div class="container">
+
+                <!-- Section Heading -->
+                <div class="text-center" style="margin-bottom:64px;">
+                    <span style="display:inline-block;background:#f0ebff;color:#5932EA;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 20px;border-radius:30px;margin-bottom:18px;">Free Resources</span>
+                    <h2 style="font-size:42px;font-weight:800;color:#1a1a2e;line-height:1.18;margin-bottom:16px;">Operational Checklists &amp;<br>Business Blueprints</h2>
+                    <p style="font-size:16px;color:#6b7280;max-width:520px;margin:0 auto;line-height:1.75;">Built for NDIS providers — use these tools to identify gaps, protect revenue and prepare your organisation for growth.</p>
+                </div>
+
+                <!-- ── CHECKLISTS HEADER ── -->
+                <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1.5px solid #ede9fe;border-radius:20px;padding:22px 28px;margin-bottom:28px;box-shadow:0 4px 20px rgba(89,50,234,.06);">
+                    <div style="width:54px;height:54px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    </div>
+                    <div style="flex:1;">
+                        <p style="font-size:11px;font-weight:700;color:#772EFE;letter-spacing:.12em;text-transform:uppercase;margin:0 0 4px;">Free Resource · Interactive Checklist</p>
+                        <h3 style="font-size:22px;font-weight:800;color:#1a1a2e;margin:0 0 2px;">Operational Checklists</h3>
+                        <p style="font-size:13px;color:#6b7280;margin:0;">Complete a checklist to review your daily operations and participant onboarding process</p>
+                    </div>
+                    <span style="display:inline-block;background:#f0ebff;color:#5932EA;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:.06em;white-space:nowrap;flex-shrink:0;">2 Checklists</span>
+                </div>
+
+                <div class="row g-4" style="margin-bottom:56px;">
+
+                    <!-- Checklist 1: Daily Operations Review -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cb-card">
+                            <!-- Image -->
+                            <div class="cb-img-top" style="height:260px;">
+                                <img src="../assets/img/hrmanagement/service/participant-notes.png" alt="" style="object-position:center top;">
+                                <div class="cb-img-grad" style="background:linear-gradient(to bottom,rgba(10,5,40,.2) 0%,rgba(10,5,40,.90) 100%);"></div>
+                                <!-- Floating stat badge -->
+                                <div class="cb-num-badge">
+                                    <div style="font-size:28px;font-weight:800;color:#5932EA;line-height:1;">5</div>
+                                    <div style="font-size:10px;font-weight:600;color:#888;margin-top:2px;line-height:1.2;">Areas<br>Covered</div>
+                                </div>
+                                <!-- Caption on image -->
+                                <div class="cb-img-caption">
+                                    <span class="cb-tag">Daily Checklist</span>
+                                    <h3 style="font-size:22px;font-weight:700;color:#fff;margin:0;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.3);">Daily Operations Review</h3>
+                                </div>
+                            </div>
+                            <!-- Type strip -->
+                            <div style="display:flex;align-items:center;gap:10px;padding:11px 24px;background:#f5f0ff;border-bottom:1px solid #ede9fe;">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                                <span style="font-size:11px;font-weight:700;color:#5932EA;letter-spacing:.1em;text-transform:uppercase;">Operational Checklist</span>
+                            </div>
+                            <!-- Body -->
+                            <div class="cb-body">
+                                <p style="font-size:14px;color:#6b7280;line-height:1.75;margin-bottom:20px;">Help managers perform a complete operational review in under 5 minutes — covering the five areas most likely to create issues if not monitored daily.</p>
+                                <ul class="cb-list">
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Participants — urgent issues, incidents, high-risk reviews &amp; new requests
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Staff — roster confirmation, shortages, leave requests &amp; shift changes
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Tasks — overdue items, critical deadlines, escalations &amp; blocked actions
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Compliance — alerts, expiring documents &amp; unbilled services
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Communication — team announcements, client follow-ups &amp; urgent messages
+                                    </li>
+                                </ul>
+                                <!-- Action bar -->
+                                <div class="cb-action-bar">
+                                    <p style="font-size:12.5px;color:#5932EA;font-weight:600;margin:0;line-height:1.4;flex:1;">⚡ Generates an instant Readiness Score — Operationally Strong to High Risk</p>
+                                    <a href="../assessment/" class="cb-action-btn">Start <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist 2: New Participant Onboarding -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cb-card">
+                            <!-- Image -->
+                            <div class="cb-img-top" style="height:260px;">
+                                <img src="../assets/img/hrmanagement/service/support-art-session.png" alt="" style="object-position:center;">
+                                <div class="cb-img-grad" style="background:linear-gradient(to bottom,rgba(10,5,40,.15) 0%,rgba(10,5,40,.90) 100%);"></div>
+                                <!-- Floating stat badge -->
+                                <div class="cb-num-badge">
+                                    <div style="font-size:28px;font-weight:800;color:#3d1eb5;line-height:1;">4</div>
+                                    <div style="font-size:10px;font-weight:600;color:#888;margin-top:2px;line-height:1.2;">Stage<br>Process</div>
+                                </div>
+                                <!-- Caption on image -->
+                                <div class="cb-img-caption">
+                                    <span class="cb-tag">Onboarding Checklist</span>
+                                    <h3 style="font-size:22px;font-weight:700;color:#fff;margin:0;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.3);">New Participant Onboarding</h3>
+                                </div>
+                            </div>
+                            <!-- Type strip -->
+                            <div style="display:flex;align-items:center;gap:10px;padding:11px 24px;background:#eee8ff;border-bottom:1px solid #e0d9f8;">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                                <span style="font-size:11px;font-weight:700;color:#3d1eb5;letter-spacing:.1em;text-transform:uppercase;">Onboarding Checklist</span>
+                            </div>
+                            <!-- Body -->
+                            <div class="cb-body">
+                                <p style="font-size:14px;color:#6b7280;line-height:1.75;margin-bottom:20px;">Ensure your organisation follows a structured, compliant onboarding process — so no critical step is ever missed when a new participant joins.</p>
+                                <ul class="cb-list">
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 1 — Personal details, emergency contact, NDIS number &amp; plan upload
+                                    </li>
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 2 — Worker allocation, initial meeting, service agreement &amp; participant file
+                                    </li>
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 3 — Consent forms, risk assessments &amp; internal compliance review
+                                    </li>
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 4 — Service readiness, first session scheduling &amp; billing confirmation
+                                    </li>
+                                </ul>
+                                <!-- Action bar -->
+                                <div class="cb-action-bar" style="background:#eee8ff;">
+                                    <p style="font-size:12.5px;color:#3d1eb5;font-weight:600;margin:0;line-height:1.4;flex:1;">✓ Tracks completion % with a missing step log &amp; recommended next actions</p>
+                                    <a href="../assessment/" class="cb-action-btn" style="background:linear-gradient(135deg,#3d1eb5,#5932EA);">Start <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ── BLUEPRINTS — clean design ── -->
+                <div class="bp-wrap">
+
+                    <!-- Header banner -->
+                    <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1.5px solid #ede9fe;border-radius:18px;padding:20px 26px;margin-bottom:28px;box-shadow:0 4px 18px rgba(89,50,234,.05);">
+                        <div style="width:52px;height:52px;background:linear-gradient(135deg,#3d1eb5,#772EFE);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p style="font-size:11px;font-weight:700;color:#772EFE;letter-spacing:.12em;text-transform:uppercase;margin:0 0 4px;">Free Resource · Business Blueprint</p>
+                            <h3 style="font-size:22px;font-weight:800;color:#1a1a2e;margin:0 0 2px;">Business Blueprints</h3>
+                            <p style="font-size:13px;color:#6b7280;margin:0;">Step-by-step blueprints to protect revenue, improve visibility and identify automation opportunities</p>
+                        </div>
+                        <span style="display:inline-block;background:#f0ebff;color:#772EFE;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:.06em;white-space:nowrap;flex-shrink:0;">3 Blueprints</span>
+                    </div>
+
+                    <!-- Three blueprint cards — same structure as index-10.html -->
+                    <div class="row g-4">
+
+                        <!-- Blueprint 1: Revenue Protection -->
+                        <div class="col-xl-4 col-md-6">
+                            <div class="vl-service-wrap10" style="height:100%;">
+                                <div class="vl-service-wrap10-bg" style="background-image:url('../assets/img/hrmanagement/service/vl-service-bg-10.1.png');height:100%;display:flex;flex-direction:column;">
+                                    <div class="vl-service-wrap10-icon" style="margin-bottom:16px;">
+                                        <span style="display:inline-flex;align-items:center;justify-content:center;">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                        </span>
+                                    </div>
+                                    <h3 class="vl-service-wrap10-title" style="margin-bottom:12px;">Revenue Protection Blueprint</h3>
+                                    <p class="vl-service-wrap10-desc" style="margin-bottom:28px;font-size:15px;">Identify where revenue is leaking in your billing process and build your ideal future state.</p>
+                                    <div class="vl-service-wrap10-thumb text-center bp-service-thumb" style="margin-top:auto;">
+                                        <img src="../assets/img/hrmanagement/service/Automated NDIS Billing.jpeg" alt="Revenue Protection Blueprint">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Blueprint 2: Operational Intelligence -->
+                        <div class="col-xl-4 col-md-6">
+                            <div class="vl-service-wrap10" style="height:100%;">
+                                <div class="vl-service-wrap10-bg" style="background-image:url('../assets/img/hrmanagement/service/vl-service-bg-10.1.png');height:100%;display:flex;flex-direction:column;">
+                                    <div class="vl-service-wrap10-icon" style="margin-bottom:16px;">
+                                        <span style="display:inline-flex;align-items:center;justify-content:center;">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        </span>
+                                    </div>
+                                    <h3 class="vl-service-wrap10-title" style="margin-bottom:12px;">Operational Intelligence Blueprint</h3>
+                                    <p class="vl-service-wrap10-desc" style="margin-bottom:28px;font-size:15px;">Discover where you lack visibility across participants, workforce and compliance.</p>
+                                    <div class="vl-service-wrap10-thumb text-center bp-service-thumb" style="margin-top:auto;">
+                                        <img src="../assets/img/hrmanagement/service/staff-management.png" alt="Operational Intelligence Blueprint">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Blueprint 3: Automation Opportunity -->
+                        <div class="col-xl-4 col-md-6">
+                            <div class="vl-service-wrap10" style="height:100%;">
+                                <div class="vl-service-wrap10-bg" style="background-image:url('../assets/img/hrmanagement/service/vl-service-bg-10.1.png');height:100%;display:flex;flex-direction:column;">
+                                    <div class="vl-service-wrap10-icon" style="margin-bottom:16px;">
+                                        <span style="display:inline-flex;align-items:center;justify-content:center;">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                        </span>
+                                    </div>
+                                    <h3 class="vl-service-wrap10-title" style="margin-bottom:12px;">Automation Opportunity Blueprint</h3>
+                                    <p class="vl-service-wrap10-desc" style="margin-bottom:28px;font-size:15px;">Find where admin time is being lost and identify the highest-value processes to automate first.</p>
+                                    <div class="vl-service-wrap10-thumb text-center bp-service-thumb" style="margin-top:auto;">
+                                        <img src="../assets/img/Scheduling.png" alt="Automation Opportunity Blueprint">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- /bp-wrap -->
+
+            </div>
+        </section>
+        <!-- =========== checklists & blueprints end =========== -->
 
         <!-- =========== articles grid =========== -->
-        <section class="fix pt-60 pb-70" style="background:#f5f0ff;">
+        <section class="vl-blog-area-10 fix vl-blog-area-lavender pt-100 pb-30">
             <div class="container">
 
                 <!-- Section heading -->
-                <div class="row mb-50">
-                    <div class="col-12 text-center">
-                        <h2 class="title" style="font-size:38px;font-weight:700;color:#1a1a2e;margin:0;font-family:'Cal Sans',sans-serif;">All Articles</h2>
+                <div class="row align-items-center mb-50">
+                    <div class="col-xl-6">
+                        <div class="vl-section-title10 mb-30">
+                            <div class="vl-subtitle-gbg10 mb-18">
+                                <div class="vl-subtitle-gbg10-white">
+                                    <p class="subtitle">Insights &amp; Tips</p>
+                                </div>
+                            </div>
+                            <h2 class="title10">Read Our Latest Articles</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-30">
+                        <div class="text-xl-end">
+                            <a href="#" class="vl-primary-btn10">Read All Articles</a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Cards row 1 -->
-                <div class="row g-4 mb-4">
+                <!-- 3 articles in 1 row -->
+                <div class="row">
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f8f5ff,#ede9fe);">📊</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#f8f5ff;color:#5932EA;">Industry Benchmark</span>
-                                <h4 class="ins-card-title"><a href="#">NDIS Admin Benchmark: How Much Time Are You Losing?</a></h4>
-                                <p class="ins-card-desc">The average NDIS coordinator spends 14+ hours per week on admin. Here's how the best providers have cut that to under 4 — and what tools they use.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 7 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <div class="vl-blog-wrap10-gbg">
+                            <div class="vl-blog-wrap10-gbg-whit">
+                                <div class="vl-blog-wrap10">
+                                    <div class="vl-blog-wrap10-bg mb-24">
+                                        <div class="vl-blog-wrap10-bg-thumb">
+                                            <img class="w-100" src="../assets/img/hrmanagement/service/vl-blog10.1.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="vl-blog-wrap10-content">
+                                        <div class="vl-subtitle-gbg11 mb-16">
+                                            <div class="vl-subtitle-gbg11-white">
+                                                <p class="subtitle">Industry Benchmark</p>
+                                            </div>
+                                        </div>
+                                        <h3 class="title mb-24"><a href="#">NDIS Admin Benchmark: How Much Time Are You Losing?</a></h3>
+                                        <a href="#" class="readmore">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0fbf4,#c6f0d4);">🛡️</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#f0fbf4;color:#2e7d32;">Compliance</span>
-                                <h4 class="ins-card-title"><a href="#">What the NDIS Practice Standards Actually Require in 2025</a></h4>
-                                <p class="ins-card-desc">A plain-language breakdown of the updated NDIS Practice Standards — what's changed, what providers often miss, and how to stay audit-ready year-round.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 10 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <div class="vl-blog-wrap10-gbg">
+                            <div class="vl-blog-wrap10-gbg-whit">
+                                <div class="vl-blog-wrap10">
+                                    <div class="vl-blog-wrap10-bg mb-24">
+                                        <div class="vl-blog-wrap10-bg-thumb">
+                                            <img class="w-100" src="../assets/img/hrmanagement/service/vl-blog10.2.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="vl-blog-wrap10-content">
+                                        <div class="vl-subtitle-gbg11 mb-16">
+                                            <div class="vl-subtitle-gbg11-white">
+                                                <p class="subtitle">Compliance</p>
+                                            </div>
+                                        </div>
+                                        <h3 class="title mb-24"><a href="#">What the NDIS Practice Standards Actually Require in 2025</a></h3>
+                                        <a href="#" class="readmore">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#fff8f0,#fde5c2);">🚀</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#fff8f0;color:#e66c14;">Growth</span>
-                                <h4 class="ins-card-title"><a href="#">Building a Sustainable Growth Strategy for Your NDIS Business</a></h4>
-                                <p class="ins-card-desc">Growth without systems leads to chaos. This guide walks through the operational foundations every expanding NDIS provider needs before taking on more participants.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 9 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Cards row 2 -->
-                <div class="row g-4 mb-4">
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0f7ff,#bfdbfe);">📅</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#f0f7ff;color:#2563eb;">Rostering</span>
-                                <h4 class="ins-card-title"><a href="#">Smarter Rostering: How to Reduce No-Shows and Shift Gaps</a></h4>
-                                <p class="ins-card-desc">Unexpected absences are one of the biggest operational challenges for NDIS providers. Learn the scheduling strategies that the most resilient teams use.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 6 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc);">🤖</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#fdf4ff;color:#9333ea;">AI &amp; Tech</span>
-                                <h4 class="ins-card-title"><a href="#">Progress Notes in Minutes: How AI Is Changing NDIS Documentation</a></h4>
-                                <p class="ins-card-desc">AI-assisted progress notes aren't just faster — they're more consistent and audit-ready. Here's what forward-thinking providers are already doing.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 5 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0fdfa,#99f6e4);">💰</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#f0fdfa;color:#0d9488;">Finance</span>
-                                <h4 class="ins-card-title"><a href="#">NDIA Bulk Claims: The Complete Guide to Faster, Error-Free Invoicing</a></h4>
-                                <p class="ins-card-desc">Manual NDIA claims are slow and error-prone. This step-by-step guide covers everything from claim types to bulk submission — and how to automate it all.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 8 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Cards row 3 -->
-                <div class="row g-4">
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f8f5ff,#ddd6fe);">👥</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#f8f5ff;color:#5932EA;">Workforce</span>
-                                <h4 class="ins-card-title"><a href="#">SCHADS Award Explained: What Every NDIS Provider Needs to Know</a></h4>
-                                <p class="ins-card-desc">Non-compliance with the SCHADS Award is one of the most common — and costly — mistakes NDIS employers make. Here's how to stay on the right side of it.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 11 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#fff8f0,#fed7aa);">🏠</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#fff8f0;color:#ea580c;">Care Quality</span>
-                                <h4 class="ins-card-title"><a href="#">The Family Portal Advantage: Why Transparency Builds Trust in NDIS</a></h4>
-                                <p class="ins-card-desc">Participants and families increasingly expect real-time visibility into care. Providers who offer it report higher retention and fewer complaints. Here's why.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 5 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-md-6">
-                        <div class="ins-card">
-                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0f7ff,#bae6fd);">📊</div>
-                            <div class="ins-card-body">
-                                <span class="ins-tag" style="background:#f0f7ff;color:#0284c7;">Reporting</span>
-                                <h4 class="ins-card-title"><a href="#">KPIs Every NDIS Provider Should Track (And How to Automate Them)</a></h4>
-                                <p class="ins-card-desc">From utilisation rates to compliance scores, the right metrics tell the real story of your organisation. Here's which KPIs matter most and how to track them.</p>
-                                <div class="ins-card-footer">
-                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 7 min read</span>
-                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <div class="vl-blog-wrap10-gbg">
+                            <div class="vl-blog-wrap10-gbg-whit">
+                                <div class="vl-blog-wrap10">
+                                    <div class="vl-blog-wrap10-bg mb-24">
+                                        <div class="vl-blog-wrap10-bg-thumb">
+                                            <img class="w-100" src="../assets/img/hrmanagement/service/vl-blog10.3.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="vl-blog-wrap10-content">
+                                        <div class="vl-subtitle-gbg11 mb-16">
+                                            <div class="vl-subtitle-gbg11-white">
+                                                <p class="subtitle">Growth</p>
+                                            </div>
+                                        </div>
+                                        <h3 class="title mb-24"><a href="#">Building a Sustainable Growth Strategy for Your NDIS Business</a></h3>
+                                        <a href="#" class="readmore">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -470,23 +646,95 @@
         </section>
         <!-- =========== articles grid end =========== -->
 
-        <!-- =========== newsletter =========== -->
-        <section class="fix pt-0 pb-70" style="background:#ffffff;">
+        <!-- =========== video gallery =========== -->
+        <section class="fix" style="background:#fff;padding:70px 0 80px;">
             <div class="container">
-                <div class="ins-newsletter">
-                    <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-                        <i class="fa-regular fa-envelope" style="color:#fff;font-size:24px;"></i>
+
+                <div class="row align-items-center mb-40">
+                    <div class="col-xl-6">
+                        <div class="vl-section-title10">
+                            <div class="vl-subtitle-gbg10 mb-18">
+                                <div class="vl-subtitle-gbg10-white">
+                                    <p class="subtitle">Watch &amp; Learn</p>
+                                </div>
+                            </div>
+                            <h2 class="title10">Video Gallery</h2>
+                        </div>
                     </div>
-                    <h3 style="font-size:32px;font-weight:400;color:#1a1a2e;margin-bottom:12px;font-family:'Cal Sans',sans-serif;">Stay Ahead of the NDIS</h3>
-                    <p style="color:#666;font-size:16px;max-width:480px;margin:0 auto 32px;">Get the latest guides, benchmarks and industry updates delivered to your inbox — no fluff, just what matters.</p>
-                    <form style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" onsubmit="return false;">
-                        <input type="email" placeholder="Enter your email address" style="padding:14px 20px;border:1.5px solid #e9e2ff;border-radius:30px;font-size:15px;width:320px;outline:none;color:#1a1a2e;" onfocus="this.style.borderColor='#5932EA'" onblur="this.style.borderColor='#e9e2ff'">
-                        <button type="submit" style="padding:14px 28px;background:linear-gradient(135deg,#5932EA,#772EFE);color:#fff;border:none;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Subscribe <i class="fa-regular fa-arrow-right"></i></button>
-                    </form>
                 </div>
+
+                <div class="row g-3">
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/staff-management.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/Automated NDIS Billing.jpeg" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/Scheduling.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/care-management-hero.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/participant-notes.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/woman-laptop.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </section>
-        <!-- =========== newsletter end =========== -->
+        <!-- =========== video gallery end =========== -->
+
+        <!-- =========== cta section =========== -->
+        <section style="background:#fff;padding:140px 0 60px;">
+            <section class="vl-cta-area-wrap10 p-relative" style="padding-top:50px;padding-bottom:50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-8">
+                            <div class="vl-cta-content-10" style="padding-left:60px;">
+                                <div class="vl-section-title10">
+                                    <h2 class="title text-anime-style-2 pb-22" style="font-size:34px;line-height:42px;white-space:nowrap;">How Efficient Is Your Organisation?</h2>
+                                    <p class="para pb-28" style="font-size:16px;line-height:26px;">Complete a free assessment and discover your operational score, benchmark position and improvement opportunities.</p>
+                                </div>
+                                <a href="../assessment/" class="vl-primary-btn10" style="background:#fff;color:#060D0A;">Start Assessment</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6"></div>
+                    </div>
+                </div>
+                <div class="vl-cta-thumb10 reveal image-anime">
+                    <img class="w-100" src="../assets/img/hrmanagement/service/vl-cta-thumb10.1.png" alt="">
+                </div>
+            </section>
+        </section>
+        <!-- =========== cta section end =========== -->
 
     </main>
 
