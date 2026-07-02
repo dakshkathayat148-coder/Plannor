@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Plannor</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .ins-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: box-shadow .25s, transform .25s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .ins-card:hover {
+            box-shadow: 0 16px 48px rgba(89,50,234,.12);
+            transform: translateY(-4px);
+        }
+        .ins-card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .ins-card-img-placeholder {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        .ins-card-body {
+            padding: 28px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+        .ins-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .ins-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.4;
+            margin: 0;
+        }
+        .ins-card-title a { color: inherit; text-decoration: none; }
+        .ins-card-title a:hover { color: #5932EA; }
+        .ins-card-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+            flex: 1;
+        }
+        .ins-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: auto;
+        }
+        .ins-card-meta {
+            font-size: 12px;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ins-read-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: #5932EA;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ins-read-link:hover { color: #772EFE; }
+        .ins-featured {
+            background: linear-gradient(135deg,#1a0a3e 0%,#3d1eb5 50%,#5932EA 100%);
+            border-radius: 24px;
+            padding: 56px 52px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 340px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ins-featured-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.25);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+        .ins-featured h3 {
+            font-size: 36px;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            font-family: 'Cal Sans', sans-serif;
+        }
+        .ins-featured p {
+            color: rgba(255,255,255,.75);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        .ins-featured-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #5932EA;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            width: fit-content;
+            transition: background .2s;
+        }
+        .ins-featured-btn:hover { background: #f0ecff; color: #5932EA; }
+        .ins-filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1.5px solid #e0e0e0;
+            background: #fff;
+            color: #555;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+        }
+        .ins-filter-btn.active, .ins-filter-btn:hover {
+            background: #5932EA;
+            border-color: #5932EA;
+            color: #fff;
+        }
+        .ins-newsletter {
+            background: linear-gradient(135deg,#f8f5ff 0%,#ede9fe 100%);
+            border: 1px solid #e9e2ff;
+            border-radius: 24px;
+            padding: 56px 48px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== banner =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Insights</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><a href="#">Insights</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== banner end =========== -->
+
+        <!-- =========== tools section =========== -->
+        <section class="fix" style="background:#ffffff;padding:70px 0 80px;">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row justify-content-center" style="margin-bottom:52px;">
+                    <div class="col-xl-8 text-center">
+                        <span style="display:inline-block;background:#f0ebff;color:#5932EA;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:18px;">Free Tools for NDIS Providers</span>
+                        <h2 style="font-size:38px;font-weight:700;color:#0f0c29;line-height:1.2;margin-bottom:14px;font-family:'Cal Sans',sans-serif;">Understand Where You Stand</h2>
+                        <p style="font-size:17px;color:#6b7280;max-width:560px;margin:0 auto;line-height:1.65;">Use our free tools to benchmark your operations, assess your risks and calculate your ROI — in minutes, not months.</p>
+                    </div>
+                </div>
+
+                <!-- 3 CTA Cards -->
+                <div class="row g-4 justify-content-center">
+
+                    <!-- Card 1: Operational Assessment -->
+                    <div class="col-xl-4 col-md-6">
+                        <a href="../assessment/" style="text-decoration:none;display:block;border-radius:20px;padding:40px 36px 36px;background:#f8f5ff;border:1.5px solid #ede8ff;position:relative;overflow:hidden;transition:all .25s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(0,0,0,.10)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5932EA,#772EFE);border-radius:20px 20px 0 0;"></div>
+                            <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:rgba(89,50,234,.07);pointer-events:none;"></div>
+                            <div style="position:relative;z-index:2;">
+                                <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 8px 20px rgba(89,50,234,.3);">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                                </div>
+                                <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5932EA;margin-bottom:10px;">Assessment</p>
+                                <h3 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:14px;line-height:1.3;">Operational Assessment</h3>
+                                <p style="font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:28px;">Identify gaps across rostering, compliance, billing and care delivery with a 5-minute provider health check.</p>
+                                <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#5932EA;">
+                                    Start Assessment
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 2: Industry Benchmark -->
+                    <div class="col-xl-4 col-md-6">
+                        <a href="../industry-benchmark/" style="text-decoration:none;display:block;border-radius:20px;padding:40px 36px 36px;background:#f0ebff;border:1.5px solid #ddd5fc;position:relative;overflow:hidden;transition:all .25s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(89,50,234,.12)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3d1eb5,#5932EA);border-radius:20px 20px 0 0;"></div>
+                            <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:rgba(61,30,181,.07);pointer-events:none;"></div>
+                            <div style="position:relative;z-index:2;">
+                                <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#3d1eb5,#5932EA);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 8px 20px rgba(61,30,181,.3);">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                                </div>
+                                <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#3d1eb5;margin-bottom:10px;">Benchmarking</p>
+                                <h3 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:14px;line-height:1.3;">Industry Benchmark</h3>
+                                <p style="font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:28px;">See how your provider stacks up against industry peers on cost per participant, staff utilisation and claim accuracy.</p>
+                                <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#3d1eb5;">
+                                    Compare Now
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 3: ROI Calculator -->
+                    <div class="col-xl-4 col-md-6">
+                        <a href="../roi-calculator/" style="text-decoration:none;display:block;border-radius:20px;padding:40px 36px 36px;background:#ede9fe;border:1.5px solid #d5ccf9;position:relative;overflow:hidden;transition:all .25s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(119,46,254,.12)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5932EA,#772EFE);border-radius:20px 20px 0 0;"></div>
+                            <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:rgba(119,46,254,.07);pointer-events:none;"></div>
+                            <div style="position:relative;z-index:2;">
+                                <div style="width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 8px 20px rgba(119,46,254,.3);">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                </div>
+                                <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#772EFE;margin-bottom:10px;">Calculator</p>
+                                <h3 style="font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:14px;line-height:1.3;">ROI Calculator</h3>
+                                <p style="font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:28px;">Enter your current team size and participant count to see your projected time savings and revenue gains with Plannor.</p>
+                                <span style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#772EFE;">
+                                    Calculate ROI
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- =========== tools end =========== -->
+
+        <!-- =========== articles grid =========== -->
+        <section class="fix pt-60 pb-70" style="background:#f5f0ff;">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row mb-50">
+                    <div class="col-12 text-center">
+                        <h2 class="title" style="font-size:38px;font-weight:700;color:#1a1a2e;margin:0;font-family:'Cal Sans',sans-serif;">All Articles</h2>
+                    </div>
+                </div>
+
+                <!-- Cards row 1 -->
+                <div class="row g-4 mb-4">
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f8f5ff,#ede9fe);">📊</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#f8f5ff;color:#5932EA;">Industry Benchmark</span>
+                                <h4 class="ins-card-title"><a href="#">NDIS Admin Benchmark: How Much Time Are You Losing?</a></h4>
+                                <p class="ins-card-desc">The average NDIS coordinator spends 14+ hours per week on admin. Here's how the best providers have cut that to under 4 — and what tools they use.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 7 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0fbf4,#c6f0d4);">🛡️</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#f0fbf4;color:#2e7d32;">Compliance</span>
+                                <h4 class="ins-card-title"><a href="#">What the NDIS Practice Standards Actually Require in 2025</a></h4>
+                                <p class="ins-card-desc">A plain-language breakdown of the updated NDIS Practice Standards — what's changed, what providers often miss, and how to stay audit-ready year-round.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 10 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#fff8f0,#fde5c2);">🚀</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#fff8f0;color:#e66c14;">Growth</span>
+                                <h4 class="ins-card-title"><a href="#">Building a Sustainable Growth Strategy for Your NDIS Business</a></h4>
+                                <p class="ins-card-desc">Growth without systems leads to chaos. This guide walks through the operational foundations every expanding NDIS provider needs before taking on more participants.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 9 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Cards row 2 -->
+                <div class="row g-4 mb-4">
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0f7ff,#bfdbfe);">📅</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#f0f7ff;color:#2563eb;">Rostering</span>
+                                <h4 class="ins-card-title"><a href="#">Smarter Rostering: How to Reduce No-Shows and Shift Gaps</a></h4>
+                                <p class="ins-card-desc">Unexpected absences are one of the biggest operational challenges for NDIS providers. Learn the scheduling strategies that the most resilient teams use.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 6 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#fdf4ff,#f0abfc);">🤖</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#fdf4ff;color:#9333ea;">AI &amp; Tech</span>
+                                <h4 class="ins-card-title"><a href="#">Progress Notes in Minutes: How AI Is Changing NDIS Documentation</a></h4>
+                                <p class="ins-card-desc">AI-assisted progress notes aren't just faster — they're more consistent and audit-ready. Here's what forward-thinking providers are already doing.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 5 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0fdfa,#99f6e4);">💰</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#f0fdfa;color:#0d9488;">Finance</span>
+                                <h4 class="ins-card-title"><a href="#">NDIA Bulk Claims: The Complete Guide to Faster, Error-Free Invoicing</a></h4>
+                                <p class="ins-card-desc">Manual NDIA claims are slow and error-prone. This step-by-step guide covers everything from claim types to bulk submission — and how to automate it all.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 8 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Cards row 3 -->
+                <div class="row g-4">
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f8f5ff,#ddd6fe);">👥</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#f8f5ff;color:#5932EA;">Workforce</span>
+                                <h4 class="ins-card-title"><a href="#">SCHADS Award Explained: What Every NDIS Provider Needs to Know</a></h4>
+                                <p class="ins-card-desc">Non-compliance with the SCHADS Award is one of the most common — and costly — mistakes NDIS employers make. Here's how to stay on the right side of it.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 11 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#fff8f0,#fed7aa);">🏠</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#fff8f0;color:#ea580c;">Care Quality</span>
+                                <h4 class="ins-card-title"><a href="#">The Family Portal Advantage: Why Transparency Builds Trust in NDIS</a></h4>
+                                <p class="ins-card-desc">Participants and families increasingly expect real-time visibility into care. Providers who offer it report higher retention and fewer complaints. Here's why.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 5 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="ins-card">
+                            <div class="ins-card-img-placeholder" style="background:linear-gradient(135deg,#f0f7ff,#bae6fd);">📊</div>
+                            <div class="ins-card-body">
+                                <span class="ins-tag" style="background:#f0f7ff;color:#0284c7;">Reporting</span>
+                                <h4 class="ins-card-title"><a href="#">KPIs Every NDIS Provider Should Track (And How to Automate Them)</a></h4>
+                                <p class="ins-card-desc">From utilisation rates to compliance scores, the right metrics tell the real story of your organisation. Here's which KPIs matter most and how to track them.</p>
+                                <div class="ins-card-footer">
+                                    <span class="ins-card-meta"><i class="fa-regular fa-clock"></i> 7 min read</span>
+                                    <a href="#" class="ins-read-link">Read <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- =========== articles grid end =========== -->
+
+        <!-- =========== newsletter =========== -->
+        <section class="fix pt-0 pb-70" style="background:#ffffff;">
+            <div class="container">
+                <div class="ins-newsletter">
+                    <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#5932EA,#772EFE);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                        <i class="fa-regular fa-envelope" style="color:#fff;font-size:24px;"></i>
+                    </div>
+                    <h3 style="font-size:32px;font-weight:400;color:#1a1a2e;margin-bottom:12px;font-family:'Cal Sans',sans-serif;">Stay Ahead of the NDIS</h3>
+                    <p style="color:#666;font-size:16px;max-width:480px;margin:0 auto 32px;">Get the latest guides, benchmarks and industry updates delivered to your inbox — no fluff, just what matters.</p>
+                    <form style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" onsubmit="return false;">
+                        <input type="email" placeholder="Enter your email address" style="padding:14px 20px;border:1.5px solid #e9e2ff;border-radius:30px;font-size:15px;width:320px;outline:none;color:#1a1a2e;" onfocus="this.style.borderColor='#5932EA'" onblur="this.style.borderColor='#e9e2ff'">
+                        <button type="submit" style="padding:14px 28px;background:linear-gradient(135deg,#5932EA,#772EFE);color:#fff;border:none;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Subscribe <i class="fa-regular fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- =========== newsletter end =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+    <script>
+        // Fallback: hide preloader if window load already fired before main.js registered
+        $(document).ready(function(){
+            setTimeout(function(){ $('.preloader').fadeOut(300); }, 400);
+        });
+    </script>
+</body>
+</html>

@@ -10,7 +10,7 @@ html, body { overflow-x: hidden; }
     #vl-header-sticky .row { justify-content: space-between; }
 }
 
-/* â”€â”€ Mega Menu â”€â”€ */
+/* â"€â"€ Mega Menu â"€â"€ */
 header { position: relative; }
 .has-mega { position: static !important; }
 
@@ -141,7 +141,7 @@ header { position: relative; }
 }
 .mega-footer-demo:hover { background: #4a28c8; color: #fff; }
 
-/* â”€â”€ hard reset: undo all global nav-link styles inside mega menu â”€â”€ */
+/* â"€â"€ hard reset: undo all global nav-link styles inside mega menu â"€â"€ */
 .mega-menu, .mega-menu * { box-sizing: border-box; }
 .mega-menu a.mega-item,
 .mega-menu a.mega-item:hover,
@@ -204,31 +204,27 @@ header { position: relative; }
 <header>
     <div id="vl-header-sticky" class="vl-header-area vl-header-1 vl-transparent-header">
         <div class="container">
-            <div class="row align-items-center" style="flex-wrap:nowrap;">
+            <div class="row align-items-center" style="flex-wrap:nowrap;justify-content:space-between;">
                 <!-- Logo -->
                 <div class="col-md-6 col-6" style="flex:0 0 auto;width:auto;padding:0 15px;">
                     <div class="vl-logo">
-                        <a href="./"><img src="assets/img/logo/plannor-logomain.png" alt="" style="max-height:65px;width:auto;"></a>
+                        <a href="./"><img src="assets/img/logo/plannor-logomain.png" alt="" style="max-height:80px;width:auto;"></a>
                     </div>
                 </div>
 
                 <!-- Desktop nav -->
-                <div class="d-none d-xl-block" style="flex:1;min-width:0;padding:0 0 0 30px;">
-                    <div class="vl-main-menu vl-main-menu-1 vl-main-menu-1-9 text-center">
+                <div class="d-none d-xl-flex" style="flex:1;min-width:0;display:flex;align-items:center;justify-content:flex-end;padding-right:16px;">
+                    <div class="vl-main-menu vl-main-menu-1 vl-main-menu-1-9 text-center" style="width:fit-content !important;">
                         <nav class="vl-mobile-menu-active">
-                            <ul style="display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:0;padding:0 12px;">
+                            <ul style="display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:0;padding:0 8px;">
 
-                                <li style="white-space:nowrap;">
-                                    <a href="platform/" style="font-size:17px;padding:10px 14px;">Platform</a>
-                                </li>
-
-                                <!-- Features â€” mega menu -->
+                                <!-- Features – mega menu -->
                                 <li class="has-mega has-dropdown" style="white-space:nowrap;">
                                     <a href="#" style="font-size:17px;padding:10px 14px;">
                                         Features <i class="fa-solid fa-chevron-down" style="font-size:10px;margin-left:4px;opacity:.7;"></i>
                                     </a>
 
-                                    <div class="mega-menu">
+                                    <div class="mega-menu" style="display:none;">
 
                                         <!-- 3-column grid -->
                                         <div class="mega-body">
@@ -260,11 +256,19 @@ header { position: relative; }
                                                         <p>Automated pay runs and workforce reporting</p>
                                                     </div>
                                                 </a>
+
+                                                <a href="support-worker-app/" class="mega-item">
+                                                    <div class="mega-ico indigo"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Support Worker App</h6>
+                                                        <p>GPS clock-in, notes, and timesheets on mobile</p>
+                                                    </div>
+                                                </a>
                                             </div>
 
                                             <!-- Col 2 -->
                                             <div class="mega-col">
-                                                <div class="mega-col-label">Finance & Apps</div>
+                                                <div class="mega-col-label">Finance & Reporting</div>
 
                                                 <a href="invoicing/" class="mega-item">
                                                     <div class="mega-ico purple"><i class="fa-solid fa-file-invoice-dollar"></i></div>
@@ -274,11 +278,19 @@ header { position: relative; }
                                                     </div>
                                                 </a>
 
-                                                <a href="support-worker-app/" class="mega-item">
-                                                    <div class="mega-ico indigo"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                                <a href="revenue-monitoring/" class="mega-item">
+                                                    <div class="mega-ico green"><i class="fa-solid fa-chart-line"></i></div>
                                                     <div class="mega-txt">
-                                                        <h6>Support Worker App</h6>
-                                                        <p>GPS clock-in, notes, and timesheets on mobile</p>
+                                                        <h6>Revenue Monitoring</h6>
+                                                        <p>Track income, claims and funding in real time</p>
+                                                    </div>
+                                                </a>
+
+                                                <a href="budget-tracking/" class="mega-item">
+                                                    <div class="mega-ico teal"><i class="fa-solid fa-wallet"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Budget Tracking</h6>
+                                                        <p>Monitor participant budgets and prevent overspend</p>
                                                     </div>
                                                 </a>
 
@@ -318,6 +330,14 @@ header { position: relative; }
                                                         <p>Structured NDIS-aligned care planning tools</p>
                                                     </div>
                                                 </a>
+
+                                                <a href="goals/" class="mega-item">
+                                                    <div class="mega-ico purple"><i class="fa-solid fa-bullseye"></i></div>
+                                                    <div class="mega-txt">
+                                                        <h6>Goals</h6>
+                                                        <p>Set, track and report on participant NDIS goals</p>
+                                                    </div>
+                                                </a>
                                             </div>
 
                                         </div>
@@ -327,20 +347,19 @@ header { position: relative; }
                                 </li>
 
                                 <li style="white-space:nowrap;">
-                                    <a href="about/" style="font-size:17px;padding:10px 14px;">About Us</a>
+                                    <a href="solutions/" style="font-size:17px;padding:10px 14px;">Solutions</a>
                                 </li>
 
                                 <li style="white-space:nowrap;">
-                                    <a href="assessment/" style="font-size:17px;padding:10px 14px;">Business Assessment</a>
+                                    <a href="insights/" style="font-size:17px;padding:10px 14px;">Insights</a>
                                 </li>
 
                                 <li style="white-space:nowrap;">
-                                    <a href="roi-calculator/" style="font-size:17px;padding:10px 14px;">ROI Calculator</a>
+                                    <a href="customers/" style="font-size:17px;padding:10px 14px;">Customers</a>
                                 </li>
 
-                                <!-- Solution -->
                                 <li style="white-space:nowrap;">
-                                    <a href="solutions/" style="font-size:17px;padding:10px 14px;">Solution</a>
+                                    <a href="pricing/" style="font-size:17px;padding:10px 14px;">Pricing</a>
                                 </li>
 
                             </ul>
@@ -349,10 +368,9 @@ header { position: relative; }
                 </div>
 
                 <!-- CTA + hamburger -->
-                <div class="col-md-6 col-6" style="flex:0 0 auto;width:auto;display:flex;align-items:center;gap:16px;">
-                    <div class="d-none d-xl-block">
-                        <a href="assessment/" class="vl-primary-btn-1" style="background:#ffffff;border-color:#ffffff;color:#1a1a2e;white-space:nowrap;padding-top:7px;padding-bottom:7px;font-size:16px;">Get Started <span><img src="assets/img/icon/vl-arrowupright.svg" alt=""></span></a>
-                    </div>
+                <div style="flex:0 0 auto;width:auto;display:flex;align-items:center;gap:16px;">
+                    <a href="assessment/" class="vl-primary-btn-1 d-none d-xl-inline-flex" style="background:#ffffff;border-color:#ffffff;color:#1a1a2e;white-space:nowrap;font-size:17px;align-items:center;height:46px;padding-top:0;padding-bottom:0;padding-left:28px;padding-right:28px;box-sizing:border-box;">Register <span><img src="assets/img/icon/vl-arrowupright.svg" alt=""></span></a>
+                    <a href="login/" class="d-none d-xl-inline-flex" style="white-space:nowrap;font-size:17px;font-weight:600;color:#ffffff;text-decoration:none;height:46px;padding:0 28px;border:1.5px solid rgba(255,255,255,0.5);border-radius:30px;transition:background .15s;align-items:center;box-sizing:border-box;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='transparent'">Log in</a>
                     <div class="vl-header-action-item vl-header-action-item-6 d-block d-xl-none">
                         <button type="button" class="vl-offcanvas-toggle">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16">
@@ -450,9 +468,12 @@ header { position: relative; }
                             <li><a href="invoicing/">Invoicing</a></li>
                             <li><a href="support-worker-app/">Support Worker App</a></li>
                             <li><a href="plannor-ai/">Plannor AI</a></li>
+                            <li><a href="revenue-monitoring/">Revenue Monitoring</a></li>
+                            <li><a href="budget-tracking/">Budget Tracking</a></li>
                             <li><a href="family-portal/">Plannor Family Portal</a></li>
                             <li><a href="compliance/">Compliance</a></li>
                             <li><a href="care-plans/">Care Plans</a></li>
+                            <li><a href="goals/">Goals</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -497,6 +518,7 @@ header { position: relative; }
             var menu = li.querySelector('.mega-menu');
             if (!menu) return;
             document.body.appendChild(menu);
+            menu.style.display = 'none';
             menu.style.setProperty('position', 'fixed', 'important');
 
             var hideTimer;
