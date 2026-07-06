@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -453,6 +453,17 @@
     <script src="../assets/js/parallaxie.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/includes.js"></script>
+    <script>
+        // Fallback: dismiss preloader even if window.load already fired
+        if (document.readyState === 'complete') {
+            setTimeout(function() { var p = document.querySelector('.preloader'); if (p) p.style.display = 'none'; }, 100);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(function() { var p = document.querySelector('.preloader'); if (p) p.style.display = 'none'; }, 300);
+            });
+        }
+        // Hard-cap: always dismiss after 3 seconds
+        setTimeout(function() { var p = document.querySelector('.preloader'); if (p) p.style.display = 'none'; }, 3000);
+    </script>
 </body>
-
 </html>
