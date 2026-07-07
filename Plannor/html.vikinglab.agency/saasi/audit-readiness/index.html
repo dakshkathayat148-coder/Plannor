@@ -114,10 +114,10 @@
 
         .sb-section { padding: 90px 0 100px; background: #fff; }
         .sb-inner { display: flex; align-items: stretch; gap: 70px; }
-        .sb-img-wrap { flex: 0 0 38%; position: relative; }
+        .sb-img-wrap { flex: 0 0 38%; position: relative; display: flex; flex-direction: column; gap: 66px; }
         .sb-img-card {
             background: #111; border-radius: 24px; overflow: hidden;
-            height: 100%; min-height: 480px; position: relative;
+            position: relative;
         }
         .sb-img-card img {
             width: 100%; height: 100%; object-fit: cover;
@@ -182,6 +182,7 @@
             .sb-boxes { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
+            .sb-img-hide-mobile { display: none !important; }
             .pg-intro { padding: 54px 0 50px; }
             .pg-intro-h1 { font-size: 30px; }
             .kc-section { padding: 60px 0 70px; }
@@ -332,8 +333,11 @@
                 <div class="sb-inner">
 
                     <div class="sb-img-wrap">
-                        <div class="sb-img-card">
-                            <img src="../assets/img/hrmanagement/service/man-phone.png" alt="Audit readiness in Plannor">
+                        <div class="sb-img-card sb-img-hide-mobile" style="height:400px;">
+                            <img src="../assets/img/hrmanagement/service/audit-person.jpg" alt="Audit readiness in Plannor">
+                        </div>
+                        <div class="sb-img-card" style="height:400px;">
+                            <img src="../assets/img/hrmanagement/service/audit-dashboard.jpg" alt="Audit compliance in Plannor">
                             <div class="sb-img-badge">
                                 <div class="sb-img-badge-ico">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
