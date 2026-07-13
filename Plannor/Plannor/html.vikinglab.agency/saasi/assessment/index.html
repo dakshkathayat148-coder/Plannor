@@ -548,7 +548,7 @@
 
                                     <div class="pa-step-nav">
                                         <div></div>
-                                        <button class="pa-btn-next" onclick="paNext(1)">Next Step &nbsp;<i class="fa-regular fa-arrow-right"></i></button>
+                                        <button class="pa-btn-next" onclick="paNext(1)">Next Step &nbsp;<i class="fa-solid fa-arrow-right"></i></button>
                                     </div>
                                 </div>
 
@@ -605,8 +605,8 @@
                                     </div>
 
                                     <div class="pa-step-nav">
-                                        <button class="pa-btn-back" onclick="paBack(2)"><i class="fa-regular fa-arrow-left"></i> &nbsp;Back</button>
-                                        <button class="pa-btn-next" onclick="paNext(2)">Next Step &nbsp;<i class="fa-regular fa-arrow-right"></i></button>
+                                        <button class="pa-btn-back" onclick="paBack(2)"><i class="fa-solid fa-arrow-left"></i> &nbsp;Back</button>
+                                        <button class="pa-btn-next" onclick="paNext(2)">Next Step &nbsp;<i class="fa-solid fa-arrow-right"></i></button>
                                     </div>
                                 </div>
 
@@ -651,8 +651,8 @@
                                     </div>
 
                                     <div class="pa-step-nav">
-                                        <button class="pa-btn-back" onclick="paBack(3)"><i class="fa-regular fa-arrow-left"></i> &nbsp;Back</button>
-                                        <button class="pa-btn-next" onclick="paNext(3)">Next Step &nbsp;<i class="fa-regular fa-arrow-right"></i></button>
+                                        <button class="pa-btn-back" onclick="paBack(3)"><i class="fa-solid fa-arrow-left"></i> &nbsp;Back</button>
+                                        <button class="pa-btn-next" onclick="paNext(3)">Next Step &nbsp;<i class="fa-solid fa-arrow-right"></i></button>
                                     </div>
                                 </div>
 
@@ -700,7 +700,7 @@
                                     </div>
 
                                     <div class="pa-step-nav">
-                                        <button class="pa-btn-back" onclick="paBack(4)"><i class="fa-regular fa-arrow-left"></i> &nbsp;Back</button>
+                                        <button class="pa-btn-back" onclick="paBack(4)"><i class="fa-solid fa-arrow-left"></i> &nbsp;Back</button>
                                         <button class="pa-btn-next" style="background:linear-gradient(135deg,#3d1eb5,#5932EA,#772EFE)" onclick="paSubmit()">See My Score &nbsp;<i class="fa-solid fa-chart-bar"></i></button>
                                     </div>
                                 </div>
@@ -747,15 +747,15 @@
                                             <div class="pa-email-row">
                                                 <input type="email" id="paEmail" class="pa-email-input" placeholder="Enter your email address">
                                                 <button class="pa-btn-send" id="paSendBtn" onclick="paSendReport()">
-                                                    Send My Report &nbsp;<i class="fa-regular fa-paper-plane"></i>
+                                                    Send My Report &nbsp;<i class="fa-solid fa-paper-plane"></i>
                                                 </button>
                                             </div>
-                                            <p class="pa-privacy-note"><i class="fa-regular fa-lock"></i> &nbsp;No spam, ever. We respect your privacy.</p>
+                                            <p class="pa-privacy-note"><i class="fa-solid fa-lock"></i> &nbsp;No spam, ever. We respect your privacy.</p>
                                         </div>
 
                                         <div class="pa-step-nav">
                                             <button class="pa-btn-back" onclick="paRestart()"><i class="fa-solid fa-rotate-left"></i> &nbsp;Retake</button>
-                                            <a href="../contact/" class="pa-btn-next">Book a Demo &nbsp;<i class="fa-regular fa-arrow-right"></i></a>
+                                            <a href="../contact/" class="pa-btn-next">Book a Demo &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1010,7 +1010,7 @@
             document.getElementById('q12Val').textContent = '5';
             document.getElementById('paEmail').value = '';
             var sendBtn = document.getElementById('paSendBtn');
-            sendBtn.innerHTML = 'Send My Report &nbsp;<i class="fa-regular fa-paper-plane"></i>';
+            sendBtn.innerHTML = 'Send My Report &nbsp;<i class="fa-solid fa-paper-plane"></i>';
             sendBtn.classList.remove('pa-sent');
             sendBtn.disabled = false;
             document.getElementById('paRingFill').style.transition = 'none';
@@ -1033,7 +1033,7 @@
             }
             emailEl.classList.remove('pa-input-err');
             var btn = document.getElementById('paSendBtn');
-            btn.innerHTML = '<i class="fa-regular fa-check"></i> &nbsp;Report Sent!';
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> &nbsp;Report Sent!';
             btn.classList.add('pa-sent');
             btn.disabled = true;
             btn.style.color = '#22c55e';
