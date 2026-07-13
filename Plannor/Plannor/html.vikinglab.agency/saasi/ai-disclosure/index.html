@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +40,7 @@
             margin-bottom: 12px; display: block;
         }
         .pp-intro-h1 {
-            font-size: 44px; font-weight: 900; color: var(--navy);
+            font-size: 44px; font-weight: 400; color: var(--navy);
             letter-spacing: 2px; line-height: 1.1; margin-bottom: 20px;
         }
         @media(max-width: 576px) { .pp-intro-h1 { font-size: 32px; } }
@@ -49,7 +49,7 @@
         }
 
         .pp-sec-title {
-            font-size: 22px; font-weight: 800; color: var(--navy);
+            font-size: 22px; font-weight: 400; color: var(--navy);
             margin: 0 0 18px; line-height: 1.3;
         }
 
@@ -85,7 +85,7 @@
             border-radius: 20px; padding: 52px 48px; text-align: center;
             margin-top: 14px;
         }
-        .pp-cta-card h2 { font-size: 28px; font-weight: 900; color: #fff !important; margin-bottom: 10px; letter-spacing: 2px; }
+        .pp-cta-card h2 { font-size: 28px; font-weight: 400; color: #fff !important; margin-bottom: 10px; letter-spacing: 2px; }
         .pp-cta-card p  { font-size: 15px; color: rgba(255,255,255,.75) !important; margin-bottom: 26px; }
         .pp-cta-btn {
             display: inline-flex; align-items: center; gap: 8px;
@@ -95,6 +95,8 @@
             transition: opacity .2s;
         }
         .pp-cta-btn:hover { opacity: .9; color: var(--brand); text-decoration: none; }
+        /* Heading font â€” match home page Cal Sans weight 400 */
+        .pp-intro-h1, .pp-sec-title, .pp-cta-card h2 { font-family: 'Cal Sans', sans-serif; font-weight: 400; }
     </style>
 </head>
 <body>
@@ -121,7 +123,7 @@
                             <div class="vl-breadcrumb-menu">
                                 <ul>
                                     <li><a href="../">Home</a></li>
-                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
                                     <li>AI Disclosure</li>
                                 </ul>
                             </div>
@@ -231,3 +233,4 @@
     <script src="../assets/js/includes.js"></script>
 </body>
 </html>
+

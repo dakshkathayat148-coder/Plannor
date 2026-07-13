@@ -174,11 +174,13 @@
     /* ================================
 		09. preloader
 	================================ */
+    // Hide preloader as soon as DOM is interactive (don't wait for all images)
+    setTimeout(function () {
+      $(".preloader").fadeOut(300);
+    }, 600);
+    // Fallback: also hide on full load in case setTimeout didn't fire
     $(window).on("load", function (event) {
-      setTimeout(function () {
-        $(".preloader").fadeToggle();
-      }, 200);
-    
+      $(".preloader").fadeOut(0);
     });
 
     

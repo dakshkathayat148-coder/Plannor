@@ -58,7 +58,23 @@
       "Bash(xargs -I{} basename {})",
       "Bash(powershell -Command \"\\(Get-Content 'compare.html'\\) -replace 'Plannor/html\\\\.vikinglab\\\\.agency/saasi/assets/', 'assets/' | Set-Content 'compare.html' -Encoding utf8\")",
       "PowerShell(\\(Get-Content \"C:\\\\xampp\\\\htdocs\\\\vishwa_projects\\\\Plannor\\\\Plannor\\\\html.vikinglab.agency\\\\saasi\\\\compare\\\\index.html\"\\) -replace '\"assets/', '\"../assets/' | Set-Content \"C:\\\\xampp\\\\htdocs\\\\vishwa_projects\\\\Plannor\\\\Plannor\\\\html.vikinglab.agency\\\\saasi\\\\compare\\\\index.html\" -Encoding utf8)",
-      "Bash(git init *)"
+      "Bash(git init *)",
+      "PowerShell(cd \"C:\\\\xampp\\\\htdocs\\\\vishwa_projects\\\\Plannor\"; Select-String \"Smart Rostering|SCHADS Award|jb-section|sc-section\" \"Plannor/html.vikinglab.agency/saasi/rostering/index.html\" | Select-Object -First 8 | ForEach-Object { $_.LineNumber.ToString\\(\\) + \": \" + $_.Line.Trim\\(\\) })",
+      "Bash(git commit -m '@ *)",
+      "PowerShell(\\(Get-Item \"C:\\\\xampp\\\\htdocs\\\\vishwa_projects\\\\Plannor\\\\Plannor\\\\html.vikinglab.agency\\\\saasi\\\\assets\\\\img\\\\hrmanagement\\\\tab\\\\vl-tab-dashbord.png\"\\).Length)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(python -c ' *)",
+      "Bash(python fix_templates.py)",
+      "Bash(git commit *)",
+      "Bash(del \"C:\\\\xampp\\\\htdocs\\\\vishwa_projects\\\\fix_templates.py\")",
+      "Read(//c/Users/dpanw/Downloads/**)",
+      "Bash(cp \"C:/Users/dpanw/Downloads/Sign Up In Minutes \\(2\\).jpeg\" \"C:/xampp/htdocs/vishwa_projects/Plannor/html.vikinglab.agency/saasi/assets/img/hrmanagement/tab/tab-signup.jpg\")",
+      "Bash(cp 'C:\\\\Users\\\\dpanw/Downloads/Real-Time.png' Plannor/Plannor/html.vikinglab.agency/saasi/assets/img/hrmanagement/tab/tab-reporting-dashboard.png)",
+      "Bash(cp 'C:\\\\Users\\\\dpanw/Downloads/Real-Time.png' Plannor/html.vikinglab.agency/saasi/assets/img/hrmanagement/tab/tab-reporting-dashboard.png)",
+      "PowerShell($path = \"$PWD\\\\Plannor\\\\Plannor\\\\html.vikinglab.agency\\\\saasi\\\\assessment\\\\index.html\"; $bytes = [System.IO.File]::ReadAllBytes\\($path\\); $text = [System.Text.Encoding]::UTF8.GetString\\($bytes\\); $count = \\([regex]::Matches\\($text, [regex]::Escape\\(\"â€\" \\)\\)\\).Count; Write-Output \"Matches with Escape: $count\"; $hex = [BitConverter]::ToString\\($bytes[0..2]\\); Write-Output \"BOM bytes: $hex\"; $idx = $text.IndexOf\\(\"1â\"\\); Write-Output \"IndexOf 1a-hat: $idx\")",
+      "Bash(cp 'C:\\\\Users\\\\dpanw/Downloads/NDIS-Ready & Compliant.png' Plannor/Plannor/html.vikinglab.agency/saasi/assets/img/hrmanagement/tab/tab-ndis-reports.png)",
+      "Bash(cp 'C:\\\\Users\\\\dpanw/Downloads/NDIS-Ready & Compliant.png' Plannor/html.vikinglab.agency/saasi/assets/img/hrmanagement/tab/tab-ndis-reports.png)"
     ]
   }
 }

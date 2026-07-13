@@ -1,0 +1,765 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Plannor</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .ins-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: box-shadow .25s, transform .25s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .ins-card:hover {
+            box-shadow: 0 16px 48px rgba(89,50,234,.12);
+            transform: translateY(-4px);
+        }
+        .ins-card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .ins-card-img-placeholder {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        .ins-card-body {
+            padding: 28px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+        .ins-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .ins-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.4;
+            margin: 0;
+        }
+        .ins-card-title a { color: inherit; text-decoration: none; }
+        .ins-card-title a:hover { color: #5932EA; }
+        .ins-card-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+            flex: 1;
+        }
+        .ins-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: auto;
+        }
+        .ins-card-meta {
+            font-size: 12px;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ins-read-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: #5932EA;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ins-read-link:hover { color: #772EFE; }
+        .ins-featured {
+            background: linear-gradient(135deg,#1a0a3e 0%,#3d1eb5 50%,#5932EA 100%);
+            border-radius: 24px;
+            padding: 56px 52px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 340px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ins-featured-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.25);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+        .ins-featured h3 {
+            font-size: 36px;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            font-family: 'Cal Sans', sans-serif;
+        }
+        .ins-featured p {
+            color: rgba(255,255,255,.75);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        .ins-featured-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #5932EA;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            width: fit-content;
+            transition: background .2s;
+        }
+        .ins-featured-btn:hover { background: #f0ecff; color: #5932EA; }
+        .ins-filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1.5px solid #e0e0e0;
+            background: #fff;
+            color: #555;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+        }
+        .ins-filter-btn.active, .ins-filter-btn:hover {
+            background: #5932EA;
+            border-color: #5932EA;
+            color: #fff;
+        }
+        .ins-newsletter {
+            background: linear-gradient(135deg,#f8f5ff 0%,#ede9fe 100%);
+            border: 1px solid #e9e2ff;
+            border-radius: 24px;
+            padding: 56px 48px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== banner =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Insights</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="#">Insights</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== banner end =========== -->
+
+        <!-- =========== tools strip =========== -->
+        <style>
+        .tool-pill { display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:40px;text-decoration:none;transition:all .2s;border:1.5px solid #ddd5fc;background:#f8f5ff; }
+        .tool-pill .pill-ico { width:32px;height:32px;background:#ede9fe;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s; }
+        .tool-pill .pill-lbl { font-size:14px;font-weight:600;white-space:nowrap;transition:color .2s; }
+        .tool-pill-1 .pill-lbl { color:#5932EA; }
+        .tool-pill-2 .pill-lbl { color:#3d1eb5; }
+        .tool-pill-3 .pill-lbl { color:#772EFE; }
+        .tool-pill-1:hover { background:#5932EA;border-color:#5932EA; }
+        .tool-pill-2:hover { background:#3d1eb5;border-color:#3d1eb5; }
+        .tool-pill-3:hover { background:#772EFE;border-color:#772EFE; }
+        .tool-pill:hover .pill-ico { background:rgba(255,255,255,0.22); }
+        .tool-pill:hover .pill-lbl { color:#fff; }
+        .tool-pill:hover .pill-ico svg { stroke:#fff; }
+        </style>
+        <section class="fix" style="background:#ffffff;padding:50px 0 44px;">
+            <div class="container">
+                <div class="text-center" style="margin-bottom:28px;">
+                    <h2 style="font-size:38px;font-weight:700;color:#1a1a2e;line-height:1.2;margin:0;">Free Tools for NDIS Providers</h2>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;">
+
+                    <!-- Operational Assessment -->
+                    <a href="../assessment/" class="tool-pill tool-pill-1">
+                        <span class="pill-ico">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                        </span>
+                        <span class="pill-lbl">Operational Assessment</span>
+                    </a>
+
+                    <span style="color:#ddd;font-size:20px;font-weight:300;">|</span>
+
+                    <!-- Industry Benchmark -->
+                    <a href="../industry-benchmark/" class="tool-pill tool-pill-2">
+                        <span class="pill-ico">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3d1eb5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                        </span>
+                        <span class="pill-lbl">Industry Benchmark</span>
+                    </a>
+
+                    <span style="color:#ddd;font-size:20px;font-weight:300;">|</span>
+
+                    <!-- ROI Calculator -->
+                    <a href="../roi-calculator/" class="tool-pill tool-pill-3">
+                        <span class="pill-ico">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#772EFE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </span>
+                        <span class="pill-lbl">ROI Calculator</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+        <!-- =========== tools strip end =========== -->
+
+        <!-- =========== checklists & blueprints =========== -->
+        <style>
+        /* â”€â”€ card shell â”€â”€ */
+        .cb-card { background:#fff;border-radius:22px;overflow:hidden;border:1.5px solid #e8e1fc;height:100%;display:flex;flex-direction:column;transition:box-shadow .35s,transform .35s; }
+        .cb-card:hover { box-shadow:0 28px 70px rgba(89,50,234,.14);transform:translateY(-7px); }
+        /* â”€â”€ image top â”€â”€ */
+        .cb-img-top { position:relative;overflow:hidden;flex-shrink:0; }
+        .cb-img-top img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease; }
+        .cb-card:hover .cb-img-top img { transform:scale(1.06); }
+        .cb-img-grad { position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,8,60,.04) 0%,rgba(20,8,60,.72) 100%); }
+        /* â”€â”€ number badge floating on image â”€â”€ */
+        .cb-num-badge { position:absolute;top:16px;right:16px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-radius:16px;padding:10px 16px;box-shadow:0 6px 24px rgba(0,0,0,.13);text-align:center;min-width:60px; }
+        /* â”€â”€ caption at image bottom â”€â”€ */
+        .cb-img-caption { position:absolute;bottom:0;left:0;right:0;padding:18px 24px 22px; }
+        /* â”€â”€ card body â”€â”€ */
+        .cb-body { padding:26px 28px 30px;flex:1;display:flex;flex-direction:column; }
+        /* â”€â”€ feature list â”€â”€ */
+        .cb-list { list-style:none;padding:0;margin:0 0 20px; }
+        .cb-list li { display:flex;align-items:flex-start;gap:12px;padding:9px 0;font-size:13.5px;color:#4a4a6a;border-bottom:1px solid #f3f0ff;line-height:1.5; }
+        .cb-list li:last-child { border-bottom:none; }
+        .cb-check { width:22px;height:22px;background:#f0ebff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px; }
+        .cb-check svg { display:block; }
+        /* â”€â”€ bottom action bar â”€â”€ */
+        .cb-action-bar { display:flex;align-items:center;justify-content:space-between;gap:14px;background:#f5f0ff;border-radius:14px;padding:14px 18px;margin-top:auto; }
+        .cb-action-btn { display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#5932EA,#772EFE);color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:30px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;flex-shrink:0; }
+        .cb-action-btn:hover { opacity:.9;color:#fff;transform:translateY(-1px); }
+        /* â”€â”€ divider row â”€â”€ */
+        .cb-divider { display:flex;align-items:center;gap:14px;margin-bottom:28px; }
+        .cb-divider::after { content:'';flex:1;height:1px;background:linear-gradient(90deg,#ede9fe,transparent); }
+        /* â”€â”€ blueprint pill tag on image â”€â”€ */
+        .cb-tag { display:inline-block;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.32);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:8px; }
+
+        /* â”€â”€ Blueprint cards use .vl-service-wrap10 from style.css â”€â”€ */
+        .bp-service-thumb img { width:100%;border-radius:10px;margin-top:28px; }
+        /* â”€â”€ Articles section overrides â”€â”€ */
+        .vl-blog-area-lavender { background:#f0ebff !important; padding-bottom:50px !important; }
+        .vl-blog-wrap10-content .title { font-size:15px !important;line-height:22px !important; }
+        .vl-blog-wrap10-content .readmore { font-size:14px !important; }
+        .vl-subtitle-gbg11-white .subtitle { font-size:13px !important;line-height:13px !important; }
+        /* â”€â”€ Video gallery â”€â”€ */
+        .vg-tile { position:relative;display:block;overflow:hidden;border-radius:14px;aspect-ratio:16/9;cursor:pointer; }
+        .vg-tile img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease; }
+        .vg-tile:hover img { transform:scale(1.06); }
+        .vg-tile-overlay { position:absolute;inset:0;background:rgba(15,6,50,.38);transition:background .3s; }
+        .vg-tile:hover .vg-tile-overlay { background:rgba(15,6,50,.52); }
+        .vg-tile-play { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(89,50,234,.4);transition:transform .25s,box-shadow .25s; }
+        .vg-tile-play svg { margin-left:3px; }
+        .vg-tile:hover .vg-tile-play { transform:translate(-50%,-50%) scale(1.14);box-shadow:0 10px 32px rgba(89,50,234,.55); }
+        </style>
+        <section class="fix" style="background:linear-gradient(180deg,#f5f0ff 0%,#fff 220px);padding:80px 0 100px;border-top:1px solid #ede9fe;">
+            <div class="container">
+
+                <!-- Section Heading -->
+                <div class="text-center" style="margin-bottom:64px;">
+                    <span style="display:inline-block;background:#f0ebff;color:#5932EA;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 20px;border-radius:30px;margin-bottom:18px;">Free Resources</span>
+                    <h2 style="font-size:42px;font-weight:800;color:#1a1a2e;line-height:1.18;margin-bottom:16px;">Operational Checklists &amp;<br>Business Blueprints</h2>
+                    <p style="font-size:16px;color:#6b7280;max-width:520px;margin:0 auto;line-height:1.75;">Built for NDIS providers â€” use these tools to identify gaps, protect revenue and prepare your organisation for growth.</p>
+                </div>
+
+                <!-- â”€â”€ CHECKLISTS HEADER â”€â”€ -->
+                <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1.5px solid #ede9fe;border-radius:20px;padding:22px 28px;margin-bottom:28px;box-shadow:0 4px 20px rgba(89,50,234,.06);">
+                    <div style="width:54px;height:54px;background:linear-gradient(135deg,#5932EA,#772EFE);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    </div>
+                    <div style="flex:1;">
+                        <p style="font-size:11px;font-weight:700;color:#772EFE;letter-spacing:.12em;text-transform:uppercase;margin:0 0 4px;">Free Resource Â· Interactive Checklist</p>
+                        <h3 style="font-size:22px;font-weight:800;color:#1a1a2e;margin:0 0 2px;">Operational Checklists</h3>
+                        <p style="font-size:13px;color:#6b7280;margin:0;">Complete a checklist to review your daily operations and participant onboarding process</p>
+                    </div>
+                    <span style="display:inline-block;background:#f0ebff;color:#5932EA;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:.06em;white-space:nowrap;flex-shrink:0;">2 Checklists</span>
+                </div>
+
+                <div class="row g-4" style="margin-bottom:56px;">
+
+                    <!-- Checklist 1: Daily Operations Review -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cb-card">
+                            <!-- Image -->
+                            <div class="cb-img-top" style="height:260px;">
+                                <img src="../assets/img/hrmanagement/service/participant-notes.png" alt="" style="object-position:center top;">
+                                <div class="cb-img-grad" style="background:linear-gradient(to bottom,rgba(10,5,40,.2) 0%,rgba(10,5,40,.90) 100%);"></div>
+                                <!-- Floating stat badge -->
+                                <div class="cb-num-badge">
+                                    <div style="font-size:28px;font-weight:800;color:#5932EA;line-height:1;">5</div>
+                                    <div style="font-size:10px;font-weight:600;color:#888;margin-top:2px;line-height:1.2;">Areas<br>Covered</div>
+                                </div>
+                                <!-- Caption on image -->
+                                <div class="cb-img-caption">
+                                    <span class="cb-tag">Daily Checklist</span>
+                                    <h3 style="font-size:22px;font-weight:700;color:#fff;margin:0;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.3);">Daily Operations Review</h3>
+                                </div>
+                            </div>
+                            <!-- Type strip -->
+                            <div style="display:flex;align-items:center;gap:10px;padding:11px 24px;background:#f5f0ff;border-bottom:1px solid #ede9fe;">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                                <span style="font-size:11px;font-weight:700;color:#5932EA;letter-spacing:.1em;text-transform:uppercase;">Operational Checklist</span>
+                            </div>
+                            <!-- Body -->
+                            <div class="cb-body">
+                                <p style="font-size:14px;color:#6b7280;line-height:1.75;margin-bottom:20px;">Help managers perform a complete operational review in under 5 minutes â€” covering the five areas most likely to create issues if not monitored daily.</p>
+                                <ul class="cb-list">
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Participants â€” urgent issues, incidents, high-risk reviews &amp; new requests
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Staff â€” roster confirmation, shortages, leave requests &amp; shift changes
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Tasks â€” overdue items, critical deadlines, escalations &amp; blocked actions
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Compliance â€” alerts, expiring documents &amp; unbilled services
+                                    </li>
+                                    <li>
+                                        <span class="cb-check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#5932EA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Communication â€” team announcements, client follow-ups &amp; urgent messages
+                                    </li>
+                                </ul>
+                                <!-- Action bar -->
+                                <div class="cb-action-bar">
+                                    <p style="font-size:12.5px;color:#5932EA;font-weight:600;margin:0;line-height:1.4;flex:1;">âš¡ Generates an instant Readiness Score â€” Operationally Strong to High Risk</p>
+                                    <a href="../assessment/" class="cb-action-btn">Start <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist 2: New Participant Onboarding -->
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cb-card">
+                            <!-- Image -->
+                            <div class="cb-img-top" style="height:260px;">
+                                <img src="../assets/img/hrmanagement/service/support-art-session.png" alt="" style="object-position:center;">
+                                <div class="cb-img-grad" style="background:linear-gradient(to bottom,rgba(10,5,40,.15) 0%,rgba(10,5,40,.90) 100%);"></div>
+                                <!-- Floating stat badge -->
+                                <div class="cb-num-badge">
+                                    <div style="font-size:28px;font-weight:800;color:#3d1eb5;line-height:1;">4</div>
+                                    <div style="font-size:10px;font-weight:600;color:#888;margin-top:2px;line-height:1.2;">Stage<br>Process</div>
+                                </div>
+                                <!-- Caption on image -->
+                                <div class="cb-img-caption">
+                                    <span class="cb-tag">Onboarding Checklist</span>
+                                    <h3 style="font-size:22px;font-weight:700;color:#fff;margin:0;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.3);">New Participant Onboarding</h3>
+                                </div>
+                            </div>
+                            <!-- Type strip -->
+                            <div style="display:flex;align-items:center;gap:10px;padding:11px 24px;background:#eee8ff;border-bottom:1px solid #e0d9f8;">
+                                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                                <span style="font-size:11px;font-weight:700;color:#3d1eb5;letter-spacing:.1em;text-transform:uppercase;">Onboarding Checklist</span>
+                            </div>
+                            <!-- Body -->
+                            <div class="cb-body">
+                                <p style="font-size:14px;color:#6b7280;line-height:1.75;margin-bottom:20px;">Ensure your organisation follows a structured, compliant onboarding process â€” so no critical step is ever missed when a new participant joins.</p>
+                                <ul class="cb-list">
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 1 â€” Personal details, emergency contact, NDIS number &amp; plan upload
+                                    </li>
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 2 â€” Worker allocation, initial meeting, service agreement &amp; participant file
+                                    </li>
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 3 â€” Consent forms, risk assessments &amp; internal compliance review
+                                    </li>
+                                    <li>
+                                        <span class="cb-check" style="background:#ebe6ff;"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#3d1eb5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                                        Stage 4 â€” Service readiness, first session scheduling &amp; billing confirmation
+                                    </li>
+                                </ul>
+                                <!-- Action bar -->
+                                <div class="cb-action-bar" style="background:#eee8ff;">
+                                    <p style="font-size:12.5px;color:#3d1eb5;font-weight:600;margin:0;line-height:1.4;flex:1;">âœ“ Tracks completion % with a missing step log &amp; recommended next actions</p>
+                                    <a href="../assessment/" class="cb-action-btn" style="background:linear-gradient(135deg,#3d1eb5,#5932EA);">Start <i class="fa-regular fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- â”€â”€ BLUEPRINTS â€” clean design â”€â”€ -->
+                <div class="bp-wrap">
+
+                    <!-- Header banner -->
+                    <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1.5px solid #ede9fe;border-radius:18px;padding:20px 26px;margin-bottom:28px;box-shadow:0 4px 18px rgba(89,50,234,.05);">
+                        <div style="width:52px;height:52px;background:linear-gradient(135deg,#3d1eb5,#772EFE);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <div style="flex:1;">
+                            <p style="font-size:11px;font-weight:700;color:#772EFE;letter-spacing:.12em;text-transform:uppercase;margin:0 0 4px;">Free Resource Â· Business Blueprint</p>
+                            <h3 style="font-size:22px;font-weight:800;color:#1a1a2e;margin:0 0 2px;">Business Blueprints</h3>
+                            <p style="font-size:13px;color:#6b7280;margin:0;">Step-by-step blueprints to protect revenue, improve visibility and identify automation opportunities</p>
+                        </div>
+                        <span style="display:inline-block;background:#f0ebff;color:#772EFE;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:.06em;white-space:nowrap;flex-shrink:0;">3 Blueprints</span>
+                    </div>
+
+                    <!-- Three blueprint cards â€” same structure as index-10.html -->
+                    <div class="row g-4">
+
+                        <!-- Blueprint 1: Revenue Protection -->
+                        <div class="col-xl-4 col-md-6">
+                            <div class="vl-service-wrap10" style="height:100%;">
+                                <div class="vl-service-wrap10-bg" style="background-image:url('../assets/img/hrmanagement/service/vl-service-bg-10.1.png');height:100%;display:flex;flex-direction:column;">
+                                    <div class="vl-service-wrap10-icon" style="margin-bottom:16px;">
+                                        <span style="display:inline-flex;align-items:center;justify-content:center;">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                        </span>
+                                    </div>
+                                    <h3 class="vl-service-wrap10-title" style="margin-bottom:12px;">Revenue Protection Blueprint</h3>
+                                    <p class="vl-service-wrap10-desc" style="margin-bottom:28px;font-size:15px;">Identify where revenue is leaking in your billing process and build your ideal future state.</p>
+                                    <div class="vl-service-wrap10-thumb text-center bp-service-thumb" style="margin-top:auto;">
+                                        <img src="../assets/img/hrmanagement/service/Automated NDIS Billing.jpeg" alt="Revenue Protection Blueprint">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Blueprint 2: Operational Intelligence -->
+                        <div class="col-xl-4 col-md-6">
+                            <div class="vl-service-wrap10" style="height:100%;">
+                                <div class="vl-service-wrap10-bg" style="background-image:url('../assets/img/hrmanagement/service/vl-service-bg-10.1.png');height:100%;display:flex;flex-direction:column;">
+                                    <div class="vl-service-wrap10-icon" style="margin-bottom:16px;">
+                                        <span style="display:inline-flex;align-items:center;justify-content:center;">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        </span>
+                                    </div>
+                                    <h3 class="vl-service-wrap10-title" style="margin-bottom:12px;">Operational Intelligence Blueprint</h3>
+                                    <p class="vl-service-wrap10-desc" style="margin-bottom:28px;font-size:15px;">Discover where you lack visibility across participants, workforce and compliance.</p>
+                                    <div class="vl-service-wrap10-thumb text-center bp-service-thumb" style="margin-top:auto;">
+                                        <img src="../assets/img/hrmanagement/service/staff-management.png" alt="Operational Intelligence Blueprint">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Blueprint 3: Automation Opportunity -->
+                        <div class="col-xl-4 col-md-6">
+                            <div class="vl-service-wrap10" style="height:100%;">
+                                <div class="vl-service-wrap10-bg" style="background-image:url('../assets/img/hrmanagement/service/vl-service-bg-10.1.png');height:100%;display:flex;flex-direction:column;">
+                                    <div class="vl-service-wrap10-icon" style="margin-bottom:16px;">
+                                        <span style="display:inline-flex;align-items:center;justify-content:center;">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                        </span>
+                                    </div>
+                                    <h3 class="vl-service-wrap10-title" style="margin-bottom:12px;">Automation Opportunity Blueprint</h3>
+                                    <p class="vl-service-wrap10-desc" style="margin-bottom:28px;font-size:15px;">Find where admin time is being lost and identify the highest-value processes to automate first.</p>
+                                    <div class="vl-service-wrap10-thumb text-center bp-service-thumb" style="margin-top:auto;">
+                                        <img src="../assets/img/Scheduling.png" alt="Automation Opportunity Blueprint">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- /bp-wrap -->
+
+            </div>
+        </section>
+        <!-- =========== checklists & blueprints end =========== -->
+
+        <!-- =========== articles grid =========== -->
+        <section class="vl-blog-area-10 fix vl-blog-area-lavender pt-100 pb-30">
+            <div class="container">
+
+                <!-- Section heading -->
+                <div class="row align-items-center mb-50">
+                    <div class="col-xl-6">
+                        <div class="vl-section-title10 mb-30">
+                            <div class="vl-subtitle-gbg10 mb-18">
+                                <div class="vl-subtitle-gbg10-white">
+                                    <p class="subtitle">Insights &amp; Tips</p>
+                                </div>
+                            </div>
+                            <h2 class="title10">Read Our Latest Articles</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-30">
+                        <div class="text-xl-end">
+                            <a href="#" class="vl-primary-btn10">Read All Articles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 articles in 1 row -->
+                <div class="row">
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <div class="vl-blog-wrap10-gbg">
+                            <div class="vl-blog-wrap10-gbg-whit">
+                                <div class="vl-blog-wrap10">
+                                    <div class="vl-blog-wrap10-bg mb-24">
+                                        <div class="vl-blog-wrap10-bg-thumb">
+                                            <img class="w-100" src="../assets/img/hrmanagement/service/vl-blog10.1.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="vl-blog-wrap10-content">
+                                        <div class="vl-subtitle-gbg11 mb-16">
+                                            <div class="vl-subtitle-gbg11-white">
+                                                <p class="subtitle">Industry Benchmark</p>
+                                            </div>
+                                        </div>
+                                        <h3 class="title mb-24"><a href="#">NDIS Admin Benchmark: How Much Time Are You Losing?</a></h3>
+                                        <a href="#" class="readmore">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <div class="vl-blog-wrap10-gbg">
+                            <div class="vl-blog-wrap10-gbg-whit">
+                                <div class="vl-blog-wrap10">
+                                    <div class="vl-blog-wrap10-bg mb-24">
+                                        <div class="vl-blog-wrap10-bg-thumb">
+                                            <img class="w-100" src="../assets/img/hrmanagement/service/vl-blog10.2.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="vl-blog-wrap10-content">
+                                        <div class="vl-subtitle-gbg11 mb-16">
+                                            <div class="vl-subtitle-gbg11-white">
+                                                <p class="subtitle">Compliance</p>
+                                            </div>
+                                        </div>
+                                        <h3 class="title mb-24"><a href="#">What the NDIS Practice Standards Actually Require in 2025</a></h3>
+                                        <a href="#" class="readmore">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <div class="vl-blog-wrap10-gbg">
+                            <div class="vl-blog-wrap10-gbg-whit">
+                                <div class="vl-blog-wrap10">
+                                    <div class="vl-blog-wrap10-bg mb-24">
+                                        <div class="vl-blog-wrap10-bg-thumb">
+                                            <img class="w-100" src="../assets/img/hrmanagement/service/vl-blog10.3.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="vl-blog-wrap10-content">
+                                        <div class="vl-subtitle-gbg11 mb-16">
+                                            <div class="vl-subtitle-gbg11-white">
+                                                <p class="subtitle">Growth</p>
+                                            </div>
+                                        </div>
+                                        <h3 class="title mb-24"><a href="#">Building a Sustainable Growth Strategy for Your NDIS Business</a></h3>
+                                        <a href="#" class="readmore">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- =========== articles grid end =========== -->
+
+        <!-- =========== video gallery =========== -->
+        <section class="fix" style="background:#fff;padding:70px 0 80px;">
+            <div class="container">
+
+                <div class="row align-items-center mb-40">
+                    <div class="col-xl-6">
+                        <div class="vl-section-title10">
+                            <div class="vl-subtitle-gbg10 mb-18">
+                                <div class="vl-subtitle-gbg10-white">
+                                    <p class="subtitle">Watch &amp; Learn</p>
+                                </div>
+                            </div>
+                            <h2 class="title10">Video Gallery</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/staff-management.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/Automated NDIS Billing.jpeg" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/Scheduling.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/care-management-hero.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/participant-notes.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <a href="#" class="vg-tile">
+                            <img src="../assets/img/hrmanagement/service/woman-laptop.png" alt="">
+                            <div class="vg-tile-overlay"></div>
+                            <span class="vg-tile-play"><svg width="22" height="22" fill="#5932EA" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- =========== video gallery end =========== -->
+
+        <!-- =========== cta section =========== -->
+        <section style="background:#fff;padding:140px 0 60px;">
+            <section class="vl-cta-area-wrap10 p-relative" style="padding-top:50px;padding-bottom:50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-8">
+                            <div class="vl-cta-content-10" style="padding-left:60px;">
+                                <div class="vl-section-title10">
+                                    <h2 class="title text-anime-style-2 pb-22" style="font-size:34px;line-height:42px;white-space:nowrap;">How Efficient Is Your Organisation?</h2>
+                                    <p class="para pb-28" style="font-size:16px;line-height:26px;">Complete a free assessment and discover your operational score, benchmark position and improvement opportunities.</p>
+                                </div>
+                                <a href="../assessment/" class="vl-primary-btn10" style="background:#fff;color:#060D0A;">Start Assessment</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6"></div>
+                    </div>
+                </div>
+                <div class="vl-cta-thumb10 reveal image-anime">
+                    <img class="w-100" src="../assets/img/hrmanagement/service/vl-cta-thumb10.1.png" alt="">
+                </div>
+            </section>
+        </section>
+        <!-- =========== cta section end =========== -->
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+    <script>
+        // Fallback: hide preloader if window load already fired before main.js registered
+        $(document).ready(function(){
+            setTimeout(function(){ $('.preloader').fadeOut(300); }, 400);
+        });
+    </script>
+</body>
+</html>
+

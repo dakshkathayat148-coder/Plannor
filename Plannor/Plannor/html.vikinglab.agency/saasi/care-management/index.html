@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
+        /* Standardise all section container widths to 1200px */
+        .cm-hero .container,
+        .cs-section .container {
+            max-width: 1200px;
+        }
+
         /* ===== Care Management Hero ===== */
         .cm-hero {
             background: #f4f6fb;
@@ -58,12 +64,12 @@
         }
         .cm-title {
             font-size: 52px;
-            font-weight: 800;
+            font-weight: 400;
             line-height: 1.1;
             color: #0f172a;
             margin-bottom: 10px;
         }
-        .cm-title .blue-dot { color: #2563EB; }
+        .cm-title .blue-dot { color: #471C94; }
         .cm-yellow-line {
             margin-bottom: 24px;
         }
@@ -225,7 +231,7 @@
             position: relative; z-index: 5;
         }
         .cm-ov-title {
-            font-size: 18px; font-weight: 800;
+            font-size: 18px; font-weight: 400;
             color: #0f172a; margin: 0;
         }
         .cm-ov-person {
@@ -405,7 +411,7 @@
         /* =====================================================
            PREMIUM CARE RECORDS SECTION  (cs-*)
         ====================================================== */
-        .cs-section { background:#fff; padding:100px 0 0; overflow:hidden; }
+        .cs-section { background:#fff; padding:100px 0; overflow:hidden; }
 
         .cs-eyebrow {
             display:inline-flex; align-items:center; gap:8px;
@@ -420,13 +426,11 @@
         }
 
         .cs-headline {
-            font-size:46px; font-weight:800; color:#0c0a1d;
+            font-size:46px; font-weight: 400; color:#0c0a1d;
             line-height:1.18; letter-spacing:-1px; margin-bottom:22px;
         }
         .cs-grad {
-            background:linear-gradient(135deg,#7c3aed 0%,#4f46e5 60%,#6366f1 100%);
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-            background-clip:text;
+            color: #471C94;
         }
 
         .cs-sub {
@@ -667,7 +671,7 @@
             background: #f7f5ff;
             position: relative;
             overflow: hidden;
-            padding: 80px 0 175px;
+            padding: 100px 0;
         }
         .ch-hero::before {
             content: '';
@@ -679,8 +683,8 @@
 
         .ch-inner {
             display: flex; align-items: center;
-            max-width: 1380px; margin: 0 auto;
-            padding: 0 64px; gap: 0;
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 60px; gap: 0;
         }
 
         /* LEFT */
@@ -698,13 +702,11 @@
             border-bottom: 2px solid #6046E8; padding-bottom: 3px;
         }
         .ch-headline {
-            font-size: 58px; font-weight: 900; color: #0E1838;
+            font-size: 58px; font-weight: 400; color: #0E1838;
             line-height: 1.07; letter-spacing: -2px; margin-bottom: 22px;
         }
         .ch-grad-text {
-            background: linear-gradient(130deg, #6046E8 0%, #17BFAE 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #471C94;
         }
         .ch-para {
             font-size: 15px; color: #5a6a85; line-height: 1.78;
@@ -904,11 +906,9 @@
             font-size: 40px; font-weight: 800; color: #0E1838;
             line-height: 1.18; letter-spacing: -1px; margin-bottom: 18px;
         }
-        .pf-accent { color: #6046E8; }
+        .pf-accent { color: #471C94; }
         .pf-accent-grad {
-            background: linear-gradient(130deg, #6046E8 0%, #17BFAE 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #471C94;
         }
         .pf-para { font-size: 15px; color: #5a6a85; line-height: 1.75; margin-bottom: 30px; }
         .pf-feat { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
@@ -1278,7 +1278,7 @@
         /* =====================================================
            MESSAGING v2 SECTION  (msgv2-*)  — matches Image 2
         ===================================================== */
-        .msgv2-section { padding: 90px 0 0; background: #fff; overflow: visible; }
+        .msgv2-section { padding: 100px 0; background: #fff; overflow: visible; }
         .msgv2-wrap { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
         .msgv2-row { display: flex; align-items: flex-start; gap: 60px; }
 
@@ -1458,7 +1458,7 @@
         /* =====================================================
            INCIDENT MANAGEMENT v2  (im2-*)
         ===================================================== */
-        .im2-section { padding: 96px 0 0; background: #fff; overflow: hidden; }
+        .im2-section { padding: 100px 0; background: #f4f6fb; overflow: hidden; }
 
         /* Feature rows with dividers */
         .im2-feats { margin-top: 8px; margin-bottom: 4px; }
@@ -1705,7 +1705,7 @@
             .ms-dots { display: none; }
 
             /* msgv2 */
-            .msgv2-section { padding: 60px 0 0; }
+            .msgv2-section { padding: 60px 0; }
             .msgv2-wrap { padding: 0 20px; }
             .msgv2-left { height: 320px; }
             .msgv2-phone { width: 150px; height: 320px; left: 15%; }
@@ -1717,7 +1717,7 @@
             .msgv2-testi-qq { font-size: 40px; margin-right: 16px; }
 
             /* im2 */
-            .im2-section { padding: 64px 0 0; }
+            .im2-section { padding: 64px 0; }
             .im2-visual { min-height: 360px; }
             .im2-form-card { width: 240px; padding: 14px 16px; }
             .im2-secure { min-width: 180px; padding: 10px 12px; }
@@ -1798,9 +1798,9 @@
             .pf-section  { padding: 40px 0; }
             .pf-row      { gap: 24px; }
             .pf-testi-wrap { margin-top: 24px; }
-            .im2-section { padding: 40px 0 0; }
-            .msgv2-section { padding: 40px 0 0; }
-            .cs-section  { padding: 40px 0 0; }
+            .im2-section { padding: 40px 0; }
+            .msgv2-section { padding: 40px 0; }
+            .cs-section  { padding: 40px 0; }
 
             /* --- cm-hero: kill blank gap when dashboard is hidden --- */
             .cm-hero { min-height: 0 !important; padding: 44px 0 36px; }
@@ -1887,7 +1887,8 @@
         @media (max-width: 480px) {
             .msgv2-phone { width: 130px !important; height: 275px !important; }
         }
-
+        /* Heading font — match home page Cal Sans weight 400 */
+        .cm-title, .cm-ov-title, .cs-headline, .ch-headline { font-family: 'Cal Sans', sans-serif; font-weight: 400; }
     </style>
 </head>
 
@@ -1915,7 +1916,7 @@
                             <div class="vl-breadcrumb-menu">
                                 <ul>
                                     <li><a href="../">Home</a></li>
-                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
                                     <li><a href="#">Care Management</a></li>
                                 </ul>
                             </div>
@@ -2631,25 +2632,6 @@
                 </div>
             </div>
 
-            <!-- Full-width testimonial -->
-            <div class="im2-testi-wrap" data-aos="fade-up">
-                <div class="im2-testi">
-                    <div class="im2-testi-qq">"</div>
-                    <div class="im2-testi-body">
-                        <p>Incident reporting is now quick and clear. Our team can act sooner and keep complete, reliable records.</p>
-                        <strong>Priya Shah</strong>
-                        <span>Quality &amp; Safeguarding Lead</span>
-                    </div>
-                    <div class="im2-testi-person">
-                        <div class="im2-testi-avatar"><i class="fa-regular fa-user"></i></div>
-                        <div>
-                            <div class="im2-testi-name">Priya Shah</div>
-                            <div class="im2-testi-role">Quality &amp; Safeguarding Lead</div>
-                            <div class="pf-stars">★★★★★</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
         <!-- =========== INCIDENT MANAGEMENT SECTION END =========== -->
 
@@ -2755,31 +2737,12 @@
                 </div>
             </div>
 
-            <!-- Testimonial -->
-            <div class="pf-testi-wrap" data-aos="fade-up">
-                <div class="pf-testi">
-                    <div class="pf-testi-q"><i class="fa-solid fa-quote-left"></i></div>
-                    <div class="pf-testi-body">
-                        <p>"Fund tracking used to take us hours every week. With Plannor, we have real-time visibility of every client's budget and our team spends more time on care, not spreadsheets."</p>
-                        <strong>Sarah Jennings</strong>
-                        <span>Finance Coordinator, Bright Path Support Services</span>
-                    </div>
-                    <div class="pf-testi-right">
-                        <div class="pf-testi-avatar"><i class="fa-regular fa-user"></i></div>
-                        <div>
-                            <div class="pf-testi-name">Sarah Jennings</div>
-                            <div class="pf-testi-role">Finance Coordinator</div>
-                            <div class="pf-stars">★★★★★</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
         <!-- =========== MANAGE FUNDS SECTION END =========== -->
 
 
         <!-- =========== QUOTES SECTION START =========== -->
-        <section class="pf-section" style="padding-bottom:20px;">
+        <section class="pf-section" style="display:none;">
             <div class="pf-wrap">
                 <div class="pf-row" style="align-items:flex-end;">
                     <!-- Left: text -->
@@ -2941,3 +2904,5 @@
     <script src="../assets/js/includes.js"></script>
 </body>
 </html>
+
+

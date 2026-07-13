@@ -2523,6 +2523,37 @@
   position: relative;
   z-index: 1;
   transition: 0.3s;
+  aspect-ratio: 1006 / 750;
+  overflow: hidden;
+}
+.vl-tab-thumb-dashbord img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.vl-tab-thumb-dashbord-framed {
+  background: #ede9fe;
+  border: 2px solid #c4b5fd;
+  border-radius: 24px;
+  padding: 14px;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.12);
+  overflow: visible;
+}
+.vl-tab-thumb-dashbord-framed .tab-img-inner {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e9d5ff;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+.vl-tab-thumb-dashbord-framed .tab-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 0;
 }
 .vl-tab-thumb:hover .vl-tab-thumb-bg {
   transform: rotate(0);
@@ -2908,9 +2939,11 @@
   padding: 14px 15px;
 }
 .vl-tab-wrap-2-thumb img {
-  height: 300px;
-  object-fit: cover;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
   border-radius: 16px;
+  display: block;
 }
 .vl-tab-wrap-2-content .title {
   font-size: 20px;
@@ -10286,7 +10319,6 @@ p {
 /*  6.1 Footer Style 1
 /*----------------------------------------*/
 .vl-footer-area {
-  background-image: url('../img/footer/vl-footer-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12018,7 +12050,7 @@ span.menu-dwn-arrow2 {
   color: var(--vl-black);
   padding-bottom: 16px;
 }
-.vl-contact-singlebox input[type=text], .vl-contact-singlebox textarea {
+.vl-contact-singlebox input[type=text], .vl-contact-singlebox input[type=email], .vl-contact-singlebox input[type=tel], .vl-contact-singlebox input[type=date], .vl-contact-singlebox input[type=time], .vl-contact-singlebox textarea {
   background: #F5F6F9;
   border-radius: 12px;
   font-size: 18px;
@@ -12028,7 +12060,7 @@ span.menu-dwn-arrow2 {
   border: none;
   height: 66px;
 }
-.vl-contact-singlebox input[type=text]::placeholder, .vl-contact-singlebox textarea::placeholder {
+.vl-contact-singlebox input[type=text]::placeholder, .vl-contact-singlebox input[type=email]::placeholder, .vl-contact-singlebox input[type=tel]::placeholder, .vl-contact-singlebox textarea::placeholder {
   font-size: 18px;
   line-height: 18px;
   font-weight: 500;

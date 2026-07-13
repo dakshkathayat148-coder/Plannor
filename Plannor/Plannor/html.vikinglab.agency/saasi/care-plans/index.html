@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -29,7 +29,7 @@
             --cp-amber: #f59e0b;
         }
 
-        /* ── SECTION 1: INTRO REDESIGN ── */
+        /* â”€â”€ SECTION 1: INTRO REDESIGN â”€â”€ */
         .cp-intro {
             background: #fff;
             padding: 90px 0 100px;
@@ -73,7 +73,7 @@
         }
         .cp-intro-title {
             font-size: 52px;
-            font-weight: 900;
+            font-weight: 400;
             color: var(--cp-dark);
             line-height: 1.1;
             margin-bottom: 22px;
@@ -304,7 +304,7 @@
             margin-left: 4px;
         }
 
-        /* ── SECTION 2: FEATURES ── */
+        /* â”€â”€ SECTION 2: FEATURES â”€â”€ */
         .cp-features {
             padding: 100px 0;
             background: var(--cp-light);
@@ -326,7 +326,7 @@
         }
         .cp-section-title {
             font-size: 38px;
-            font-weight: 800;
+            font-weight: 400;
             color: var(--cp-dark);
             line-height: 1.2;
             margin-bottom: 16px;
@@ -423,7 +423,7 @@
         .cp-feat-row-body { flex: 1; }
         .cp-feat-row-title {
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 400;
             color: var(--cp-dark);
             margin: 0 0 5px;
         }
@@ -442,7 +442,7 @@
             margin-top: 4px;
         }
 
-        /* ── SECTION 3: HOW IT WORKS (ZIGZAG TIMELINE) ── */
+        /* â”€â”€ SECTION 3: HOW IT WORKS (ZIGZAG TIMELINE) â”€â”€ */
         .cp-how {
             background: #fff;
             padding: 100px 0;
@@ -556,7 +556,7 @@
         }
         .cp-tl-title {
             font-size: 22px;
-            font-weight: 800;
+            font-weight: 400;
             color: var(--cp-dark);
             margin-bottom: 10px;
         }
@@ -602,7 +602,7 @@
             .cp-tl-card::after { display: none; }
         }
 
-        /* ── SECTION 4: BEFORE VS WITH PLANNOR ── */
+        /* â”€â”€ SECTION 4: BEFORE VS WITH PLANNOR â”€â”€ */
         .cp-compare {
             background: var(--cp-light);
             padding: 100px 0;
@@ -648,7 +648,7 @@
         }
         .cp-panel-title {
             font-size: 24px;
-            font-weight: 800;
+            font-weight: 400;
             margin-bottom: 28px;
         }
         .cp-panel-before .cp-panel-title { color: #fff; }
@@ -702,7 +702,7 @@
             justify-content: center;
             font-size: 14px;
             font-weight: 900;
-            color: var(--cp-purple);
+            color: #471C94;
             box-shadow: 0 4px 20px rgba(89,50,234,0.15);
             position: relative;
             z-index: 2;
@@ -730,7 +730,7 @@
         .cp-strip-num {
             font-size: 32px;
             font-weight: 900;
-            color: var(--cp-purple);
+            color: #471C94;
             line-height: 1;
             margin-bottom: 6px;
         }
@@ -747,7 +747,7 @@
             .cp-compare-strip { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* ── RESPONSIVE ── */
+        /* â”€â”€ RESPONSIVE â”€â”€ */
         * { box-sizing: border-box; }
         html, body { overflow-x: hidden; max-width: 100%; }
 
@@ -775,12 +775,12 @@
             .cp-intro-btns { flex-direction: column; }
             .cp-btn-ghost { width: 100%; justify-content: center; }
             .cp-intro-visual { padding: 20px 0 0; }
-            /* Glow circle — shrink to prevent overflow */
+            /* Glow circle â€” shrink to prevent overflow */
             .cp-glow-bg { width: 280px; height: 280px; }
             /* Card constrained to column width */
             .cp-card-main { width: 100%; max-width: 100%; }
 
-            /* Highlight items — card style on mobile */
+            /* Highlight items â€” card style on mobile */
             .cp-intro-highlights { gap: 10px; }
             .cp-hl-item {
                 background: #f8f5ff;
@@ -840,6 +840,8 @@
             .cp-timeline::before { left: 24px; }
             .cp-tl-node { left: 24px; width: 52px; height: 52px; font-size: 18px; }
         }
+        /* Heading font â€” match home page Cal Sans weight 400 */
+        .cp-intro-title, .cp-section-title, .cp-tl-title, .cp-panel-title, .cp-feat-row-title { font-family: 'Cal Sans', sans-serif; font-weight: 400; }
     </style>
 </head>
 
@@ -867,7 +869,7 @@
                             <div class="vl-breadcrumb-menu">
                                 <ul>
                                     <li><a href="../">Home</a></li>
-                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
                                     <li><a href="#">Care Plans</a></li>
                                 </ul>
                             </div>
@@ -893,7 +895,7 @@
                             Care Plans That<br><span>Work For Your Team</span>
                         </h2>
                         <p class="cp-intro-desc">
-                            Create, share, and update participant care plans in minutes. Keep every support worker, coordinator, and family member on the same page — always.
+                            Create, share, and update participant care plans in minutes. Keep every support worker, coordinator, and family member on the same page â€” always.
                         </p>
 
                         <div class="cp-intro-highlights">
@@ -912,7 +914,7 @@
                                 </div>
                                 <div class="cp-hl-text">
                                     <strong>Live Sync Across Your Team</strong>
-                                    <span>Every update reflects instantly — no outdated plans, no version confusion</span>
+                                    <span>Every update reflects instantly â€” no outdated plans, no version confusion</span>
                                 </div>
                             </div>
                             <div class="cp-hl-item">
@@ -951,7 +953,7 @@
                                         <div class="cp-cmh-avatar">JM</div>
                                         <div class="cp-cmh-info">
                                             <p class="cp-cmh-name">James Mitchell</p>
-                                            <p class="cp-cmh-role">NDIS Participant · Plan Manager</p>
+                                            <p class="cp-cmh-role">NDIS Participant Â· Plan Manager</p>
                                         </div>
                                     </div>
                                     <div class="cp-cmh-status">
@@ -1040,7 +1042,7 @@
                         <div class="cp-feat-left">
                             <div class="cp-section-tag"><i class="fa-solid fa-layer-group"></i> What's Included</div>
                             <h2 class="cp-section-title">Everything<br>In One Place</h2>
-                            <p class="cp-section-desc">From setup to reviews, every tool your team needs to deliver person-centred care — no paperwork chaos.</p>
+                            <p class="cp-section-desc">From setup to reviews, every tool your team needs to deliver person-centred care â€” no paperwork chaos.</p>
 
                             <div class="cp-feat-stats">
                                 <div class="cp-feat-stat">
@@ -1083,7 +1085,7 @@
                                 <div class="cp-feat-row-icon" style="background:#f0eeff;"><i class="fa-solid fa-user-pen" style="color:#5932EA;"></i></div>
                                 <div class="cp-feat-row-body">
                                     <h4 class="cp-feat-row-title">Personalised Care Plans</h4>
-                                    <p class="cp-feat-row-desc">Build tailored plans for each participant using NDIS-specific templates. Add goals, supports, risk assessments, and scheduled reviews — all in one place.</p>
+                                    <p class="cp-feat-row-desc">Build tailored plans for each participant using NDIS-specific templates. Add goals, supports, risk assessments, and scheduled reviews â€” all in one place.</p>
                                 </div>
                                 <span class="cp-feat-row-num">01</span>
                             </div>
@@ -1092,7 +1094,7 @@
                                 <div class="cp-feat-row-icon" style="background:#e8faf2;"><i class="fa-solid fa-rotate" style="color:#00b874;"></i></div>
                                 <div class="cp-feat-row-body">
                                     <h4 class="cp-feat-row-title">Real-Time Updates</h4>
-                                    <p class="cp-feat-row-desc">Changes sync instantly across your whole team. No outdated printed plans, no version confusion — everyone works from the same live document.</p>
+                                    <p class="cp-feat-row-desc">Changes sync instantly across your whole team. No outdated printed plans, no version confusion â€” everyone works from the same live document.</p>
                                 </div>
                                 <span class="cp-feat-row-num">02</span>
                             </div>
@@ -1128,7 +1130,7 @@
                                 <div class="cp-feat-row-icon" style="background:#e0f2fe;"><i class="fa-solid fa-wifi-slash" style="color:#0ea5e9;"></i></div>
                                 <div class="cp-feat-row-body">
                                     <h4 class="cp-feat-row-title">Offline Access</h4>
-                                    <p class="cp-feat-row-desc">Support workers access care plans from the field — even without internet. Changes sync automatically when they reconnect.</p>
+                                    <p class="cp-feat-row-desc">Support workers access care plans from the field â€” even without internet. Changes sync automatically when they reconnect.</p>
                                 </div>
                                 <span class="cp-feat-row-num">06</span>
                             </div>
@@ -1148,7 +1150,7 @@
                     <div class="col-xl-6">
                         <div class="cp-section-tag" style="margin:0 auto 16px;"><i class="fa-solid fa-arrow-progress"></i> How It Works</div>
                         <h2 class="cp-section-title">From Setup to Compliance<br>in Three Steps</h2>
-                        <p class="cp-section-desc" style="margin:0 auto;">A clear, repeatable process any team can follow — no training required.</p>
+                        <p class="cp-section-desc" style="margin:0 auto;">A clear, repeatable process any team can follow â€” no training required.</p>
                     </div>
                 </div>
 
@@ -1181,7 +1183,7 @@
                         <div class="cp-tl-card cp-tl-card-right">
                             <div class="cp-tl-step-tag" style="color:#00b874;"><span style="background:#e8faf2;">02</span> Step Two</div>
                             <h3 class="cp-tl-title">Share</h3>
-                            <p class="cp-tl-desc">Instantly distribute plans across your team. Support workers see exactly what they need — shifts, goals, and notes — right from their mobile app.</p>
+                            <p class="cp-tl-desc">Instantly distribute plans across your team. Support workers see exactly what they need â€” shifts, goals, and notes â€” right from their mobile app.</p>
                             <ul class="cp-tl-list">
                                 <li><i class="fa-solid fa-circle-check"></i> Role-based access control</li>
                                 <li><i class="fa-solid fa-circle-check"></i> Family &amp; guardian portal</li>
@@ -1196,7 +1198,7 @@
                         <div class="cp-tl-card cp-tl-card-left">
                             <div class="cp-tl-step-tag" style="color:#f59e0b;"><span style="background:#fef3c7;">03</span> Step Three</div>
                             <h3 class="cp-tl-title">Track</h3>
-                            <p class="cp-tl-desc">Monitor goal progress, capture shift notes, and generate compliance-ready reports — all automatically linked back to each care plan.</p>
+                            <p class="cp-tl-desc">Monitor goal progress, capture shift notes, and generate compliance-ready reports â€” all automatically linked back to each care plan.</p>
                             <ul class="cp-tl-list">
                                 <li><i class="fa-solid fa-circle-check"></i> Progress against NDIS goals</li>
                                 <li><i class="fa-solid fa-circle-check"></i> Automated audit trail</li>
@@ -1233,7 +1235,7 @@
                             <h3 class="cp-panel-title">The Old Way</h3>
                             <div class="cp-compare-item">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
-                                <span class="cp-ci-text">Care plans scattered across Word docs, spreadsheets, and printed forms — impossible to keep updated</span>
+                                <span class="cp-ci-text">Care plans scattered across Word docs, spreadsheets, and printed forms â€” impossible to keep updated</span>
                             </div>
                             <div class="cp-compare-item">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
@@ -1245,7 +1247,7 @@
                             </div>
                             <div class="cp-compare-item">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
-                                <span class="cp-ci-text">No clear audit trail — NDIS audits become stressful, time-consuming events</span>
+                                <span class="cp-ci-text">No clear audit trail â€” NDIS audits become stressful, time-consuming events</span>
                             </div>
                             <div class="cp-compare-item">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-xmark"></i></div>
@@ -1270,19 +1272,19 @@
                             <h3 class="cp-panel-title">The Plannor Way</h3>
                             <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
-                                <span class="cp-ci-text">One centralised platform — all care plans live in one place, always up to date and accessible</span>
+                                <span class="cp-ci-text">One centralised platform â€” all care plans live in one place, always up to date and accessible</span>
                             </div>
                             <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
-                                <span class="cp-ci-text">Support workers get real-time care plan access on their phone — even offline in the field</span>
+                                <span class="cp-ci-text">Support workers get real-time care plan access on their phone â€” even offline in the field</span>
                             </div>
                             <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
-                                <span class="cp-ci-text">Updates sync instantly — coordinators make one change and everyone sees it immediately</span>
+                                <span class="cp-ci-text">Updates sync instantly â€” coordinators make one change and everyone sees it immediately</span>
                             </div>
                             <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
-                                <span class="cp-ci-text">Automatic audit trail with time-stamps — NDIS audits become a one-click export</span>
+                                <span class="cp-ci-text">Automatic audit trail with time-stamps â€” NDIS audits become a one-click export</span>
                             </div>
                             <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
@@ -1290,7 +1292,7 @@
                             </div>
                             <div class="cp-compare-item" style="border-bottom-color:rgba(255,255,255,0.12);">
                                 <div class="cp-ci-icon"><i class="fa-solid fa-check"></i></div>
-                                <span class="cp-ci-text">Families and guardians get a secure portal view — full transparency, zero extra admin</span>
+                                <span class="cp-ci-text">Families and guardians get a secure portal view â€” full transparency, zero extra admin</span>
                             </div>
                         </div>
                     </div>
@@ -1346,3 +1348,4 @@
 </body>
 
 </html>
+

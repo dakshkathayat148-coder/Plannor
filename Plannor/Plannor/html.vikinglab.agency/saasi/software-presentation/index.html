@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
         .vl-footer-area { margin-top: 0 !important; padding-top: 80px !important; }
         * { box-sizing: border-box; }
 
-        /* ── HERO ─────────────────────────────────── */
+        /* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .sp-hero {
             background: #f5f3ff;
             padding: 64px 0 52px;
@@ -37,7 +37,7 @@
             font-size: 44px; font-weight: 900; color: #1e1b4b;
             line-height: 1.18; margin-bottom: 16px;
         }
-        .sp-hero-title .purple { color: #5932EA; }
+        .sp-hero-title .purple { color: #471C94; }
         .sp-hero-desc {
             font-size: 16px; color: #64748b;
             max-width: 480px; line-height: 1.7; margin-bottom: 24px;
@@ -90,7 +90,7 @@
             flex-shrink: 0;
         }
 
-        /* ── FEATURES SECTION ─────────────────────── */
+        /* â”€â”€ FEATURES SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .sp-features-section {
             background: #f5f3ff;
             padding: 20px 0 60px;
@@ -234,7 +234,7 @@
         .inv-s.sent    { background: #dbeafe; color: #2563eb; }
         .inv-s.overdue { background: #fee2e2; color: #ef4444; }
 
-        /* ── BOTTOM CTA ──────────────────────────── */
+        /* â”€â”€ BOTTOM CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .sp-bottom-cta {
             background: #f5f3ff;
             padding: 32px 0;
@@ -262,7 +262,7 @@
         }
         .sp-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(89,50,234,0.38); color: #fff; text-decoration: none; }
 
-        /* ── dashboard widget cards (matching screenshots) ── */
+        /* â”€â”€ dashboard widget cards (matching screenshots) â”€â”€ */
         .dash-card { background:#fff; border:1.5px solid #e8e5f7; border-radius:14px; padding:16px 18px; box-shadow:0 4px 20px rgba(89,50,234,0.09); }
         .dash-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
         .dash-title { font-size:13px; font-weight:800; color:#1e1b4b; }
@@ -297,11 +297,13 @@
         @media (max-width: 767px) {
             .sp-hero .row.g-5 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 2rem; }
         }
+        /* Match home page: Cal Sans weight 400 for page headings */
+        .sp-feat-title { font-family: 'Cal Sans', sans-serif !important; font-weight: 400 !important; }
     </style>
 </head>
 <body>
 
-    <div class="preloader preloader-6">
+    <div class="preloader">
         <div class="loading-container">
             <div class="loading"></div>
             <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
@@ -312,7 +314,7 @@
 
     <main>
 
-        <!-- ── breadcrumb ─────────────────────────────── -->
+        <!-- â”€â”€ breadcrumb â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <section class="vl-breadcrumb-area p-relative"
             style="background-image:linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);display:flex;align-items:center;justify-content:center;padding-top:80px !important;padding-bottom:30px !important;min-height:400px;">
             <div class="container">
@@ -323,7 +325,7 @@
                             <div class="vl-breadcrumb-menu">
                                 <ul>
                                     <li><a href="../">Home</a></li>
-                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
                                     <li><a href="#">Software Presentation</a></li>
                                 </ul>
                             </div>
@@ -333,9 +335,9 @@
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════ -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
         <!-- HERO                                        -->
-        <!-- ═══════════════════════════════════════════ -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
         <section class="sp-hero">
             <div class="container">
                 <div class="text-center mb-4" data-aos="fade-up">
@@ -353,55 +355,17 @@
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-                        <div class="sp-hero-mockup">
-                            <div class="sp-mockup-bar">
-                                <div class="mockup-dot" style="background:#ff5f57;"></div>
-                                <div class="mockup-dot" style="background:#ffbd2e;"></div>
-                                <div class="mockup-dot" style="background:#28ca41;"></div>
-                                <span style="color:rgba(255,255,255,0.5);font-size:11px;margin-left:10px;">Overview</span>
-                            </div>
-                            <div class="sp-mockup-body">
-                                <div class="mock-stat-row">
-                                    <div class="mock-stat"><div class="mock-stat-lbl">Participants</div><div class="mock-stat-val">1,246</div><div class="mock-stat-chg">+12%</div></div>
-                                    <div class="mock-stat"><div class="mock-stat-lbl">Active Plans</div><div class="mock-stat-val">842</div><div class="mock-stat-chg">+8%</div></div>
-                                    <div class="mock-stat"><div class="mock-stat-lbl">Revenue</div><div class="mock-stat-val" style="font-size:14px;">$2.48M</div><div class="mock-stat-chg">+13%</div></div>
-                                    <div class="mock-stat"><div class="mock-stat-lbl">Compliance</div><div class="mock-stat-val" style="color:#10b981;">98%</div><div class="mock-stat-chg">+6%</div></div>
-                                </div>
-                                <div class="mock-chart-box">
-                                    <div class="mock-chart-lbl">Compliance / Revenue</div>
-                                    <div class="mock-bars">
-                                        <div class="mock-b" style="height:28%;"></div>
-                                        <div class="mock-b hi" style="height:44%;"></div>
-                                        <div class="mock-b" style="height:36%;"></div>
-                                        <div class="mock-b hi" style="height:60%;"></div>
-                                        <div class="mock-b" style="height:52%;"></div>
-                                        <div class="mock-b hi" style="height:74%;"></div>
-                                        <div class="mock-b" style="height:62%;"></div>
-                                        <div class="mock-b hi" style="height:86%;"></div>
-                                        <div class="mock-b" style="height:72%;"></div>
-                                        <div class="mock-b hi" style="height:100%;"></div>
-                                    </div>
-                                </div>
-                                <div class="mock-donut-row">
-                                    <div class="mock-donut-card">
-                                        <div class="mock-donut"></div>
-                                        <div style="margin-left:10px;"><div style="font-size:9px;color:#94a3b8;font-weight:600;">Plan Types</div><div style="font-size:15px;font-weight:800;color:#5932EA;">68%</div></div>
-                                    </div>
-                                    <div class="mock-donut-card">
-                                        <div class="mock-donut" style="border-color:#10b981;border-top-color:#ede9fe;border-right-color:#ede9fe;"></div>
-                                        <div style="margin-left:10px;"><div style="font-size:9px;color:#94a3b8;font-weight:600;">Compliance</div><div style="font-size:15px;font-weight:800;color:#10b981;">98%</div></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="sp-hero-mockup" style="padding:0;overflow:hidden;border-radius:16px;border:2px solid rgba(89,50,234,0.12);box-shadow:0 24px 64px rgba(89,50,234,0.15);max-height:420px;">
+                            <img src="../assets/img/softearepresentationimag1.png" alt="Plannor Dashboard Overview" style="width:100%;display:block;object-fit:cover;object-position:top center;max-height:420px;">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════ -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
         <!-- FEATURE CARDS                               -->
-        <!-- ═══════════════════════════════════════════ -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
         <section class="sp-features-section">
             <div class="container">
 
@@ -430,7 +394,7 @@
                             <div class="dash-card">
                                 <div class="dash-hdr">
                                     <span class="dash-title">Participant Growth</span>
-                                    <span class="dash-more">···</span>
+                                    <span class="dash-more">Â·Â·Â·</span>
                                 </div>
                                 <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible;">
                                     <defs>
@@ -519,7 +483,7 @@
                                     <text x="24" y="53"  text-anchor="end" font-size="9" fill="#94a3b8">8</text>
                                     <text x="24" y="73"  text-anchor="end" font-size="9" fill="#94a3b8">4</text>
                                     <text x="24" y="93"  text-anchor="end" font-size="9" fill="#94a3b8">0</text>
-                                    <!-- area fill: data 11,16,8,5,6,5,8 → y=35,10,50,65,60,65,50 -->
+                                    <!-- area fill: data 11,16,8,5,6,5,8 â†’ y=35,10,50,65,60,65,50 -->
                                     <path d="M30,35 C44,22 58,8 73,10 C88,12 103,48 117,50 C131,52 145,64 160,65 C175,66 188,62 203,60 C218,58 232,64 247,65 C262,66 276,52 290,50 L290,90 L30,90 Z" fill="url(#saGrad)"/>
                                     <!-- line -->
                                     <path d="M30,35 C44,22 58,8 73,10 C88,12 103,48 117,50 C131,52 145,64 160,65 C175,66 188,62 203,60 C218,58 232,64 247,65 C262,66 276,52 290,50" stroke="#2563eb" stroke-width="1.8" fill="none"/>
@@ -567,102 +531,20 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="dash-card" style="padding:0;overflow:hidden;">
-                                <!-- top bar -->
-                                <div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0eefb;gap:8px;">
-                                    <span style="font-size:11px;font-weight:800;color:#1e1b4b;white-space:nowrap;">AI Assistant</span>
-                                    <div style="flex:1;background:#f8f8fc;border:1px solid #e8e5f7;border-radius:20px;padding:4px 10px;display:flex;align-items:center;gap:5px;min-width:0;">
-                                        <i class="fa-regular fa-magnifying-glass" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i>
-                                        <span style="font-size:8.5px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Search participants, staff, shifts, invoices...</span>
-                                    </div>
-                                    <div style="position:relative;flex-shrink:0;">
-                                        <i class="fa-regular fa-bell" style="font-size:12px;color:#374151;"></i>
-                                        <span style="position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;border-radius:50%;width:12px;height:12px;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:700;">5</span>
-                                    </div>
-                                    <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;">
-                                        <div style="width:20px;height:20px;border-radius:50%;background:#2563eb;display:flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:700;">S</div>
-                                        <div>
-                                            <div style="font-size:8.5px;font-weight:700;color:#1e1b4b;white-space:nowrap;">SunCare Admin</div>
-                                            <div style="font-size:7px;color:#94a3b8;white-space:nowrap;">admin@suncare-services.com</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- body: sidebar + chat -->
-                                <div style="display:flex;height:268px;">
-                                    <!-- sidebar chats -->
-                                    <div style="width:115px;border-right:1px solid #f0eefb;padding:8px 8px;flex-shrink:0;overflow:hidden;">
-                                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                                            <span style="font-size:10px;font-weight:800;color:#1e1b4b;">Chats</span>
-                                            <div style="background:#5932EA;color:#fff;border-radius:5px;padding:2px 6px;font-size:8px;font-weight:700;">+ New</div>
-                                        </div>
-                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">can i create a shift?...</span></div>
-                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">What needs attention...</span></div>
-                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Show budget overview...</span></div>
-                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">List recent incidents...</span></div>
-                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;border-bottom:1px solid #f5f3ff;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Show all today's shifts...</span></div>
-                                        <div style="font-size:8.5px;color:#475569;padding:4px 0;display:flex;align-items:center;gap:4px;"><i class="fa-regular fa-comment" style="font-size:8px;color:#94a3b8;flex-shrink:0;"></i><span>hello...</span></div>
-                                    </div>
-                                    <!-- chat main -->
-                                    <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;">
-                                        <!-- chat header purple -->
-                                        <div style="background:linear-gradient(135deg,#3730a3,#5932EA);padding:7px 10px;display:flex;align-items:center;gap:7px;flex-shrink:0;">
-                                            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f97316);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;">🧑</div>
-                                            <div>
-                                                <div style="font-size:9.5px;font-weight:700;color:#fff;">koree</div>
-                                                <div style="font-size:7.5px;color:rgba(255,255,255,0.75);display:flex;align-items:center;gap:3px;"><span style="width:5px;height:5px;background:#10b981;border-radius:50%;display:inline-block;"></span> Online · AI-powered</div>
-                                            </div>
-                                            <div style="margin-left:auto;display:flex;gap:4px;">
-                                                <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:5px;padding:3px 7px;font-size:7.5px;color:#fff;white-space:nowrap;">+ New Chat</div>
-                                                <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:5px;padding:3px 7px;font-size:7.5px;color:#fff;white-space:nowrap;">Dashboard</div>
-                                            </div>
-                                        </div>
-                                        <!-- alert bar -->
-                                        <div style="background:#fffbeb;border-bottom:1px solid #fef3c7;padding:5px 10px;display:flex;gap:6px;align-items:center;flex-shrink:0;">
-                                            <span style="font-size:8px;color:#92400e;background:#fef3c7;border:1px solid #fde68a;border-radius:20px;padding:2px 7px;white-space:nowrap;">⚠ 1 staff cert(s) expiring soon</span>
-                                            <span style="font-size:8px;color:#065f46;background:#d1fae5;border:1px solid #a7f3d0;border-radius:20px;padding:2px 7px;white-space:nowrap;">💎 2 overdue invoice(s)</span>
-                                        </div>
-                                        <!-- messages -->
-                                        <div style="flex:1;overflow:hidden;padding:10px 10px 6px;background:#f8f8fc;">
-                                            <div style="background:#fff;border-radius:10px;padding:9px 11px;box-shadow:0 1px 6px rgba(0,0,0,0.07);margin-bottom:5px;">
-                                                <p style="font-size:9px;color:#1e1b4b;line-height:1.55;margin:0 0 4px;">Good afternoon, <strong style="color:#5932EA;">SunCare!</strong> 👋 I'm your NDIS AI Assistant  full-page mode.</p>
-                                                <p style="font-size:9px;color:#374151;line-height:1.55;margin:0 0 4px;">Ask me anything: participants, staff, shifts, emails, compliance, invoices, or anything else in your workspace.</p>
-                                                <p style="font-size:8.5px;color:#64748b;font-style:italic;margin:0;">Tip: You can also open this as a floating widget from any page.</p>
-                                            </div>
-                                            <div style="font-size:7.5px;color:#94a3b8;text-align:center;margin-bottom:6px;">04:08 PM</div>
-                                            <div style="display:flex;gap:3px;flex-wrap:wrap;">
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">🔴 Attention</span>
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">💰 Budget</span>
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">📅 Shifts</span>
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">🔴 Incidents</span>
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">💎 Invoices</span>
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">📧 Emails</span>
-                                                <span style="font-size:7.5px;border:1px solid #e8e5f7;border-radius:20px;padding:2px 6px;color:#374151;background:#fff;white-space:nowrap;">📋 Certs</span>
-                                            </div>
-                                        </div>
-                                        <!-- input bar -->
-                                        <div style="padding:7px 10px;border-top:1px solid #f0eefb;background:#fff;flex-shrink:0;">
-                                            <div style="display:flex;align-items:center;gap:7px;background:#f8f8fc;border:1px solid #e8e5f7;border-radius:20px;padding:5px 8px;">
-                                                <i class="fa-regular fa-microphone" style="font-size:10px;color:#94a3b8;flex-shrink:0;"></i>
-                                                <span style="font-size:8.5px;color:#94a3b8;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Ask anything about your NDIS workspace...</span>
-                                                <div style="width:20px;height:20px;border-radius:50%;background:#5932EA;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                                    <i class="fa-solid fa-paper-plane-top" style="font-size:8px;color:#fff;"></i>
-                                                </div>
-                                            </div>
-                                            <div style="text-align:center;font-size:7px;color:#94a3b8;margin-top:4px;">AI-powered · NDIS context aware · Responses may not be 100% accurate</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="dash-card" style="padding:0;overflow:hidden;border-radius:16px;border:2px solid rgba(89,50,234,0.12);box-shadow:0 24px 64px rgba(89,50,234,0.15);height:220px;">
+                                <img src="../assets/img/aiassistantt.png" alt="AI Assistant" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- 04 Reporting -->
                 <div class="sp-feat-card" data-aos="fade-up" data-aos-delay="40">
                     <div class="row align-items-center g-4">
                         <div class="col-lg-3 sp-feat-left-col">
                             <div class="sp-num-circle">04</div>
-                            <div class="sp-icon-tile" style="background:#fffbeb;"><i class="fa-solid fa-chart-column" style="color:#d97706;"></i></div>
+                            <div class="sp-icon-tile" style="background:#fffbeb;"><i class="fa-solid fa-chart-line" style="color:#d97706;"></i></div>
                             <h3 class="sp-feat-title">Reporting</h3>
                             <p class="sp-feat-desc">Powerful reports that give you real-time insights into your business.</p>
                         </div>
@@ -682,7 +564,7 @@
                             <div class="dash-card">
                                 <div class="dash-hdr">
                                     <span class="dash-title">Revenue Overview</span>
-                                    <span class="dash-more">···</span>
+                                    <span class="dash-more">Â·Â·Â·</span>
                                 </div>
                                 <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible;">
                                     <defs>
@@ -707,7 +589,7 @@
                                     <text x="32" y="67"  text-anchor="end" font-size="8" fill="#94a3b8">$200</text>
                                     <text x="32" y="80"  text-anchor="end" font-size="8" fill="#94a3b8">$100</text>
                                     <text x="32" y="93"  text-anchor="end" font-size="8" fill="#94a3b8">$0</text>
-                                    <!-- area: data $0,$0,$0,$0,$560,$0 → y=90,90,90,90,12,90 -->
+                                    <!-- area: data $0,$0,$0,$0,$560,$0 â†’ y=90,90,90,90,12,90 -->
                                     <path d="M38,90 L90,90 L142,90 L194,90 L246,12 L290,90 Z" fill="url(#roGrad)"/>
                                     <!-- line -->
                                     <path d="M38,90 L90,90 L142,90 L194,90 L246,12 L290,90" stroke="#2563eb" stroke-width="1.8" fill="none"/>
@@ -753,44 +635,8 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="dash-card">
-                                <div class="dash-hdr">
-                                    <span class="dash-title">Upcoming Shifts</span>
-                                    <span class="dash-viewall">View All</span>
-                                </div>
-                                <div class="shift-item">
-                                    <div class="shift-date-block">
-                                        <div class="shift-month">JUN</div>
-                                        <div class="shift-day">16</div>
-                                    </div>
-                                    <div>
-                                        <div class="shift-name">Marcel Bouly</div>
-                                        <div class="shift-time"><i class="fa-regular fa-clock" style="font-size:9px;"></i> 12:30 PM – 03:00 PM</div>
-                                        <div class="shift-worker"><i class="fa-regular fa-user" style="font-size:9px;"></i> Pierre</div>
-                                    </div>
-                                </div>
-                                <div class="shift-item">
-                                    <div class="shift-date-block">
-                                        <div class="shift-month">JUN</div>
-                                        <div class="shift-day">17</div>
-                                    </div>
-                                    <div>
-                                        <div class="shift-name">Marcel Bouly</div>
-                                        <div class="shift-time"><i class="fa-regular fa-clock" style="font-size:9px;"></i> 12:30 PM – 03:00 PM</div>
-                                        <div class="shift-worker"><i class="fa-regular fa-user" style="font-size:9px;"></i> Pierre</div>
-                                    </div>
-                                </div>
-                                <div class="shift-item">
-                                    <div class="shift-date-block">
-                                        <div class="shift-month">JUN</div>
-                                        <div class="shift-day">18</div>
-                                    </div>
-                                    <div>
-                                        <div class="shift-name">Marcel Bouly</div>
-                                        <div class="shift-time"><i class="fa-regular fa-clock" style="font-size:9px;"></i> 12:30 PM – 03:00 PM</div>
-                                        <div class="shift-worker"><i class="fa-regular fa-user" style="font-size:9px;"></i> Pierre</div>
-                                    </div>
-                                </div>
+                            <div style="overflow:hidden;border-radius:16px;border:2px solid rgba(89,50,234,0.12);box-shadow:0 24px 64px rgba(89,50,234,0.15);height:260px;">
+                                <img src="../assets/img/Scheduling.png" alt="Scheduling" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
                             </div>
                         </div>
                     </div>
@@ -818,49 +664,8 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="dash-card">
-                                <div class="dash-hdr">
-                                    <span class="dash-title">Invoice Status</span>
-                                </div>
-                                <div style="display:flex;align-items:center;gap:24px;">
-                                    <!-- donut chart -->
-                                    <div style="flex-shrink:0;">
-                                        <svg viewBox="0 0 120 120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
-                                            <!-- background track -->
-                                            <circle cx="60" cy="60" r="40" fill="none" stroke="#f0eefb" stroke-width="16"/>
-                                            <g transform="rotate(-90 60 60)">
-                                                <!-- Draft: grey 2/6 = 83.77 of 251.33 -->
-                                                <circle cx="60" cy="60" r="40" fill="none" stroke="#9ca3af" stroke-width="16"
-                                                    stroke-dasharray="83.77 167.56" stroke-dashoffset="0"/>
-                                                <!-- Paid: green 2/6 -->
-                                                <circle cx="60" cy="60" r="40" fill="none" stroke="#16a34a" stroke-width="16"
-                                                    stroke-dasharray="83.77 167.56" stroke-dashoffset="-83.77"/>
-                                                <!-- Overdue: red 2/6 -->
-                                                <circle cx="60" cy="60" r="40" fill="none" stroke="#ef4444" stroke-width="16"
-                                                    stroke-dasharray="83.77 167.56" stroke-dashoffset="-167.54"/>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <!-- legend -->
-                                    <div style="flex:1;">
-                                        <div class="donut-legend-row">
-                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#9ca3af;"></div><span class="donut-legend-lbl">Draft</span></div>
-                                            <span class="donut-legend-val">2</span>
-                                        </div>
-                                        <div class="donut-legend-row">
-                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#f59e0b;"></div><span class="donut-legend-lbl">Pending</span></div>
-                                            <span class="donut-legend-val">0</span>
-                                        </div>
-                                        <div class="donut-legend-row">
-                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#16a34a;"></div><span class="donut-legend-lbl">Paid</span></div>
-                                            <span class="donut-legend-val">2</span>
-                                        </div>
-                                        <div class="donut-legend-row">
-                                            <div class="donut-legend-left"><div class="donut-dot" style="background:#ef4444;"></div><span class="donut-legend-lbl">Overdue</span></div>
-                                            <span class="donut-legend-val red">2</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div style="overflow:hidden;border-radius:16px;border:2px solid rgba(89,50,234,0.12);box-shadow:0 24px 64px rgba(89,50,234,0.15);height:260px;">
+                                <img src="../assets/img/invoicing.png" alt="Invoicing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
                             </div>
                         </div>
                     </div>
@@ -869,9 +674,9 @@
             </div>
         </section>
 
-        <!-- ═══════════════════════════════════════════ -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
         <!-- BOTTOM CTA                                  -->
-        <!-- ═══════════════════════════════════════════ -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
         <section class="sp-bottom-cta" data-aos="fade-up">
             <div class="container">
                 <div class="sp-cta-inner">
@@ -920,4 +725,5 @@
         });
     </script>
 </body>
-</html>
+</html>1
+1

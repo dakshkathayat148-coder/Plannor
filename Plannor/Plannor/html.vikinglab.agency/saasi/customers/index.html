@@ -1,0 +1,1176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - Plannor</title>
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* ---- stats section ---- */
+        .cs-stats-section { background: #fff; }
+        .cs-stats-left h2 { color: #1a1a2e; font-size: 36px; font-weight: 400; line-height: 1.25; margin-bottom: 14px; }
+        .cs-stats-left p { color: #666; font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
+        .cs-check-list { list-style: none; padding: 0; margin: 0; }
+        .cs-check-list li {
+            display: flex; align-items: center; gap: 14px;
+            color: #333; font-size: 16px; font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .cs-check-list li .ck {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: linear-gradient(135deg,#5932EA,#772EFE);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; flex-shrink: 0; color: #fff;
+        }
+        .cs-stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px 24px 28px;
+            box-shadow: 0 2px 20px rgba(0,0,0,.07);
+            border-top: 4px solid transparent;
+            transition: transform .3s, box-shadow .3s;
+            height: 100%;
+        }
+        .cs-stat-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,.12); }
+        .cs-stat-card.c1 { border-top-color: #5932EA; }
+        .cs-stat-card.c2 { border-top-color: #00C2A8; }
+        .cs-stat-card.c3 { border-top-color: #FF6B35; }
+        .cs-stat-card.c4 { border-top-color: #F5A623; }
+        .cs-stat-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 0 20px; font-size: 22px;
+        }
+        .c1 .cs-stat-icon { background: #f0ecff; color: #5932EA; }
+        .c2 .cs-stat-icon { background: #e6faf7; color: #00C2A8; }
+        .c3 .cs-stat-icon { background: #fff1ec; color: #FF6B35; }
+        .c4 .cs-stat-icon { background: #fff8e8; color: #F5A623; }
+        .cs-stat-value {
+            font-size: 50px; font-weight: 900;
+            line-height: 1; margin-bottom: 6px;
+            letter-spacing: -1px;
+        }
+        .c1 .cs-stat-value { color: #5932EA; }
+        .c2 .cs-stat-value { color: #00C2A8; }
+        .c3 .cs-stat-value { color: #FF6B35; }
+        .c4 .cs-stat-value { color: #F5A623; }
+        .cs-stat-label { font-size: 15px; color: #1a1a2e; font-weight: 700; margin-bottom: 6px; }
+        .cs-stat-desc { font-size: 13px; color: #999; margin: 0; line-height: 1.5; }
+
+        /* ---- testimonial cards ---- */
+        .cs-testimonial-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 24px rgba(89,50,234,.07);
+            height: 100%;
+            position: relative;
+        }
+        .cs-testimonial-card::before {
+            content: "\201C";
+            font-size: 80px; line-height: 1;
+            color: #5932EA; opacity: .15;
+            position: absolute; top: 16px; left: 28px;
+            font-family: 'Figtree', sans-serif;
+        }
+        .cs-testimonial-text {
+            font-size: 16px; line-height: 1.8; color: #444;
+            margin-bottom: 28px; position: relative; z-index: 1;
+        }
+        .cs-testimonial-author { display: flex; align-items: center; gap: 14px; }
+        .cs-testimonial-avatar {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: linear-gradient(135deg,#5932EA,#772EFE);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 700; font-size: 18px;
+            flex-shrink: 0;
+        }
+        .cs-testimonial-name { font-weight: 700; font-size: 15px; color: #1a1a2e; margin: 0 0 2px; }
+        .cs-testimonial-role { font-size: 13px; color: #888; margin: 0; }
+        .cs-stars { color: #F5A623; font-size: 14px; margin-bottom: 16px; }
+
+        /* ---- case study cards ---- */
+        .cs-card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 4px 28px rgba(0,0,0,.08); height:100%; display:flex; flex-direction:column; transition:transform .3s, box-shadow .3s; }
+        .cs-card:hover { transform:translateY(-6px); box-shadow:0 20px 56px rgba(0,0,0,.14); }
+        .cs-card-head { padding:32px 28px 28px; color:#fff; position:relative; overflow:hidden; }
+        .cs-card-head .bg-num { position:absolute; right:-8px; bottom:-16px; font-size:110px; font-weight:900; opacity:.12; line-height:1; color:#fff; letter-spacing:-4px; pointer-events:none; }
+        .cs-card-num { font-size:13px; font-weight:700; letter-spacing:2px; opacity:.75; margin-bottom:10px; text-transform:uppercase; }
+        .cs-card-badge { font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px; display:inline-block; margin-bottom:14px; background:rgba(255,255,255,.2); color:#fff; }
+        .cs-card-head h3 { color:#fff; font-size:19px; font-weight: 400; line-height:1.35; margin:0; position:relative; }
+        .cs-card-body { padding:28px; flex:1; display:flex; flex-direction:column; }
+        .cs-step { display:flex; gap:14px; align-items:flex-start; }
+        .cs-step-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+        .cs-step-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; display:block; margin-bottom:4px; }
+        .cs-step p { font-size:14px; line-height:1.65; color:#555; margin:0; }
+        .cs-step-connector { width:1px; height:18px; background:#ebebeb; margin:5px 0 5px 19px; }
+        .cs-card-result { margin-top:auto; padding-top:20px; }
+        .cs-card-result-inner { padding:12px 16px; border-radius:12px; font-size:13px; font-weight:700; display:flex; align-items:center; gap:8px; }
+
+        /* ---- CTA section ---- */
+        .cs-cta-section {
+            background: linear-gradient(135deg,#3d1eb5 0%,#5932EA 50%,#772EFE 100%);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            color: #fff;
+        }
+        .cs-cta-section h2 { color: #fff; font-size: 42px; font-weight: 400; margin-bottom: 16px; }
+        .cs-cta-section p { color: rgba(255,255,255,.8); font-size: 18px; margin-bottom: 36px; }
+        .cs-cta-btn {
+            background: #fff; color: #5932EA;
+            border-radius: 50px; padding: 16px 40px;
+            font-weight: 700; font-size: 17px;
+            display: inline-flex; align-items: center; gap: 10px;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 8px 24px rgba(0,0,0,.2);
+        }
+        .cs-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.3); color: #5932EA; text-decoration: none; }
+
+        /* heading color override */
+        h1, h2, h3, h4, h5, h6 { color: #471C94; }
+        .cs-card-head h3 { color: #fff; }
+        .cs-cta-section h2 { color: #fff !important; }
+
+        /* stat number color override */
+        .vl-counter-box-wrap7-title {
+            color: #471C94 !important;
+        }
+        .vl-featurebox-grid {
+            border-bottom: none !important;
+        }
+        .vl-more-blog {
+            padding-bottom: 50px !important;
+        }
+        .vl-about-area-7 {
+            background: #fff !important;
+        }
+        .vl-testimonial-10 {
+            background: #f7f7fb !important;
+        }
+
+        /* section label pill */
+        .cs-section-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(89,50,234,.08);
+            border-radius: 30px; padding: 6px 18px;
+            font-size: 13px; font-weight: 600; color: #5932EA;
+            margin-bottom: 16px;
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 767px) {
+
+            /* ---- banner ---- */
+            .vl-breadcrumb-area {
+                padding-top: 90px !important;
+                padding-bottom: 40px !important;
+                min-height: 400px !important;
+            }
+            .vl-breadcrumb-menu ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
+            }
+
+            /* ---- 4 counters: 2x2 grid instead of 1 column ---- */
+            .vl-counter-box-wrap7-mainflex {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px 16px;
+                text-align: center;
+            }
+            .vl-counter-box-wrap7 {
+                border-right: none !important;
+                margin-right: 0 !important;
+                padding-right: 0 !important;
+                height: auto !important;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
+            .vl-counter-box-wrap7-title {
+                margin-right: 0 !important;
+                font-size: 34px !important;
+                line-height: 1.1 !important;
+            }
+
+            /* ---- featurebox grid: single column (covers 576-767px gap) ---- */
+            .vl-featurebox-grid {
+                grid-template-columns: 1fr !important;
+                border: none !important;
+            }
+            .vl-feature-center-thumb img {
+                max-height: 220px;
+                object-fit: contain;
+                margin: 0 auto;
+                display: block;
+            }
+
+            /* ---- testimonial cards: comfortable padding ---- */
+            .vl-testimonial-wrap-white {
+                padding: 24px 20px !important;
+            }
+
+            /* ---- case study cards ---- */
+            .cs-card-head h3 {
+                font-size: 17px;
+            }
+
+            /* ---- CTA section ---- */
+            .cs-cta-section {
+                padding: 48px 20px !important;
+                border-radius: 16px !important;
+            }
+            .cs-cta-section h2 {
+                font-size: 26px !important;
+                margin-bottom: 12px !important;
+            }
+            .cs-cta-section p {
+                font-size: 15px !important;
+                margin-bottom: 24px !important;
+            }
+            .cs-cta-btn {
+                padding: 14px 24px !important;
+                font-size: 15px !important;
+            }
+
+            /* ---- section headings ---- */
+            .vl-section-title h2.title { font-size: 26px !important; }
+
+            /* ---- about section: remove overflow:hidden so stacked grid isn't clipped ---- */
+            .vl-about-area-7.fix {
+                overflow: visible !important;
+                padding-bottom: 80px !important;
+            }
+            .vl-about-area-7.pt-100 { padding-top: 60px !important; }
+
+            /* ---- reset large left/right margins not covered by 576-767px range ---- */
+            .vl-featurebox-single:nth-child(1),
+            .vl-featurebox-single:nth-child(2),
+            .vl-featurebox-single:nth-child(3),
+            .vl-featurebox-right .vl-featurebox-single:nth-child(1),
+            .vl-featurebox-right .vl-featurebox-single:nth-child(2),
+            .vl-featurebox-right .vl-featurebox-single:nth-child(3) {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            /* ---- give last featurebox card bottom breathing room ---- */
+            .vl-featurebox-single:last-child {
+                margin-bottom: 20px !important;
+            }
+        }
+        /* Heading font â€” match home page Cal Sans weight 400 */
+        .cs-stats-left h2, .cs-card-head h3, .cs-cta-section h2 { font-family: 'Cal Sans', sans-serif; font-weight: 400; }
+    </style>
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <div id="global-header"></div>
+
+    <main>
+
+        <!-- =========== banner =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28">Customers</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="#">Customers</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== about area start =========== -->
+        <section class="vl-about-area-7 fix pt-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-social-about-wrap">
+                            <!-- vl section title -->
+                            <div class="vl-section-title vl-section-title-8 mb-60">
+                                <div class="vl-subtitle-gbg7 mb-16" data-aos="fade-up">
+                                    <div class="vl-subtitle-gbg7-white">
+                                        <p class="subtitle">Businesses Using Better Workflows Typically Achieve</p>
+                                    </div>
+                                </div>
+                                <h2 class="title text-anime-style-2">Powering Your Operations</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-10 mx-auto text-center mb-60">
+                        <div class="vl-counter-box-wrap7-mainflex">
+                            <!-- single counter -->
+                            <div class="vl-counter-box-wrap7">
+                                <h3 class="vl-counter-box-wrap7-title">40%</h3>
+                                <p class="vl-counter-box-wrap7-desc">Less Administration</p>
+                            </div>
+                            <!-- single counter -->
+                            <div class="vl-counter-box-wrap7">
+                                <h3 class="vl-counter-box-wrap7-title">3X</h3>
+                                <p class="vl-counter-box-wrap7-desc">Faster Onboarding</p>
+                            </div>
+                            <!-- single counter -->
+                            <div class="vl-counter-box-wrap7">
+                                <h3 class="vl-counter-box-wrap7-title">100%</h3>
+                                <p class="vl-counter-box-wrap7-desc">Better Reporting</p>
+                            </div>
+                            <!-- single counter -->
+                            <div class="vl-counter-box-wrap7">
+                                <h3 class="vl-counter-box-wrap7-title">360Â°</h3>
+                                <p class="vl-counter-box-wrap7-desc">Operational Visibility</p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="vl-featurebox-grid">
+                        <!-- vl left box -->
+                        <div class="vl-featurebox-left">
+                            <div class="vl-featurebox-single">
+                                <div class="vl-featurebox-single-icon"><span><i class="fa-regular fa-check"></i></span></div>
+                                <div class="vl-featurebox-single-content"><p class="vl-featurebox-single-title">All-In-One Platform</p></div>
+                            </div>
+                            <div class="vl-featurebox-single">
+                                <div class="vl-featurebox-single-icon"><span><i class="fa-regular fa-check"></i></span></div>
+                                <div class="vl-featurebox-single-content"><p class="vl-featurebox-single-title">Time Save Automate</p></div>
+                            </div>
+                            <div class="vl-featurebox-single">
+                                <div class="vl-featurebox-single-icon"><span><i class="fa-regular fa-check"></i></span></div>
+                                <div class="vl-featurebox-single-content"><p class="vl-featurebox-single-title">AI-Powered Insights</p></div>
+                            </div>
+                        </div>
+
+                        <!-- feature center Image -->
+                        <div class="vl-feature-thumb-relative">
+                            <div class="vl-feature-center-thumb">
+                                <img class="w-100" src="../assets/img/social/feature/vl-feature-thumb-7.1.png" alt="">
+                            </div>
+                            <div class="vl-feature-sm-thumb aniamtion-key-6 d-none d-xl-block">
+                                <img src="../assets/img/social/feature/vl-feature-sn-thumb7.1.png" alt="">
+                            </div>
+                        </div>
+
+                        <!-- vl right box -->
+                        <div class="vl-featurebox-right">
+                            <div class="vl-featurebox-single">
+                                <div class="vl-featurebox-single-icon"><span><i class="fa-regular fa-check"></i></span></div>
+                                <div class="vl-featurebox-single-content"><p class="vl-featurebox-single-title">Advanced AI Analytic</p></div>
+                            </div>
+                            <div class="vl-featurebox-single">
+                                <div class="vl-featurebox-single-icon"><span><i class="fa-regular fa-check"></i></span></div>
+                                <div class="vl-featurebox-single-content"><p class="vl-featurebox-single-title">Collaboration Made Easy</p></div>
+                            </div>
+                            <div class="vl-featurebox-single">
+                                <div class="vl-featurebox-single-icon"><span><i class="fa-regular fa-check"></i></span></div>
+                                <div class="vl-featurebox-single-content"><p class="vl-featurebox-single-title">24/7 Support</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== about area end =========== -->
+
+        <!-- =========== case studies =========== -->
+        <section class="fix pt-100 pb-100" style="background:#f5f0ff;">
+            <div class="container">
+                <div class="row justify-content-center mb-60">
+                    <div class="col-xl-7 text-center">
+                        <span class="cs-section-pill" data-aos="fade-up"><i class="fa-regular fa-folder-open"></i> Customers</span>
+                        <h2 class="title text-anime-style-2" data-aos="fade-up">Problem. Solution. Outcome.</h2>
+                        <p class="mt-14" style="color:#666;font-size:16px;" data-aos="fade-up">Three real scenarios  and exactly how Plannor solves them.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+
+                <!-- Case Study 1 -->
+                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cs-card">
+                        <div class="cs-card-head" style="background:linear-gradient(135deg,#3d1eb5 0%,#5932EA 100%);">
+                            <div class="cs-card-num">Case Study 01</div>
+                            <span class="cs-card-badge">Support Coordination</span>
+                            <h3>Drowning in Admin, Starving for Time</h3>
+                            <div class="bg-num">01</div>
+                        </div>
+                        <div class="cs-card-body">
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#fff5f5;color:#e53935;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#e53935;">Problem</span>
+                                    <p>Coordinators spent 3+ hrs daily on manual scheduling, progress notes &amp; NDIS reports.</p>
+                                </div>
+                            </div>
+                            <div class="cs-step-connector"></div>
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#f5f0ff;color:#5932EA;"><i class="fa-regular fa-lightbulb"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#5932EA;">Solution</span>
+                                    <p>Plannor centralised records, automated reminders, and one-click NDIS reports.</p>
+                                </div>
+                            </div>
+                            <div class="cs-step-connector"></div>
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#f0fbf4;color:#2e7d32;"><i class="fa-regular fa-circle-check"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#2e7d32;">Outcome</span>
+                                    <p>Admin dropped 40%. Team reclaimed 12 hrs/week and took on 30% more clients.</p>
+                                </div>
+                            </div>
+                            <div class="cs-card-result">
+                                <div class="cs-card-result-inner" style="background:#f0ecff;color:#5932EA;">
+                                    <i class="fa-regular fa-arrow-trend-up"></i> 40% less admin &nbsp;Â·&nbsp; 30% more capacity
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cs-card">
+                        <div class="cs-card-head" style="background:linear-gradient(135deg,#5932EA 0%,#772EFE 100%);">
+                            <div class="cs-card-num">Case Study 02</div>
+                            <span class="cs-card-badge">Compliance &amp; Audit</span>
+                            <h3>One Audit Away From Serious Risk</h3>
+                            <div class="bg-num">02</div>
+                        </div>
+                        <div class="cs-card-body">
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#fff5f5;color:#e53935;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#e53935;">Problem</span>
+                                    <p>Compliance docs scattered across emails &amp; drives. Prior audit flagged 5 non-conformances.</p>
+                                </div>
+                            </div>
+                            <div class="cs-step-connector"></div>
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#f5f0ff;color:#5932EA;"><i class="fa-regular fa-lightbulb"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#5932EA;">Solution</span>
+                                    <p>Plannor unified all docs into one auditable system with automated expiry alerts.</p>
+                                </div>
+                            </div>
+                            <div class="cs-step-connector"></div>
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#f0fbf4;color:#2e7d32;"><i class="fa-regular fa-circle-check"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#2e7d32;">Outcome</span>
+                                    <p>All evidence submitted in 24 hrs. Zero non-conformances  a complete turnaround.</p>
+                                </div>
+                            </div>
+                            <div class="cs-card-result">
+                                <div class="cs-card-result-inner" style="background:#f0ecff;color:#5932EA;">
+                                    <i class="fa-regular fa-arrow-trend-up"></i> Zero findings &nbsp;Â·&nbsp; Full audit readiness
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cs-card">
+                        <div class="cs-card-head" style="background:linear-gradient(135deg,#6c3ff5 0%,#9c6eff 100%);">
+                            <div class="cs-card-num">Case Study 03</div>
+                            <span class="cs-card-badge">Growth &amp; Scale</span>
+                            <h3>Growing Fast, Breaking at the Seams</h3>
+                            <div class="bg-num">03</div>
+                        </div>
+                        <div class="cs-card-body">
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#fff5f5;color:#e53935;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#e53935;">Problem</span>
+                                    <p>Participant base doubled in 6 months. Manual invoicing &amp; NDIA claims were causing errors and burnout.</p>
+                                </div>
+                            </div>
+                            <div class="cs-step-connector"></div>
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#f5f0ff;color:#5932EA;"><i class="fa-regular fa-lightbulb"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#5932EA;">Solution</span>
+                                    <p>Plannor automated invoicing, real-time budget tracking &amp; bulk NDIA claim submissions.</p>
+                                </div>
+                            </div>
+                            <div class="cs-step-connector"></div>
+                            <div class="cs-step">
+                                <div class="cs-step-icon" style="background:#f0fbf4;color:#2e7d32;"><i class="fa-regular fa-circle-check"></i></div>
+                                <div>
+                                    <span class="cs-step-label" style="color:#2e7d32;">Outcome</span>
+                                    <p>Claims went from 2 days to 2 hours. Grew 3Ã— in 12 months with same team, zero new errors.</p>
+                                </div>
+                            </div>
+                            <div class="cs-card-result">
+                                <div class="cs-card-result-inner" style="background:#ede9ff;color:#6c3ff5;">
+                                    <i class="fa-regular fa-arrow-trend-up"></i> 3Ã— growth &nbsp;Â·&nbsp; 90% faster claims
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div><!-- /row -->
+
+            </div>
+        </section>
+
+        <!-- =========== success stories =========== -->
+        <section class="fix pt-100 pb-100" style="background:#ffffff;">
+            <div class="container">
+
+                <!-- Header -->
+                <div class="row align-items-end justify-content-between mb-60">
+                    <div class="col-xl-6" data-aos="fade-up">
+                        <span class="cs-section-pill" style="margin-bottom:20px;display:inline-flex;"><i class="fa-solid fa-trophy"></i> &nbsp;Success Stories</span>
+                        <h2 class="title" style="font-size:42px;font-weight:400;color:#1a1a2e;line-height:1.2;margin:0;font-family:'Cal Sans',sans-serif;">Real Wins. <span style="color:#471C94;">Real Providers.</span></h2>
+                    </div>
+                    <div class="col-xl-5" data-aos="fade-up" data-aos-delay="100">
+                        <p style="color:#666;font-size:16px;line-height:1.75;margin:0;">Operational breakthroughs from NDIS providers across Australia â€” in their own numbers.</p>
+                    </div>
+                </div>
+
+                <!-- Bento row 1: large featured + side stack -->
+                <div class="row g-4 mb-4">
+
+                    <!-- Featured story -->
+                    <div class="col-xl-7" data-aos="fade-up" data-aos-delay="100">
+                        <div style="background:#f8f5ff;border:1px solid #e9e2ff;border-radius:24px;padding:48px 44px;height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:32px;position:relative;overflow:hidden;transition:box-shadow .25s;" onmouseover="this.style.boxShadow='0 16px 48px rgba(89,50,234,.12)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5932EA,#772EFE,#a78bfa);border-radius:24px 24px 0 0;"></div>
+                            <div>
+                                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
+                                    <span style="background:#ede9fe;color:#5932EA;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;">Rostering &amp; Scheduling</span>
+                                    <span style="color:#999;font-size:13px;">Northern Care Group &mdash; NSW</span>
+                                </div>
+                                <div style="font-size:80px;font-weight:800;color:#1a1a2e;line-height:.9;font-family:'Cal Sans',sans-serif;margin-bottom:8px;">12 <span style="font-size:32px;color:#471C94;">hrs/week</span></div>
+                                <p style="color:#aaa;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:24px;">saved per coordinator</p>
+                                <p style="color:#555;font-size:16px;line-height:1.8;">After switching to Plannor, coordinators eliminated manual rostering spreadsheets entirely. Shift changes, availability and notifications now happen in real time â€” saving over 12 hours per coordinator, every single week.</p>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:24px;padding-top:24px;border-top:1px solid #e9e2ff;">
+                                <div style="text-align:center;">
+                                    <div style="font-size:22px;font-weight:800;color:#471C94;font-family:'Cal Sans',sans-serif;">40%</div>
+                                    <div style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;">Less Admin</div>
+                                </div>
+                                <div style="width:1px;height:36px;background:#e9e2ff;"></div>
+                                <div style="text-align:center;">
+                                    <div style="font-size:22px;font-weight:800;color:#471C94;font-family:'Cal Sans',sans-serif;">30%</div>
+                                    <div style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;">More Clients</div>
+                                </div>
+                                <div style="width:1px;height:36px;background:#e9e2ff;"></div>
+                                <div style="text-align:center;">
+                                    <div style="font-size:22px;font-weight:800;color:#471C94;font-family:'Cal Sans',sans-serif;">Real-time</div>
+                                    <div style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;">Notifications</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side stack -->
+                    <div class="col-xl-5 d-flex flex-column gap-4">
+
+                        <!-- Side story A -->
+                        <div data-aos="fade-up" data-aos-delay="200" style="flex:1;">
+                            <div style="background:#f0fbf4;border:1px solid #c6f0d4;border-radius:20px;padding:32px 30px;height:100%;display:flex;align-items:center;gap:24px;transition:box-shadow .25s;" onmouseover="this.style.boxShadow='0 12px 36px rgba(46,125,50,.1)'" onmouseout="this.style.boxShadow='none'">
+                                <div style="flex-shrink:0;text-align:center;min-width:80px;">
+                                    <div style="font-size:48px;font-weight:800;color:#2e7d32;line-height:1;font-family:'Cal Sans',sans-serif;">Zero</div>
+                                    <div style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">findings</div>
+                                </div>
+                                <div>
+                                    <span style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2e7d32;display:block;margin-bottom:6px;">Compliance &amp; Audit</span>
+                                    <p style="font-size:13px;font-weight:600;color:#1a1a2e;margin:0 0 8px;">Horizon Support Services, QLD</p>
+                                    <p style="color:#666;font-size:13px;line-height:1.65;margin:0;">48-hour notice, surprise NDIS audit. All evidence submitted digitally â€” zero non-conformances.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Side story B -->
+                        <div data-aos="fade-up" data-aos-delay="300" style="flex:1;">
+                            <div style="background:#fff8f0;border:1px solid #fde5c2;border-radius:20px;padding:32px 30px;height:100%;display:flex;align-items:center;gap:24px;transition:box-shadow .25s;" onmouseover="this.style.boxShadow='0 12px 36px rgba(230,108,20,.1)'" onmouseout="this.style.boxShadow='none'">
+                                <div style="flex-shrink:0;text-align:center;min-width:80px;">
+                                    <div style="font-size:48px;font-weight:800;color:#e66c14;line-height:1;font-family:'Cal Sans',sans-serif;">3Ã—</div>
+                                    <div style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">revenue</div>
+                                </div>
+                                <div>
+                                    <span style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e66c14;display:block;margin-bottom:6px;">Growth &amp; Scale</span>
+                                    <p style="font-size:13px;font-weight:600;color:#1a1a2e;margin:0 0 8px;">Elevate Care Partners, VIC</p>
+                                    <p style="color:#666;font-size:13px;line-height:1.65;margin:0;">Tripled participant base in 18 months â€” same team, zero extra back-office headcount.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Row 2: 3 stat strips -->
+                <div class="row g-4">
+
+                    <!-- Strip 1 -->
+                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div style="background:#fff;border:1px solid #e8eaf0;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px;border-left:4px solid #2563eb;transition:box-shadow .25s;" onmouseover="this.style.boxShadow='0 10px 32px rgba(37,99,235,.1)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="display:flex;align-items:center;gap:14px;">
+                                <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#3b82f6);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-file-invoice-dollar" style="color:#fff;font-size:18px;"></i>
+                                </div>
+                                <div>
+                                    <p style="font-size:13px;font-weight:600;color:#1a1a2e;margin:0;">Brightpath NDIS, SA</p>
+                                    <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#471C94;">Billing &amp; Finance</span>
+                                </div>
+                            </div>
+                            <div style="font-size:28px;font-weight:800;color:#471C94;line-height:1;font-family:'Cal Sans',sans-serif;">2 days <i class="fa-solid fa-arrow-right" style="font-size:14px;"></i> 2 hrs</div>
+                            <p style="color:#666;font-size:13px;line-height:1.65;margin:0;">Bulk NDIA claims that took a full fortnight now process in under two hours, with zero errors.</p>
+                        </div>
+                    </div>
+
+                    <!-- Strip 2 -->
+                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div style="background:#fff;border:1px solid #e8eaf0;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px;border-left:4px solid #9333ea;transition:box-shadow .25s;" onmouseover="this.style.boxShadow='0 10px 32px rgba(147,51,234,.1)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="display:flex;align-items:center;gap:14px;">
+                                <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#9333ea,#a855f7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-mobile-screen-button" style="color:#fff;font-size:18px;"></i>
+                                </div>
+                                <div>
+                                    <p style="font-size:13px;font-weight:600;color:#1a1a2e;margin:0;">Synergy Care, WA</p>
+                                    <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#471C94;">Workforce Management</span>
+                                </div>
+                            </div>
+                            <div style="font-size:28px;font-weight:800;color:#471C94;line-height:1;font-family:'Cal Sans',sans-serif;">98% shift accuracy</div>
+                            <p style="color:#666;font-size:13px;line-height:1.65;margin:0;">GPS clock-in across 80+ workers eliminated all timesheet disputes and reconciliation hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- Strip 3 -->
+                    <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div style="background:#fff;border:1px solid #e8eaf0;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px;border-left:4px solid #0d9488;transition:box-shadow .25s;" onmouseover="this.style.boxShadow='0 10px 32px rgba(13,148,136,.1)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="display:flex;align-items:center;gap:14px;">
+                                <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#0d9488,#14b8a6);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i class="fa-solid fa-notes-medical" style="color:#fff;font-size:18px;"></i>
+                                </div>
+                                <div>
+                                    <p style="font-size:13px;font-weight:600;color:#1a1a2e;margin:0;">Mosaic Support, TAS</p>
+                                    <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0d9488;">Care Management</span>
+                                </div>
+                            </div>
+                            <div style="font-size:28px;font-weight:800;color:#0d9488;line-height:1;font-family:'Cal Sans',sans-serif;">50% less paperwork</div>
+                            <p style="color:#666;font-size:13px;line-height:1.65;margin:0;">AI-assisted progress notes cut documentation time in half â€” more time with participants, less at desks.</p>
+                        </div>
+                    </div>
+
+                </div><!-- /row 2 -->
+
+            </div>
+        </section>
+        <!-- =========== success stories end =========== -->
+
+        <!-- =========== testimonial area start =========== -->
+        <section class="vl-blog-area-iner-details vl-more-blog fix pt-100 pb-60" style="background:#f5f0ff;margin-top:0 !important;">
+            <div class="container">
+                <div class="row justify-content-center mb-60">
+                    <div class="col-xl-7 text-center">
+                        <div class="vl-section-title">
+                            <p class="sub-title mb-16" data-aos="fade-up"><span><img src="../assets/img/icon/sub-title-icon1.1.svg" alt=""></span> From Our Customers</p>
+                            <h2 class="title text-anime-style-2">What Providers Say About Plannor</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">Plannor has completely transformed how we manage our NDIS participants. Rostering, invoicing and compliance are all in one place it's saved us hours every week.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-test-inner1.1.png" alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Sarah Mitchell</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">NDIS Provider, Melbourne</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">The NDIS bulk invoicing feature alone has saved our finance team two full days each fortnight. Submitting claims to the NDIS portal is now seamless and error-free.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <div style="width:50px;height:50px;border-radius:50%;background:#4f46e5;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;">J</div>
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">James O'Brien</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">Operations Manager, Brisbane</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">Staff rostering used to take hours on spreadsheets. With Plannor, our coordinators set up weekly rosters in minutes and support workers get instant notifications on the app.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-auth-tmp-1.png"
+                                                alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Rachel Nguyen</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">Service Coordinator, Sydney</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">Plannor's progress notes with AI assistance has cut our documentation time in half. Our support workers can complete notes on-site from their phones compliance has never been easier.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-auth-1.3.png"
+                                                alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Karen Walsh</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">Care Manager, Perth</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">Switching to Plannor was the best decision we made as a growing NDIS provider. The participant portal gives our clients visibility over their funding and supports, which they absolutely love.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-auth-1.4.png"
+                                                alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">David Pham</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">Director, Adelaide</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">The SCHADS Award compliance tracking gives us peace of mind. We no longer worry about underpaying staff or breaching award conditions Plannor flags it automatically.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <div style="width:50px;height:50px;border-radius:50%;background:#0891b2;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;">M</div>
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Melissa Tran</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">HR Manager, Gold Coast</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">We onboarded 15 new support workers last quarter and Plannor made it effortless. Digital contracts, compliance checklists, and orientation all done through the platform.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-auth-1.5.png"
+                                                alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Tony Aguilar</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">CEO, Canberra</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">The Plannor support team is outstanding. Every query is handled quickly and they really understand the challenges NDIS providers face day to day they genuinely care.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-auth-1.6.png"
+                                                alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Amanda Clarke</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">Provider Director, Darwin</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+
+                    <div class="col-xl-4 col-md-6 mb-30">
+                        <!-- single service start -->
+                        <div class="vl-testimonial-main-wrap p-relative">
+                            <div class="vl-testimonial-wrap p-relative">
+                                <div class="vl-testimonial-wrap-white">
+                                    <!-- testimonial icon -->
+                                    <div class="vl-testimonial-wrap-icon">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <!-- testimonial desc -->
+                                    <p class="vl-testimonial-wrap-desc">GPS clock-in and clock-out has eliminated timesheet disputes entirely. Our support workers love it, and we have accurate records for every shift it's made audits stress-free.</p>
+                                    <!-- testimonial auth -->
+                                    <div class="vl-testimonial-wrap-authflex">
+                                        <!-- vl testimonial auth thumb -->
+                                        <div class="vl-testimonial-wrap-authflex-thumb">
+                                            <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-auth-1.7.png"
+                                                alt="">
+                                        </div>
+                                        <!-- vl testimonial auth content -->
+                                        <div class="vl-testimonial-wrap-authflex-content">
+                                            <!-- vl testimonial auth content title -->
+                                            <h3 class="vl-testimonial-wrap-authflex-title"><a href="#">Michael Santos</a>
+                                            </h3>
+                                            <!-- vl testimonial auth content position-->
+                                            <p class="vl-testimonial-wrap-authflex-pos">NDIS Provider, Hobart</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vl-testimonial-wrap-quote">
+                                    <!-- vl quote icon -->
+                                    <img src="../assets/img/icon/vl-testimonial-quote1.1.svg" alt="">
+                                </div>
+                            </div>
+                            <!-- testimonial bg wrap -->
+                            <div class="vl-testimonial-wrap-bg-absolute">
+                                <img src="../assets/img/hrmanagement/testimonial/vl-testimonial-bg.png" alt="">
+                            </div>
+                        </div>
+                        <!-- single service end-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =========== testimonial area end =========== -->
+
+        <!-- =========== CTA =========== -->
+        <section class="fix pt-100 pb-100">
+            <div class="container">
+                <div class="cs-cta-section" data-aos="fade-up">
+                    <p style="color:rgba(255,255,255,.7);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Ready to see your results?</p>
+                    <h2>Start Your Business Assessment</h2>
+                    <p>Find out exactly where your operations can improve and get a personalised roadmap to get there.</p>
+                    <a href="../assessment/" class="cs-cta-btn">
+                        Start Your Free Assessment
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <div class="paginacontainer">
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+    </div>
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+</body>
+
+</html>
+
+
+
+
+

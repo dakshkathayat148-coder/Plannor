@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plannor - Budget Tracking</title>
+
+    <link rel="shortcut icon" href="../assets/img/logo/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-pro.css">
+    <link rel="stylesheet" href="../assets/css/odometer-theme-default.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+
+        /* =========================================================
+           PAGE INTRO
+        ========================================================= */
+        .pg-intro {
+            background: #fff;
+            padding: 76px 0 72px;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .pg-intro-eye {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+            text-transform: uppercase; color: #471C94;
+            background: rgba(89,50,234,0.08); padding: 6px 20px;
+            border-radius: 30px; margin-bottom: 26px;
+        }
+        .pg-intro-eye-dot { width: 6px; height: 6px; border-radius: 50%; background: #5932EA; display: inline-block; }
+        .pg-intro-h1 {
+            font-family: 'Figtree', sans-serif;
+            font-size: 56px; font-weight: 900;
+            line-height: 1.05; letter-spacing: -0.03em;
+            color: #0D1238; margin-bottom: 20px;
+        }
+        .pg-intro-h1 em { font-style: normal; color: #471C94; }
+        .pg-intro-p {
+            font-size: 17px; color: #64748b; line-height: 1.75;
+            max-width: 590px; margin: 0 auto 46px; font-weight: 400;
+        }
+        .pg-pills { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .pg-pill {
+            display: inline-flex; align-items: center; gap: 9px;
+            font-size: 13px; font-weight: 700; color: #374151;
+            background: #F8FAFC; border: 1.5px solid #E5E7EB;
+            padding: 9px 20px; border-radius: 40px;
+        }
+        .pg-pill-d { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .pg-pill-d.p { background: #5932EA; }
+        .pg-pill-d.b { background: #2563EB; }
+        .pg-pill-d.g { background: #16a34a; }
+
+        /* =========================================================
+           SECTION 1 — KEY CAPABILITIES
+        ========================================================= */
+        .kc-section {
+            padding: 90px 0 100px;
+            background: linear-gradient(148deg, #f3f0ff 0%, #f8f6ff 55%, #ede9fe 100%);
+        }
+        .kc-inner {
+            display: flex; align-items: center; gap: 80px;
+        }
+
+        /* Left side */
+        .kc-txt { flex: 0 0 38%; }
+        .kc-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 10.5px; font-weight: 800; letter-spacing: 2px;
+            text-transform: uppercase; color: #5932EA;
+            background: rgba(89,50,234,0.09); padding: 5px 16px;
+            border-radius: 30px; margin-bottom: 22px;
+        }
+        .kc-h2 {
+            font-family: 'Figtree', sans-serif;
+            font-size: 44px; font-weight: 900;
+            line-height: 1.08; letter-spacing: -0.025em;
+            color: #0D1238; margin-bottom: 18px;
+        }
+        .kc-h2 em { font-style: normal; color: #471C94; }
+        .kc-desc {
+            font-size: 15.5px; color: #64748b;
+            line-height: 1.78; margin-bottom: 44px; max-width: 380px;
+        }
+
+        /* Circular stats */
+        .kc-circles { display: flex; gap: 32px; }
+        .kc-circle-wrap { text-align: center; }
+        .kc-circle {
+            width: 110px; height: 110px; border-radius: 50%;
+            border: 5px solid transparent;
+            background: linear-gradient(#f3f0ff, #f3f0ff) padding-box,
+                        linear-gradient(135deg, #5932EA, #772EFE) border-box;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 12px;
+        }
+        .kc-circle-v {
+            font-family: 'Figtree', sans-serif;
+            font-size: 26px; font-weight: 900; color: #0D1238;
+        }
+        .kc-circle-l {
+            font-size: 13px; font-weight: 700; color: #64748b;
+        }
+
+        /* Right side — stacked cards */
+        .kc-cards { flex: 1; display: flex; flex-direction: column; gap: 18px; }
+        .kc-card {
+            background: #fff;
+            border: 1.5px solid #eef0f5;
+            border-radius: 20px;
+            padding: 26px 30px;
+            display: flex; align-items: flex-start; gap: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            transition: box-shadow .2s;
+        }
+        .kc-card:hover { box-shadow: 0 6px 28px rgba(89,50,234,0.1); }
+        .kc-card.featured {
+            background: linear-gradient(135deg, #4826C9 0%, #5932EA 60%, #7C3AED 100%);
+            border-color: transparent;
+            box-shadow: 0 8px 40px rgba(89,50,234,0.3);
+        }
+        .kc-card-ico {
+            width: 48px; height: 48px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .kc-card-ico.purple { background: rgba(89,50,234,0.1); }
+        .kc-card-ico.blue   { background: rgba(37,99,235,0.1); }
+        .kc-card-ico.green  { background: rgba(22,163,74,0.1); }
+        .kc-card.featured .kc-card-ico { background: rgba(255,255,255,0.18); }
+        .kc-card-body { flex: 1; }
+        .kc-card-title {
+            font-size: 16px; font-weight: 800; color: #0D1238;
+            margin-bottom: 6px; line-height: 1.3;
+        }
+        .kc-card.featured .kc-card-title { color: #fff; }
+        .kc-card-desc {
+            font-size: 13.5px; color: #64748b; line-height: 1.65;
+        }
+        .kc-card.featured .kc-card-desc { color: rgba(255,255,255,0.75); }
+        .kc-card-tag {
+            display: inline-block; margin-top: 10px;
+            font-size: 11px; font-weight: 700;
+            background: rgba(89,50,234,0.08); color: #5932EA;
+            padding: 3px 12px; border-radius: 20px;
+        }
+        .kc-card.featured .kc-card-tag {
+            background: rgba(255,255,255,0.18); color: #fff;
+        }
+
+        /* =========================================================
+           SECTION 2 — TOOLS / ICON BOXES
+        ========================================================= */
+        .sb-section {
+            padding: 90px 0 100px;
+            background: #fff;
+        }
+        .sb-inner {
+            display: flex; align-items: stretch; gap: 70px;
+        }
+
+        /* Left image card */
+        .sb-img-wrap {
+            flex: 0 0 38%; position: relative; display: flex; flex-direction: column; gap: 50px;
+        }
+        .sb-img-card {
+            background: #111;
+            border-radius: 24px; overflow: hidden; position: relative;
+        }
+        @media (max-width: 768px) { .sb-img-hide-mobile { display: none !important; } }
+        .sb-img-card img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center top;
+            display: block; opacity: 0.75;
+        }
+        .sb-img-badge {
+            position: absolute; bottom: 28px; left: 24px; right: 24px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 14px; padding: 14px 20px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .sb-img-badge-ico {
+            width: 40px; height: 40px; border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .sb-img-badge-txt { color: #fff; }
+        .sb-img-badge-txt strong { font-size: 14px; font-weight: 800; display: block; }
+        .sb-img-badge-txt span { font-size: 12px; opacity: 0.8; }
+
+        /* Right content */
+        .sb-right { flex: 1; }
+        .sb-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 10.5px; font-weight: 800; letter-spacing: 2px;
+            text-transform: uppercase; color: #5932EA;
+            background: rgba(89,50,234,0.09); padding: 5px 16px;
+            border-radius: 30px; margin-bottom: 18px;
+        }
+        .sb-h2 {
+            font-family: 'Figtree', sans-serif;
+            font-size: 42px; font-weight: 900;
+            line-height: 1.1; letter-spacing: -0.025em;
+            color: #0D1238; margin-bottom: 14px;
+        }
+        .sb-h2 em { font-style: normal; color: #471C94; }
+        .sb-lead {
+            font-size: 15.5px; color: #64748b; line-height: 1.75;
+            margin-bottom: 40px; max-width: 500px;
+        }
+
+        /* Icon boxes grid */
+        .sb-boxes {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .sb-box {
+            border: 1.5px solid #eef0f6;
+            border-radius: 18px; padding: 28px 22px;
+            background: #fafbff;
+            transition: box-shadow .2s, border-color .2s, transform .2s;
+        }
+        .sb-box:hover {
+            box-shadow: 0 8px 32px rgba(89,50,234,0.1);
+            border-color: #DDD6FE;
+            transform: translateY(-3px);
+        }
+        .sb-box-ico {
+            width: 52px; height: 52px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 18px;
+        }
+        .sb-box-ico.purple { background: rgba(89,50,234,0.1); }
+        .sb-box-ico.blue   { background: rgba(37,99,235,0.1); }
+        .sb-box-ico.green  { background: rgba(22,163,74,0.1); }
+        .sb-box-ico.amber  { background: rgba(245,158,11,0.1); }
+        .sb-box-ico.pink   { background: rgba(236,72,153,0.1); }
+        .sb-box-ico.teal   { background: rgba(20,184,166,0.1); }
+        .sb-box-title {
+            font-size: 15px; font-weight: 800; color: #0D1238;
+            margin-bottom: 8px; line-height: 1.3;
+        }
+        .sb-box-desc {
+            font-size: 13px; color: #64748b; line-height: 1.65;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+        @media (max-width: 1100px) {
+            .pg-intro-h1 { font-size: 44px; }
+            .kc-h2 { font-size: 38px; }
+            .kc-inner { gap: 50px; }
+            .sb-h2 { font-size: 36px; }
+            .sb-inner { gap: 48px; }
+            .sb-boxes { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .pg-intro-h1 { font-size: 36px; }
+            .kc-h2 { font-size: 30px; }
+            .sb-h2 { font-size: 30px; }
+        }
+        @media (max-width: 768px) {
+            .pg-intro { padding: 54px 0 50px; }
+            .pg-intro-h1 { font-size: 30px; }
+            .kc-section { padding: 60px 0 70px; }
+            .kc-inner { flex-direction: column; gap: 44px; }
+            .kc-txt { flex: none; width: 100%; }
+            .sb-section { padding: 60px 0 70px; }
+            .sb-inner { flex-direction: column; gap: 40px; }
+            .sb-img-wrap { flex: none; width: 100%; }
+            .sb-img-card { min-height: 300px; }
+            .sb-boxes { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .sb-boxes { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <div class="preloader">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- =========== BANNER =========== -->
+        <section class="vl-breadcrumb-area p-relative"
+            style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mx-auto text-center">
+                        <div class="vl-breadcrumb-content">
+                            <h2 class="title mb-28" style="color:#fff;">Budget Tracking</h2>
+                            <div class="vl-breadcrumb-menu">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
+                                    <li><a href="#">Budget Tracking</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== PAGE INTRO =========== -->
+        <section class="pg-intro">
+            <div class="container">
+                <div class="pg-intro-eye">
+                    <span class="pg-intro-eye-dot"></span>
+                    Budget Tracking Software
+                </div>
+                <h1 class="pg-intro-h1">Every participant's budget,<br/><em>always on track.</em></h1>
+                <p class="pg-intro-p">
+                    Plannor gives NDIS providers real-time budget tracking across all funding lines and categories — so you can spot overspend, prevent funding gaps, and keep every participant's plan on track.
+                </p>
+                <div class="pg-pills">
+                    <div class="pg-pill"><div class="pg-pill-d p"></div>Real-Time Tracking</div>
+                    <div class="pg-pill"><div class="pg-pill-d b"></div>All Funding Lines</div>
+                    <div class="pg-pill"><div class="pg-pill-d g"></div>Overspend Alerts</div>
+                    <div class="pg-pill"><div class="pg-pill-d p"></div>Per-Participant View</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================================
+             SECTION 1 — KEY CAPABILITIES
+             lavender bg · text left · stacked cards right
+        ============================================================ -->
+        <section class="kc-section">
+            <div class="container">
+                <div class="kc-inner">
+
+                    <!-- Left: text + circular stats -->
+                    <div class="kc-txt">
+                        <div class="kc-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            What You Get
+                        </div>
+                        <h2 class="kc-h2">Full budget visibility,<br/><em>zero surprises.</em></h2>
+                        <p class="kc-desc">
+                            Know exactly where every dollar stands — in real time. Plannor tracks each participant's NDIS funding across all support categories, flags approaching limits, and keeps your whole team informed.
+                        </p>
+                        <div class="kc-circles">
+                            <div class="kc-circle-wrap">
+                                <div class="kc-circle">
+                                    <div class="kc-circle-v">91%</div>
+                                </div>
+                                <div class="kc-circle-l">Avg. Utilisation Rate</div>
+                            </div>
+                            <div class="kc-circle-wrap">
+                                <div class="kc-circle">
+                                    <div class="kc-circle-v">80%</div>
+                                </div>
+                                <div class="kc-circle-l">Alert Threshold</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: stacked cards -->
+                    <div class="kc-cards">
+
+                        <div class="kc-card">
+                            <div class="kc-card-ico blue">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <div class="kc-card-body">
+                                <div class="kc-card-title">Per-Participant Budget Dashboard</div>
+                                <div class="kc-card-desc">Complete participant profiles with NDIS plan data, support budgets, and spending percentages — visible at a glance across every funding line and category.</div>
+                                <span class="kc-card-tag">On Track · Near Limit · Active statuses</span>
+                            </div>
+                        </div>
+
+                        <div class="kc-card featured">
+                            <div class="kc-card-ico">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </div>
+                            <div class="kc-card-body">
+                                <div class="kc-card-title">Automatic Overspend Alerts</div>
+                                <div class="kc-card-desc">When a participant's budget reaches 80%, Plannor automatically triggers an alert for your support coordinator — so you can act before funding runs out and services are disrupted.</div>
+                                <span class="kc-card-tag">Auto-triggered · Coordinator notified</span>
+                            </div>
+                        </div>
+
+                        <div class="kc-card">
+                            <div class="kc-card-ico green">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            </div>
+                            <div class="kc-card-body">
+                                <div class="kc-card-title">Plan End Date Tracking</div>
+                                <div class="kc-card-desc">Track plan review dates alongside budget usage. Proactively manage renewals, avoid gaps in service, and ensure no participant falls through the cracks at plan end.</div>
+                                <span class="kc-card-tag">Review dates · Renewal reminders</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION 2 — TOOLS / ICON BOXES
+             white bg · image left · icon boxes right
+        ============================================================ -->
+        <section class="sb-section">
+            <div class="container">
+                <div class="sb-inner">
+
+                    <!-- Left: real image card -->
+                    <div class="sb-img-wrap">
+                        <div class="sb-img-card sb-img-hide-mobile" style="height:400px;">
+                            <img src="../assets/img/hrmanagement/service/budget-invoicing.png" alt="Budget invoicing dashboard">
+                        </div>
+                        <div class="sb-img-card" style="height:400px;">
+                            <img src="../assets/img/hrmanagement/service/budget-billing.jpeg" alt="NDIS billing dashboard">
+                            <div class="sb-img-badge">
+                                <div class="sb-img-badge-ico">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                </div>
+                                <div class="sb-img-badge-txt">
+                                    <strong>Zero funding gaps</strong>
+                                    <span>Every participant's budget, always in view</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: heading + icon boxes -->
+                    <div class="sb-right">
+                        <div class="sb-tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Budget Tools
+                        </div>
+                        <h2 class="sb-h2">Everything you need to <em>track budgets smarter.</em></h2>
+                        <p class="sb-lead">From individual participant budgets to organisation-wide funding visibility — Plannor gives your team the tools to stay ahead.</p>
+
+                        <div class="sb-boxes">
+
+                            <div class="sb-box">
+                                <div class="sb-box-ico purple">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5932EA" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                </div>
+                                <div class="sb-box-title">Real-Time Budget Tracking</div>
+                                <div class="sb-box-desc">Live spending data across all NDIS funding lines — Core, Capacity Building, and Capital — updated as shifts are delivered.</div>
+                            </div>
+
+                            <div class="sb-box">
+                                <div class="sb-box-ico amber">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                </div>
+                                <div class="sb-box-title">Overspend Alerts</div>
+                                <div class="sb-box-desc">Automated alerts when budgets hit 80% utilisation — giving coordinators time to act before funding is exhausted.</div>
+                            </div>
+
+                            <div class="sb-box">
+                                <div class="sb-box-ico blue">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </div>
+                                <div class="sb-box-title">Per-Participant View</div>
+                                <div class="sb-box-desc">Drill into any participant's budget — see utilisation percentages, support categories, and remaining funds in one profile.</div>
+                            </div>
+
+                            <div class="sb-box">
+                                <div class="sb-box-ico green">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </div>
+                                <div class="sb-box-title">Plan End Date Tracking</div>
+                                <div class="sb-box-desc">Never miss a plan review. Track expiry dates alongside budget usage and get reminded before a participant's plan lapses.</div>
+                            </div>
+
+                            <div class="sb-box">
+                                <div class="sb-box-ico teal">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </div>
+                                <div class="sb-box-title">Funding Line Breakdown</div>
+                                <div class="sb-box-desc">View spending split across all NDIS support categories so coordinators can identify under-utilised or at-risk funding lines.</div>
+                            </div>
+
+                            <div class="sb-box">
+                                <div class="sb-box-ico pink">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                </div>
+                                <div class="sb-box-title">Budget Reports</div>
+                                <div class="sb-box-desc">Export participant budget summaries for plan managers, auditors, or internal reviews — with one click.</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="global-footer"></div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/nice-select.js"></script>
+    <script src="../assets/js/aos.js"></script>
+    <script src="../assets/js/fontawesome.min.js"></script>
+    <script src="../assets/js/plugin.js"></script>
+    <script src="../assets/js/gAnim.js"></script>
+    <script src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
+    <script src="../assets/js/parallaxie.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+    <script>
+        // Fallback: dismiss preloader even if window.load already fired
+        if (document.readyState === 'complete') {
+            setTimeout(function() { var p = document.querySelector('.preloader'); if (p) p.style.display = 'none'; }, 100);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(function() { var p = document.querySelector('.preloader'); if (p) p.style.display = 'none'; }, 300);
+            });
+        }
+        // Hard-cap: always dismiss after 3 seconds
+        setTimeout(function() { var p = document.querySelector('.preloader'); if (p) p.style.display = 'none'; }, 3000);
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* ── tokens ───────────────────────────────────────── */
+        h1, h2, h3, h4, h5, h6 { color: #471C94; }
+        /* â”€â”€ tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         :root {
             --p:      #5932EA;
             --p-d:    #4520d4;
@@ -31,13 +32,13 @@
             --border: #ede9fe;
         }
 
-        /* ── page background ──────────────────────────────── */
+        /* â”€â”€ page background â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-page { background: #f8f8fc; padding-bottom: 36px; }
 
-        /* ── footer fix ───────────────────────────────────── */
+        /* â”€â”€ footer fix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .vl-footer-area { margin-top: 0 !important; padding-top: 80px !important; }
 
-        /* ── hero header ──────────────────────────────────── */
+        /* â”€â”€ hero header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-hero {
             background: #fff;
             border-bottom: 1px solid #f0eeff;
@@ -72,10 +73,7 @@
             letter-spacing: -0.03em;
         }
         .tpl-hero-title .grad {
-            background: linear-gradient(90deg, #5932EA 0%, #7c3aed 60%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #471C94;
         }
         .tpl-hero-desc {
             font-size: 15.5px;
@@ -92,185 +90,147 @@
             position: relative;
         }
 
-        /* ── cards section ────────────────────────────────── */
-        .tpl-cards-section { padding: 48px 0 0; }
-        .tpl-cards-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
+        /* -- browse layout ------------------------------------------ */
+        .tpl-browse-section { padding: 60px 0 80px; background: #f5f4ff; }
+        .tpl-browse-wrap { display: flex; gap: 28px; align-items: flex-start; }
 
-        /* ── individual card ──────────────────────────────── */
-        .tpl-card {
-            background: #fff;
-            border-radius: 20px;
-            border: 1px solid #f0eeff;
-            box-shadow: 0 4px 24px rgba(89,50,234,0.07);
-            padding: 28px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            transition: transform 0.22s ease, box-shadow 0.22s ease;
-            position: relative;
-        }
-        .tpl-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(89,50,234,0.13);
-        }
-
-        /* number badge - hidden */
-        .tpl-num { display: none; }
-
-        /* icon circle */
-        .tpl-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* sidebar */
+        .tpl-sidebar {
+            width: 220px;
             flex-shrink: 0;
-            font-size: 24px;
-        }
-        .tpl-icon.ico-purple { background: #ede9fe; color: #5932EA; }
-        .tpl-icon.ico-green  { background: #f0eeff; color: #5932EA; }
-        .tpl-icon.ico-blue   { background: #ede9fe; color: #7c3aed; }
-        .tpl-icon.ico-orange { background: #f5f3ff; color: #5932EA; }
-
-        /* content */
-        .tpl-content { width: 100%; }
-        .tpl-content h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--navy);
-            margin: 0 0 7px;
-            letter-spacing: -0.01em;
-        }
-        .tpl-content p {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.6;
-            margin: 0 0 10px;
-        }
-        .tpl-filetype {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 11.5px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 6px;
-            letter-spacing: 0.03em;
-        }
-        .tpl-filetype.ft-pdf  { background: #fff1f2; color: #e11d48; }
-        .tpl-filetype.ft-xlsx { background: #ecfdf5; color: #059669; }
-        .tpl-filetype.ft-docx { background: #eff6ff; color: #2563eb; }
-
-        /* download form */
-        .tpl-dl {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: auto;
-        }
-        .tpl-dl-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--navy);
-            letter-spacing: 0.01em;
-        }
-        .tpl-email-wrap {
-            position: relative;
-        }
-        .tpl-email-wrap i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #a0aec0;
-            font-size: 13px;
-        }
-        .tpl-email-input {
-            width: 100%;
-            padding: 10px 12px 10px 34px;
-            border: 1.5px solid #e8e5f7;
-            border-radius: 10px;
-            font-size: 13.5px;
-            color: var(--navy);
-            outline: none;
-            background: #faf9ff;
-            transition: border-color 0.2s;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
-        .tpl-email-input:focus { border-color: #a78bfa; background: #fff; }
-        .tpl-email-input.error { border-color: #e11d48; }
-        .tpl-error-msg {
-            font-size: 11.5px;
-            color: #e11d48;
-            display: none;
-            margin-top: -4px;
-        }
-
-        .tpl-dl-btn {
-            width: 100%;
-            padding: 11px 0;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: opacity 0.2s, transform 0.15s;
-            font-family: inherit;
-        }
-        .tpl-dl-btn:hover  { opacity: 0.88; transform: scale(1.02); }
-        .tpl-dl-btn:active { transform: scale(0.98); }
-        .tpl-dl-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .btn-purple { background: linear-gradient(135deg, #5932EA 0%, #7c3aed 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
-        .btn-green  { background: linear-gradient(135deg, #5932EA 0%, #4520d4 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
-        .btn-blue   { background: linear-gradient(135deg, #5932EA 0%, #772EFE 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
-        .btn-orange { background: linear-gradient(135deg, #5932EA 0%, #7c3aed 100%); box-shadow: 0 4px 14px rgba(89,50,234,0.30); }
-
-        /* ── security bar ─────────────────────────────────── */
-        .tpl-security {
-            margin-top: 20px;
             background: #fff;
-            border-radius: 20px;
-            border: 1px solid #f0eeff;
-            box-shadow: 0 4px 24px rgba(89,50,234,0.07);
-            padding: 22px 32px;
+            border-radius: 14px;
+            border: 1px solid #ede9fe;
+            padding: 20px 16px;
+            position: sticky;
+            top: 90px;
+        }
+        .tpl-sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin: 0 0 10px 4px;
+        }
+        .tpl-cat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+        .tpl-cat-list li a {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
+            padding: 8px 12px;
+            border-radius: 9px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #374151;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
         }
-        .tpl-sec-lhs { display: flex; align-items: center; gap: 14px; }
-        .tpl-sec-ico {
-            width: 42px; height: 42px;
-            border-radius: 50%;
-            background: #f0eeff;
-            border: 1.5px solid #ddd6fe;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-            color: #5932EA;
-            font-size: 17px;
+        .tpl-cat-list li a:hover,
+        .tpl-cat-list li a.active { background: #ede9fe; color: #5932EA; }
+        .tpl-cat-count {
+            font-size: 11.5px;
+            font-weight: 700;
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 1px 7px;
+            border-radius: 20px;
         }
-        .tpl-sec-text h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin: 0 0 2px; }
-        .tpl-sec-text p  { font-size: 12.5px; color: var(--muted); margin: 0; }
-        .tpl-sec-rhs {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 14px; font-weight: 700; color: var(--navy);
-        }
-        .tpl-sec-rhs i { color: #10b981; font-size: 18px; }
+        .tpl-cat-list li a.active .tpl-cat-count { background: #ddd6fe; color: #5932EA; }
 
-        /* ── toast ────────────────────────────────────────── */
+        /* main grid area */
+        .tpl-main { flex: 1; min-width: 0; }
+        .tpl-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        /* card */
+        .tmpl-card {
+            background: #fff;
+            border-radius: 13px;
+            border: 1px solid #ede9fe;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .tmpl-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(89,50,234,0.12); }
+        .tmpl-card-top {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 30px;
+        }
+        .tmpl-card-top.gr-purple { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); }
+        .tmpl-card-top.gr-blue   { background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%); }
+        .tmpl-card-top.gr-green  { background: linear-gradient(135deg, #059669 0%, #34d399 100%); }
+        .tmpl-card-top.gr-orange { background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%); }
+        .tmpl-card-top.gr-teal   { background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%); }
+        .tmpl-card-top.gr-rose   { background: linear-gradient(135deg, #be123c 0%, #fb7185 100%); }
+        .tmpl-card-body { padding: 12px 14px 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+        .tmpl-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.25);
+            color: #fff;
+            letter-spacing: 0.04em;
+        }
+        .tmpl-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0;
+            line-height: 1.35;
+        }
+        .tmpl-card-cat {
+            font-size: 11.5px;
+            color: var(--muted);
+            margin: 0;
+        }
+        .tmpl-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11.5px;
+            color: var(--muted);
+            margin-top: auto;
+            padding-top: 6px;
+            border-top: 1px solid #f3f0ff;
+        }
+        .tmpl-card-meta i { color: #5932EA; font-size: 11px; }
+
+        /* load more */
+        .tpl-load-more-wrap { text-align: center; }
+        .tpl-load-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 32px;
+            border: 1.5px solid #ddd6fe;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #5932EA;
+            background: #fff;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            font-family: inherit;
+        }
+        .tpl-load-more:hover { border-color: #5932EA; background: #f5f3ff; }
+
+        /* â”€â”€ toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         .tpl-toast {
             position: fixed;
             bottom: 32px;
@@ -297,30 +257,34 @@
         }
         .tpl-toast i { color: #a7f3d0; font-size: 16px; }
 
-        /* ── responsive ───────────────────────────────────── */
+        /* â”€â”€ responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         @media (max-width: 1199px) {
-            .tpl-cards-list { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+            .tpl-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 991px) {
             .tpl-hero-inner { flex-direction: column; text-align: center; }
             .tpl-hero-rhs   { width: 220px; }
             .tpl-hero-desc  { max-width: 100%; }
-            .tpl-cards-list { grid-template-columns: repeat(2, 1fr); }
+            .tpl-browse-wrap { flex-direction: column; }
+            .tpl-sidebar { width: 100%; }
+            .tpl-cat-list { flex-direction: row; flex-wrap: wrap; }
+            .tpl-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 640px) {
             .tpl-hero-title { font-size: 28px; }
             .tpl-hero-rhs   { display: none; }
-            .tpl-cards-list { grid-template-columns: 1fr; }
+            .tpl-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
         @media (max-width: 576px) {
             .tpl-hero { padding: 50px 0 36px; }
+            .tpl-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <!-- preloader -->
-    <div class="preloader preloader-6">
+    <div class="preloader">
         <div class="loading-container">
             <div class="loading"></div>
             <div id="loading-icon"><img src="../assets/img/preloader/vl-preloader-1.1.png" alt=""></div>
@@ -330,7 +294,7 @@
     <div id="global-header"></div>
 
     <main>
-        <!-- ── breadcrumb ──────────────────────────────────── -->
+        <!-- â”€â”€ breadcrumb â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <section class="vl-breadcrumb-area p-relative"
             style="background-image: linear-gradient(135deg, #3d1eb5 0%, #5932EA 50%, #772EFE 100%); display:flex; align-items:center; justify-content:center; padding-top:80px !important; padding-bottom:30px !important; min-height:400px;">
             <div class="container">
@@ -341,7 +305,7 @@
                             <div class="vl-breadcrumb-menu">
                                 <ul>
                                     <li><a href="../">Home</a></li>
-                                    <li><i class="fa-regular fa-angle-right"></i></li>
+                                    <li><i class="fa-solid fa-angle-right"></i></li>
                                     <li><a href="#">Free Templates</a></li>
                                 </ul>
                             </div>
@@ -351,7 +315,7 @@
             </div>
         </section>
 
-        <!-- ── templates page ─────────────────────────────── -->
+        <!-- â”€â”€ templates page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
         <div class="tpl-page">
 
             <!-- HERO HEADER -->
@@ -429,151 +393,141 @@
                 </div>
             </section>
 
-            <!-- TEMPLATE CARDS -->
-            <section class="tpl-cards-section">
+            <!-- BROWSE SECTION -->
+            <section class="tpl-browse-section">
                 <div class="container">
-                    <div class="tpl-cards-list">
+                    <div class="tpl-browse-wrap">
+                        <!-- Grid -->
+                        <div class="tpl-main">
+                            <div class="tpl-grid">
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-purple">
+                                        <i class="fa-solid fa-clipboard-check" style="color:#fff;"></i>
+                                        <span class="tmpl-badge">Popular</span>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">NDIS Operational Checklist</p>
+                                        <p class="tmpl-card-cat">Compliance &amp; Risk</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 1,240 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-blue">
+                                        <i class="fa-solid fa-user-group" style="color:#fff;"></i>
+                                        <span class="tmpl-badge">Popular</span>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Support Worker Shift Report</p>
+                                        <p class="tmpl-card-cat">HR &amp; Staff</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 980 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-green">
+                                        <i class="fa-solid fa-file-invoice-dollar" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">NDIS Budget Tracker</p>
+                                        <p class="tmpl-card-cat">Finance &amp; Billing</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 856 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-orange">
+                                        <i class="fa-solid fa-notes-medical" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Support Plan Template</p>
+                                        <p class="tmpl-card-cat">Plans &amp; Reviews</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 742 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-teal">
+                                        <i class="fa-solid fa-person-walking" style="color:#fff;"></i>
+                                        <span class="tmpl-badge">Popular</span>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Participant Intake Form</p>
+                                        <p class="tmpl-card-cat">Participant Management</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 698 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-rose">
+                                        <i class="fa-solid fa-triangle-exclamation" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Incident Report Form</p>
+                                        <p class="tmpl-card-cat">Compliance &amp; Risk</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 634 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-purple">
+                                        <i class="fa-solid fa-calendar-days" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Roster &amp; Scheduling Sheet</p>
+                                        <p class="tmpl-card-cat">HR &amp; Staff</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 521 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-blue">
+                                        <i class="fa-solid fa-chart-bar" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Monthly Progress Report</p>
+                                        <p class="tmpl-card-cat">Reports</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 487 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-green">
+                                        <i class="fa-solid fa-shield-halved" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Risk Assessment Template</p>
+                                        <p class="tmpl-card-cat">Compliance &amp; Risk</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 455 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-orange">
+                                        <i class="fa-solid fa-hand-holding-heart" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Goal Review Template</p>
+                                        <p class="tmpl-card-cat">Plans &amp; Reviews</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 412 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-teal">
+                                        <i class="fa-solid fa-file-contract" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Service Agreement Template</p>
+                                        <p class="tmpl-card-cat">Participant Management</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 398 downloads</p>
+                                    </div>
+                                </a>
+                                <a class="tmpl-card" href="#">
+                                    <div class="tmpl-card-top gr-rose">
+                                        <i class="fa-solid fa-receipt" style="color:#fff;"></i>
+                                    </div>
+                                    <div class="tmpl-card-body">
+                                        <p class="tmpl-card-title">Invoice &amp; Claims Template</p>
+                                        <p class="tmpl-card-cat">Finance &amp; Billing</p>
+                                        <p class="tmpl-card-meta"><i class="fa-solid fa-download"></i> 367 downloads</p>
+                                    </div>
+                                </a>
+                            </div>
 
-                        <!-- Card 1: NDIS Operational Checklist -->
-                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="0">
-                            <span class="tpl-num">1</span>
-                            <div class="tpl-icon ico-purple">
-                                <i class="fa-solid fa-clipboard-check"></i>
-                            </div>
-                            <div class="tpl-content">
-                                <h3>NDIS Operational Checklist</h3>
-                                <p>A comprehensive checklist to help you stay compliant and manage day-to-day operations with confidence.</p>
-                                <span class="tpl-filetype ft-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>
-                            </div>
-                            <div class="tpl-dl">
-                                <div class="tpl-dl-label">Enter your email to download</div>
-                                <div class="tpl-email-wrap">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="1">
-                                </div>
-                                <span class="tpl-error-msg" id="err-1">Please enter a valid email address.</span>
-                                <button class="tpl-dl-btn btn-purple" onclick="downloadTemplate(1, 'NDIS_Operational_Checklist.pdf')">
-                                    <i class="fa-solid fa-download"></i> Download
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 2: CRM Spreadsheet Template -->
-                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="80">
-                            <span class="tpl-num">2</span>
-                            <div class="tpl-icon ico-green">
-                                <i class="fa-solid fa-table"></i>
-                            </div>
-                            <div class="tpl-content">
-                                <h3>CRM Spreadsheet Template</h3>
-                                <p>Track participants, interactions and follow-ups with this easy-to-use CRM spreadsheet template.</p>
-                                <span class="tpl-filetype ft-xlsx"><i class="fa-solid fa-file-excel"></i> XLSX</span>
-                            </div>
-                            <div class="tpl-dl">
-                                <div class="tpl-dl-label">Enter your email to download</div>
-                                <div class="tpl-email-wrap">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="2">
-                                </div>
-                                <span class="tpl-error-msg" id="err-2">Please enter a valid email address.</span>
-                                <button class="tpl-dl-btn btn-green" onclick="downloadTemplate(2, 'CRM_Spreadsheet_Template.xlsx')">
-                                    <i class="fa-solid fa-download"></i> Download
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 3: Workflow Template -->
-                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="120">
-                            <span class="tpl-num">3</span>
-                            <div class="tpl-icon ico-blue">
-                                <i class="fa-solid fa-diagram-project"></i>
-                            </div>
-                            <div class="tpl-content">
-                                <h3>Workflow Template</h3>
-                                <p>Streamline your processes with a proven workflow template designed for NDIS providers.</p>
-                                <span class="tpl-filetype ft-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>
-                            </div>
-                            <div class="tpl-dl">
-                                <div class="tpl-dl-label">Enter your email to download</div>
-                                <div class="tpl-email-wrap">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="3">
-                                </div>
-                                <span class="tpl-error-msg" id="err-3">Please enter a valid email address.</span>
-                                <button class="tpl-dl-btn btn-blue" onclick="downloadTemplate(3, 'Workflow_Template.pdf')">
-                                    <i class="fa-solid fa-download"></i> Download
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 4: AI Prompt Pack -->
-                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="160">
-                            <span class="tpl-num">4</span>
-                            <div class="tpl-icon ico-orange">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <div class="tpl-content">
-                                <h3>AI Prompt Pack</h3>
-                                <p>100+ ready-to-use AI prompts to save time and improve productivity across your operations.</p>
-                                <span class="tpl-filetype ft-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</span>
-                            </div>
-                            <div class="tpl-dl">
-                                <div class="tpl-dl-label">Enter your email to download</div>
-                                <div class="tpl-email-wrap">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="4">
-                                </div>
-                                <span class="tpl-error-msg" id="err-4">Please enter a valid email address.</span>
-                                <button class="tpl-dl-btn btn-orange" onclick="downloadTemplate(4, 'AI_Prompt_Pack.pdf')">
-                                    <i class="fa-solid fa-download"></i> Download
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 5: Participant Onboarding Template -->
-                        <div class="tpl-card" data-aos="fade-up" data-aos-delay="200">
-                            <span class="tpl-num">5</span>
-                            <div class="tpl-icon ico-purple">
-                                <i class="fa-solid fa-id-card"></i>
-                            </div>
-                            <div class="tpl-content">
-                                <h3>Participant Onboarding Template</h3>
-                                <p>A structured onboarding template to help you deliver a smooth and professional experience.</p>
-                                <span class="tpl-filetype ft-docx"><i class="fa-solid fa-file-word"></i> DOCX</span>
-                            </div>
-                            <div class="tpl-dl">
-                                <div class="tpl-dl-label">Enter your email to download</div>
-                                <div class="tpl-email-wrap">
-                                    <i class="fa-regular fa-envelope"></i>
-                                    <input type="email" class="tpl-email-input" placeholder="you@example.com" data-card="5">
-                                </div>
-                                <span class="tpl-error-msg" id="err-5">Please enter a valid email address.</span>
-                                <button class="tpl-dl-btn btn-purple" onclick="downloadTemplate(5, 'Participant_Onboarding_Template.docx')">
-                                    <i class="fa-solid fa-download"></i> Download
-                                </button>
-                            </div>
-                        </div>
-
-                    </div><!-- /tpl-cards-list -->
-
-                    <!-- SECURITY BAR -->
-                    <div class="tpl-security" data-aos="fade-up">
-                        <div class="tpl-sec-lhs">
-                            <div class="tpl-sec-ico">
-                                <i class="fa-solid fa-shield"></i>
-                            </div>
-                            <div class="tpl-sec-text">
-                                <h4>Your privacy is important to us.</h4>
-                                <p>Your email is used only to send the template download link.</p>
-                            </div>
-                        </div>
-                        <div class="tpl-sec-rhs">
-                            <i class="fa-solid fa-shield-check"></i>
-                            100% Secure
                         </div>
                     </div>
-
-                </div><!-- /container -->
+                </div>
             </section>
 
         </div><!-- /tpl-page -->
@@ -615,62 +569,24 @@
     </script>
 
     <script>
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        function showToast() {
-            var toast = document.getElementById('tpl-toast');
-            toast.classList.add('show');
-            setTimeout(function() { toast.classList.remove('show'); }, 3500);
-        }
-
-        function downloadTemplate(cardNum, filename) {
-            var input    = document.querySelector('[data-card="' + cardNum + '"]');
-            var errEl    = document.getElementById('err-' + cardNum);
-            var btn      = input.closest('.tpl-dl').querySelector('.tpl-dl-btn');
-            var email    = input.value.trim();
-
-            // reset
-            input.classList.remove('error');
-            errEl.style.display = 'none';
-
-            if (!email || !emailRegex.test(email)) {
-                input.classList.add('error');
-                errEl.style.display = 'block';
-                input.focus();
-                return;
-            }
-
-            // loading state
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Downloading...';
-
-            // save email locally
-            var saved = JSON.parse(localStorage.getItem('tpl_emails') || '[]');
-            saved.push({ card: cardNum, email: email, date: new Date().toISOString() });
-            localStorage.setItem('tpl_emails', JSON.stringify(saved));
-
-            // simulate download after short delay
-            setTimeout(function() {
-                var content = 'Plannor Template: ' + filename + '\nEmail: ' + email + '\n\nThank you for downloading this template.\nVisit plannor.com.au for more resources.';
-                var blob = new Blob([content], { type: 'text/plain' });
-                var url  = URL.createObjectURL(blob);
-                var a    = document.createElement('a');
-                a.href     = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
-                showToast();
-
-                setTimeout(function() {
-                    btn.innerHTML = '<i class="fa-solid fa-download"></i> Download';
-                }, 4000);
-            }, 900);
+        document.querySelectorAll('.tpl-cat-list a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tpl-cat-list a').forEach(function(a) { a.classList.remove('active'); });
+                this.classList.add('active');
+            });
+        });
+        var loadMoreBtn = document.querySelector('.tpl-load-more');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                this.innerHTML = '<i class="fa-solid fa-check"></i> All Templates Loaded';
+                this.disabled = true;
+                this.style.opacity = '0.6';
+            });
         }
     </script>
 </body>
 </html>
+
+
+
